@@ -43,7 +43,16 @@ set incsearch
 "Highlight search matches
 set hlsearch
 
-"--- Folding settings
+"Make cmdline tab completion similar to bash
+set wildmode=list:longest
+
+"Enable CTRL-n and CTRL-p to scroll through matches
+set wildmenu
+
+"Ignored patterns when tab completing
+set wildignore=*.o,*.obj,*~
+
+"--- Code folding settings
 
 "Fold based on indent
 set foldmethod=indent
@@ -95,12 +104,12 @@ endif
 
 "--- Key mappings
 
-"CTRL+C and CTRL+V for Copying and Pasting
+"CTRL+c and CTRL+v for Copying and Pasting
 nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
-"CTRL+S for file saving
+"CTRL+s for file saving
 nmap <C-s> :w<CR>
 
 "TAB and SHIFT+TAB for tab navigation
@@ -115,10 +124,15 @@ vnoremap <F9> zf
 
 "--- PHP settings
 
-"Run file with PHP CLI (CTRL-M)
-:autocmd FileType php noremap <C-M> :w!<CR>:!php %<CR>
+"Run file with PHP CLI (CTRL-m)
+:autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
-"PHP parser check (CTRL-L)
-:autocmd FileType php noremap <C-L> :!php -l %<CR>
+"PHP parser check (CTRL-l)
+:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 
 "For above bindings, php bin dir must be in $PATH
+
+"-- Easytags settings
+
+"Make it recursively scan everything below the directory of the current file
+:let g:easytags_autorecurse = 1
