@@ -79,6 +79,8 @@ if has("gui_running")
   set lines=30
   set columns=80
   
+  :set guioptions-=T "remove toolbar
+  
   if has("gui_gnome")
     set guifont=Ubuntu\ Mono\ Bold\ 12
     "set guifont=Monospace\ Bold\ 10
@@ -136,3 +138,6 @@ vnoremap <F9> zf
 
 "Make it recursively scan everything below the directory of the current file
 :let g:easytags_autorecurse = 1
+
+"Always enable dynamic highlighting
+:let g:easytags_always_enabled = 1
