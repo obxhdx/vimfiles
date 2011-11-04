@@ -79,11 +79,12 @@ if has("gui_running")
   set lines=30
   set columns=80
   
-  :set guioptions-=T "remove toolbar
+  set guioptions-=T "remove toolbar
+  set guioptions-=r "remove right-hand scroll bar
   
   if has("gui_gnome")
-    set guifont=Ubuntu\ Mono\ Bold\ 12
-    "set guifont=Monospace\ Bold\ 10
+    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=Monospace\ 10
   endif
   
   if has("gui_win32") || has("gui_win32s")
@@ -137,7 +138,10 @@ vnoremap <F9> zf
 "-- Easytags settings
 
 "Make it recursively scan everything below the directory of the current file
-:let g:easytags_autorecurse = 1
+autocmd Filetype java,javascript,php,ruby let g:easytags_autorecurse = 1
 
 "Always enable dynamic highlighting
-:let g:easytags_always_enabled = 1
+let g:easytags_always_enabled = 1
+
+"Use a python implementation of dynamic syntax highlighting script (2x faster than vim script)
+let g:easytags_python_enabled = 1
