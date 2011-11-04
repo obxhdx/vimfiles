@@ -80,7 +80,8 @@ if has("gui_running")
   set columns=80
   
   set guioptions-=T "remove toolbar
-  set guioptions-=r "remove right-hand scroll bar
+  set guioptions-=r "remove right-hand scrollbar
+  set guioptions-=L "remove NERDTree scrollbar
   
   if has("gui_gnome")
     set guifont=Ubuntu\ Mono\ 12
@@ -124,6 +125,9 @@ inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
+
+"F2 for toggling NERDTree
+map <F2> :NERDTreeToggle<CR>
 
 "--- PHP settings
 
