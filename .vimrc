@@ -108,26 +108,42 @@ endif
 
 "--- Key mappings
 
-"CTRL+c and CTRL+v for Copying and Pasting
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y
-
-"CTRL+s for file saving
-nmap <C-s> :w<CR>
-
-"TAB and SHIFT+TAB for tab navigation
-nmap <Tab> gt
-nmap <S-Tab> gT
-
-"F9 for code folding
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf
-
 "F2 for toggling NERDTree
 map <F2> :NERDTreeToggle<CR>
+
+"F9 for code folding
+nnoremap <F9> za
+inoremap <F9> <C-O>za
+vnoremap <F9> zf
+onoremap <F9> <C-C>za
+
+"CTRL+d for deleting lines
+nmap <C-d> dd
+imap <C-d> <ESC>ddi
+vmap <C-d> <S-V>d
+
+"CTRL+v for Visual Mode also when in Insert Mode
+imap <C-v> <ESC><C-V>
+
+"CTRL+N for opening new tabs
+nnoremap <C-S-N> :tabnew<CR>
+inoremap <C-S-N> <ESC>:tabnew<CR>
+
+"CTRL+Q for closing tabs
+noremap <C-Q> :tabclose<CR>
+
+"ALT+UP / ALT+DOWN for moving lines around
+nnoremap <A-Up> :m-2<CR>==
+nnoremap <A-Down> :m+<CR>==
+inoremap <A-Up> <ESC>:m-2<CR>==i
+inoremap <A-Down> <ESC>:m+<CR>==i
+vnoremap <A-Up> :m-2<CR>gv=gv
+vnoremap <A-Down> :m'>+<CR>gv=gv
+
+"CTRL+ALT+DOWN for duplicating lines
+nnoremap <C-A-Down> yyp
+inoremap <C-A-Down> <ESC>yypi
+vnoremap <C-A-Down> <ESC>Yp
 
 "--- PHP settings
 
@@ -136,8 +152,6 @@ map <F2> :NERDTreeToggle<CR>
 
 "PHP parser check (CTRL-l)
 :autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
-
-"For above bindings, php bin dir must be in $PATH
 
 "-- Easytags settings
 
