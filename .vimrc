@@ -117,6 +117,11 @@ inoremap <F9> <C-O>za
 vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
+"CTRL+ALT+c and CTRL+ALT+v for copying and pasting
+nmap <C-A-v> "+gP
+imap <C-A-v> <ESC><C-V>i
+vmap <C-A-c> "+y
+
 "CTRL+d for deleting lines
 nmap <C-d> dd
 imap <C-d> <ESC>ddi
@@ -125,12 +130,12 @@ vmap <C-d> <S-V>d
 "CTRL+v for Visual Mode also when in Insert Mode
 imap <C-v> <ESC><C-V>
 
-"CTRL+N for opening new tabs
-nnoremap <C-S-N> :tabnew<CR>
-inoremap <C-S-N> <ESC>:tabnew<CR>
+"CTRL+ALT+N for opening new tabs
+nnoremap <C-A-n> :tabnew<CR>
+inoremap <C-A-n> <ESC>:tabnew<CR>
 
 "CTRL+Q for closing tabs
-noremap <C-Q> :tabclose<CR>
+noremap <C-q> :tabclose<CR>
 
 "ALT+UP / ALT+DOWN for moving lines around
 nnoremap <A-Up> :m-2<CR>==
