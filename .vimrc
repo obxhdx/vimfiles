@@ -40,6 +40,10 @@ filetype plugin on
 "Enable incremental search
 set incsearch
 
+"Enable case-smart searching
+set ignorecase
+set smartcase
+
 "Highlight search matches
 set hlsearch
 
@@ -51,6 +55,9 @@ set wildmenu
 
 "Ignored patterns when tab completing
 set wildignore=*.o,*.obj,*~
+
+"Maintain more context around the cursor
+set scrolloff=3
 
 "--- Code folding settings
 
@@ -156,13 +163,9 @@ noremap <C-A-p> :Project<CR>
 "CTRL+SPACE for autocomplete
 inoremap <C-Space> <C-x><C-o>
 
-"--- PHP settings
-
-"Run file with PHP CLI (CTRL-m)
-:autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
-
-"PHP parser check (CTRL-l)
-:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+"FuzzFinder key mappings
+nmap <leader>ff :FufFile **/<CR>
+nmap <leader>fb :FufBuffer<CR>
 
 "-- Easytags settings
 
@@ -178,3 +181,11 @@ let g:easytags_python_enabled = 1
 "-- VIM-Project settings
 
 let g:proj_flags="imstvcg"
+
+"--- PHP settings
+
+"Run file with PHP CLI (CTRL-m)
+:autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
+
+"PHP parser check (CTRL-l)
+:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
