@@ -163,9 +163,15 @@ noremap <C-A-p> :Project<CR>
 "CTRL+SPACE for autocomplete
 inoremap <C-Space> <C-x><C-o>
 
+"Make CTRL+UP / CTRL+UP work like CTRL+e / CTRL+y
+nnoremap <C-Up> <C-y>
+nnoremap <C-Down> <C-e>
+inoremap <C-Up> <ESC><C-y>
+inoremap <C-Down> <ESC><C-e>
+
 "FuzzFinder key mappings
-nmap <leader>ff :FufFile **/<CR>
-nmap <leader>fb :FufBuffer<CR>
+nmap <C-o> :FufFile **/<CR>
+nmap <C-e> :FufBuffer<CR>
 
 "-- Easytags settings
 
