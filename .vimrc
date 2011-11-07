@@ -128,7 +128,7 @@ imap <C-d> <ESC>ddi
 vmap <C-d> <S-V>d
 
 "CTRL+v for Visual Mode also when in Insert Mode
-imap <C-v> <ESC><C-V>
+imap <C-v> <ESC><C-v>
 
 "CTRL+ALT+N for opening new tabs
 nnoremap <C-A-n> :tabnew<CR>
@@ -150,6 +150,12 @@ nnoremap <C-A-Down> yyp
 inoremap <C-A-Down> <ESC>yypi
 vnoremap <C-A-Down> <ESC>Yp
 
+"CTRL+ALT+P for starting the Project view
+noremap <C-A-p> :Project<CR>
+
+"CTRL+SPACE for autocomplete
+inoremap <C-Space> <C-x><C-o>
+
 "--- PHP settings
 
 "Run file with PHP CLI (CTRL-m)
@@ -168,3 +174,7 @@ let g:easytags_always_enabled = 1
 
 "Use a python implementation of dynamic syntax highlighting script (2x faster than vim script)
 let g:easytags_python_enabled = 1
+
+"-- VIM-Project settings
+
+let g:proj_flags="imstvcg"
