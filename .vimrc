@@ -1,4 +1,4 @@
-"--- General settings
+"### General settings
 
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
@@ -59,7 +59,10 @@ set wildignore=*.o,*.obj,*~
 "Maintain more context around the cursor
 set scrolloff=3
 
-"--- Code folding settings
+"Set MS-Windows behavior for mouse and selection
+behave mswin
+
+"### Code folding settings
 
 "Fold based on indent
 set foldmethod=indent
@@ -70,17 +73,23 @@ set foldnestmax=3
 "Do not fold by default
 set nofoldenable
 
-"--- Color settings
+"### Color settings
 
 "Makes colored text easier to read on dark backgrounds (use 'light' for light backgrounds)
 "set background=dark
 
+"Toggle background
+call togglebg#map("<F5>")
+
 "Turn on syntax highlighting
 syntax on
 
+let $my_theme = "monokai_imprvd"
+let $my_term_theme = "monokai_imprvd"
+
 if has("gui_running")
   
-  colorscheme monokai_imprvd
+  colorscheme $my_theme
   set t_Co=256
   
   set lines=30
@@ -103,17 +112,17 @@ if has("gui_running")
 else
   
   if $COLORTERM == 'gnome-terminal'
-    colorscheme monokai_imprvd
-    "colorscheme railscasts
-    set t_Co=256
     "set term=gnome-256color
+	let g:solarized_termcolors=256
+    colorscheme $my_term_theme
+    set t_Co=256
   else
     colorscheme default
   endif
   
 endif
 
-"--- Key mappings
+"### Key mappings
 
 "F2 for toggling NERDTree
 map <F2> :NERDTreeToggle<CR>
@@ -125,12 +134,13 @@ vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
 "CTRL+ALT+c and CTRL+ALT+v for copying and pasting
-nmap <C-A-v> "+gP
-imap <C-A-v> <ESC><C-V>i
-vmap <C-A-c> "+y
+"nmap <C-A-v> "+gP
+"imap <C-A-v> <ESC><C-V>i
+imap <C-A-v> <Space><ESC>"+gPi
+map <C-c> "+y
 
 "CTRL+d for deleting lines
-nmap <C-d> dd
+"nmap <C-d> dd
 imap <C-d> <ESC>ddi
 vmap <C-d> <S-V>d
 
@@ -145,15 +155,15 @@ inoremap <C-A-n> <ESC>:tabnew<CR>
 noremap <C-q> :tabclose<CR>
 
 "ALT+UP / ALT+DOWN for moving lines around
-nnoremap <A-Up> :m-2<CR>==
-nnoremap <A-Down> :m+<CR>==
+"nnoremap <A-Up> :m-2<CR>==
+"nnoremap <A-Down> :m+<CR>==
 inoremap <A-Up> <ESC>:m-2<CR>==i
 inoremap <A-Down> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
 
 "CTRL+ALT+DOWN for duplicating lines
-nnoremap <C-A-Down> yyp
+"nnoremap <C-A-Down> yyp
 inoremap <C-A-Down> <ESC>yypi
 vnoremap <C-A-Down> <ESC>Yp
 
@@ -169,11 +179,14 @@ nnoremap <C-Down> <C-e>
 inoremap <C-Up> <ESC><C-y>
 inoremap <C-Down> <ESC><C-e>
 
+"Use CTRL+h to highlight a word in text
+noremap <C-h> <S-#>
+
 "FuzzFinder key mappings
 nmap <C-o> :FufFile **/<CR>
 nmap <C-e> :FufBuffer<CR>
 
-"-- Easytags settings
+"### Easytags settings
 
 "Make it recursively scan everything below the directory of the current file
 autocmd Filetype java,javascript,php,ruby let g:easytags_autorecurse = 1
@@ -184,14 +197,14 @@ let g:easytags_always_enabled = 1
 "Use a python implementation of dynamic syntax highlighting script (2x faster than vim script)
 let g:easytags_python_enabled = 1
 
-"-- VIM-Project settings
+"### VIM-Project settings
 
 let g:proj_flags="imstvcg"
 
-"--- PHP settings
+"### PHP settings
 
 "Run file with PHP CLI (CTRL-m)
-:autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
+autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
 "PHP parser check (CTRL-l)
-:autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
