@@ -132,8 +132,6 @@ vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
 "CTRL+ALT+c and CTRL+ALT+v for copying and pasting
-"nmap <C-A-v> "+gP
-"imap <C-A-v> <ESC><C-V>i
 imap <C-A-v> <Space><ESC>"+gPi
 map <C-c> "+y
 
@@ -153,20 +151,19 @@ inoremap <C-A-n> <ESC>:tabnew<CR>
 noremap <C-q> :tabclose<CR>
 
 "ALT+UP / ALT+DOWN for moving lines around
-"nnoremap <A-Up> :m-2<CR>==
-"nnoremap <A-Down> :m+<CR>==
 inoremap <A-Up> <ESC>:m-2<CR>==i
 inoremap <A-Down> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
 
 "CTRL+ALT+DOWN for duplicating lines
-"nnoremap <C-A-Down> yyp
+inoremap <C-A-Up> <ESC>yypi
+vnoremap <C-A-Up> <ESC>Yp
 inoremap <C-A-Down> <ESC>yypi
 vnoremap <C-A-Down> <ESC>Yp
 
 "CTRL+ALT+P for starting the Project view
-noremap <C-A-p> :Project<CR>
+nmap <silent> <C-A-p> <Plug>ToggleProject 
 
 "CTRL+SPACE for autocomplete
 inoremap <C-Space> <C-x><C-o>
