@@ -20,6 +20,7 @@
 
 ### Dark schemes
 
+* gardener
 * lanai
 * molokai (gvim/xterm)
 * monokai_imprvd (gvim/xterm)
@@ -39,6 +40,3 @@
 * solarized
 * tango-morning
 * tomorrow
-
-## Note
-The `monokai_imprvd.vim` colorscheme has some minor customizations I've made to the original Monokai theme.

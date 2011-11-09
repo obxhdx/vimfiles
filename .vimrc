@@ -75,8 +75,8 @@ set nofoldenable
 
 "### Color settings
 
-"Makes colored text easier to read on dark backgrounds (use 'light' for light backgrounds)
-"set background=dark
+"Set background type
+set background=dark "or light
 
 "Toggle background
 call togglebg#map("<F5>")
@@ -84,13 +84,13 @@ call togglebg#map("<F5>")
 "Turn on syntax highlighting
 syntax on
 
-let $my_theme = "monokai_imprvd"
-let $my_term_theme = "monokai_imprvd"
+let $my_theme = "monokai"
+let $my_term_theme = "monokai"
 
 if has("gui_running")
   
-  colorscheme $my_theme
   set t_Co=256
+  colorscheme $my_theme
   
   set lines=30
   set columns=80
@@ -101,7 +101,6 @@ if has("gui_running")
   
   if has("gui_gnome")
     set guifont=Ubuntu\ Mono\ 12
-    "set guifont=Monospace\ 10
   endif
   
   if has("gui_win32") || has("gui_win32s")
@@ -112,10 +111,9 @@ if has("gui_running")
 else
   
   if $COLORTERM == 'gnome-terminal'
-    "set term=gnome-256color
-	let g:solarized_termcolors=256
-    colorscheme $my_term_theme
+	  "let g:solarized_termcolors=256
     set t_Co=256
+    colorscheme $my_term_theme
   else
     colorscheme default
   endif
