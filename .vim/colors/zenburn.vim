@@ -1,18 +1,19 @@
-"=============================================================================
 " Vim color file
-" File:       darkburn.vim
-" Maintainer: Taurus Olson <taurusolson@gmail.com>
-" License:    GPL
-" Created:    2009-03-27 20:25:21 CET
-" Modified:   2009-06-06 21:18:55 CET
-" Version:    1.2
-
-" Modified version of zenburn originally created by: 
 " Maintainer:   Jani Nurminen <slinky@iki.fi>
-" Last Change:  $Id: zenburn.vim,v 2.4 2008/11/18 20:43:18 slinky Exp $
-" URL:      	http://slinky.imukuppi.org/zenburnpage/
+" Last Change:  $Id: zenburn.vim,v 2.3 2008/07/30 17:34:37 slinky Exp $
+" URL:          http://slinky.imukuppi.org/zenburnpage/
 " License:      GPL
-"=============================================================================
+"
+" Nothing too fancy, just some alien fruit salad to keep you in the zone.
+" This syntax file was designed to be used with dark environments and 
+" low light situations. Of course, if it works during a daybright office, go
+" ahead :)
+"
+" Owes heavily to other Vim color files! With special mentions
+" to "BlackDust", "Camo" and "Desert".
+"
+" To install, copy to ~/.vim/colors directory. Then :colorscheme zenburn.  
+" See also :help syntax
 "
 " Credits:
 "  - Jani Nurminen - original Zenburn
@@ -21,7 +22,6 @@
 "                 bug fixing
 "  - Charlie - spotted too bright StatusLine in non-high contrast mode
 "  - Pablo Castellazzi - CursorLine fix for 256 color mode
-"  - Tim Smith - force dark background
 "
 " CONFIGURABLE PARAMETERS:
 " 
@@ -31,30 +31,24 @@
 " * You can now set a darker background for bright environments. To activate, use:
 "   contrast Zenburn, use:
 "
-     let g:darkburn_high_Contrast = 1
+"      let g:zenburn_high_Contrast = 1
 "
 " * To get more contrast to the Visual selection, use
 "   
-"     let g:darkburn_alternate_Visual = 1
+"      let g:zenburn_alternate_Visual = 1
 " 
 " * To use alternate colouring for Error message, use
 "     
-      let g:darkburn_alternate_Error = 1
+"      let g:zenburn_alternate_Error = 1
 "
 " * The new default for Include is a duller orange. To use the original
 "   colouring for Include, use
 "     
-      let g:darkburn_alternate_Include = 1
-"
-" * Work-around to a Vim bug, it seems to misinterpret ctermfg and 234 and 237
-"   as light values, and sets background to light for some people. If you have
-"   this problem, use:
-"
-      let g:darkburn_force_dark_Background = 1
+"      let g:zenburn_alternate_Include = 1
 "
 " * To turn the parameter(s) back to defaults, use UNLET:
 "
-"      unlet g:darkburn_alternate_Include
+"      unlet g:zenburn_alternate_Include
 "
 "   Setting to 0 won't work!
 "
@@ -69,7 +63,7 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="darkburn"
+let g:colors_name="zenburn"
 
 hi Boolean         guifg=#dca3a3
 hi Character       guifg=#dca3a3 gui=bold
@@ -91,31 +85,31 @@ hi Float           guifg=#c0bed1
 hi FoldColumn      guifg=#93b3a3 guibg=#3f4040
 hi Folded          guifg=#93b3a3 guibg=#3f4040
 hi Function        guifg=#efef8f
-hi Identifier      guifg=#dcdcdc
+hi Identifier      guifg=#efdcbc
 hi IncSearch       guibg=#f8f893 guifg=#385f38
 hi Keyword         guifg=#f0dfaf gui=bold
 hi Label           guifg=#dfcfaf gui=underline
 hi LineNr          guifg=#9fafaf guibg=#262626
 hi Macro           guifg=#ffcfaf gui=bold
-hi ModeMsg         guifg=#6fb86f gui=none
+hi ModeMsg         guifg=#ffcfaf gui=none
 hi MoreMsg         guifg=#ffffff gui=bold
 hi NonText         guifg=#404040
 hi Number          guifg=#8cd0d3
 hi Operator        guifg=#f0efd0
 hi PreCondit       guifg=#dfaf8f gui=bold
-hi PreProc         guifg=#ffb23f gui=bold
+hi PreProc         guifg=#ffcfaf gui=bold
 hi Question        guifg=#ffffff gui=bold
 hi Repeat          guifg=#ffd7a7 gui=bold
 hi Search          guifg=#ffffe0 guibg=#284f28
-hi SpecialChar     guifg=#9fbfd6 gui=bold
+hi SpecialChar     guifg=#dca3a3 gui=bold
 hi SpecialComment  guifg=#82a282 gui=bold
-hi Special         guifg=#9fbfd6
+hi Special         guifg=#cfbfaf
 hi SpecialKey      guifg=#9ece9e
-hi Statement       guifg=#6fb86f  gui=none
+hi Statement       guifg=#e3ceab gui=none
 hi StatusLine      guifg=#313633 guibg=#ccdc90
 hi StatusLineNC    guifg=#2e3330 guibg=#88b090
 hi StorageClass    guifg=#c3bf9f gui=bold
-hi String          guifg=#b75151
+hi String          guifg=#cc9393
 hi Structure       guifg=#efefaf gui=bold
 hi Tag             guifg=#e89393 gui=bold
 hi Title           guifg=#efefef gui=bold
@@ -193,17 +187,7 @@ if &t_Co > 255
     hi WildMenu        ctermbg=236   ctermfg=194     cterm=bold
     hi CursorLine      ctermbg=236   cterm=none
 
-    " spellchecking, always "bright" background
-    hi SpellLocal ctermfg=14  ctermbg=237
-    hi SpellBad   ctermfg=9   ctermbg=237
-    hi SpellCap   ctermfg=12  ctermbg=237
-    hi SpellRare  ctermfg=13  ctermbg=237
-  
-    " pmenu
-    hi PMenu      ctermfg=248  ctermbg=0
-    hi PMenuSel   ctermfg=223 ctermbg=235
-
-    if exists("g:darkburn_high_Contrast")
+    if exists("g:zenburn_high_Contrast")
         hi Normal ctermfg=188 ctermbg=234
     else
         hi Normal ctermfg=188 ctermbg=237
@@ -230,17 +214,9 @@ if &t_Co > 255
     endif
 endif
 
-if exists("g:darkburn_force_dark_Background")
-    " Force dark background, because of a bug in VIM:  VIM sets background
-    " automatically during "hi Normal ctermfg=X"; it misinterprets the high
-    " value (234 or 237 above) as a light color, and wrongly sets background to
-    " light.  See ":help highlight" for details.
-    set background=dark
-endif
-
-if exists("g:darkburn_high_Contrast")
+if exists("g:zenburn_high_Contrast")
     " use new darker background
-    hi Normal          guifg=#ffffff guibg=#1f1f1f
+    hi Normal          guifg=#dcdccc guibg=#1f1f1f
     hi CursorLine      guibg=#121212 gui=bold
     hi Pmenu           guibg=#242424 guifg=#ccccbc
     hi PMenuSel        guibg=#353a37 guifg=#ccdc90 gui=bold
@@ -269,18 +245,18 @@ else
 endif
     
 
-if exists("g:darkburn_alternate_Visual")
+if exists("g:zenburn_alternate_Visual")
     " Visual with more contrast, thanks to Steve Hall & Cream posse
     " gui=none fixes weird highlight problem in at least GVim 7.0.66, thanks to Kurt Maier
     hi Visual          guifg=#000000 guibg=#71d3b4 gui=none
     hi VisualNOS       guifg=#000000 guibg=#71d3b4 gui=none
 else
     " use default visual
-    hi Visual          guifg=#71d3b4 guibg=#233323 gui=none
-    hi VisualNOS       guifg=#71d3b4 guibg=#233323 gui=none
+    hi Visual          guifg=#233323 guibg=#71d3b4 gui=none
+    hi VisualNOS       guifg=#233323 guibg=#71d3b4 gui=none
 endif
 
-if exists("g:darkburn_alternate_Error")
+if exists("g:zenburn_alternate_Error")
     " use a bit different Error
     hi Error           guifg=#ef9f9f guibg=#201010 gui=bold  
 else
@@ -288,13 +264,11 @@ else
     hi Error           guifg=#e37170 guibg=#332323 gui=none
 endif
 
-if exists("g:darkburn_alternate_Include")
+if exists("g:zenburn_alternate_Include")
     " original setting
-    hi Include         guifg=#ffcfaf  gui=bold
+    hi Include         guifg=#ffcfaf gui=bold
 else
     " new, less contrasted one
     hi Include         guifg=#dfaf8f gui=bold
 endif
     " TODO check for more obscure syntax groups that they're ok
-
-" vim: :

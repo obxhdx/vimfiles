@@ -13,32 +13,32 @@
 
 ## Colorschemes
 
-* darkbone.vim
-* darkburn.vim
-* darkspectrum.vim
-* darktango.vim
-* dusk.vim
-* eclm_wombat.vim
+### Dark schemes
+
+* lanai.vim
+* molokai.vim (gvim/xterm)
+* monokai_imprvd.vim (gvim/xterm)
+* paintbox.vim
+* slate2.vim
+* sift.vim
+* tango2.vim
+* twilight.vim
+* wombat.vim
+* xoria256.vim (gvim/xterm)
+* zenburn.vim (gvim/xterm)
+
+### Light schemes
+
 * fluidvision.vim
 * github.vim
-* guepardo.vim
-* kellys.vim
-* lanai.vim
-* lucius.vim
-* molokai.vim
-* monokai_imprvd.vim
-* native.vim
-* oceandeep.vim
-* quagmire.vim
-* railscasts.vim
-* rdark.vim
+* solarized.vim
 * tango-morning.vim
 * tomorrow.vim
-* twilight.vim
-* vibrant-tango.vim
-* vilight.vim
-* wombat.vim
-* xoria256.vim
+
+### Blueish schemes
+
+* dusk.vim
+* oceandeep.vim
 
 ## Note
 The `monokai_imprvd.vim` colorscheme has some minor customizations I've made to the original Monokai theme.
