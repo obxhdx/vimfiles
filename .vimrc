@@ -212,7 +212,7 @@ autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 "### Custom functions
 
 "Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <leader>p :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
