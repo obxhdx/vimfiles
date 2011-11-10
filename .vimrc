@@ -59,6 +59,10 @@ set wildignore=*.o,*.obj,*~
 "Maintain more context around the cursor
 set scrolloff=3
 
+"Group backup and swap files in one place
+set backupdir=~/.vimbackup,/tmp
+set directory=~/.vimbackup,/tmp 
+
 "### Code folding settings
 
 "Fold based on indent
