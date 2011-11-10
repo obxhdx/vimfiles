@@ -59,9 +59,6 @@ set wildignore=*.o,*.obj,*~
 "Maintain more context around the cursor
 set scrolloff=3
 
-"Set MS-Windows behavior for mouse and selection
-behave mswin
-
 "### Code folding settings
 
 "Fold based on indent
@@ -84,8 +81,8 @@ call togglebg#map("<F5>")
 "Turn on syntax highlighting
 syntax on
 
-let $my_theme = "monokai"
-let $my_term_theme = "monokai"
+let $my_theme = "molokai"
+let $my_term_theme = "molokai"
 
 if has("gui_running")
   
@@ -100,7 +97,7 @@ if has("gui_running")
   set guioptions-=L "remove NERDTree scrollbar
   
   if has("gui_gnome")
-    set guifont=Ubuntu\ Mono\ 12
+    set guifont=Monofur\ 13
   endif
   
   if has("gui_win32") || has("gui_win32s")
@@ -121,9 +118,6 @@ else
 endif
 
 "### Key mappings
-
-"F2 for toggling NERDTree
-map <F2> :NERDTreeToggle<CR>
 
 "F9 for code folding
 nnoremap <F9> za
@@ -162,9 +156,6 @@ vnoremap <C-A-Up> <ESC>Yp
 inoremap <C-A-Down> <ESC>yypi
 vnoremap <C-A-Down> <ESC>Yp
 
-"CTRL+ALT+P for starting the Project view
-nmap <silent> <C-A-p> <Plug>ToggleProject 
-
 "CTRL+SPACE for autocomplete
 inoremap <C-Space> <C-x><C-o>
 
@@ -174,12 +165,22 @@ nnoremap <C-Down> <C-e>
 inoremap <C-Up> <ESC><C-y>
 inoremap <C-Down> <ESC><C-e>
 
-"Use CTRL+h to highlight a word in text
-noremap <C-h> <S-#>
+"### Plugins key mappings
 
-"FuzzFinder key mappings
+"F2 for toggling NERDTree
+map <F2> :NERDTreeToggle<CR>
+
+"CTRL+ALT+P for showing Project panel
+nmap <silent> <C-A-p> <Plug>ToggleProject 
+
+"Quick open file with FuzzFinder
 nmap <C-o> :FufFile **/<CR>
+
+"Quick open buffer with FuzzFinder
 nmap <C-e> :FufBuffer<CR>
+
+"Alternative HexHighlight key map
+nmap <leader>h :call HexHighlight()<Return>
 
 "### Easytags settings
 
@@ -195,7 +196,7 @@ let g:easytags_python_enabled = 1
 "### VIM-Project settings
 
 let g:proj_flags="imstvcg"
-
+  
 "### PHP settings
 
 "Run file with PHP CLI (CTRL-m)
@@ -203,3 +204,14 @@ autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
 "PHP parser check (CTRL-l)
 autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+
+"### Custom functions
+
+"Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

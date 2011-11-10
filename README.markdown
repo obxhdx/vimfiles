@@ -6,6 +6,7 @@
 * easytags http://www.vim.org/scripts/script.php?script_id=3114
 * FuzzyFinder http://www.vim.org/scripts/script.php?script_id=1984 (requires L9)
 * L9 http://www.vim.org/scripts/script.php?script_id=3252
+* hexHighlight http://www.vim.org/scripts/script.php?script_id=2937 
 * machit http://www.vim.org/scripts/script.php?script_id=39
 * NERDTree http://www.vim.org/scripts/script.php?script_id=1658
 * project http://www.vim.org/scripts/script.php?script_id=69
