@@ -20,7 +20,7 @@ if version > 580
 endif
 let g:colors_name="github"
 
-hi Normal       guifg=#000000 guibg=#F8F8FF
+hi Normal       guifg=#000000 guibg=#FFFFFF
 
 " {{{ Cursor
 hi Cursor		guibg=#444454 guifg=#F8F8FF
@@ -40,7 +40,7 @@ hi Folded		guibg=#ECECEC guifg=#808080 gui=bold
 hi vimFold		guibg=#ECECEC guifg=#808080 gui=bold
 hi FoldColumn	guibg=#ECECEC guifg=#808080 gui=bold
 
-hi LineNr		guifg=#959595 guibg=#ECECEC gui=bold
+hi LineNr		guifg=#959595 guibg=#ECECEC gui=none
 hi NonText		guifg=#808080 guibg=#ECECEC
 hi Folded		guifg=#808080 guibg=#ECECEC gui=bold
 hi FoldeColumn  guifg=#808080 guibg=#ECECEC gui=bold
@@ -74,7 +74,7 @@ hi Search		guibg=#cdcdfd guifg=#000000 gui=italic
 hi Ignore		guifg=#808080
 hi Identifier	guifg=#0086B3
 hi PreProc		guifg=#A0A0A0 gui=bold
-hi Comment		guifg=#999988
+hi Comment		guifg=#999988 gui=italic
 hi Constant		guifg=#177F80 gui=none
 hi String		guifg=#D81745
 hi Function		guifg=#990000 gui=bold
@@ -83,7 +83,6 @@ hi Type			guifg=#445588 gui=bold
 hi Number		guifg=#1C9898
 hi Todo			guifg=#FFFFFF guibg=#990000 gui=bold
 hi Special		guifg=#159828 gui=bold
-hi rubySymbol   guifg=#960B73
 hi Error        guibg=#f8f8ff guifg=#ff1100 gui=undercurl
 hi Todo         guibg=#f8f8ff guifg=#ff1100 gui=underline
 hi Label        guifg=#000000 gui=bold
@@ -123,7 +122,6 @@ hi link xmlTag			Identifier
 hi link xmlTagName		Identifier
 hi link shDeref			Identifier
 hi link shVariable		Function
-hi link rubySharpBang	Special
 hi link perlSharpBang	Special
 hi link schemeFunc      Statement
 "hi link shSpecialVariables Constant
@@ -137,3 +135,34 @@ hi TabLineSel	guifg=#404040 gui=bold
 " }}}
 "
 " vim: sw=4 ts=4 foldmethod=marker
+
+" {{{ Ruby syntax
+hi rubySharpBang                    guifg=#999988 gui=none
+hi rubyTodo                         guifg=#ff1100 gui=italic
+hi rubySymbol                       guifg=#960B73
+hi rubyStringDelimiter              guifg=#D81745
+hi rubyStringEscape                 guifg=#D81745 gui=bold
+hi link rubyInterpolationDelimiter  rubyStringEscape
+hi rubyInlcude                      guifg=#0086B3 gui=none
+hi rubyConstant                     guifg=#177F80 gui=none
+hi rubyBlockParameter               gui=none
+hi rubyBoolean                      gui=bold
+hi rubyDefine                       gui=bold
+hi rubyControl                      gui=bold
+hi rubyInstanceVariable             guifg=#177F80
+hi rubyPredefinedConstant           guifg=#177F80
+hi rubyLocalVariableOrMethod        guifg=#0086B3
+hi rubyMethodBlock                  gui=none
+hi rubyRegexp                       guifg=#159828 gui=none
+hi link rubyRegexpCharClass         rubyRegexp
+hi link rubyRegexpDelimiter         rubyRegexp
+hi link rubyRegexpParens            rubyRegexp
+hi link rubyRegexpQuantifier        rubyRegexp
+hi rubyInteger                      guifg=#0086B3
+hi rubyMethodNameTag                gui=none
+" }}}
+
+" {{{ Vimrc syntax
+hi vimOption    guifg=#0086B3
+hi vimMap       gui=none
+" }}}
