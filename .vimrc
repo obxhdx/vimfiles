@@ -123,51 +123,42 @@ endif
 
 "### Key mappings
 
+"F3 for toggling highlighted search matches
+nnoremap <F3> :set hlsearch!<CR>
+
 "F9 for code folding
 nnoremap <F9> za
 inoremap <F9> <C-O>za
 vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
+"CTRL+v for Visual Mode also when in Insert Mode
+imap <C-v> <ESC><C-v>
+
+"CTRL+SPACE for autocomplete
+inoremap <C-Space> <C-x><C-o>
+
+"Make CTRL+Up / CTRL+Up work like CTRL+e / CTRL+y
+nnoremap <C-Up> <C-y>
+nnoremap <C-Down> <C-e>
+inoremap <C-Up> <ESC><C-y>
+inoremap <C-Down> <ESC><C-e>
+
 "CTRL+ALT+c and CTRL+ALT+v for copying and pasting
 imap <C-A-v> <Space><ESC>"+gPi
 map <C-c> "+y
 
-"CTRL+d for deleting lines
-"nmap <C-d> dd
-imap <C-d> <ESC>ddi
-vmap <C-d> <S-V>d
-
-"CTRL+v for Visual Mode also when in Insert Mode
-imap <C-v> <ESC><C-v>
-
-"CTRL+ALT+N for opening new tabs
-nnoremap <C-A-n> :tabnew<CR>
-inoremap <C-A-n> <ESC>:tabnew<CR>
-
-"CTRL+Q for closing tabs
-noremap <C-q> :tabclose<CR>
-
-"ALT+UP / ALT+DOWN for moving lines around
-inoremap <A-Up> <ESC>:m-2<CR>==i
-inoremap <A-Down> <ESC>:m+<CR>==i
-vnoremap <A-Up> :m-2<CR>gv=gv
-vnoremap <A-Down> :m'>+<CR>gv=gv
-
-"CTRL+ALT+DOWN for duplicating lines
+"CTRL+ALT+Up/Down for duplicating lines
 inoremap <C-A-Up> <ESC>yypi
 vnoremap <C-A-Up> <ESC>Yp
 inoremap <C-A-Down> <ESC>yypi
 vnoremap <C-A-Down> <ESC>Yp
 
-"CTRL+SPACE for autocomplete
-inoremap <C-Space> <C-x><C-o>
-
-"Make CTRL+UP / CTRL+UP work like CTRL+e / CTRL+y
-nnoremap <C-Up> <C-y>
-nnoremap <C-Down> <C-e>
-inoremap <C-Up> <ESC><C-y>
-inoremap <C-Down> <ESC><C-e>
+"ALT+Up / ALT+Down for moving lines around
+inoremap <A-Up> <ESC>:m-2<CR>==i
+inoremap <A-Down> <ESC>:m+<CR>==i
+vnoremap <A-Up> :m-2<CR>gv=gv
+vnoremap <A-Down> :m'>+<CR>gv=gv
 
 "### Plugins key mappings
 
