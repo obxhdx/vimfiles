@@ -31,6 +31,7 @@ Bundle 'vim-scripts/oceandeep'
 "Dark colors
 Bundle 'vim-scripts/The-Vim-Gardener'
 Bundle 'vim-scripts/molokai'
+Bundle 'sickill/vim-monokai'
 Bundle 'vim-scripts/Mustang2'
 Bundle 'vim-scripts/paintbox'
 Bundle 'vim-scripts/Sift'
@@ -97,7 +98,7 @@ set wildmode=list:longest
 set wildmenu
 
 "Ignored patterns when tab completing
-set wildignore=*.o,*.obj,*~
+set wildignore=*.o,*.obj,*~,*.mp3,*.jpg,*.png,*.gif,*.avi
 
 "Maintain more context around the cursor
 set scrolloff=3
@@ -109,6 +110,9 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "Group backup and swap files in one place
 set backupdir=~/.vimbackup,/tmp
 set directory=~/.vimbackup,/tmp
+
+"Change the current dir to the same of the current file
+autocmd BufEnter * silent! lcd %:p:h
 
 "### Code folding settings
 
@@ -173,10 +177,16 @@ endif
 "### Key mappings
 
 "F3 for toggling highlighted search matches
-nnoremap <F3> :set hlsearch!<CR>
+map <F3> :set hlsearch!<CR>
 
-"F5 for 'paste mode' toggling
-set pastetoggle=<F2>
+"F4 for showing all buffers
+map <F4> :ball<CR>
+
+"F5 for selecting current buffer
+map <F5> :on<CR>
+
+"F6 for 'paste mode' toggling
+set pastetoggle=<F6>
 
 "F9 for code folding
 nnoremap <F9> za
@@ -225,10 +235,7 @@ cmap w!! w !sudo tee % >/dev/null
 map <F2> :NERDTreeToggle<CR>
 
 "CTRL+ALT+P for showing Project panel
-nmap <silent> <C-A-p> <Plug>ToggleProject 
-
-"Quick open file with FuzzFinder
-"nmap <C-o> :FufFile **/<CR>
+"nmap <silent> <C-A-p> <Plug>ToggleProject 
 
 "Quick open buffer with FuzzFinder
 "nmap <C-e> :FufBuffer<CR>
