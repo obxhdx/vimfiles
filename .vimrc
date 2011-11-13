@@ -54,6 +54,9 @@ filetype plugin indent on "required
 "Display line numbers
 set number
 
+"Display current position along the bottom
+set ruler
+
 "Disable line wrapping
 set nowrap
 
