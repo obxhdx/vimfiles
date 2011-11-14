@@ -193,6 +193,9 @@ set pastetoggle=<F6>
 "F7 for toggling spell checking
 nmap <silent> <F7> :set spell!<CR>
 
+"F8 for toggling text editing mode
+nmap <silent> <F8> :set wrap! linebreak! list!<CR>
+
 "F9 for code folding
 nnoremap <F9> za
 inoremap <F9> <C-O>za
