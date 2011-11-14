@@ -17,10 +17,9 @@ Bundle 'tpope/vim-commentary'
 Bundle 'xolox/vim-easytags'
 Bundle 'yurifury/hexHighlight'
 Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
 Bundle 'msanders/snipmate.vim'
-"vim-scripts.org repos
 Bundle 'vim-scripts/matchit.zip'
-Bundle 'vim-scripts/project.tar.gz'
 "Non Github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -29,22 +28,24 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'vim-scripts/dusk'
 Bundle 'vim-scripts/oceandeep'
 "Dark colors
-Bundle 'vim-scripts/The-Vim-Gardener'
-Bundle 'vim-scripts/molokai'
+Bundle 'eddsteel/vim-lanai'
 Bundle 'sickill/vim-monokai'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'vim-scripts/molokai'
 Bundle 'vim-scripts/Mustang2'
 Bundle 'vim-scripts/paintbox'
 Bundle 'vim-scripts/Sift'
 Bundle 'vim-scripts/Tango2'
+Bundle 'vim-scripts/The-Vim-Gardener'
 Bundle 'vim-scripts/twilight'
 Bundle 'vim-scripts/Wombat'
-Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/xoria256.vim'
 Bundle 'vim-scripts/Zenburn'
 "Light colors
-Bundle 'obxhdx/vim-github-theme'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 Bundle 'nelstrom/vim-mac-classic-theme'
-Bundle 'vim-scripts/Solarized'
+Bundle 'obxhdx/vim-github-theme'
 Bundle 'vim-scripts/tango-morning.vim'
 
 filetype plugin indent on "required
@@ -106,9 +107,9 @@ set wildignore=*.o,*.obj,*~,*.mp3,*.jpg,*.png,*.gif,*.avi
 "Maintain more context around the cursor
 set scrolloff=3
 
-"Display whitespaces
+"Display white spaces
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:▸.,eol:¬,trail:.,extends:#,nbsp:.
 
 "Group backup and swap files in one place
 set backupdir=~/.vimbackup,/tmp
@@ -134,7 +135,7 @@ set nofoldenable
 set background=dark "or light
 
 "Toggle background
-"call togglebg#map("<F5>")
+call togglebg#map("<F5>")
 
 "Turn on syntax highlighting
 syntax on
@@ -177,19 +178,20 @@ else
 
 endif
 
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+"highlight SpecialKey guifg=#4a4a59
+
 "### Key mappings
 
 "F3 for toggling highlighted search matches
 map <F3> :set hlsearch!<CR>
 
-"F4 for showing all buffers
-map <F4> :ball<CR>
-
-"F5 for selecting current buffer
-map <F5> :on<CR>
-
 "F6 for 'paste mode' toggling
 set pastetoggle=<F6>
+
+"F7 for toggling spell checking
+nmap <silent> <F7> :set spell!<CR>
 
 "F9 for code folding
 nnoremap <F9> za
@@ -197,10 +199,18 @@ inoremap <F9> <C-O>za
 vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
+"Tab and SHIFT-Tab for indenting while on insert mode
+imap <Tab> <ESC>>>i
+imap <S-Tab> <ESC><<i
+
+"Tab and SHIFT-Tab for indenting multiple lines
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
 "CTRL+v for Visual Mode also when in Insert Mode
 imap <C-v> <ESC><C-v>
 
-"CTRL+SPACE for autocomplete
+"CTRL+Space for autocomplete
 inoremap <C-Space> <C-x><C-o>
 
 "Make CTRL+Up / CTRL+Up work like CTRL+e / CTRL+y
@@ -225,6 +235,16 @@ inoremap <A-Down> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
 
+"Navigate through wrapped lines
+vmap <Up> gk
+vmap <Down> gj
+vmap 0 g^
+vmap $ g$
+nmap <Up> gk
+nmap <Down> gj
+nmap 0 g^
+nmap $ g$
+
 "Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
@@ -237,14 +257,8 @@ cmap w!! w !sudo tee % >/dev/null
 "F2 for toggling NERDTree
 map <F2> :NERDTreeToggle<CR>
 
-"CTRL+ALT+P for showing Project panel
-"nmap <silent> <C-A-p> <Plug>ToggleProject 
-
-"Quick open buffer with FuzzFinder
-"nmap <C-e> :FufBuffer<CR>
-
-"Alternative HexHighlight key map
-nmap <leader>h :call HexHighlight()<Return>
+"F4 for toggling Gundo tree
+nnoremap <F4> :GundoToggle<CR>
 
 "### Easytags settings
 
@@ -272,7 +286,7 @@ autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 "### Custom functions
 
 "Show syntax highlighting groups for word under cursor
-nmap <leader>p :call <SID>SynStack()<CR>
+nmap <leader>sg :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
