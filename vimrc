@@ -62,6 +62,9 @@ set number
 "Display current position along the bottom
 set ruler
 
+"Display selection count on the statusline
+set showcmd
+
 "Disable line wrapping
 set nowrap
 
@@ -281,9 +284,10 @@ let g:easytags_always_enabled = 1
 "Use a python implementation of dynamic syntax highlighting script (2x faster than vim script)
 let g:easytags_python_enabled = 1
 
-"### VIM-Project settings
+"### CommandT settings
 
-let g:proj_flags="imstvcg"
+"Never show dot files
+let g:CommandTNeverShowDotFiles = 1
 
 "### PHP settings
 
