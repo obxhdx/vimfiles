@@ -29,11 +29,13 @@ Bundle 'vim-scripts/dusk'
 Bundle 'vim-scripts/oceandeep'
 "Dark colors
 Bundle 'eddsteel/vim-lanai'
+Bundle 'oguzbilgic/sexy-railscasts-theme'
 Bundle 'sickill/vim-monokai'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/molokai'
 Bundle 'vim-scripts/Mustang2'
 Bundle 'vim-scripts/paintbox'
+Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
 Bundle 'vim-scripts/Sift'
 Bundle 'vim-scripts/Tango2'
 Bundle 'vim-scripts/The-Vim-Gardener'
@@ -109,7 +111,7 @@ set scrolloff=3
 
 "Display white spaces
 set list
-set listchars=tab:▸.,eol:¬,trail:.,extends:#,nbsp:.
+set listchars=tab:‣.,eol:¬,trail:.,extends:#,precedes:#,nbsp:.
 
 "Group backup and swap files in one place
 set backupdir=~/.vimbackup,/tmp
@@ -117,6 +119,9 @@ set directory=~/.vimbackup,/tmp
 
 "Change the current dir to the same of the current file
 autocmd BufEnter * silent! lcd %:p:h
+
+"Automatically remove all trailing spaces before saving file
+autocmd BufWritePre *.html,*.php,*.rb :%s/\s\+$//e
 
 "### Code folding settings
 
