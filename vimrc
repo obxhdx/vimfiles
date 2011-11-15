@@ -19,6 +19,8 @@ Bundle 'yurifury/hexHighlight'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'msanders/snipmate.vim'
+Bundle 'shawncplus/Vim-toCterm'
+Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/matchit.zip'
 "Non Github repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -134,7 +136,7 @@ set foldnestmax=3
 "Do not fold by default
 set nofoldenable
 
-"### Color settings
+"### Appearance settings
 
 "Set background type
 set background=dark "or light
@@ -146,7 +148,7 @@ call togglebg#map("<F5>")
 syntax on
 
 let $my_theme = "molokai"
-let $my_term_theme = "molokai"
+let $my_term_theme = "railscasts"
 
 if has("gui_running")
 
@@ -184,8 +186,8 @@ else
 endif
 
 "Invisible character colors
-highlight NonText guifg=#4a4a59
-"highlight SpecialKey guifg=#4a4a59
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
 
 "### Key mappings
 
