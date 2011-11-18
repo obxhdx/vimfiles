@@ -164,7 +164,7 @@ if has("gui_running")
   set guioptions-=T "remove toolbar
   set guioptions-=r "remove right-hand scrollbar
   set guioptions-=L "remove NERDTree scrollbar
-  set guioptions+=c "no gtk modal alerts
+  "set guioptions+=c "no gtk modal alerts
 
   if has("gui_gnome")
     set guifont=Monofur\ 13
@@ -237,10 +237,10 @@ imap <C-A-v> <ESC>"+gPi
 map <C-c> "+y
 
 "CTRL+ALT+Up/Down for duplicating lines
-inoremap <C-A-Up> <ESC>yypi
-vnoremap <C-A-Up> <ESC>Yp
-inoremap <C-A-Down> <ESC>yypi
-vnoremap <C-A-Down> <ESC>Yp
+vnoremap <C-A-Up> y']P==
+vnoremap <C-A-Down> y']p==
+inoremap <C-A-Up> <ESC>YP==i
+inoremap <C-A-Down> <ESC>Yp==i
 
 "ALT+Up / ALT+Down for moving lines around
 inoremap <A-Up> <ESC>:m-2<CR>==i
