@@ -196,24 +196,6 @@ hi SpecialKey guifg=#4a4a59
 
 " ### Key mappings
 
-" F3 for toggling highlighted search matches
-noremap <F3> :set hlsearch!<CR>
-
-" F6 for 'paste mode' toggling
-set pastetoggle=<F6>
-
-" F7 for toggling spell checking
-noremap <silent> <F7> :set spell!<CR>
-
-" F8 for toggling text editing mode
-noremap <silent> <F8> :set wrap! linebreak! list!<CR>
-
-" F9 for code folding
-nnoremap <F9> za
-inoremap <F9> <C-O>za
-vnoremap <F9> zf
-onoremap <F9> <C-C>za
-
 " Tab and SHIFT-Tab for indenting while on insert mode
 imap <Tab> <ESC>>>i
 imap <S-Tab> <ESC><<i
@@ -264,16 +246,34 @@ nmap $ g$
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 
-" ### Plugins key mappings
+" ### Function keys
 
 " F2 for toggling NERDTree
 noremap <F2> :NERDTreeToggle<CR>
+
+" F3 for toggling highlighted search matches
+noremap <F3> :set hlsearch!<CR>
 
 " F4 for toggling Gundo tree
 noremap <F4> :GundoToggle<CR>
 
 " F5 for toggling indenting guides
 noremap <F5> :IndentGuidesToggle<CR>
+
+" F6 for 'paste mode' toggling
+set pastetoggle=<F6>
+
+" F7 for toggling spell checking
+noremap <silent> <F7> :set spell!<CR>
+
+" F8 for toggling text editing mode
+noremap <silent> <F8> :set wrap! linebreak! list!<CR>
+
+" F9 for code folding
+nnoremap <F9> za
+inoremap <F9> <C-O>za
+vnoremap <F9> zf
+onoremap <F9> <C-C>za
 
 "F10 for toggling background (dark/light)
 call togglebg#map("<F10>") "requires solarized togglebg plugin
