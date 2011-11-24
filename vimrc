@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 " ## My Bundles
 " Github repos
 Bundle 'gregsexton/gitv'
+Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
