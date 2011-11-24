@@ -20,7 +20,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
-Bundle 'vim-scripts/ClosePairs'
+Bundle 'underlog/ClosePairs'
 Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'xolox/vim-easytags'
@@ -130,7 +130,7 @@ set directory=~/.vimbackup,/tmp
 autocmd BufEnter * silent! lcd %:p:h
 
 " Automatically remove all trailing spaces before saving file
-autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css :%s/\s\+$//e
+autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e
 
 " ### Code folding settings
 
