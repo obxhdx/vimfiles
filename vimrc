@@ -23,6 +23,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'xolox/vim-easytags'
@@ -310,6 +311,11 @@ autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
 " PHP parser check (CTRL-l)
 autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+
+" Markdown settings
+
+" Markdown to HTML
+nmap <leader>md :%!markdown --html4tags <cr>
 
 " ### Custom functions
 
