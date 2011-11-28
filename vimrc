@@ -2,8 +2,8 @@
 set nocompatible
 
 " Load Vundle and bundles settings
-source bundles.vim
-" Run 'vim -u bundles.vim +BundleInstall +q' to install all bundles
+source .vimbundles
+" Run 'vim -u ~/.vimbundles +BundleInstall +q' to install all bundles
 
 " ### General settings
 
@@ -212,7 +212,7 @@ set pastetoggle=<F6>
 noremap <silent> <F7> :set spell!<CR>
 
 " F8 for toggling text editing mode
-noremap <silent> <F8> :set wrap! linebreak! list!<CR>
+noremap <silent> <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR>
 
 " F9 for code folding
 nnoremap <F9> za
