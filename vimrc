@@ -74,7 +74,7 @@ set backupdir=~/.vimbackup,/tmp
 set directory=~/.vimbackup,/tmp
 
 " Change the current dir to the same of the current file
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 " Automatically remove all trailing spaces before saving file
 autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e
@@ -93,7 +93,7 @@ set nofoldenable
 " ### Appearance settings
 
 " Set window size
-set lines=30
+set lines=35
 set columns=80
 
 " Set background type
@@ -102,8 +102,8 @@ set background=dark "or light
 " Turn on syntax highlighting
 syntax on
 
-let $my_theme = "molokai" 
-let $my_term_theme = "railscasts" 
+let $my_theme = "molokai"
+let $my_term_theme = "railscasts"
 
 if has("gui_running" )
 
@@ -220,8 +220,8 @@ inoremap <F9> <C-O>za
 vnoremap <F9> zf
 onoremap <F9> <C-C>za
 
-"F10 for toggling background (dark/light)
-call togglebg#map("<F10>") "requires solarized togglebg plugin
+" F10 opens one tab for each open buffer
+noremap <F10> <ESC> :tab ball<CR>
 
 " ### Easytags settings
 
