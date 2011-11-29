@@ -1,3 +1,5 @@
+set nocompatible "required
+
 " ### Vundle and bundles settings
 
 filetype off "required

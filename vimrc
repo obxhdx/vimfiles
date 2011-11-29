@@ -3,7 +3,7 @@ set nocompatible
 
 " Load Vundle and bundles settings
 source .vimbundles
-" Run 'vim -u ~/.vimbundles +BundleInstall +q' to install all bundles
+" Run 'vim -u ~/.vimbundles +BundleInstall +q +q' to install all bundles
 
 " ### General settings
 
