@@ -1,182 +1,132 @@
-" Be iMproved
-set nocompatible
+source .vimbundles " Load Vundle first
 
-" Load Vundle and bundles settings
-source .vimbundles
-" Run 'vim -u ~/.vimbundles +BundleInstall +q +q' to install all bundles
+" General "{{{
+set nocompatible " Be iMproved
+set history=100 " Remember more commands and search history
+set undolevels=100 " Use many levels of undo
+set wildmode=list:longest " Make cmdline tab completion similar to bash
+set wildmenu " Enable CTRL-n and CTRL-p to scroll through matches
+set scrolloff=3 " Maintain more context around the cursor
+set clipboard+=unnamed " Yanks go to clipboard
+set backupdir=~/.vimbackup,/tmp " Group backup files in one place
+set directory=~/.vimbackup,/tmp " Group swap files in one place
+" "}}}
 
-" ### General settings
+" Searching "{{{
+set incsearch " Enable incremental search
+set ignorecase " Ignore case sensitivity
+set smartcase " Enable case-smart searching
+set hlsearch " Highlight search matches
+" "}}}
 
-" Display line numbers
-set number
+" Formatting "{{{
+set expandtab " Insert space characters whenever the tab key is pressed
+set tabstop=2 " Number of spaces for a tab
+set shiftwidth=2 " Number of space characters inserted for indentation
+set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so one backspace goes back a full 2 spaces)
+set autoindent " Copy the indentation from the previous line, when starting a new line
+set backspace=indent,eol,start " Allow backspacing over everything in insert mode
+set nowrap " Disable line wrapping
+autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e " Remove all trailing spaces before saving a file
+" "}}}
 
-" Display current position along the bottom
-set ruler
+" Folding "{{{
+set foldmethod=indent " Fold based on indent
+set foldnestmax=3 " Max folding levels
+set nofoldenable " Do not fold by default
+" "}}}
 
-" Display selection count on the statusline
-set showcmd
+" Visual "{{{
+set number " Display line numbers
+set ruler " Display current position along the bottom
+set showcmd " Display selection count on the statusline
+set list " Display unprintable chars
+set listchars=tab:‣.,eol:¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable chars
+set lines=35 " Window size
+set columns=80 " Window size
 
-" Disable line wrapping
-set nowrap
+if has("gui_running")
+  set guioptions-=T " Remove toolbar
+  set guioptions-=r " Remove right-hand scrollbar
+  set guioptions-=L " Remove NERDTree scrollbar
+endif
+" "}}}
 
-" Insert space characters whenever the tab key is pressed
-set expandtab
-
-" Number of spaces for a tab
-set tabstop=2
-
-" Number of space characters inserted for indentation
-set shiftwidth=2
-
-" Makes the backspace key treat the two spaces like a tab (so one backspace goes back a full 2 spaces)
-set softtabstop=2
-
-" Copy the indentation from the previous line, when starting a new line
-set autoindent
-
-" Allow backspacing over everything in insert mode
-set bs=2 " same as set backspace=indent,eol,start
-
-" Enable incremental search
-set incsearch
-
-" Enable case-smart searching
-set ignorecase
-set smartcase
-
-" Highlight search matches
-set hlsearch
-
-" Remember more commands and search history
-set history=100
-
-" Use many levels of undo
-set undolevels=100
-
-" Make cmdline tab completion similar to bash
-set wildmode=list:longest
-
-" Enable CTRL-n and CTRL-p to scroll through matches
-set wildmenu
-
-" Ignored patterns when tab completing
-set wildignore=*.o,*.obj,*~,*.mp3,*.jpg,*.png,*.gif,*.avi
-
-" Maintain more context around the cursor
-set scrolloff=3
-
-" Display white spaces
-set list
-set listchars=tab:‣.,eol:¬,trail:.,extends:#,precedes:#,nbsp:.
-
-" Group backup and swap files in one place
-set backupdir=~/.vimbackup,/tmp
-set directory=~/.vimbackup,/tmp
-
-" Change the current dir to the same of the current file
-" autocmd BufEnter * silent! lcd %:p:h
-
-" Automatically remove all trailing spaces before saving file
-autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e
-
-" ### Code folding settings
-
-" Fold based on indent
-set foldmethod=indent
-
-" Max folding levels
-set foldnestmax=3
-
-" Do not fold by default
-set nofoldenable
-
-" ### Appearance settings
-
-" Set window size
-set lines=35
-set columns=80
-
-" Set background type
-set background=dark "or light
-
-" Turn on syntax highlighting
-syntax on
-
-let $my_theme = "molokai"
-let $my_term_theme = "railscasts"
-
-if has("gui_running" )
-
-  set t_Co=256
-  colorscheme $my_theme
-
-  set guioptions-=T "remove toolbar
-  set guioptions-=r "remove right-hand scrollbar
-  set guioptions-=L "remove NERDTree scrollbar
-
-  if has("gui_gnome" )
+" Font config "{{{
+if has("gui_running")
+  if has("gui_gnome")
     set guifont=Monofur\ 13
   endif
-
-  if has("gui_win32" ) || has("gui_win32s" )
+  if has("gui_win32") || has("gui_win32s")
     set guifont=Consolas:h12
-    set enc=utf-8
   endif
+endif
+" "}}}
 
+" Syntax highlighting "{{{
+syntax on " Turn it on
+set t_Co=256 " Enable 256 colors
+set background=dark " Background style
+
+if has("gui_running")
+  colorscheme molokai
 else
-
   if $COLORTERM == 'gnome-terminal'
-    " let g:solarized_termcolors=256
-    set t_Co=256
-    colorscheme $my_term_theme
+    colorscheme railscasts
   else
     colorscheme default
   endif
-
 endif
+" "}}}
 
-" Invisible character colors
-hi NonText guifg=#4a4a59
-hi SpecialKey guifg=#4a4a59
+" Custom functions "{{{
+" Show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nmap <leader>sg :call <SID>SynStack()<CR>
+" "}}}
 
-" ### Key mappings
+" F keys "{{{
+noremap <F2> :NERDTreeToggle<CR>
+noremap <F3> :set hlsearch!<CR>
+noremap <F4> :GundoToggle<CR>
+noremap <F5> :IndentGuidesToggle<CR>
+set pastetoggle=<F6>
+noremap <F7> :set spell!<CR>
+noremap <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
+" nnoremap <F9> za " F9 for code folding
+" inoremap <F9> <C-O>za
+" vnoremap <F9> zf
+" onoremap <F9> <C-C>za
+noremap <F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
+" "}}}
 
+" Key mappings "{{{
 " Tab and SHIFT-Tab for indenting while on insert mode
 imap <Tab> <ESC>>>i
 imap <S-Tab> <ESC><<i
-
 " Tab and SHIFT-Tab for indenting multiple lines
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-
-" CTRL+v for Visual Mode also when in Insert Mode
-imap <C-v> <ESC><C-v>
-
-" CTRL+Space for autocomplete
-inoremap <C-Space> <C-x><C-o>
-
+" CTRL+Space for autocompleting
+imap <C-Space> <C-x><C-o>
+" CTRL+ALT+c and CTRL+ALT+v for copying and pasting
+imap <C-A-v> <ESC>"+gPi
+map <C-c> "+y
 " Make CTRL+Up / CTRL+Up work like CTRL+e / CTRL+y
 nnoremap <C-Up> <C-y>
 nnoremap <C-Down> <C-e>
 inoremap <C-Up> <ESC><C-y>
 inoremap <C-Down> <ESC><C-e>
-
-" CTRL+ALT+c and CTRL+ALT+v for copying and pasting
-imap <C-A-v> <ESC>"+gPi
-map <C-c> "+y
-
-" CTRL+ALT+Up/Down for duplicating lines
-vnoremap <C-A-Up> y']P==
-vnoremap <C-A-Down> y']p==
-inoremap <C-A-Up> <ESC>YP==i
-inoremap <C-A-Down> <ESC>Yp==i
-
 " ALT+Up / ALT+Down for moving lines around
 inoremap <A-Up> <ESC>:m-2<CR>==i
 inoremap <A-Down> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
-
 " Navigate through wrapped lines
 vmap <Up> gk
 vmap <Down> gj
@@ -186,87 +136,13 @@ nmap <Up> gk
 nmap <Down> gj
 nmap 0 g^
 nmap $ g$
-
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>rv :so $MYVIMRC<CR>
-
-" ### Function keys
-
-" F2 for toggling NERDTree
-noremap <F2> :NERDTreeToggle<CR>
-
-" F3 for toggling highlighted search matches
-noremap <F3> :set hlsearch!<CR>
-
-" F4 for toggling Gundo tree
-noremap <F4> :GundoToggle<CR>
-
-" F5 for toggling indenting guides
-noremap <F5> :IndentGuidesToggle<CR>
-
-" F6 for 'paste mode' toggling
-set pastetoggle=<F6>
-
-" F7 for toggling spell checking
-noremap <silent> <F7> :set spell!<CR>
-
-" F8 for toggling text editing mode
-noremap <silent> <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR>
-
-" F9 for code folding
-nnoremap <F9> za
-inoremap <F9> <C-O>za
-vnoremap <F9> zf
-onoremap <F9> <C-C>za
-
-" F10 opens one tab for each open buffer
-noremap <F10> <ESC> :tab ball<CR>
-
-" ### Easytags settings
-
-" Make it recursively scan everything below the directory of the current file
-autocmd Filetype java,javascript,php,ruby let g:easytags_autorecurse = 1
-
-" Always enable dynamic highlighting
-let g:easytags_always_enabled = 1
-
-" Use a python implementation of dynamic syntax highlighting script (2x faster than vim script)
-let g:easytags_python_enabled = 1
-
-" Store tags by filetype
-let g:easytags_by_filetype = '~/.vimtags'
-
-" ### CommandT settings
-
-" Never show dot files
-let g:CommandTNeverShowDotFiles = 1
-
-"### Indent Guides settings
-
-" Guide line size
-let g:indent_guides_guide_size = 1
-
-" ### PHP settings
-
+nmap <leader>ev :e $MYVIMRC<CR>
+nmap <leader>rv :so $MYVIMRC<CR>
+" Markdown to HTML
+autocmd FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)
 autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
-
 " PHP parser check (CTRL-l)
 autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
-
-" Markdown settings
-
-" Markdown to HTML
-nmap <leader>md :%!markdown --html4tags <cr>
-
-" ### Custom functions
-
-" Show syntax highlighting groups for word under cursor
-nmap <leader>sg :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack" )
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name" )')
-endfunc
+" "}}}

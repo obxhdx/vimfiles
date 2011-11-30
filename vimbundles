@@ -1,20 +1,18 @@
-set nocompatible "required
+" Run 'vim -u ~/.vimbundles +BundleInstall +qall' to install all bundles
 
-" ### Vundle and bundles settings
+set nocompatible " Be iMproved
 
-filetype off "required
+filetype off " required
 
+" Load Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Let Vundle manage Vundle
+" Github bundles "{{{
 Bundle 'gmarik/vundle'
-
-" ## My Bundles
-
-" Github repos
-
+Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
+Bundle 'mileszs/ack.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
@@ -27,22 +25,23 @@ Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'xolox/vim-easytags'
 Bundle 'yurifury/hexHighlight'
+" "}}}
 
-" Non Github repos
+" Git bundles "{{{
 Bundle 'git://git.wincent.com/command-t.git'
+" "}}}
 
-" ## My Colors
-
-" Blueish colors
+" Blueish colors "{{{
 Bundle 'vim-scripts/dusk'
 Bundle 'vim-scripts/oceandeep'
+" "}}}
 
-" Dark colors
+" Dark colors "{{{
 Bundle 'eddsteel/vim-lanai'
 Bundle 'oguzbilgic/sexy-railscasts-theme'
 Bundle 'sickill/vim-monokai'
 Bundle 'tpope/vim-vividchalk'
-Bundle 'vim-scripts/molokai'
+Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/Mustang2'
 Bundle 'vim-scripts/paintbox'
 Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
@@ -53,13 +52,34 @@ Bundle 'vim-scripts/twilight'
 Bundle 'vim-scripts/Wombat'
 Bundle 'vim-scripts/xoria256.vim'
 Bundle 'vim-scripts/Zenburn'
+" "}}}
 
-" Light colors
+" Light colors "{{{
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 Bundle 'gregsexton/Gravity'
 Bundle 'obxhdx/vim-github-theme'
 Bundle 'vim-scripts/bclear'
 Bundle 'vim-scripts/tango-morning.vim'
+" "}}}
 
-filetype plugin indent on "required
+filetype plugin indent on " required
+
+" Ack settings "{{{
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+" "}}}
+
+" CommandT settings "{{{
+let g:CommandTNeverShowDotFiles = 1
+" "}}}
+
+" Easytags settings "{{{
+autocmd Filetype java,javascript,php,ruby let g:easytags_autorecurse = 1
+let g:easytags_always_enabled = 1
+let g:easytags_python_enabled = 1
+let g:easytags_by_filetype = '~/.vimtags'
+" "}}}
+
+" Indent Guides settings "{{{
+let g:indent_guides_guide_size = 1
+" "}}}
