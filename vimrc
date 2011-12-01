@@ -136,9 +136,12 @@ nmap <Up> gk
 nmap <Down> gj
 nmap 0 g^
 nmap $ g$
-" Quickly edit/reload the vimrc file
+" Quickly edit the vimrc file
 nmap <leader>ev :e $MYVIMRC<CR>
+" Quickly reload the vimrc file
 nmap <leader>rv :so $MYVIMRC<CR>
+" Change pwd to current buffer path
+nmap <leader>cp :lcd %:p:h<CR>
 " Markdown to HTML
 autocmd FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)
