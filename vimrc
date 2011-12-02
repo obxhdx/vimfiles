@@ -27,7 +27,8 @@ set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so 
 set autoindent " Copy the indentation from the previous line, when starting a new line
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set nowrap " Disable line wrapping
-autocmd BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e " Remove all trailing spaces before saving a file
+au BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e " Remove all trailing spaces before saving a file
+au BufRead,BufNewFile *.php set ft=php.html
 " "}}}
 
 " Folding "{{{
@@ -143,9 +144,9 @@ nmap <leader>rv :so $MYVIMRC<CR>
 " Change pwd to current buffer path
 nmap <leader>cp :lcd %:p:h<CR>
 " Markdown to HTML
-autocmd FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
+au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)
-autocmd FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
+au FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 " PHP parser check (CTRL-l)
-autocmd FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+au FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 " "}}}
