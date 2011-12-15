@@ -1,4 +1,4 @@
-source .vimbundles " Load Vundle first
+source ~/.vimbundles " Load Vundle first
 
 " General "{{{
 set nocompatible " Be iMproved
@@ -42,7 +42,7 @@ set number " Display line numbers
 set ruler " Display current position along the bottom
 set showcmd " Display selection count on the statusline
 set list " Display unprintable chars
-set listchars=tab:â€£.,eol:Â¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable chars
+set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable chars
 set lines=35 " Window size
 set columns=80 " Window size
 
