@@ -7,7 +7,7 @@ set undolevels=100 " Use many levels of undo
 set wildmode=list:longest " Make cmdline tab completion similar to bash
 set wildmenu " Enable CTRL-n and CTRL-p to scroll through matches
 set scrolloff=3 " Maintain more context around the cursor
-set clipboard+=unnamed " Yanks go to clipboard
+set autochdir " Auto change working dir to current file path
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
 " "}}}
@@ -95,7 +95,6 @@ nmap <leader>sg :call <SID>SynStack()<CR>
 noremap <F2> :NERDTreeToggle<CR>
 noremap <F3> :set hlsearch!<CR>
 noremap <F4> :GundoToggle<CR>
-noremap <F5> :IndentGuidesToggle<CR>
 set pastetoggle=<F6>
 noremap <F7> :set spell!<CR>
 noremap <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
@@ -141,8 +140,6 @@ nmap $ g$
 nmap <leader>ev :e $MYVIMRC<CR>
 " Quickly reload the vimrc file
 nmap <leader>rv :so $MYVIMRC<CR>
-" Change pwd to current buffer path
-nmap <leader>cp :lcd %:p:h<CR>
 " Markdown to HTML
 au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)
