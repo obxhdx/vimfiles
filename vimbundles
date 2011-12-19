@@ -12,7 +12,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
-Bundle 'mileszs/ack.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
@@ -22,7 +21,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'underlog/ClosePairs'
 Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/matchit.zip'
-Bundle 'xolox/vim-easytags'
 Bundle 'yurifury/hexHighlight'
 " "}}}
 
@@ -64,21 +62,6 @@ Bundle 'vim-scripts/tango-morning.vim'
 
 filetype plugin indent on " required
 
-" Ack settings "{{{
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-" "}}}
-
 " CommandT settings "{{{
 let g:CommandTNeverShowDotFiles = 1
-" "}}}
-
-" Easytags settings "{{{
-autocmd Filetype php,ruby let g:easytags_autorecurse = 1
-let g:easytags_always_enabled = 1
-let g:easytags_python_enabled = 1
-let g:easytags_by_filetype = '~/.vimtags'
-" "}}}
-
-" Indent Guides settings "{{{
-let g:indent_guides_guide_size = 1
 " "}}}
