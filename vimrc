@@ -7,7 +7,6 @@ set undolevels=100 " Use many levels of undo
 set wildmode=list:longest " Make cmdline tab completion similar to bash
 set wildmenu " Enable CTRL-n and CTRL-p to scroll through matches
 set scrolloff=3 " Maintain more context around the cursor
-set autochdir " Auto change working dir to current file path
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
 " "}}}
@@ -29,6 +28,7 @@ set backspace=indent,eol,start " Allow backspacing over everything in insert mod
 set nowrap " Disable line wrapping
 au BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e " Remove all trailing spaces before saving a file
 au BufRead,BufNewFile *.php set ft=php.html
+au BufRead,BufNewFile *.md,*.mkd set ft=markdown
 " "}}}
 
 " Folding "{{{
@@ -140,6 +140,8 @@ nmap $ g$
 nmap <leader>ev :e $MYVIMRC<CR>
 " Quickly reload the vimrc file
 nmap <leader>rv :so $MYVIMRC<CR>
+" Change path to current file dir
+nmap <leader>cd :lcd %:p:h
 " Markdown to HTML
 au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)

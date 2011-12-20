@@ -12,6 +12,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
+Bundle 'int3/vim-taglist-plus'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
