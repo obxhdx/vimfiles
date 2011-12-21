@@ -12,7 +12,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
-Bundle 'int3/vim-taglist-plus'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
@@ -21,6 +20,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'underlog/ClosePairs'
 Bundle 'vim-scripts/gitignore'
+Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'yurifury/hexHighlight'
 " "}}}
@@ -65,4 +65,10 @@ filetype plugin indent on " required
 
 " CommandT settings "{{{
 let g:CommandTNeverShowDotFiles = 1
+" "}}}
+
+" Indexer settings "{{{
+let g:indexer_disableCtagsWarning = 1
+let g:indexer_indexerListFilename = '.vimtags.cnf'
+let g:indexer_tagsDirname = '.vimtags'
 " "}}}
