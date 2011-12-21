@@ -15,7 +15,11 @@ task :dotfiles do
     if File::exist? linked_file
       puts "'#{linked_file}' already exists, nothing changed!"
     else
-      FileUtils::ln_s File::join(File::dirname(__FILE__), file), linked_file
+      begin
+        FileUtils::ln_s File::join(File::dirname(__FILE__), file), linked_file
+      rescue
+        puts "Oops, something's gone wrong... please check '#{linked_file}' file"
+      end
     end
   end
 end
