@@ -39,8 +39,6 @@ set nofoldenable " Do not fold by default
 
 " Visual "{{{
 set number " Display line numbers
-set ruler " Display current position along the bottom
-set showcmd " Display selection count on the statusline
 set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable chars
 set lines=35 " Window size
@@ -55,11 +53,10 @@ endif
 
 " Font config "{{{
 if has("gui_running")
-  if has("gui_gnome")
-    set guifont=Monofur\ 13
-  endif
   if has("gui_win32") || has("gui_win32s")
     set guifont=Consolas:h12
+  else
+    set guifont=Monofur\ 13
   endif
 endif
 " "}}}
@@ -92,17 +89,17 @@ nmap <leader>sg :call <SID>SynStack()<CR>
 " "}}}
 
 " F keys "{{{
-noremap <F2> :NERDTreeToggle<CR>
-noremap <F3> :set hlsearch!<CR>
-noremap <F4> :GundoToggle<CR>
+noremap <silent><F2> :NERDTreeToggle<CR>
+noremap <silent><F3> :set hlsearch!<CR>
+noremap <silent><F4> :GundoToggle<CR>
 set pastetoggle=<F6>
-noremap <F7> :set spell!<CR>
-noremap <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
+noremap <silent><F7> :set spell!<CR>
+noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
 " nnoremap <F9> za " F9 for code folding
 " inoremap <F9> <C-O>za
 " vnoremap <F9> zf
 " onoremap <F9> <C-C>za
-noremap <F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
+noremap <silent><F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
 " "}}}
 
 " Key mappings "{{{
@@ -149,3 +146,67 @@ au FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 " PHP parser check (CTRL-l)
 au FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 " "}}}
+
+" Status line "{{{
+if has("statusline")
+  set laststatus=2
+
+  set statusline+=%<\                                 " truncation point
+  set statusline+=[%n]\                               " buffer number
+  set statusline+=%t\                                 " file name
+
+  set statusline+=[%{strlen(&ft)?&ft:'none'}\|        " filetype
+  set statusline+=%{strlen(&fenc)?&fenc:&enc}\|       " encoding
+  set statusline+=%{&fileformat}]\                    " file format
+
+  set statusline+=%#error#
+  set statusline+=%{&list?'['.nr2char(182).']':''}    " warns if list mode is enabled
+  set statusline+=%{&wrap?'[wrap]':''}                " warns wrap is enabled
+  set statusline+=%h%m%r%w                            " flags
+  set statusline+=%{StatuslineTrailingSpaceWarning()} " warns if there trailing spaces
+  set statusline+=%*
+
+  set statusline+=%=                                  " left/right separator
+  set statusline+=%(\ %{VisualSelectionSize()}%)\     " display selection count
+  set statusline+=%-14.(%l,%c%V%)                     " current line and column
+  set statusline+=\ %P                                " percent through file
+endif
+" "}}}
+
+" Return '[\s]' if trailing white space is detected
+" Return '' otherwise
+function! StatuslineTrailingSpaceWarning()
+  if !exists("b:statusline_trailing_space_warning")
+    if search('\s\+$', 'nw') != 0
+      let b:statusline_trailing_space_warning = '[\s]'
+    else
+      let b:statusline_trailing_space_warning = ''
+    endif
+  endif
+  return b:statusline_trailing_space_warning
+endfunction
+
+" Recalculate the trailing whitespace warning when idle, and after saving
+au CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+
+" Return number of chars|lines|blocks selected
+function! VisualSelectionSize()
+  if mode() == "v"
+    " Exit and re-enter visual mode, because the marks
+    " ('< and '>) have not been updated yet.
+    exe "normal \<ESC>gv"
+    if line("'<") != line("'>")
+      return (line("'>") - line("'<") + 1) . ' lines'
+    else
+      return (col("'>") - col("'<") + 1) . ' chars'
+    endif
+  elseif mode() == "V"
+    exe "normal \<ESC>gv"
+    return (line("'>") - line("'<") + 1) . ' lines'
+  elseif mode() == "\<C-V>"
+    exe "normal \<ESC>gv"
+    return (line("'>") - line("'<") + 1) . 'x' . (abs(col("'>") - col("'<")) + 1) . ' block'
+  else
+    return ''
+  endif
+endfunction
