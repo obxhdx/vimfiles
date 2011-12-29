@@ -25,13 +25,15 @@ task :dotfiles do
 end
 
 task :vundle do
-  vundle_dir = ENV['HOME'] + "/.vim/bundle"
-  if not File::directory? vundle_dir
-    Dir::mkdir vundle_dir
-    Dir::chdir vundle_dir do
-      verbose false
-      sh "git clone https://github.com/gmarik/vundle"
-    end
+  bundle_dir = ENV['HOME'] + "/.vim/bundle"
+  if not File::directory? bundle_dir
+    FileUtils::mkdir_p bundle_dir
+  end
+
+  if not File::directory? bundle_dir + "/vundle"
+    Dir::chdir bundle_dir
+    verbose false
+    sh "git clone https://github.com/gmarik/vundle"
   end
 end
 
