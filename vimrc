@@ -170,6 +170,8 @@ if has("statusline")
   set statusline+=%(\ %{VisualSelectionSize()}%)\     " display selection count
   set statusline+=%-14.(%l,%c%V%)                     " current line and column
   set statusline+=\ %P                                " percent through file
+
+  hi StatusLine term=reverse ctermfg=0 ctermbg=7 gui=reverse
 endif
 " "}}}
 
