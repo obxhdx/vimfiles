@@ -1,7 +1,7 @@
 task :default => [:tempdirs, :dotfiles, :vundle, :bundles, :commandt]
 
 task :tempdirs do
-  puts "Creating backup dirs... "
+  puts "Creating backup dirs..."
   tmp_dir = ENV['HOME'] + "/.vimbackup"
   if not File::directory? tmp_dir
     Dir::mkdir tmp_dir
@@ -9,8 +9,8 @@ task :tempdirs do
 end
 
 task :dotfiles do
-  puts "Linking dot files... "
-  %w[vimrc vimbundles.vim].each do |file|
+  puts "Linking dot files..."
+  %w[vimrc gvimrc vimbundles.vim].each do |file|
     linked_file = File::join(ENV['HOME'], ".#{file.chomp(File::extname(file))}")
     if File::exist? linked_file
       puts "'#{linked_file}' already exists, nothing changed!"
@@ -38,15 +38,21 @@ task :vundle do
 end
 
 task :bundles do
-  puts "Installing bundles... "
+  puts "Installing bundles..."
   verbose false
   sh "vim -u ~/.vimbundles +BundleInstall +qall"
 end
 
 task :update do
-  puts "Updating bundles... "
+  puts "Updating bundles..."
   verbose false
   sh "vim -u ~/.vimbundles +BundleInstall! +qall"
+end
+
+task :clear do
+  puts "Cleaning up bundles..."
+  verbose false
+  sh "vim -u ~/.vimbundles +BundleClean! +qall"
 end
 
 task :commandt do

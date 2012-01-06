@@ -44,36 +44,15 @@ set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable cha
 set lines=35 " Window size
 set columns=80 " Window size
 
-if has("gui_running")
-  set guioptions-=T " Remove toolbar
-  set guioptions-=r " Remove right-hand scrollbar
-  set guioptions-=L " Remove NERDTree scrollbar
-endif
-" "}}}
-
-" Font config "{{{
-if has("gui_running")
-  if has("gui_win32") || has("gui_win32s")
-    set guifont=Consolas:h12
-  else
-    set guifont=Monofur\ 13
-  endif
-endif
-" "}}}
-
 " Syntax highlighting "{{{
 syntax on " Turn it on
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-if has("gui_running")
-  colorscheme molokai
+if $COLORTERM == 'gnome-terminal'
+  color railscasts
 else
-  if $COLORTERM == 'gnome-terminal'
-    colorscheme railscasts
-  else
-    colorscheme default
-  endif
+  color default
 endif
 " "}}}
 
@@ -138,7 +117,7 @@ nmap <leader>ev :e $MYVIMRC<CR>
 " Quickly reload the vimrc file
 nmap <leader>rv :so $MYVIMRC<CR>
 " Change path to current file dir
-nmap <leader>cd :lcd %:p:h
+nmap <leader>cd :lcd %:p:h<CR>
 " Markdown to HTML
 au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 " Run file with PHP CLI (CTRL-m)
