@@ -40,12 +40,12 @@ set nofoldenable " Do not fold by default
 " Visual "{{{
 set number " Display line numbers
 set list " Display unprintable chars
-set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:. " Unprintable chars
-set lines=35 " Window size
-set columns=80 " Window size
+set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
+" "}}}
 
 " Syntax highlighting "{{{
 syntax on " Turn it on
+
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
@@ -56,53 +56,37 @@ else
 endif
 " "}}}
 
-" Custom functions "{{{
-" Show syntax highlighting groups for word under cursor
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-nmap <leader>sg :call <SID>SynStack()<CR>
-" "}}}
+" Key mappings "{{{
 
-" F keys "{{{
+" F keys
 noremap <silent><F2> :NERDTreeToggle<CR>
 noremap <silent><F3> :set hlsearch!<CR>
 noremap <silent><F4> :GundoToggle<CR>
-set pastetoggle=<F6>
 noremap <silent><F7> :set spell!<CR>
 noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
-" nnoremap <F9> za " F9 for code folding
-" inoremap <F9> <C-O>za
-" vnoremap <F9> zf
-" onoremap <F9> <C-C>za
 noremap <silent><F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
-" "}}}
 
-" Key mappings "{{{
 " Tab and SHIFT-Tab for indenting while on insert mode
 imap <Tab> <ESC>>>i
 imap <S-Tab> <ESC><<i
+
 " Tab and SHIFT-Tab for indenting multiple lines
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+
 " CTRL+Space for autocompleting
 imap <C-Space> <C-x><C-o>
+
 " CTRL+ALT+c and CTRL+ALT+v for copying and pasting
 imap <C-A-v> <ESC>"+gPi
 map <C-c> "+y
-" Make CTRL+Up / CTRL+Up work like CTRL+e / CTRL+y
-nnoremap <C-Up> <C-y>
-nnoremap <C-Down> <C-e>
-inoremap <C-Up> <ESC><C-y>
-inoremap <C-Down> <ESC><C-e>
+
 " ALT+Up / ALT+Down for moving lines around
 inoremap <A-Up> <ESC>:m-2<CR>==i
 inoremap <A-Down> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
+
 " Navigate through wrapped lines
 vmap <Up> gk
 vmap <Down> gj
@@ -112,16 +96,16 @@ nmap <Up> gk
 nmap <Down> gj
 nmap 0 g^
 nmap $ g$
-" Quickly edit the vimrc file
-nmap <leader>ev :e $MYVIMRC<CR>
-" Quickly reload the vimrc file
-nmap <leader>rv :so $MYVIMRC<CR>
+
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
+
 " Markdown to HTML
 au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
+
 " Run file with PHP CLI (CTRL-m)
 au FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
+
 " PHP parser check (CTRL-l)
 au FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 " "}}}
@@ -155,7 +139,6 @@ endif
 " "}}}
 
 " Return '[\s]' if trailing white space is detected
-" Return '' otherwise
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
@@ -165,7 +148,7 @@ function! StatuslineTrailingSpaceWarning()
     endif
   endif
   return b:statusline_trailing_space_warning
-endfunction
+endfunc
 
 " Recalculate the trailing whitespace warning when idle, and after saving
 au CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
@@ -190,4 +173,13 @@ function! VisualSelectionSize()
   else
     return ''
   endif
-endfunction
+endfunc
+
+" Show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nmap <leader>sg :call <SID>SynStack()<CR>

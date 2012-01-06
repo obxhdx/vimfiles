@@ -67,6 +67,7 @@ filetype plugin indent on " required
 
 " CommandT settings "{{{
 let g:CommandTNeverShowDotFiles = 1
+let g:CommandTMaxHeight = 10
 " "}}}
 
 " Indexer settings "{{{
