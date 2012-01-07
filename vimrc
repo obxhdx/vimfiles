@@ -134,7 +134,7 @@ if has("statusline")
   set statusline+=%-14.(%l,%c%V%)                     " current line and column
   set statusline+=\ %P                                " percent through file
 
-  hi StatusLine term=reverse ctermfg=0 ctermbg=7 gui=reverse
+  hi StatusLine ctermfg=0 ctermbg=7 term=reverse
 endif
 " "}}}
 

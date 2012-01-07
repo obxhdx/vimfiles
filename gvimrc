@@ -11,3 +11,7 @@ if has("gui_win32") || has("gui_win32s")
 else
   set guifont=Monofur\ 13
 endif
+
+if has("statusline")
+  hi StatusLine gui=reverse
+endif
