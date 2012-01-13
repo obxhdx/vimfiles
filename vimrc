@@ -39,6 +39,7 @@ set nofoldenable " Do not fold by default
 
 " Visual "{{{
 set number " Display line numbers
+set cursorline " Highlight current line
 set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
 " "}}}

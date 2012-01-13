@@ -49,7 +49,7 @@ task :update do
   sh "vim -u ~/.vimbundles +BundleInstall! +qall"
 end
 
-task :clear do
+task :clean do
   puts "Cleaning up bundles..."
   verbose false
   sh "vim -u ~/.vimbundles +BundleClean! +qall"

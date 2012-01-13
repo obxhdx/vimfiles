@@ -15,3 +15,5 @@ endif
 if has("statusline")
   hi StatusLine gui=reverse
 endif
+
+hi NonText guifg=#999999
