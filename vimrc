@@ -101,6 +101,13 @@ nmap $ g$
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
+" Reload config file
+if has("gui_running")
+  nmap <leader>rv :so ~/.gvimrc<CR>
+else
+  nmap <leader>rv :so ~/.vimrc<CR>
+endif
+
 " Markdown to HTML
 au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
 
