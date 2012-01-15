@@ -50,7 +50,7 @@ syntax on " Turn it on
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-if $COLORTERM == 'gnome-terminal'
+if $TERM == 'xterm-256color'
   color railscasts
 else
   color default
