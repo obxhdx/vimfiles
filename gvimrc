@@ -14,7 +14,7 @@ if has("statusline")
   hi StatusLine gui=reverse
 endif
 
-function AutoAssignColors()
+function! AutoAssignColors()
   if (&ft == 'vim' || &ft == 'php' || &ft == 'ruby')
     color molokai
   else
@@ -22,6 +22,6 @@ function AutoAssignColors()
   endif
 endfunc
 
-autocmd BufRead * :call AutoAssignColors()
+autocmd BufEnter,BufWritePost * :call AutoAssignColors()
 
 hi NonText guifg=#999999
