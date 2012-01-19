@@ -63,6 +63,7 @@ endif
 noremap <silent><F2> :NERDTreeToggle<CR>
 noremap <silent><F3> :set hlsearch!<CR>
 noremap <silent><F4> :GundoToggle<CR>
+set pastetoggle=<F6>
 noremap <silent><F7> :set spell!<CR>
 noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
 noremap <silent><F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
