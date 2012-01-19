@@ -10,18 +10,18 @@ else
   set guifont=Monofur\ 13
 endif
 
-if has("statusline")
-  hi StatusLine gui=reverse
-endif
-
 function! AutoAssignColors()
-  if (&ft == 'vim' || &ft == 'php' || &ft == 'ruby')
+  if (&ft == 'vim' || &ft == 'php' || &ft == 'php.html' || &ft == 'ruby')
     color molokai
   else
-    color bclear
+    color sexy-railscasts
   endif
-endfunc
+
+  hi NonText guifg=#999999
+
+  if has("statusline")
+    hi StatusLine gui=reverse
+  endif
+endfunction
 
 autocmd BufEnter,BufWritePost * :call AutoAssignColors()
-
-hi NonText guifg=#999999
