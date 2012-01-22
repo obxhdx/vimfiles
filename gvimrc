@@ -1,4 +1,4 @@
-" set lines=35        " Number of lines
+set lines=35        " Number of lines
 
 set guioptions-=T   " Remove toolbar
 set guioptions-=r   " Remove right-hand scrollbar
@@ -10,18 +10,10 @@ else
   set guifont=Monofur\ 13
 endif
 
-function! AutoAssignColors()
-  if (&ft == 'vim' || &ft == 'php' || &ft == 'php.html' || &ft == 'ruby')
-    color molokai
-  else
-    color sexy-railscasts
-  endif
+color molokai
 
-  hi NonText guifg=#999999
+hi NonText guifg=#999999
 
-  if has("statusline")
-    hi StatusLine gui=reverse
-  endif
-endfunction
-
-autocmd BufEnter,BufWritePost * :call AutoAssignColors()
+if has("statusline")
+  hi StatusLine gui=reverse
+endif
