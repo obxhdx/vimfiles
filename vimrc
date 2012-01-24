@@ -33,8 +33,9 @@ au BufRead,BufNewFile *.md,*.mkd set ft=markdown
 
 " Folding "{{{
 set foldmethod=indent " Fold based on indent
-set foldnestmax=3 " Max folding levels
+set foldnestmax=10 " Max folding levels
 set nofoldenable " Do not fold by default
+set foldlevel=1
 " "}}}
 
 " Visual "{{{
