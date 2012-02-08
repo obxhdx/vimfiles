@@ -12,12 +12,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
+Bundle 'mattn/gist-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'obxhdx/snipmate-snippets'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-commentary'
+Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'underlog/ClosePairs'
@@ -42,17 +43,15 @@ Bundle 'oguzbilgic/sexy-railscasts-theme'
 Bundle 'sickill/vim-monokai'
 Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/Mustang2'
-Bundle 'vim-scripts/paintbox'
 Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
 Bundle 'vim-scripts/twilight'
 Bundle 'vim-scripts/Wombat'
-Bundle 'vim-scripts/Zenburn'
 " "}}}
 
 " Light colors "{{{
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 Bundle 'obxhdx/vim-github-theme'
+Bundle 'ootoovak/vim-tomorrow-night'
 Bundle 'vim-scripts/bclear'
 Bundle 'vim-scripts/tango-morning.vim'
 " "}}}
@@ -66,6 +65,6 @@ let g:CommandTMaxHeight = 10
 
 " Indexer settings "{{{
 let g:indexer_disableCtagsWarning = 1
-let g:indexer_indexerListFilename = '.vimtags.cnf'
+let g:indexer_indexerListFilename = '.indexer_files'
 let g:indexer_tagsDirname = '.vimtags'
 " "}}}

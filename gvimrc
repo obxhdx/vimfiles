@@ -8,7 +8,7 @@ set guioptions-=L   " Remove NERDTree scrollbar
 if has("gui_win32") || has("gui_win32s")
   set guifont=Consolas:h12
 else
-  set guifont=Monofur\ 13
+  set guifont=Inconsolata\ 15
 endif
 
 color molokai
