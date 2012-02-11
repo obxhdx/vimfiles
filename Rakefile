@@ -1,4 +1,4 @@
-task :default => [:tempdirs, :dotfiles, :vundle, :bundles, :commandt]
+task :install => [:tempdirs, :dotfiles, :vundle, :bundles, :commandt]
 
 task :tempdirs do
   puts "Creating backup dirs..."

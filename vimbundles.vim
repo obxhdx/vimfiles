@@ -20,8 +20,10 @@ Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-pastie'
 Bundle 'tpope/vim-surround'
 Bundle 'underlog/ClosePairs'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'vim-scripts/matchit.zip'
@@ -67,4 +69,11 @@ let g:CommandTMaxHeight = 10
 let g:indexer_disableCtagsWarning = 1
 let g:indexer_indexerListFilename = '.indexer_files'
 let g:indexer_tagsDirname = '.vimtags'
+" "}}}
+
+" vim-ruby autocomplete settings "{{{
+au FileType ruby,eruby set omnifunc=rubycomplete#Complete
+au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+au FileType ruby,eruby let g:rubycomplete_rails = 1
+au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " "}}}

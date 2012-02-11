@@ -1,8 +1,8 @@
 set lines=35        " Number of lines
+set columns=75      " Number of columns
 
 set guioptions-=m   " Remove the menu
 set guioptions-=T   " Remove the toolbar
-" set guioptions-=r   " Remove right-hand scrollbar
 set guioptions-=L   " Remove NERDTree scrollbar
 
 if has("gui_win32") || has("gui_win32s")
