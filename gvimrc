@@ -8,10 +8,11 @@ set guioptions-=L   " Remove NERDTree scrollbar
 if has("gui_win32") || has("gui_win32s")
   set guifont=Consolas:h12
 else
-  set guifont=Inconsolata\ 15
+  set guifont=Inconsolata\ 12
 endif
 
 color badwolf
+hi lineNr guibg=#222222
 
 if has("statusline")
   hi StatusLine gui=reverse
