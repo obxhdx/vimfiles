@@ -2,8 +2,8 @@ source ~/.vimbundles " Load Vundle first
 
 " General "{{{
 set nocompatible " Be iMproved
-set history=100 " Remember more commands and search history
-set undolevels=100 " Use many levels of undo
+set history=1000 " Remember more commands and search history
+set undolevels=1000 " Use many levels of undo
 set wildmode=list:longest " Make cmdline tab completion similar to bash
 set wildmenu " Enable CTRL-n and CTRL-p to scroll through matches
 set scrolloff=3 " Maintain more context around the cursor
@@ -61,6 +61,7 @@ endif
 " Key mappings "{{{
 
 " F keys
+noremap <silent><F1> :TagbarToggle<CR>
 noremap <silent><F2> :NERDTreeToggle<CR>
 noremap <silent><F3> :set hlsearch!<CR>
 noremap <silent><F4> :GundoToggle<CR>
@@ -86,9 +87,13 @@ map <C-c> "+y
 
 " ALT+Up / ALT+Down for moving lines around
 inoremap <A-Up> <ESC>:m-2<CR>==i
+inoremap <A-k> <ESC>:m-2<CR>==i
 inoremap <A-Down> <ESC>:m+<CR>==i
+inoremap <A-j> <ESC>:m+<CR>==i
 vnoremap <A-Up> :m-2<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-Down> :m'>+<CR>gv=gv
+vnoremap <A-j> :m'>+<CR>gv=gv
 
 " Navigate through wrapped lines
 vmap <Up> gk
@@ -124,27 +129,27 @@ au FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
 if has("statusline")
   set laststatus=2
 
-  set statusline+=%<\                                 " truncation point
-  set statusline+=[%n]\                               " buffer number
-  set statusline+=%t\                                 " file name
+  " set statusline+=%<\                                 " truncation point
+  " set statusline+=[%n]\                               " buffer number
+  " set statusline+=%t\                                 " file name
 
-  set statusline+=[%{strlen(&ft)?&ft:'none'}\|        " filetype
-  set statusline+=%{strlen(&fenc)?&fenc:&enc}\|       " encoding
-  set statusline+=%{&fileformat}]\                    " file format
+  " set statusline+=[%{strlen(&ft)?&ft:'none'}\|        " filetype
+  " set statusline+=%{strlen(&fenc)?&fenc:&enc}\|       " encoding
+  " set statusline+=%{&fileformat}]\                    " file format
 
-  set statusline+=%#error#
-  set statusline+=%{&list?'['.nr2char(182).']':''}    " warns if list mode is enabled
-  set statusline+=%{&wrap?'[wrap]':''}                " warns wrap is enabled
-  set statusline+=%h%m%r%w                            " flags
-  set statusline+=%{StatuslineTrailingSpaceWarning()} " warns if there trailing spaces
-  set statusline+=%*
+  " set statusline+=%#error#
+  " set statusline+=%{&list?'['.nr2char(182).']':''}    " warns if list mode is enabled
+  " set statusline+=%{&wrap?'[wrap]':''}                " warns wrap is enabled
+  " set statusline+=%h%m%r%w                            " flags
+  " set statusline+=%{StatuslineTrailingSpaceWarning()} " warns if there trailing spaces
+  " set statusline+=%*
 
-  set statusline+=%=                                  " left/right separator
-  set statusline+=%(\ %{VisualSelectionSize()}%)\     " display selection count
-  set statusline+=%-14.(%l,%c%V%)                     " current line and column
-  set statusline+=\ %P                                " percent through file
+  " set statusline+=%=                                  " left/right separator
+  " set statusline+=%(\ %{VisualSelectionSize()}%)\     " display selection count
+  " set statusline+=%-14.(%l,%c%V%)                     " current line and column
+  " set statusline+=\ %P                                " percent through file
 
-  hi StatusLine ctermfg=0 ctermbg=7 term=reverse
+  " hi StatusLine ctermfg=0 ctermbg=7 term=reverse
 endif
 " "}}}
 

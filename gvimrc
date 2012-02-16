@@ -11,7 +11,7 @@ else
   set guifont=Inconsolata\ 15
 endif
 
-color molokai
+color badwolf
 
 if has("statusline")
   hi StatusLine gui=reverse
