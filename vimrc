@@ -82,7 +82,7 @@ vmap <S-Tab> <gv
 imap <C-Space> <C-x><C-o>
 
 " CTRL+ALT+c and CTRL+ALT+v for copying and pasting
-imap <C-A-v> <ESC>"+gPi
+imap <C-v> <ESC>"+gpi
 map <C-c> "+y
 
 " ALT+Up / ALT+Down for moving lines around
