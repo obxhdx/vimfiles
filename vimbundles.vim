@@ -35,11 +35,10 @@ Bundle 'yurifury/hexHighlight'
 " "}}}
 
 " Dark colors "{{{
-Bundle 'jpo/vim-railscasts-theme'
+Bundle 'obxhdx/vim-railscasts-theme'
 Bundle 'sickill/vim-monokai'
 Bundle 'sjl/badwolf'
 Bundle 'tomasr/molokai'
-" Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
 " "}}}
 
 " Light colors "{{{
