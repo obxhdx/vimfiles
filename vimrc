@@ -5,7 +5,6 @@ set nocompatible " Be iMproved
 set history=1000 " Remember more commands and search history
 set undolevels=1000 " Use many levels of undo
 set wildmode=list:longest " Make cmdline tab completion similar to bash
-set wildmenu " Enable CTRL-n and CTRL-p to scroll through matches
 set scrolloff=3 " Maintain more context around the cursor
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
@@ -110,7 +109,7 @@ nmap <leader>cd :lcd %:p:h<CR>
 
 " Reload config file
 if has("gui_running")
-  nmap <leader>rv :so ~/.gvimrc<CR>
+  nmap <leader>rv :so ~/.vimrc<CR> :so ~/.gvimrc<CR>
 else
   nmap <leader>rv :so ~/.vimrc<CR>
 endif
@@ -157,7 +156,7 @@ endif
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
-      let b:statusline_trailing_space_warning = '[\s]'
+      let b:statusline_trailing_space_warning = '\s'
     else
       let b:statusline_trailing_space_warning = ''
     endif
@@ -166,7 +165,7 @@ function! StatuslineTrailingSpaceWarning()
 endfunc
 
 " Recalculate the trailing whitespace warning when idle, and after saving
-au CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
 
 " Return number of chars|lines|blocks selected
 function! VisualSelectionSize()

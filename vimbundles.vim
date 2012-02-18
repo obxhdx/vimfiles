@@ -70,3 +70,9 @@ let g:ctrlp_working_path_mode = 0
 " neocomplcache settings "{{{
 let g:neocomplcache_enable_at_startup = 1
 " "}}}
+
+" vim-powerline settings "{{{
+call Pl#Theme#InsertSegment('bufferinfo', 'after', 'fileinfo')
+call Pl#Theme#InsertSegment('SPLIT', 'after', 'cfi:current_function')
+call Pl#Theme#InsertSegment('selection', 'after', 'SPLIT')
+" "}}}
