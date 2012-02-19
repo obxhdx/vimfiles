@@ -9,34 +9,34 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Github bundles "{{{
+Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/gist-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'obxhdx/snipmate-snippets'
+Bundle 'obxhdx/vim-powerline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
-Bundle 'shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache'
 Bundle 'sjl/gundo.vim'
 Bundle 'spf13/PIV'
+Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/indexer.tar.gz'
-Bundle 'vim-scripts/matchit.zip'
 Bundle 'yurifury/hexHighlight'
 " "}}}
 
 " Dark colors "{{{
 Bundle 'obxhdx/vim-railscasts-theme'
-Bundle 'sickill/vim-monokai'
 Bundle 'sjl/badwolf'
 Bundle 'tomasr/molokai'
 " "}}}
@@ -71,7 +71,6 @@ let g:neocomplcache_enable_at_startup = 1
 " "}}}
 
 " vim-powerline settings "{{{
-call Pl#Theme#InsertSegment('bufferinfo', 'after', 'fileinfo')
-call Pl#Theme#InsertSegment('SPLIT', 'after', 'cfi:current_function')
-call Pl#Theme#InsertSegment('selection', 'after', 'SPLIT')
+let g:Powerline_theme = 'obxhdx'
+let g:Powerline_colorscheme = 'obxhdx'
 " "}}}

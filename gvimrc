@@ -1,5 +1,5 @@
 set lines=35        " Number of lines
-set columns=75      " Number of columns
+set columns=65      " Number of columns
 
 set guioptions-=m   " Remove the menu
 set guioptions-=T   " Remove the toolbar
@@ -11,6 +11,8 @@ else
   set guifont=Inconsolata\ 15
 endif
 
+" let g:molokai_original = 1
+" color molokai
 color badwolf
 hi lineNr guibg=#222222
 
