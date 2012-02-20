@@ -1,4 +1,4 @@
-task :install => [:tempdirs, :dotfiles, :vundle, :bundles, :commandt]
+task :default => [:tempdirs, :dotfiles, :vundle, :bundles]
 
 task :tempdirs do
   puts "Creating backup dirs..."
@@ -32,34 +32,29 @@ task :vundle do
 
   if not File::directory? bundle_dir + "/vundle"
     Dir::chdir bundle_dir
-    verbose false
-    sh "git clone https://github.com/gmarik/vundle"
+    sh "git clone https://github.com/gmarik/vundle", :verbose => false
   end
 end
 
 task :bundles do
   puts "Installing bundles..."
-  verbose false
-  sh "vim -u ~/.vimbundles +BundleInstall +qall"
+  sh "vim +BundleInstall +qall", :verbose => false
 end
 
 task :update do
   puts "Updating bundles..."
-  verbose false
-  sh "vim -u ~/.vimbundles +BundleInstall! +qall"
+  sh "vim +BundleInstall! +qall", :verbose => false
 end
 
 task :clean do
   puts "Cleaning up bundles..."
-  verbose false
-  sh "vim -u ~/.vimbundles +BundleClean! +qall"
+  sh "vim +BundleClean +qall", :verbose => false
 end
 
 task :commandt do
   puts "Compiling Command-T C extension... "
   Dir::chdir(ENV['HOME'] + "/.vim/bundle/command-t/ruby/command-t") do
-    verbose false
-    sh "ruby extconf.rb >/dev/null 2>&1"
-    sh "make clean && make >/dev/null 2>&1"
+    sh "ruby extconf.rb >/dev/null 2>&1", :verbose => false
+    sh "make clean && make >/dev/null 2>&1", :verbose => false
   end
 end

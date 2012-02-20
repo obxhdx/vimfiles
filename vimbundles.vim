@@ -17,8 +17,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mattn/gist-vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'obxhdx/snipmate-snippets'
-Bundle 'obxhdx/vim-powerline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
@@ -35,15 +33,17 @@ Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'yurifury/hexHighlight'
 " "}}}
 
-" Dark colors "{{{
-Bundle 'obxhdx/vim-railscasts-theme'
-Bundle 'sjl/badwolf'
-Bundle 'tomasr/molokai'
+" Own repos "{{{
+Bundle 'git://github.com/obxhdx/snipmate-snippets.git'
+Bundle 'git://github.com/obxhdx/vim-github-theme.git'
+Bundle 'git://github.com/obxhdx/vim-powerline.git'
+Bundle 'git://github.com/obxhdx/vim-railscasts-theme.git'
 " "}}}
 
-" Light colors "{{{
+" Colorschemes "{{{
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'obxhdx/vim-github-theme'
+Bundle 'sjl/badwolf'
+Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/bclear'
 " "}}}
 
