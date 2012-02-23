@@ -66,9 +66,9 @@ au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 let g:ctrlp_root_markers = ['.htaccess']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\..\+\|\.git$\|\.hg$\|\.svn$\|htdocs\|opt\|workspace-.*',
-  \ 'file': '\..\+\|\.exe$\|\.so$\|\.dll$',
-  \ 'link': '\..\+\|SOME_BAD_SYMBOLIC_LINKS',
+  \ 'dir':  '[\/]\.[^\/]\+$\|\.git$\|\.hg$\|\.svn$\|htdocs$\|opt$\|workspace-.\+$',
+  \ 'file': '[\/]\.[^\/]\+$\|\.exe$\|\.so$\|\.dll$',
+  \ 'link': '[\/]\.[^\/]\+$\|SOME_BAD_SYMBOLIC_LINKS',
   \ }
 " "}}}
 
