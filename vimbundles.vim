@@ -1,6 +1,6 @@
 " Run 'vim -u ~/.vimbundles +BundleInstall +qall' to install all bundles
 
-set nocompatible " Be iMproved
+set nocompatible " be iMproved
 
 filetype off " required
 
@@ -29,7 +29,6 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/gitignore'
 Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'yurifury/hexHighlight'
 " "}}}
@@ -64,7 +63,13 @@ au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " "}}}
 
 " ctrlp settings "{{{
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_root_markers = ['.htaccess']
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\..\+\|\.git$\|\.hg$\|\.svn$\|htdocs\|opt\|workspace-.*',
+  \ 'file': '\..\+\|\.exe$\|\.so$\|\.dll$',
+  \ 'link': '\..\+\|SOME_BAD_SYMBOLIC_LINKS',
+  \ }
 " "}}}
 
 " neocomplcache settings "{{{

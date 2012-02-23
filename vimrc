@@ -152,6 +152,10 @@ if has("statusline")
 endif
 " "}}}
 
+" Abbreviations "{{{
+ab desktop ~/Área\ de\ trabalho
+" "}}}
+
 " Return '[\s]' if trailing white space is detected
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
@@ -197,3 +201,19 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 nmap <leader>sg :call <SID>SynStack()<CR>
+
+" Dynamically sets wildignore list
+let filename = '.wildignore'
+if filereadable(filename)
+  let igstring = ''
+  for oline in readfile(filename)
+    let line = substitute(oline, '\s|\n|\r', '', "g")
+    if line =~ '^#' | con | endif
+    if line == '' | con  | endif
+    if line =~ '^!' | con  | endif
+    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+    let igstring .= "," . line
+  endfor
+  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+  execute execstring
+endif
