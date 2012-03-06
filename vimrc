@@ -1,5 +1,3 @@
-source ~/.vimbundles " Load Vundle first
-
 " General "{{{
 set nocompatible " Be iMproved
 set history=1000 " Remember more commands and search history
@@ -25,7 +23,9 @@ set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so 
 set autoindent " Copy the indentation from the previous line, when starting a new line
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set nowrap " Disable line wrapping
-au BufWritePre *.html,*.php,*.rb,*.js,*.css,*.sql :%s/\s\+$//e " Remove all trailing spaces before saving a file
+
+au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql :%s/\s\+$//e " Remove trailing spaces before saving
+au BufRead,BufNewFile *.eruby set ft=eruby.html
 au BufRead,BufNewFile *.php set ft=php.html
 au BufRead,BufNewFile *.md,*.mkd set ft=markdown
 " "}}}
@@ -107,16 +107,6 @@ nmap $ g$
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
-" Reload config file
-if has("gui_running")
-  nmap <leader>rv :so ~/.vimrc<CR> :so ~/.gvimrc<CR>
-else
-  nmap <leader>rv :so ~/.vimrc<CR>
-endif
-
-" Markdown to HTML
-au FileType markdown nmap <leader>md :%!markdown --html4tags <cr>
-
 " Run file with PHP CLI (CTRL-m)
 au FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
@@ -152,10 +142,7 @@ if has("statusline")
 endif
 " "}}}
 
-" Abbreviations "{{{
-ab desktop ~/Área\ de\ trabalho
-" "}}}
-
+" Custom funcions"{{{
 " Return '[\s]' if trailing white space is detected
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
@@ -217,3 +204,17 @@ if filereadable(filename)
   let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
   execute execstring
 endif
+
+" Sort CSS file (Stack Overflow => http://bit.ly/znHbfG)
+au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" }}}
+
+" Set $VIMHOME
+if has('unix')
+  let $VIMHOME = $HOME."/.vim"
+else
+  let $VIMHOME = $VIM."/vimfiles"
+endif
+
+" Load Vundle
+so $VIMHOME/vimbundles.vim
