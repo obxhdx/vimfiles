@@ -94,14 +94,8 @@ imap <C-Space> <C-x><C-o>
 imap <C-v> <ESC>"+gpi
 map <C-c> "+y
 
-" ALT+Up / ALT+Down for moving lines around
-inoremap <A-Up> <ESC>:m-2<CR>==i
-inoremap <A-k> <ESC>:m-2<CR>==i
-inoremap <A-Down> <ESC>:m+<CR>==i
-inoremap <A-j> <ESC>:m+<CR>==i
-vnoremap <A-Up> :m-2<CR>gv=gv
+" ALT+k / ALT+j for moving lines around
 vnoremap <A-k> :m-2<CR>gv=gv
-vnoremap <A-Down> :m'>+<CR>gv=gv
 vnoremap <A-j> :m'>+<CR>gv=gv
 
 " Navigate through wrapped lines
