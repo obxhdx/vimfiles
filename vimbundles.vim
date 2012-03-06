@@ -19,6 +19,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/pastebin-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'Raimondi/delimitMate'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdtree'
 Bundle 'shawncplus/Vim-toCterm'
 Bundle 'Shougo/neocomplcache'
