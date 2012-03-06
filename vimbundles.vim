@@ -35,10 +35,10 @@ Bundle 'yurifury/hexHighlight'
 " "}}}
 
 " Own repos "{{{
-Bundle 'git://github.com/obxhdx/snipmate-snippets.git'
-Bundle 'git://github.com/obxhdx/vim-github-theme.git'
-Bundle 'git://github.com/obxhdx/vim-powerline.git'
-Bundle 'git://github.com/obxhdx/vim-railscasts-theme.git'
+Bundle 'obxhdx/snipmate-snippets'
+Bundle 'obxhdx/vim-github-theme'
+Bundle 'obxhdx/vim-powerline'
+Bundle 'obxhdx/vim-railscasts-theme'
 " "}}}
 
 " Colorschemes "{{{

@@ -44,6 +44,16 @@ set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
 " "}}}
 
+" Set $VIMHOME and load bundles "{{{
+if has('unix')
+  let $VIMHOME = $HOME."/.vim"
+else
+  let $VIMHOME = $VIM."/vimfiles"
+endif
+
+so $VIMHOME/vimbundles.vim " Load vundle
+" "}}}
+
 " Syntax highlighting "{{{
 syntax on " Turn it on
 
@@ -80,7 +90,7 @@ vmap <S-Tab> <gv
 " CTRL+Space for autocompleting
 imap <C-Space> <C-x><C-o>
 
-" CTRL+ALT+c and CTRL+ALT+v for copying and pasting
+" CTRL+c and CTRL+v for copying and pasting
 imap <C-v> <ESC>"+gpi
 map <C-c> "+y
 
@@ -107,11 +117,11 @@ nmap $ g$
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
-" Run file with PHP CLI (CTRL-m)
-au FileType php noremap <C-M> :w!<CR>:!/opt/lampp/bin/php %<CR>
+" Run file with PHP CLI
+au FileType php noremap <C-m> :w!<CR>:!/opt/lampp/bin/php %<CR>
 
-" PHP parser check (CTRL-l)
-au FileType php noremap <C-L> :!/opt/lampp/bin/php -l %<CR>
+" PHP parser check
+au FileType php noremap <C-l> :!/opt/lampp/bin/php -l %<CR>
 " "}}}
 
 " Status line "{{{
@@ -142,79 +152,4 @@ if has("statusline")
 endif
 " "}}}
 
-" Custom funcions"{{{
-" Return '[\s]' if trailing white space is detected
-function! StatuslineTrailingSpaceWarning()
-  if !exists("b:statusline_trailing_space_warning")
-    if search('\s\+$', 'nw') != 0
-      let b:statusline_trailing_space_warning = '\s'
-    else
-      let b:statusline_trailing_space_warning = ''
-    endif
-  endif
-  return b:statusline_trailing_space_warning
-endfunc
-
-" Recalculate the trailing whitespace warning when idle, and after saving
-au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
-
-" Return number of chars|lines|blocks selected
-function! VisualSelectionSize()
-  if mode() == "v"
-    " Exit and re-enter visual mode, because the marks
-    " ('< and '>) have not been updated yet.
-    exe "normal \<ESC>gv"
-    if line("'<") != line("'>")
-      return (line("'>") - line("'<") + 1) . ' lines'
-    else
-      return (col("'>") - col("'<") + 1) . ' chars'
-    endif
-  elseif mode() == "V"
-    exe "normal \<ESC>gv"
-    return (line("'>") - line("'<") + 1) . ' lines'
-  elseif mode() == "\<C-V>"
-    exe "normal \<ESC>gv"
-    return (line("'>") - line("'<") + 1) . 'x' . (abs(col("'>") - col("'<")) + 1) . ' block'
-  else
-    return ''
-  endif
-endfunc
-
-" Show syntax highlighting groups for word under cursor
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-nmap <leader>sg :call <SID>SynStack()<CR>
-
-" Dynamically sets wildignore list
-let filename = '.wildignore'
-if filereadable(filename)
-  let igstring = ''
-  for oline in readfile(filename)
-    let line = substitute(oline, '\s|\n|\r', '', "g")
-    if line =~ '^#' | con | endif
-    if line == '' | con  | endif
-    if line =~ '^!' | con  | endif
-    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-    let igstring .= "," . line
-  endfor
-  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
-  execute execstring
-endif
-
-" Sort CSS file (Stack Overflow => http://bit.ly/znHbfG)
-au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
-" }}}
-
-" Set $VIMHOME
-if has('unix')
-  let $VIMHOME = $HOME."/.vim"
-else
-  let $VIMHOME = $VIM."/vimfiles"
-endif
-
-" Load Vundle
-so $VIMHOME/vimbundles.vim
+so $VIMHOME/functions.vim " Load custom funcions
