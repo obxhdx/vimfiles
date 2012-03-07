@@ -1,4 +1,4 @@
-" Run 'vim -u ~/.vimbundles +BundleInstall +qall' to install all bundles
+" Run 'vim -u ~/.vim/vimbundles.vim +BundleInstall +qall' to install bundles
 
 set nocompatible " be iMproved
 
@@ -9,28 +9,20 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Github bundles "{{{
-Bundle 'chrisbra/SudoEdit.vim'
-Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/pastebin-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'shawncplus/Vim-toCterm'
-Bundle 'Shougo/neocomplcache'
+" Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
-Bundle 'spf13/PIV'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'xolox/vim-shell'
 Bundle 'yurifury/hexHighlight'
@@ -56,13 +48,6 @@ filetype plugin indent on " required
 let g:indexer_disableCtagsWarning = 1
 let g:indexer_indexerListFilename = '.indexer_files'
 let g:indexer_tagsDirname = '.vimtags'
-" "}}}
-
-" vim-ruby autocomplete settings "{{{
-au FileType ruby,eruby set omnifunc=rubycomplete#Complete
-au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-au FileType ruby,eruby let g:rubycomplete_rails = 1
-au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " "}}}
 
 " ctrlp settings "{{{
