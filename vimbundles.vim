@@ -23,13 +23,14 @@ Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/DfrankUtil'
 Bundle 'vim-scripts/indexer.tar.gz'
+Bundle 'vim-scripts/vimprj'
 Bundle 'xolox/vim-shell'
 Bundle 'yurifury/hexHighlight'
 " "}}}
 
 " Own repos "{{{
-Bundle 'obxhdx/snipmate-snippets'
 Bundle 'obxhdx/vim-github-theme'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'obxhdx/vim-railscasts-theme'
