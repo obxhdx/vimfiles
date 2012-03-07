@@ -70,8 +70,7 @@ endif
 " Key mappings "{{{
 
 " F keys
-noremap <silent><F1> :TagbarToggle<CR>
-noremap <silent><F2> :NERDTreeToggle<CR>
+noremap <silent><F2> :TagbarToggle<CR>
 noremap <silent><F3> :set hlsearch!<CR>
 noremap <silent><F4> :GundoToggle<CR>
 set pastetoggle=<F6>
