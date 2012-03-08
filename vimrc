@@ -108,7 +108,7 @@ nmap 0 g^
 nmap $ g$
 
 " Open path/url under cursor (requires xolox's vim-shell)
-nmap <A-o> viWy :Open <C-r>*<CR>
+nmap <A-o> :Open<CR>
 
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
