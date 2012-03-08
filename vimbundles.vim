@@ -61,10 +61,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 " "}}}
 
-" neocomplcache settings "{{{
-let g:neocomplcache_enable_at_startup = 1
-" "}}}
-
 " vim-powerline settings "{{{
 let g:Powerline_theme = 'obxhdx'
 let g:Powerline_colorscheme = 'obxhdx'
