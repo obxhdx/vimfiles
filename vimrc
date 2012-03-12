@@ -69,31 +69,25 @@ endif
 
 " Key mappings "{{{
 
-" F keys
-noremap <silent><F2> :TagbarToggle<CR>
-noremap <silent><F3> :set hlsearch!<CR>
-noremap <silent><F4> :GundoToggle<CR>
-set pastetoggle=<F6>
-noremap <silent><F7> :set spell!<CR>
-noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
-noremap <silent><F10> <ESC> :tab ball<CR> " Opens one tab for each open buffer
+" Unbind the cursor keys in insert, normal and visual modes
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <nop>"
+  endfor
+endfor
 
-" Tab and SHIFT-Tab for indenting while on insert mode
-imap <Tab> <ESC>>>i
-imap <S-Tab> <ESC><<i
-
-" Tab and SHIFT-Tab for indenting multiple lines
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-
-" CTRL+Space for autocompleting
-imap <C-Space> <C-x><C-o>
-
-" CTRL+c and CTRL+v for copying and pasting
+" C-c / C-v for copying and pasting
 imap <C-v> <ESC>"+gpi
 map <C-c> "+y
 
-" ALT+k / ALT+j for moving lines around
+" C-Space for autocompleting
+imap <C-Space> <C-x><C-o>
+
+" Tab / S-Tab for indenting multiple lines
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" A-k / A-j for moving lines around
 vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-j> :m'>+<CR>gv=gv
 
@@ -107,17 +101,27 @@ nmap <Down> gj
 nmap 0 g^
 nmap $ g$
 
-" Open path/url under cursor (requires xolox's vim-shell)
-nmap <A-o> :Open<CR>
-
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
-" Run file with PHP CLI
-au FileType php noremap <C-m> :w!<CR>:!/opt/lampp/bin/php %<CR>
+" Open path/url under cursor, or current file dir
+" Requires xolox's vim-shell
+nmap <leader>o :Open<CR>
 
-" PHP parser check
-au FileType php noremap <C-l> :!/opt/lampp/bin/php -l %<CR>
+" Function keys
+noremap <silent><F2> :TagbarToggle<CR>
+noremap <silent><F3> :set hlsearch!<CR>
+noremap <silent><F4> :GundoToggle<CR>
+set pastetoggle=<F6>
+noremap <silent><F7> :set spell!<CR>
+noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
+
+" Time saver mappings borrowed from @BrianStorti
+inoremap jk <ESC>
+inoremap jj <ESC>
+inoremap <ESC> <nop>
+nnoremap ; :
+map <leader>aa ggVG
 " "}}}
 
 " Status line "{{{
