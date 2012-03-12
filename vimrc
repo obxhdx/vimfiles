@@ -77,7 +77,7 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 " C-c / C-v for copying and pasting
-imap <C-v> <ESC>"+gpi
+imap <C-v> jk"+gpi
 map <C-c> "+y
 
 " C-Space for autocompleting
