@@ -23,9 +23,6 @@ Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/DfrankUtil'
-Bundle 'vim-scripts/indexer.tar.gz'
-Bundle 'vim-scripts/vimprj'
 Bundle 'xolox/vim-shell'
 Bundle 'yurifury/hexHighlight'
 " "}}}
@@ -44,12 +41,6 @@ Bundle 'vim-scripts/bclear'
 " "}}}
 
 filetype plugin indent on " required
-
-" Indexer settings "{{{
-let g:indexer_disableCtagsWarning = 1
-let g:indexer_indexerListFilename = '.indexer_files'
-let g:indexer_tagsDirname = '.vimtags'
-" "}}}
 
 " ctrlp settings "{{{
 let g:ctrlp_root_markers = ['.htaccess']

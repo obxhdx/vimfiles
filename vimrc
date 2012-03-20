@@ -69,15 +69,16 @@ endif
 
 " Key mappings "{{{
 
-" Unbind the cursor keys in insert, normal and visual modes
-for prefix in ['i', 'n', 'v']
-  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-    exe prefix . "noremap " . key . " <nop>"
-  endfor
-endfor
+" ESC modifiers
+inoremap jk <ESC>
+inoremap ;; <ESC>
+inoremap <ESC> <nop>
+
+" ; for :
+nnoremap ; :
 
 " C-c / C-v for copying and pasting
-imap <C-v> jk"+gpi
+imap <C-v> ;;"+gpi
 map <C-c> "+y
 
 " C-Space for autocompleting
@@ -115,13 +116,6 @@ noremap <silent><F4> :GundoToggle<CR>
 set pastetoggle=<F6>
 noremap <silent><F7> :set spell!<CR>
 noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
-
-" Time saver mappings borrowed from @BrianStorti
-inoremap jk <ESC>
-inoremap jj <ESC>
-inoremap <ESC> <nop>
-nnoremap ; :
-map <leader>aa ggVG
 " "}}}
 
 " Status line "{{{
