@@ -16,7 +16,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'Raimondi/delimitMate'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
 Bundle 'tmhedberg/matchit'
@@ -55,4 +54,5 @@ let g:ctrlp_custom_ignore = {
 " vim-powerline settings "{{{
 let g:Powerline_theme = 'obxhdx'
 let g:Powerline_colorscheme = 'obxhdx'
+let g:Powerline_symbols = 'fancy'
 " "}}}
