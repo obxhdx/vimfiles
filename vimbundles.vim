@@ -8,21 +8,22 @@ filetype off " required
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+
 " Github bundles "{{{
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
+Bundle 'kana/vim-smartinput'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
-Bundle 'Raimondi/delimitMate'
+" Bundle 'Raimondi/delimitMate'
 " Bundle 'shawncplus/Vim-toCterm'
 Bundle 'sjl/gundo.vim'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-Bundle 'xolox/vim-shell'
 Bundle 'yurifury/hexHighlight'
 " "}}}
 

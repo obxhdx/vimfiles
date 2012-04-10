@@ -69,13 +69,24 @@ endif
 
 " Key mappings "{{{
 
+" : modifier
+nnoremap ; :
+
 " ESC modifiers
+inoremap jj <ESC>
 inoremap jk <ESC>
 inoremap ;; <ESC>
 inoremap <ESC> <nop>
 
-" ; for :
-nnoremap ; :
+" Disable arrow keys
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
 
 " C-c / C-v for copying and pasting
 imap <C-v> ;;"+gpi
@@ -95,19 +106,15 @@ vnoremap <A-j> :m'>+<CR>gv=gv
 " Navigate through wrapped lines
 vmap <Up> gk
 vmap <Down> gj
-vmap 0 g^
-vmap $ g$
 nmap <Up> gk
 nmap <Down> gj
+vmap 0 g^
+vmap $ g$
 nmap 0 g^
 nmap $ g$
 
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
-
-" Open path/url under cursor, or current file dir
-" Requires xolox's vim-shell
-nmap <leader>o :Open<CR>
 
 " Function keys
 noremap <silent><F2> :TagbarToggle<CR>
