@@ -62,9 +62,10 @@ set background=dark " Background style
 
 if $TERM == 'xterm-256color'
   color railscasts
-else
-  color default
 endif
+
+highlight OverLength ctermbg=52 guibg=#592929
+match OverLength /\%>80v.\+/ " Highlight long lines
 " "}}}
 
 " Key mappings "{{{
