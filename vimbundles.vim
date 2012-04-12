@@ -8,13 +8,13 @@ filetype off " required
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-
 " Github bundles "{{{
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'kana/vim-smartinput'
 Bundle 'kien/ctrlp.vim'
+Bundle 'lammermann/AutoComplPop'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 " Bundle 'Raimondi/delimitMate'
