@@ -66,6 +66,8 @@ endif
 
 highlight OverLength ctermbg=52 guibg=#592929
 match OverLength /\%>80v.\+/ " Highlight long lines
+
+highlight CursorLine cterm=none ctermbg=black " No ugly underline on terminal
 " "}}}
 
 " Key mappings "{{{
@@ -150,8 +152,24 @@ if has("statusline")
   " set statusline+=%-14.(%l,%c%V%)                     " current line and column
   " set statusline+=\ %P                                " percent through file
 
-  " hi StatusLine ctermfg=0 ctermbg=7 term=reverse
+  " hi StatusLine ctermfg=0 ctermbg=7 term=reverse gui=reverse
 endif
 " "}}}
+
+" Dynamically sets wildignore list
+let filename = '.wildignore'
+if filereadable(filename)
+  let igstring = ''
+  for oline in readfile(filename)
+    let line = substitute(oline, '\s|\n|\r', '', "g")
+    if line =~ '^#' | con | endif
+    if line == '' | con  | endif
+    if line =~ '^!' | con  | endif
+    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+    let igstring .= "," . line
+  endfor
+  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+  execute execstring
+endif
 
 so $VIMHOME/functions.vim " Load custom funcions

@@ -1,32 +1,26 @@
-" Sort CSS file (Stack Overflow => http://bit.ly/znHbfG)
+" Sorts CSS file (Taken from http://bit.ly/znHbfG)
 au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
 
-" Show syntax highlighting groups for word under cursor
+" Displays right hand scrollbar only when needed
+function! HandleScrollbars()
+  if line('$') > &lines
+    set guioptions+=r
+  else
+    set guioptions-=r
+  endif
+endfunc
+
+" Shows syntax highlighting groups for word under cursor
 function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+" Just a key map for ease of use
 nmap <leader>sg :call <SID>SynStack()<CR>
 
-" Dynamically sets wildignore list
-let filename = '.wildignore'
-if filereadable(filename)
-  let igstring = ''
-  for oline in readfile(filename)
-    let line = substitute(oline, '\s|\n|\r', '', "g")
-    if line =~ '^#' | con | endif
-    if line == '' | con  | endif
-    if line =~ '^!' | con  | endif
-    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-    let igstring .= "," . line
-  endfor
-  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
-  execute execstring
-endif
-
-" Return '\s' if trailing white space is detected
+" Returns '\s' if trailing white space is detected
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
@@ -37,11 +31,10 @@ function! StatuslineTrailingSpaceWarning()
   endif
   return b:statusline_trailing_space_warning
 endfunc
+" Recalculates the trailing whitespace warning when idle, and after saving
+autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
 
-" Recalculate the trailing whitespace warning when idle, and after saving
-au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
-
-" Return number of chars|lines|blocks selected
+" Returns number of chars|lines|blocks selected
 function! VisualSelectionSize()
   if mode() == "v"
     " Exit and re-enter visual mode, because the marks
