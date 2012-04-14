@@ -64,10 +64,14 @@ if $TERM == 'xterm-256color'
   color railscasts
 endif
 
+highlight TabLine cterm=none ctermbg=235
+highlight TabLineSel ctermbg=3 ctermfg=235
+highlight TabLineFill ctermfg=233
+
 highlight OverLength ctermbg=52 guibg=#592929
 match OverLength /\%>80v.\+/ " Highlight long lines
 
-highlight CursorLine cterm=none ctermbg=black " No ugly underline on terminal
+highlight CursorLine cterm=none ctermbg=black " No ugly underlined current line
 " "}}}
 
 " Key mappings "{{{
