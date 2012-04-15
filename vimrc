@@ -64,14 +64,20 @@ if $TERM == 'xterm-256color'
   color railscasts
 endif
 
+" More friendly tab colors
 highlight TabLine cterm=none ctermbg=235
 highlight TabLineSel ctermbg=3 ctermfg=235
 highlight TabLineFill ctermfg=233
 
-highlight OverLength ctermbg=52 guibg=#592929
-match OverLength /\%>80v.\+/ " Highlight long lines
+" No ugly underlined current line
+highlight CursorLine cterm=none ctermbg=black
 
-highlight CursorLine cterm=none ctermbg=black " No ugly underlined current line
+" No ugly blue bg on tag matches
+highlight MatchParen cterm=bold ctermbg=none ctermfg=yellow
+
+" Highlight long lines
+highlight OverLength ctermbg=52 guibg=#592929
+match OverLength /\%>80v.\+/
 " "}}}
 
 " Key mappings "{{{
