@@ -1,4 +1,4 @@
-" Run 'vim -u ~/.vim/vimbundles.vim +BundleInstall +qall' to install bundles
+" Run 'vim -u ~/.vim/bundles.vim +BundleInstall +qall' to install bundles
 
 set nocompatible " be iMproved
 

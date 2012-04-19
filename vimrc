@@ -1,7 +1,7 @@
 " General "{{{
 set nocompatible " Be iMproved
-set history=1000 " Remember more commands and search history
-set undolevels=1000 " Use many levels of undo
+set history=10000 " Remember more commands and search history
+set undolevels=10000 " Use many levels of undo
 set wildmode=list:longest " Make cmdline tab completion similar to bash
 set scrolloff=3 " Maintain more context around the cursor
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
@@ -51,7 +51,7 @@ else
   let $VIMHOME = $VIM."/vimfiles"
 endif
 
-so $VIMHOME/vimbundles.vim " Load vundle
+so $VIMHOME/bundles.vim " Load vundle
 " "}}}
 
 " Syntax highlighting "{{{
@@ -70,10 +70,14 @@ highlight TabLineSel ctermbg=3 ctermfg=235
 highlight TabLineFill ctermfg=233
 
 " No ugly underlined current line
-highlight CursorLine cterm=none ctermbg=black
+highlight CursorLine cterm=none ctermbg=234
 
 " No ugly blue bg on tag matches
-highlight MatchParen cterm=bold ctermbg=none ctermfg=yellow
+highlight MatchParen cterm=bold ctermbg=234 ctermfg=221
+" highlight MatchParen term=reverse cterm=bold ctermfg=221 ctermbg=235 gui=bold guifg=#fade3e guibg=242321
+
+" Bit better looking folded lines
+highlight Folded cterm=bold ctermbg=none ctermfg=green
 
 " Highlight long lines
 highlight OverLength ctermbg=52 guibg=#592929
@@ -84,6 +88,7 @@ match OverLength /\%>80v.\+/
 
 " : modifier
 nnoremap ; :
+vnoremap ; :
 
 " ESC modifiers
 inoremap jj <ESC>
