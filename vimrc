@@ -73,8 +73,7 @@ highlight TabLineFill ctermfg=233
 highlight CursorLine cterm=none ctermbg=234
 
 " No ugly blue bg on tag matches
-highlight MatchParen cterm=bold ctermbg=234 ctermfg=221
-" highlight MatchParen term=reverse cterm=bold ctermfg=221 ctermbg=235 gui=bold guifg=#fade3e guibg=242321
+highlight MatchParen cterm=bold ctermbg=none ctermfg=221
 
 " Bit better looking folded lines
 highlight Folded cterm=bold ctermbg=none ctermfg=green
