@@ -134,12 +134,13 @@ nmap $ g$
 nmap <leader>cd :lcd %:p:h<CR>
 
 " Function keys
-noremap <silent><F2> :TagbarToggle<CR>
-noremap <silent><F3> :set hlsearch!<CR>
-noremap <silent><F4> :GundoToggle<CR>
+noremap <F1> <nop>
+noremap <F2> :TagbarToggle<CR>
+noremap <F3> :set hlsearch!<CR>
+noremap <F4> :GundoToggle<CR>
 set pastetoggle=<F6>
-noremap <silent><F7> :set spell!<CR>
-noremap <silent><F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
+noremap <F7> :set spell!<CR>
+noremap <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
 " "}}}
 
 " Status line "{{{
