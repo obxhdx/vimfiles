@@ -120,27 +120,14 @@ vmap <S-Tab> <gv
 vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-j> :m'>+<CR>gv=gv
 
-" Navigate through wrapped lines
-vmap <Up> gk
-vmap <Down> gj
-nmap <Up> gk
-nmap <Down> gj
-vmap 0 g^
-vmap $ g$
-nmap 0 g^
-nmap $ g$
-
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
 " Function keys
 noremap <F1> <nop>
 noremap <F2> :TagbarToggle<CR>
-noremap <F3> :set hlsearch!<CR>
 noremap <F4> :GundoToggle<CR>
 set pastetoggle=<F6>
-noremap <F7> :set spell!<CR>
-noremap <F8> :set wrap! linebreak! list! spell! spelllang=en,pt<CR> " Text editing mode
 " "}}}
 
 " Status line "{{{
@@ -171,20 +158,4 @@ if has("statusline")
 endif
 " "}}}
 
-" Dynamically sets wildignore list
-let filename = '.wildignore'
-if filereadable(filename)
-  let igstring = ''
-  for oline in readfile(filename)
-    let line = substitute(oline, '\s|\n|\r', '', "g")
-    if line =~ '^#' | con | endif
-    if line == '' | con  | endif
-    if line =~ '^!' | con  | endif
-    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-    let igstring .= "," . line
-  endfor
-  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
-  execute execstring
-endif
-
-so $VIMHOME/functions.vim " Load custom funcions
+so $VIMHOME/functions.vim " Load custom funcions and commands

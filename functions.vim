@@ -1,7 +1,25 @@
-" Sorts CSS file (Taken from http://bit.ly/znHbfG)
-au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" Dynamically sets wildignore list {{{
+let filename = '.wildignore'
+if filereadable(filename)
+  let igstring = ''
+  for oline in readfile(filename)
+    let line = substitute(oline, '\s|\n|\r', '', "g")
+    if line =~ '^#' | con | endif
+    if line == '' | con  | endif
+    if line =~ '^!' | con  | endif
+    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+    let igstring .= "," . line
+  endfor
+  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+  execute execstring
+endif
+" }}}
 
-" Displays right hand scrollbar only when needed
+" Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
+autocmd FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" }}}
+
+" HandleScrollbars(): Displays right hand scrollbar only when needed {{{
 function! HandleScrollbars()
   if line('$') > &lines
     set guioptions+=r
@@ -9,18 +27,19 @@ function! HandleScrollbars()
     set guioptions-=r
   endif
 endfunc
+" }}}
 
-" Shows syntax highlighting groups for word under cursor
+" <SID>SynStack(): Shows syntax highlighting groups for word under cursor {{{
 function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-" Just a key map for ease of use
 nmap <leader>sg :call <SID>SynStack()<CR>
+" }}}
 
-" Returns '\s' if trailing white space is detected
+" StatuslineTrailingSpaceWarning(): Returns '\s' if trailing white space is detected {{{
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
@@ -31,10 +50,10 @@ function! StatuslineTrailingSpaceWarning()
   endif
   return b:statusline_trailing_space_warning
 endfunc
-" Recalculates the trailing whitespace warning when idle, and after saving
 autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
+" }}}
 
-" Returns number of chars|lines|blocks selected
+" VisualSelectionSize(): Returns number of (chars|lines|blocks) selected {{{
 function! VisualSelectionSize()
   if mode() == "v"
     " Exit and re-enter visual mode, because the marks
@@ -55,3 +74,40 @@ function! VisualSelectionSize()
     return ''
   endif
 endfunc
+" }}}
+
+" WordProcessingToggle(): Toggles a few options for better long text editing {{{
+function! WordProcessingToggle()
+  if !exists('b:wordprocessing') || b:wordprocessing
+    let b:wordprocessing = 'true'
+    setlocal wrap linebreak nolist spell spelllang=en,pt
+    setlocal textwidth=0
+    match OverLength //
+    echo "Word processing mode enabled."
+  else
+    let b:wordprocessing = 'false'
+    setlocal nowrap nolinebreak list nospell
+    setlocal textwidth=80
+    match OverLength /\%>80v.\+/
+    echo "Word processing mode disabled."
+  endif
+endfunction
+" }}}
+
+" NotepadLineToggle(): For Notepad-like handling of wrapped lines {{{
+function! NotepadLineToggle()
+  if !exists('b:notepadlines') || b:notepadlines
+    nnoremap <buffer> j gj
+    nnoremap <buffer> k gk
+    let b:notepadlines = 'true'
+    setlocal wrap
+    echo "Notepad wrapped lines enabled."
+  else
+    unmap <buffer> j
+    unmap <buffer> k
+    let b:notepadlines = 'false'
+    setlocal nowrap
+    echo "Notepad wrapped lines disabled."
+  endif
+endfunction
+" }}}
