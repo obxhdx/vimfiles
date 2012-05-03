@@ -123,6 +123,9 @@ vnoremap <A-j> :m'>+<CR>gv=gv
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
+" Easy saving
+inoremap <C-u> <ESC>:w<CR>
+
 " Function keys
 noremap <F1> <nop>
 noremap <F2> :TagbarToggle<CR>
