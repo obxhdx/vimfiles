@@ -15,6 +15,7 @@ endif
 " color molokai
 
 " color railscasts
+" hi MatchParen gui=bold guibg=#333435 guifg=yellow
 
 color badwolf
 hi lineNr guibg=#222222
