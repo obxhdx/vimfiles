@@ -78,36 +78,35 @@ endfunc
 
 " WordProcessingToggle(): Toggles a few options for better long text editing {{{
 function! WordProcessingToggle()
-  if !exists('b:wordprocessing') || b:wordprocessing
+  if !exists('b:wordprocessing') || b:wordprocessing == 'false'
     let b:wordprocessing = 'true'
     setlocal wrap linebreak nolist spell spelllang=en,pt
     setlocal textwidth=0
-    match OverLength //
+    call HighlightOverLength()
     echo "Word processing mode enabled."
   else
     let b:wordprocessing = 'false'
     setlocal nowrap nolinebreak list nospell
     setlocal textwidth=80
-    match OverLength /\%>80v.\+/
+    call HighlightOverLength()
     echo "Word processing mode disabled."
   endif
-endfunction
+endfunc
 " }}}
 
-" NotepadLineToggle(): For Notepad-like handling of wrapped lines {{{
-function! NotepadLineToggle()
-  if !exists('b:notepadlines') || b:notepadlines
-    nnoremap <buffer> j gj
-    nnoremap <buffer> k gk
-    let b:notepadlines = 'true'
-    setlocal wrap
-    echo "Notepad wrapped lines enabled."
+" HighlightOverLength(): Toggles overlength highlighting {{{
+function! HighlightOverLength()
+  highlight OverLength ctermbg=52 guibg=#592929
+
+  if !exists('b:overlength') || b:overlength == 'false'
+    let b:overlength = 'true'
+    match OverLength /\%>80v.\+/
+    echo "Overlength highlighting enabled."
   else
-    unmap <buffer> j
-    unmap <buffer> k
-    let b:notepadlines = 'false'
-    setlocal nowrap
-    echo "Notepad wrapped lines disabled."
+    let b:overlength = 'false'
+    match OverLength //
+    echo "Overlength highlighting disabled."
   endif
-endfunction
+endfunc
+autocmd VimEnter * call HighlightOverLength()
 " }}}

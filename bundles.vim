@@ -16,13 +16,18 @@ Bundle 'kana/vim-smartinput'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lammermann/AutoComplPop'
 Bundle 'majutsushi/tagbar'
+Bundle 'mileszs/ack.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'sjl/gundo.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'thomas-glaessle/hexHighlight'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-Bundle 'yurifury/hexHighlight'
+Bundle 'vim-scripts/DfrankUtil'
+Bundle 'vim-scripts/vimprj'
+Bundle 'vim-scripts/indexer.tar.gz'
 " "}}}
 
 " Own repos "{{{
@@ -35,6 +40,7 @@ Bundle 'obxhdx/vim-railscasts-theme'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
 Bundle 'tomasr/molokai'
+Bundle 'trapd00r/neverland-vim-theme'
 Bundle 'vim-scripts/bclear'
 " "}}}
 
@@ -54,4 +60,8 @@ let g:ctrlp_custom_ignore = {
 let g:Powerline_theme = 'obxhdx'
 let g:Powerline_colorscheme = 'obxhdx'
 let g:Powerline_symbols = 'fancy'
+" "}}}
+
+" Ack settings "{{{
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 " "}}}
