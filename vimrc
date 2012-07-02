@@ -1,11 +1,21 @@
+" Set $VIMHOME and load bundles "{{{
+if has('unix')
+  let $VIMHOME = $HOME."/.vim"
+else
+  let $VIMHOME = $VIM."/vimfiles"
+endif
+
+so $VIMHOME/bundles.vim " Load vundle
+" "}}}
+
 " General "{{{
-set nocompatible " Be iMproved
 set history=10000 " Remember more commands and search history
 set undolevels=10000 " Use many levels of undo
 set wildmode=list:longest,full " Command line tab completion option
 set scrolloff=3 " Maintain more context around the cursor
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
+set showcmd " Show keystrokes on statusline
 " "}}}
 
 " Searching "{{{
@@ -46,16 +56,6 @@ set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
 " "}}}
 
-" Set $VIMHOME and load bundles "{{{
-if has('unix')
-  let $VIMHOME = $HOME."/.vim"
-else
-  let $VIMHOME = $VIM."/vimfiles"
-endif
-
-so $VIMHOME/bundles.vim " Load vundle
-" "}}}
-
 " Syntax highlighting "{{{
 syntax on " Turn it on
 
@@ -82,7 +82,6 @@ highlight Folded cterm=bold ctermbg=none ctermfg=green
 " "}}}
 
 " Key mappings "{{{
-
 nnoremap ; :
 vnoremap ; :
 inoremap jk <ESC>
@@ -94,7 +93,7 @@ map <C-c> "+y
 " Change path to current file dir
 nmap <leader>cd :lcd %:p:h<CR>
 
-" Get rid of F1 key
+" Map F1 key to something useful
 noremap <F1> <nop>
 set pastetoggle=<F1>
 

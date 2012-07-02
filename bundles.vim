@@ -9,6 +9,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Github bundles "{{{
+Bundle 'bbommarito/vim-slim'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
@@ -24,6 +25,7 @@ Bundle 'thomas-glaessle/hexHighlight'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/DfrankUtil'
 Bundle 'vim-scripts/vimprj'

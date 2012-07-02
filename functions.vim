@@ -82,13 +82,11 @@ function! WordProcessingToggle()
     let b:wordprocessing = 'true'
     setlocal wrap linebreak nolist spell spelllang=en,pt
     setlocal textwidth=0
-    call HighlightOverLength()
     echo "Word processing mode enabled."
   else
     let b:wordprocessing = 'false'
     setlocal nowrap nolinebreak list nospell
     setlocal textwidth=80
-    call HighlightOverLength()
     echo "Word processing mode disabled."
   endif
 endfunc
@@ -108,5 +106,4 @@ function! HighlightOverLength()
     echo "Overlength highlighting disabled."
   endif
 endfunc
-autocmd VimEnter * call HighlightOverLength()
 " }}}
