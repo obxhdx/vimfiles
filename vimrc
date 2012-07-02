@@ -63,7 +63,7 @@ set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
 if $TERM == 'xterm-256color'
-  color railscasts
+  color neverland
 endif
 
 " More friendly tab colors
