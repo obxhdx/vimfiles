@@ -24,7 +24,7 @@ task :dotfiles do
     if File.exist? dotfile
       puts "'#{dotfile}' already exists, nothing changed!"
     else
-      File.open(dotfile, 'w') { |dfile| dfile.write "source ~/.vim/#{file}" }
+      File.open(dotfile, 'w') { |df| df.write "source ~/.vim/#{file}" }
     end
   end
 end
@@ -44,16 +44,6 @@ end
 task :bundles do
   puts 'Installing bundles...'
   sh 'vim +BundleInstall +qall', :verbose => false
-end
-
-task :update do
-  puts 'Updating bundles...'
-  sh 'vim +BundleInstall! +qall', :verbose => false
-end
-
-task :clean do
-  puts 'Cleaning up bundles...'
-  sh 'vim +BundleClean +qall', :verbose => false
 end
 
 task :commandt do

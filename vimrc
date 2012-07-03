@@ -32,8 +32,7 @@ set shiftwidth=2 " Number of space characters inserted for indentation
 set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so one backspace goes back a full 2 spaces)
 set autoindent " Copy the indentation from the previous line, when starting a new line
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
-" set nowrap " Disable line wrapping
-set showbreak=... " Demark wrapped lines with ellipsis
+set textwidth=80 " Fixed text width
 
 au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql :%s/\s\+$//e " Remove trailing spaces before saving
 au BufRead,BufNewFile *.eruby set ft=eruby.html
@@ -54,6 +53,7 @@ set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
 set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
+set showbreak=... " Demark wrapped lines with ellipsis
 " "}}}
 
 " Syntax highlighting "{{{
