@@ -8,42 +8,44 @@ filetype off " required
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Github bundles "{{{
-Bundle 'bbommarito/vim-slim'
+" Utilities "{{{
 Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
-Bundle 'gregsexton/MatchTag'
-Bundle 'kana/vim-smartinput'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lammermann/AutoComplPop'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
-Bundle 'msanders/snipmate.vim'
+Bundle 'obxhdx/vim-powerline'
 Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'thomas-glaessle/hexHighlight'
-Bundle 'tmhedberg/matchit'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/DfrankUtil'
 Bundle 'vim-scripts/vimprj'
 Bundle 'vim-scripts/indexer.tar.gz'
 " "}}}
 
-" Own repos "{{{
-Bundle 'obxhdx/vim-github-theme'
-Bundle 'obxhdx/vim-powerline'
-Bundle 'obxhdx/vim-railscasts-theme'
+" General editing utilities "{{{
+Bundle 'godlygeek/tabular'
+Bundle 'gregsexton/MatchTag'
+Bundle 'kana/vim-smartinput'
+Bundle 'msanders/snipmate.vim'
+Bundle 'tmhedberg/matchit'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-surround'
 " "}}}
 
-" Colorschemes "{{{
+" Syntax files "{{{
+Bundle 'bbommarito/vim-slim'
+Bundle 'juvenn/mustache.vim'
+" "}}}
+
+" Colors "{{{
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'obxhdx/vim-railscasts-theme'
 Bundle 'sjl/badwolf'
 Bundle 'tomasr/molokai'
 Bundle 'trapd00r/neverland-vim-theme'
-Bundle 'vim-scripts/bclear'
 " "}}}
 
 filetype plugin indent on " required
