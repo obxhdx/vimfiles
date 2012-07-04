@@ -97,6 +97,9 @@ nmap <leader>cd :lcd %:p:h<CR>
 noremap <F1> <nop>
 set pastetoggle=<F1>
 
+" Toggle fullscreen (requires wmctrl installed)
+map <silent> <F11> :call ToggleFullscreen()<CR>
+
 noremap <leader>p :NERDTreeToggle<CR>
 noremap <leader>t :TagbarToggle<CR>
 noremap <leader>g :GundoToggle<CR>

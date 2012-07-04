@@ -105,3 +105,16 @@ function! HighlightOverLength()
   endif
 endfunc
 " }}}
+
+" HighlightOverLength(): Toggles overlength highlighting {{{
+function! ToggleFullscreen()
+  if !exists('g:fullscreen') || g:fullscreen == 0
+    let g:fullscreen = 1
+    let mod = "add"
+  else
+    let g:fullscreen = 0
+    let mod = "remove"
+  endif
+  exec 'silent !wmctrl -r :ACTIVE: -b ' . mod . ',fullscreen'
+endfunc
+" }}}
