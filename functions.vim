@@ -106,7 +106,7 @@ function! HighlightOverLength()
 endfunc
 " }}}
 
-" HighlightOverLength(): Toggles overlength highlighting {{{
+" ToggleFullscreen(): Toggles fullscreen mode (wmctrl must be installed) {{{
 function! ToggleFullscreen()
   if !exists('g:fullscreen') || g:fullscreen == 0
     let g:fullscreen = 1
