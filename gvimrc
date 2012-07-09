@@ -17,8 +17,8 @@ endif
 " color railscasts
 " hi MatchParen gui=bold guibg=#333435 guifg=yellow
 
-color badwolf
-hi lineNr guibg=#222222
+" color badwolf
+" hi lineNr guibg=#222222
 
 " Auto handle scrollbars
 au VimEnter,VimResized,BufWritePost * :call HandleScrollbars()

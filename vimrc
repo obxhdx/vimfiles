@@ -35,9 +35,8 @@ set backspace=indent,eol,start " Allow backspacing over everything in insert mod
 set textwidth=80 " Fixed text width
 
 au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql :%s/\s\+$//e " Remove trailing spaces before saving
-au BufRead,BufNewFile *.eruby set ft=eruby.html
+au BufRead,BufNewFile *.erb set ft=eruby.html
 au BufRead,BufNewFile *.php set ft=php.html
-au BufRead,BufNewFile *.md,*.mkd set ft=markdown
 " "}}}
 
 " Folding "{{{
@@ -64,6 +63,8 @@ set background=dark " Background style
 
 if $TERM == 'xterm-256color'
   color neverland
+  hi lineNr guibg=#222222
+  hi NonText guifg=#222222
 endif
 
 " More friendly tab colors
@@ -76,9 +77,6 @@ highlight CursorLine cterm=none ctermbg=234
 
 " No ugly blue bg on tag matches
 highlight MatchParen cterm=bold ctermbg=none ctermfg=221
-
-" Bit better looking folded lines
-highlight Folded cterm=bold ctermbg=none ctermfg=green
 " "}}}
 
 " Key mappings "{{{
