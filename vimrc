@@ -65,6 +65,7 @@ if $TERM == 'xterm-256color'
   color neverland
   hi lineNr guibg=#222222
   hi NonText guifg=#222222
+  hi Normal ctermfg=white guifg=white
 endif
 
 " More friendly tab colors
