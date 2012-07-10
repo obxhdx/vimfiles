@@ -52,7 +52,6 @@ set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
 set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
-set showbreak=... " Demark wrapped lines with ellipsis
 " "}}}
 
 " Syntax highlighting "{{{
@@ -61,7 +60,7 @@ syntax on " Turn it on
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-if $TERM == 'xterm-256color'
+if $TERM == 'xterm-256color' || has('gui_running')
   color neverland
   hi lineNr guibg=#222222
   hi NonText guifg=#222222

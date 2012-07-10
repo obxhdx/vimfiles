@@ -37,7 +37,12 @@ Bundle 'tpope/vim-surround'
 
 " Syntax files "{{{
 Bundle 'bbommarito/vim-slim'
-Bundle 'juvenn/mustache.vim'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 " "}}}
 
 " Colors "{{{
