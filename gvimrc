@@ -20,5 +20,5 @@ endif
 color badwolf
 hi lineNr guibg=#222222
 
-" Auto handle scrollbars
-au VimEnter,VimResized,BufWritePost * :call HandleScrollbars()
+" Do not hide mouse pointer when using NERDTree
+set nomousehide
