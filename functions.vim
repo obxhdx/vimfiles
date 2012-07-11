@@ -118,3 +118,11 @@ function! ToggleFullscreen()
   exec 'silent !wmctrl -r :ACTIVE: -b ' . mod . ',fullscreen'
 endfunc
 " }}}
+
+function! HandleUnprintableChars()
+  if strlen(&ft) == 0
+    set nolist
+  else
+    set list
+  endif
+endfunc

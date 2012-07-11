@@ -37,6 +37,7 @@ set textwidth=80 " Fixed text width
 au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql :%s/\s\+$//e " Remove trailing spaces before saving
 au BufRead,BufNewFile *.erb set ft=eruby.html
 au BufRead,BufNewFile *.php set ft=php.html
+au BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
 " "}}}
 
 " Folding "{{{

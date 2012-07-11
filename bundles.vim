@@ -74,3 +74,7 @@ let g:Powerline_symbols = 'fancy'
 " Ack settings "{{{
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 " "}}}
+
+" Indexer settings "{{{
+let g:indexer_disableCtagsWarning = 1
+" "}}}
