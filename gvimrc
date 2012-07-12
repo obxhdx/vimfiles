@@ -4,6 +4,7 @@ set columns=84      " Number of columns
 set guioptions-=m   " Remove the menu
 set guioptions-=T   " Remove the toolbar
 set guioptions-=L   " Remove left hand scrollbar
+set guioptions-=r   " Remove right hand scrollbar"
 
 if has("gui_win32") || has("gui_win32s")
   set guifont=Consolas:h12
