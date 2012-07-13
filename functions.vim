@@ -1,18 +1,20 @@
 " Dynamically sets wildignore list {{{
-let filename = '.wildignore'
-if filereadable(filename)
-  let igstring = ''
-  for oline in readfile(filename)
-    let line = substitute(oline, '\s|\n|\r', '', "g")
-    if line =~ '^#' | con | endif
-    if line == '' | con  | endif
-    if line =~ '^!' | con  | endif
-    if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-    let igstring .= "," . line
-  endfor
-  let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
-  execute execstring
-endif
+autocmd VimEnter * call SetWildIgnore('.wildignore')
+function! SetWildIgnore(ignored_strings_file)
+  if filereadable(a:ignored_strings_file)
+    let igstring = ''
+    for oline in readfile(a:ignored_strings_file)
+      let line = substitute(oline, '\s|\n|\r', '', "g")
+      if line =~ '^#' | con | endif
+      if line == '' | con  | endif
+      if line =~ '^!' | con  | endif
+      if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+      let igstring .= "," . line
+    endfor
+    let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+    execute execstring
+  endif
+endfunc
 " }}}
 
 " Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
@@ -30,16 +32,18 @@ endfunc
 " }}}
 
 " <SID>SynStack(): Shows syntax highlighting groups for word under cursor {{{
+nmap <leader>sg :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-nmap <leader>sg :call <SID>SynStack()<CR>
 " }}}
 
-" StatuslineTrailingSpaceWarning(): Returns '\s' if trailing white space is detected {{{
+" StatuslineTrailingSpaceWarning(): Returns '\s' if trailing white space is
+" detected {{{
+autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
 function! StatuslineTrailingSpaceWarning()
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
@@ -50,7 +54,6 @@ function! StatuslineTrailingSpaceWarning()
   endif
   return b:statusline_trailing_space_warning
 endfunc
-autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
 " }}}
 
 " VisualSelectionSize(): Returns number of (chars|lines|blocks) selected {{{
@@ -106,19 +109,18 @@ function! HighlightOverLength()
 endfunc
 " }}}
 
-" ToggleFullscreen(): Toggles fullscreen mode (wmctrl must be installed) {{{
+" ToggleFullscreen(): Toggles fullscreen mode {{{
 function! ToggleFullscreen()
-  if !exists('g:fullscreen') || g:fullscreen == 0
-    let g:fullscreen = 1
-    let mod = "add"
+  if executable('wmctrl')
+    exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
   else
-    let g:fullscreen = 0
-    let mod = "remove"
+    echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
   endif
-  exec 'silent !wmctrl -r :ACTIVE: -b ' . mod . ',fullscreen'
 endfunc
 " }}}
 
+" HandleUnprintableChars(): Do not show invisible chars when editing files with
+" no ft {{{
 function! HandleUnprintableChars()
   if strlen(&ft) == 0
     set nolist
@@ -126,3 +128,51 @@ function! HandleUnprintableChars()
     set list
   endif
 endfunc
+" }}}
+
+" CountListedBuffers(): Return number of open buffers {{{
+function! CountListedBuffers()
+  let cnt = 0
+  for num in range(1, bufnr("$"))
+    if buflisted(num)
+      let cnt += 1
+    endif
+  endfor
+  return cnt
+endfunc
+" }}}
+
+" ConfirmQuit(): Confirm quit when more than 1 buffer is open {{{
+" cnoremap <silent> q<cr>  call ConfirmQuit()<cr>
+" cnoremap <silent> wq<cr> call ConfirmQuit()<cr>
+" cnoremap <silent> x<cr> call ConfirmQuit()<cr>
+function! ConfirmQuit()
+  let confirmed = 1
+  let open_buffers = CountListedBuffers()
+
+  if open_buffers > 1
+    let confirmed = confirm("There are " . open_buffers . " buffers open.\nDo you really want to quit?", "&Yes\n&No")
+  endif
+
+  if confirmed == 1
+    quit
+  endif
+endfunc
+" }}}
+
+" CloseHiddenBuffers(): Close all hidden buffers {{{
+command! CloseHiddenBuffers call s:CloseHiddenBuffers()
+function! s:CloseHiddenBuffers()
+  let open_buffers = []
+
+  for i in range(tabpagenr('$'))
+    call extend(open_buffers, tabpagebuflist(i + 1))
+  endfor
+
+  for num in range(1, bufnr("$") + 1)
+    if buflisted(num) && index(open_buffers, num) == -1
+      exec "bdelete ".num
+    endif
+  endfor
+endfunc
+" }}}

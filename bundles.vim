@@ -10,10 +10,14 @@ call vundle#rc()
 
 " Utilities "{{{
 Bundle 'gmarik/vundle'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lammermann/AutoComplPop'
 Bundle 'majutsushi/tagbar'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/nerdtree'
@@ -56,6 +60,8 @@ Bundle 'trapd00r/neverland-vim-theme'
 filetype plugin indent on " required
 
 " ctrlp settings "{{{
+nnoremap <C-B> :CtrlPBuffer<CR>
+nnoremap <C-M> :CtrlPMRU<CR>
 let g:ctrlp_root_markers = ['.htaccess']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
@@ -65,7 +71,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 " "}}}
 
-" vim-powerline settings "{{{
+" Powerline settings "{{{
 let g:Powerline_theme = 'obxhdx'
 let g:Powerline_colorscheme = 'obxhdx'
 let g:Powerline_symbols = 'fancy'
@@ -77,4 +83,17 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " Indexer settings "{{{
 let g:indexer_disableCtagsWarning = 1
+" "}}}
+
+" Gist settings "{{{
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
+" "}}}
+
+" Ruby autocomplete "{{{
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " "}}}
