@@ -53,6 +53,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'obxhdx/vim-railscasts-theme'
 Bundle 'sjl/badwolf'
+Bundle 'taxilian/Wombat'
 Bundle 'tomasr/molokai'
 Bundle 'trapd00r/neverland-vim-theme'
 " "}}}

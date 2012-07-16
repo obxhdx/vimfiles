@@ -34,10 +34,8 @@ set autoindent " Copy the indentation from the previous line, when starting a ne
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set textwidth=80 " Fixed text width
 
-au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql :%s/\s\+$//e " Remove trailing spaces before saving
-au BufRead,BufNewFile *.erb set ft=eruby.html
-au BufRead,BufNewFile *.php set ft=php.html
-au BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
+autocmd BufRead,BufNewFile *.erb set ft=eruby.html
+autocmd BufRead,BufNewFile *.php set ft=php.html
 " "}}}
 
 " Folding "{{{
@@ -51,7 +49,6 @@ set foldlevel=1
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
-set list " Display unprintable chars
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
 " "}}}
 

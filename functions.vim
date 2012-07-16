@@ -17,10 +17,6 @@ function! SetWildIgnore(ignored_strings_file)
 endfunc
 " }}}
 
-" Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
-autocmd FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
-" }}}
-
 " HandleScrollbars(): Displays right hand scrollbar only when needed {{{
 function! HandleScrollbars()
   if line('$') > &lines
@@ -121,6 +117,7 @@ endfunc
 
 " HandleUnprintableChars(): Do not show invisible chars when editing files with
 " no ft {{{
+" au BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
 function! HandleUnprintableChars()
   if strlen(&ft) == 0
     set nolist
@@ -175,4 +172,13 @@ function! s:CloseHiddenBuffers()
     endif
   endfor
 endfunc
+" }}}
+
+" Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
+autocmd FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" }}}
+
+" Remove trailing spaces {{{
+autocmd BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql RemoveTrailingSpaces
+command! RemoveTrailingSpaces :%s/\s\+$//e | set nohlsearch
 " }}}
