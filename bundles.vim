@@ -61,8 +61,6 @@ Bundle 'trapd00r/neverland-vim-theme'
 filetype plugin indent on " required
 
 " ctrlp settings "{{{
-nnoremap <C-B> :CtrlPBuffer<CR>
-nnoremap <C-M> :CtrlPMRU<CR>
 let g:ctrlp_root_markers = ['.htaccess']
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {

@@ -32,7 +32,7 @@ set shiftwidth=2 " Number of space characters inserted for indentation
 set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so one backspace goes back a full 2 spaces)
 set autoindent " Copy the indentation from the previous line, when starting a new line
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
-set textwidth=80 " Fixed text width
+set nowrap " Disable line wrapping
 
 autocmd BufRead,BufNewFile *.erb set ft=eruby.html
 autocmd BufRead,BufNewFile *.php set ft=php.html

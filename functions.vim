@@ -79,11 +79,11 @@ endfunc
 function! WordProcessingToggle()
   if !exists('b:wordprocessing') || b:wordprocessing == 'false'
     let b:wordprocessing = 'true'
-    setlocal tw=0 fo= lbr nolist sbr= spell spl=en,pt
+    setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
     echo "Word processing mode enabled."
   else
     let b:wordprocessing = 'false'
-    setlocal tw=80 fo=tcq nolbr list sbr=... nospell
+    setlocal tw=0 fo=tcq nowrap nolbr nolist nospell
     echo "Word processing mode disabled."
   endif
 endfunc
