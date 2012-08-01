@@ -32,7 +32,9 @@ Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'kana/vim-smartinput'
+Bundle 'juvenn/mustache.vim'
 Bundle 'msanders/snipmate.vim'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
@@ -41,6 +43,7 @@ Bundle 'tpope/vim-surround'
 
 " Syntax files "{{{
 Bundle 'bbommarito/vim-slim'
+Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-haml'
@@ -88,6 +91,11 @@ let g:indexer_disableCtagsWarning = 1
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
+" "}}}
+
+" NERDTree settings "{{{
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 0
 " "}}}
 
 " Ruby autocomplete "{{{
