@@ -11,13 +11,14 @@ set nomousehide     " Do not hide mouse pointer when using NERDTree
 if has("gui_win32") || has("gui_win32s")
   set guifont=Consolas:h12
 else
-  set guifont=Ubuntu\ Mono\ 12
+  set guifont=Ubuntu\ Mono\ 14
 endif
 
-" let g:molokai_original = 1
-" color molokai
+let g:molokai_original = 1
+color molokai
+highlight Special gui=NONE
 
 " color railscasts
 " hi MatchParen gui=bold guibg=#333435 guifg=yellow
 
-color badwolf
+" color badwolf

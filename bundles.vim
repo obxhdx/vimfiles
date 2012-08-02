@@ -94,7 +94,6 @@ let g:gist_post_private = 1
 " "}}}
 
 " NERDTree settings "{{{
-let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 0
 " "}}}
 
