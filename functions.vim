@@ -130,8 +130,8 @@ endfunc
 " CountListedBuffers(): Return number of open buffers {{{
 function! CountListedBuffers()
   let cnt = 0
-  for num in range(1, bufnr("$"))
-    if buflisted(num)
+  for num in range(1, bufnr('$'))
+    if buflisted(num) && !empty(bufname(num))
       let cnt += 1
     endif
   endfor
@@ -140,15 +140,18 @@ endfunc
 " }}}
 
 " ConfirmQuit(): Confirm quit when more than 1 buffer is open {{{
-" cnoremap <silent> q<cr>  call ConfirmQuit()<cr>
-" cnoremap <silent> wq<cr> call ConfirmQuit()<cr>
-" cnoremap <silent> x<cr> call ConfirmQuit()<cr>
+cnoremap <silent> q<cr>  call ConfirmQuit()<cr>
+cnoremap <silent> wq<cr> call ConfirmQuit()<cr>
+cnoremap <silent> x<cr> call ConfirmQuit()<cr>
 function! ConfirmQuit()
   let confirmed = 1
-  let open_buffers = CountListedBuffers()
 
-  if open_buffers > 1
-    let confirmed = confirm("There are " . open_buffers . " buffers open.\nDo you really want to quit?", "&Yes\n&No")
+  if !empty(bufname('%')) && !match(bufname('%'), 'NERD_tree') > -1
+    let open_buffers = CountListedBuffers()
+
+    if open_buffers > 1
+      let confirmed = confirm("There are " . open_buffers . " buffers open.\nDo you really want to quit?", "&Yes\n&No")
+    endif
   endif
 
   if confirmed == 1
