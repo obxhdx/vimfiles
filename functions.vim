@@ -146,7 +146,7 @@ cnoremap <silent> x<cr> call ConfirmQuit()<cr>
 function! ConfirmQuit()
   let confirmed = 1
 
-  if !empty(bufname('%')) && !match(bufname('%'), 'NERD_tree') > -1
+  if !empty(bufname('%')) && !(match(bufname('%'), 'NERD_tree') > -1)
     let open_buffers = CountListedBuffers()
 
     if open_buffers > 1
