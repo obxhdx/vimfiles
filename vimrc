@@ -66,15 +66,15 @@ if $TERM == 'xterm-256color' || has('gui_running')
 endif
 
 " More friendly tab colors
-highlight TabLine cterm=none ctermbg=235
-highlight TabLineSel ctermbg=3 ctermfg=235
-highlight TabLineFill ctermfg=233
+hi TabLine cterm=none ctermbg=235
+hi TabLineSel ctermbg=3 ctermfg=235
+hi TabLineFill ctermfg=233
 
 " No ugly underlined current line
-highlight CursorLine cterm=none ctermbg=234
+hi CursorLine cterm=none ctermbg=234
 
 " No ugly blue bg on tag matches
-highlight MatchParen cterm=bold ctermbg=none ctermfg=221
+hi MatchParen cterm=bold ctermbg=none ctermfg=221
 " "}}}
 
 " Key mappings "{{{
