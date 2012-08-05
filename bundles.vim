@@ -95,8 +95,13 @@ let g:gist_post_private = 1
 " "}}}
 
 " NERDTree settings "{{{
-let NERDTreeDirArrows = 0
 cnoremap nf NERDTreeFind
+let NERDTreeDirArrows = 0
+" "}}}
+
+" Sparkup settings "{{{
+let g:sparkupExecuteMapping = '<Leader>e'
+let g:sparkupNextMapping = '<Leader>n'
 " "}}}
 
 " Ruby autocomplete "{{{
