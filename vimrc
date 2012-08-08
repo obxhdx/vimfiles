@@ -15,7 +15,7 @@ set wildmode=list:longest,full " Command line tab completion option
 set scrolloff=3 " Maintain more context around the cursor
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
-set showcmd " Show keystrokes on statusline
+set tags+=gems.tags
 " "}}}
 
 " Searching "{{{
@@ -50,6 +50,7 @@ set number " Display line numbers
 set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
 set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
+set showcmd " Show keystrokes on statusline
 " "}}}
 
 " Syntax highlighting "{{{
@@ -80,6 +81,7 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=221
 " Key mappings "{{{
 nnoremap ; :
 vnoremap ; :
+inoremap hj <ESC>
 inoremap jk <ESC>
 
 " C-c / C-v for copying and pasting
@@ -97,7 +99,6 @@ set pastetoggle=<F1>
 map <silent> <F11> :call ToggleFullscreen()<CR>
 
 noremap <leader>p :NERDTreeToggle<CR>
-noremap <leader>t :TagbarToggle<CR>
 noremap <leader>g :GundoToggle<CR>
 " "}}}
 

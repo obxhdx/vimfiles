@@ -13,26 +13,24 @@ Bundle 'gmarik/vundle'
 Bundle 'kana/vim-textobj-user'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lammermann/AutoComplPop'
-Bundle 'majutsushi/tagbar'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'obxhdx/vim-powerline'
-Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/gundo.vim'
 Bundle 'thomas-glaessle/hexHighlight'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/DfrankUtil'
-Bundle 'vim-scripts/vimprj'
 Bundle 'vim-scripts/indexer.tar.gz'
+Bundle 'vim-scripts/vimprj'
 " "}}}
 
 " General editing utilities "{{{
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'kana/vim-smartinput'
-Bundle 'juvenn/mustache.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
@@ -43,12 +41,11 @@ Bundle 'tpope/vim-surround'
 
 " Syntax files "{{{
 Bundle 'bbommarito/vim-slim'
+Bundle 'juvenn/mustache.vim'
 Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 " "}}}
 
