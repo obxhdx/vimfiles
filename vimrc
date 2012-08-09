@@ -1,31 +1,31 @@
-" Set $VIMHOME and load bundles "{{{
-if has('unix')
-  let $VIMHOME = $HOME."/.vim"
-else
-  let $VIMHOME = $VIM."/vimfiles"
-endif
-
-so $VIMHOME/bundles.vim " Load vundle
-" "}}}
-
-" General "{{{
-set history=10000 " Remember more commands and search history
-set undolevels=10000 " Use many levels of undo
+" General
+set history=9999 " Remember more commands and search history
+set undolevels=9999 " Use many levels of undo
 set wildmode=list:longest,full " Command line tab completion option
-set scrolloff=3 " Maintain more context around the cursor
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
-set tags+=gems.tags
-" "}}}
+set tags+=gems.tags " Load gem tags when present
 
-" Searching "{{{
+" Appearance
+set number " Display line numbers
+set laststatus=2 " Enable statusline
+set cursorline " Highlight current line
+set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
+set showcmd " Show keystrokes on statusline
+
+" Searching
 set incsearch " Enable incremental search
 set ignorecase " Ignore case sensitivity
 set smartcase " Enable case-smart searching
 set hlsearch " Highlight search matches
-" "}}}
 
-" Formatting "{{{
+" Folding
+set foldmethod=indent " Fold based on indent
+set foldnestmax=10 " Max folding levels
+set nofoldenable " Do not fold by default
+set foldlevel=1
+
+" Formatting
 set expandtab " Insert space characters whenever the tab key is pressed
 set tabstop=2 " Number of spaces for a tab
 set shiftwidth=2 " Number of space characters inserted for indentation
@@ -36,70 +36,42 @@ set nowrap " Disable line wrapping
 
 autocmd BufRead,BufNewFile *.erb set ft=eruby.html
 autocmd BufRead,BufNewFile *.php set ft=php.html
-" "}}}
 
-" Folding "{{{
-set foldmethod=indent " Fold based on indent
-set foldnestmax=10 " Max folding levels
-set nofoldenable " Do not fold by default
-set foldlevel=1
-" "}}}
+" Key mappings
+noremap <F1> <nop>
+nnoremap ; :
+vnoremap ; :
+inoremap jk <ESC>
 
-" Visual "{{{
-set number " Display line numbers
-set laststatus=2 " Enable statusline
-set cursorline " Highlight current line
-set listchars=tab:».,eol:¬,trail:.,extends:#,precedes:#,nbsp:° " Unprintable chars
-set showcmd " Show keystrokes on statusline
-" "}}}
+imap <C-v> jk"+gpi
+map <C-c> "+y
 
-" Syntax highlighting "{{{
+nmap <leader>cd :lcd %:p:h<CR>
+
+" Load additional config
+if has('unix')
+  let $VIMHOME = $HOME."/.vim"
+else
+  let $VIMHOME = $VIM."/vimfiles"
+endif
+
+so $VIMHOME/functions.vim " Custom funcions and commands
+so $VIMHOME/bundles.vim " Vundle and bundles
+
+" Syntax highlighting
 syntax on " Turn it on
 
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-if $TERM == 'xterm-256color' || has('gui_running')
+if $TERM == 'xterm-256color'
   color neverland
-  hi lineNr guibg=#222222
-  hi NonText guifg=#222222
-  hi Normal ctermfg=white guifg=white
+
+  " Prettier current line
+  hi CursorLine cterm=none ctermbg=234
+
+  " Prettier tabs
+  hi TabLine cterm=none ctermbg=235
+  hi TabLineSel ctermbg=3 ctermfg=235
+  hi TabLineFill ctermfg=233
 endif
-
-" More friendly tab colors
-hi TabLine cterm=none ctermbg=235
-hi TabLineSel ctermbg=3 ctermfg=235
-hi TabLineFill ctermfg=233
-
-" No ugly underlined current line
-hi CursorLine cterm=none ctermbg=234
-
-" No ugly blue bg on tag matches
-hi MatchParen cterm=bold ctermbg=none ctermfg=221
-" "}}}
-
-" Key mappings "{{{
-nnoremap ; :
-vnoremap ; :
-inoremap hj <ESC>
-inoremap jk <ESC>
-
-" C-c / C-v for copying and pasting
-imap <C-v> jk"+gpi
-map <C-c> "+y
-
-" Change path to current file dir
-nmap <leader>cd :lcd %:p:h<CR>
-
-" Map F1 key to something useful
-noremap <F1> <nop>
-set pastetoggle=<F1>
-
-" Toggle fullscreen (requires wmctrl installed)
-map <silent> <F11> :call ToggleFullscreen()<CR>
-
-noremap <leader>p :NERDTreeToggle<CR>
-noremap <leader>g :GundoToggle<CR>
-" "}}}
-
-so $VIMHOME/functions.vim " Load custom funcions and commands

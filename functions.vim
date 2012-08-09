@@ -1,10 +1,10 @@
 " Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
-autocmd FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
 " }}}
 
 " Remove trailing spaces {{{
-autocmd BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql RemoveTrailingSpaces
-command! RemoveTrailingSpaces :%s/\s\+$//e | set nohlsearch
+command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
+au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql RemoveTrailingSpaces
 " }}}
 
 " Dynamically sets wildignore list {{{
@@ -24,7 +24,7 @@ function! SetWildIgnore(ignored_strings_file)
   endif
 endfunc
 
-autocmd VimEnter * call SetWildIgnore('.wildignore')
+au VimEnter * call SetWildIgnore('.wildignore')
 " }}}
 
 " Displays right hand scrollbar only when needed {{{
@@ -60,7 +60,7 @@ function! StatuslineTrailingSpaceWarning()
   return b:statusline_trailing_space_warning
 endfunc
 
-autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
+au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
 " }}}
 
 " Returns number of (chars|lines|blocks) selected {{{
@@ -124,6 +124,8 @@ function! ToggleFullscreen()
     echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
   endif
 endfunc
+
+map <silent> <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Do not show invisible chars when editing files with no ft {{{
@@ -134,7 +136,7 @@ function! HandleUnprintableChars()
     set list
   endif
 endfunc
-" autocmd BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
+" au BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
 " }}}
 
 " Return number of open buffers {{{
@@ -174,5 +176,5 @@ function! ShowBufferOnNERDTree()
   endif
 endfunc
 
-autocmd BufWinEnter * call ShowBufferOnNERDTree()
+au BufWinEnter * call ShowBufferOnNERDTree()
 " }}}

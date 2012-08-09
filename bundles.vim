@@ -46,6 +46,7 @@ Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 " "}}}
 
@@ -92,13 +93,17 @@ let g:gist_post_private = 1
 " "}}}
 
 " NERDTree settings "{{{
-cnoremap nf NERDTreeFind
 let NERDTreeDirArrows = 0
+map <leader>p :NERDTreeToggle<CR>
 " "}}}
 
 " Sparkup settings "{{{
 let g:sparkupExecuteMapping = '<Leader>e'
 let g:sparkupNextMapping = '<Leader>n'
+" "}}}
+
+" Gundo settings "{{{
+map <leader>g :GundoToggle<CR>
 " "}}}
 
 " Ruby autocomplete "{{{
