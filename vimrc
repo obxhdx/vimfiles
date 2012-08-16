@@ -1,4 +1,5 @@
 " General
+set nocompatible " Be iMproved
 set history=9999 " Remember more commands and search history
 set undolevels=9999 " Use many levels of undo
 set wildmode=list:longest,full " Command line tab completion option
@@ -38,15 +39,23 @@ autocmd BufRead,BufNewFile *.erb set ft=eruby.html
 autocmd BufRead,BufNewFile *.php set ft=php.html
 
 " Key mappings
-noremap <F1> <nop>
-nnoremap ; :
-vnoremap ; :
-inoremap jk <ESC>
+map <F1> <nop>
+nmap ; :
+vmap ; :
+imap jk <ESC>
 
-imap <C-v> jk"+gpi
 map <C-c> "+y
+imap <C-v> jk"+gpi
 
-nmap <leader>cd :lcd %:p:h<CR>
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+noremap <C-l> :bn<CR>
+noremap <C-h> :bp<CR>
+
+nnoremap <leader>cd :lcd %:p:h<CR>
+
+let mapleader = ","
 
 " Load additional config
 if has('unix')

@@ -125,7 +125,7 @@ function! ToggleFullscreen()
   endif
 endfunc
 
-map <silent> <F11> :call ToggleFullscreen()<CR>
+nmap <silent> <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Do not show invisible chars when editing files with no ft {{{
