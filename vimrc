@@ -73,14 +73,12 @@ syntax on " Turn it on
 set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-if $TERM == 'xterm-256color'
-  color neverland
+color neverland
 
-  " Prettier current line
-  hi CursorLine cterm=none ctermbg=234
+" Prettier current line
+hi CursorLine cterm=none ctermbg=234
 
-  " Prettier tabs
-  hi TabLine cterm=none ctermbg=235
-  hi TabLineSel ctermbg=3 ctermfg=235
-  hi TabLineFill ctermfg=233
-endif
+" Prettier tabs
+hi TabLine cterm=none ctermbg=235
+hi TabLineSel ctermbg=3 ctermfg=235
+hi TabLineFill ctermfg=233
