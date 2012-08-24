@@ -39,6 +39,8 @@ autocmd BufRead,BufNewFile *.erb set ft=eruby.html
 autocmd BufRead,BufNewFile *.php set ft=php.html
 
 " Key mappings
+let mapleader = ","
+
 map <F1> <nop>
 nmap ; :
 vmap ; :
@@ -54,8 +56,7 @@ noremap <C-l> :bn<CR>
 noremap <C-h> :bp<CR>
 
 nnoremap <leader>cd :lcd %:p:h<CR>
-
-let mapleader = ","
+nmap \ ,
 
 " Load additional config
 if has('unix')
