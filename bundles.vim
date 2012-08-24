@@ -12,17 +12,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 Bundle 'thomas-glaessle/hexHighlight'
 Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/indexer.tar.gz'
-" Dependencies only
-Bundle 'mattn/webapi-vim'
-Bundle 'vim-scripts/DfrankUtil'
-Bundle 'vim-scripts/vimprj'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
@@ -71,19 +67,12 @@ let g:Powerline_theme = 'obxhdx'
 let g:Powerline_colorscheme = 'obxhdx'
 let g:Powerline_symbols = 'fancy'
 
-" Ack
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-" Indexer
-let g:indexer_disableCtagsWarning = 1
-
 " Gist
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
 
 " NERDTree
-let NERDTreeDirArrows = 0
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
 map <leader>p :NERDTreeToggle<CR>

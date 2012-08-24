@@ -40,6 +40,7 @@ autocmd BufRead,BufNewFile *.php set ft=php.html
 
 " Key mappings
 let mapleader = ","
+nmap \ ,
 
 map <F1> <nop>
 nmap ; :
@@ -56,7 +57,6 @@ noremap <C-l> :bn<CR>
 noremap <C-h> :bp<CR>
 
 nnoremap <leader>cd :lcd %:p:h<CR>
-nmap \ ,
 
 " Load additional config
 if has('unix')
