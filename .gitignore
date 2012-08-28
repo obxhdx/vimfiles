@@ -2,3 +2,4 @@ bundle/
 spell/
 *.swp
 *~
+.DS_Store
