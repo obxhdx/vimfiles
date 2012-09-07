@@ -9,6 +9,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Utilities
+Bundle 'fholgado/minibufexpl.vim'
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/gist-vim'
