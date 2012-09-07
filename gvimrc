@@ -1,3 +1,4 @@
+set columns=80      " Number of columns
 set lines=35        " Number of lines
 
 set guioptions-=m   " Remove the menu
