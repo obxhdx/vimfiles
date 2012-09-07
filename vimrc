@@ -85,11 +85,3 @@ set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
 color neverland
-
-" Prettier current line
-hi CursorLine cterm=none ctermbg=234
-
-" Prettier tabs
-hi TabLine cterm=none ctermbg=235
-hi TabLineSel ctermbg=3 ctermfg=235
-hi TabLineFill ctermfg=233
