@@ -61,6 +61,11 @@ nnoremap <C-y> 3<C-y>
 noremap <C-l> :bn<CR>
 noremap <C-h> :bp<CR>
 
+noremap + <C-w>+
+noremap - <C-w>-
+noremap ( <C-w><
+noremap ) <C-w>>
+
 nnoremap <leader>cd :lcd %:p:h<CR>
 
 " Load additional config
