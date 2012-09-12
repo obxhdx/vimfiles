@@ -1,5 +1,6 @@
 " General
 set nocompatible " Be iMproved
+set encoding=utf8 " Default encoding
 set history=9999 " Remember more commands and search history
 set undolevels=9999 " Use many levels of undo
 set wildmode=list:longest,full " Command line tab completion option
