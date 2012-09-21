@@ -7,6 +7,7 @@ set wildmode=list:longest,full " Command line tab completion option
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
 set tags+=gems.tags " Load gem tags when present
+set mouse=a " Enable mouse
 
 " Appearance
 set number " Display line numbers
