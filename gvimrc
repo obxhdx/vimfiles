@@ -16,20 +16,16 @@ else
   set guifont=Consolas:h12
 endif
 
-if has('mac')
-  color solarized
-else
-  let g:molokai_original = 1
-  color molokai
+let g:molokai_original = 1
+color molokai
 
-  hi Define guifg=#F92672
-  hi Special gui=none
-  hi Type gui=italic
-  hi rubyClass guifg=#F92672 gui=none
-  hi rubyControl guifg=#F92672 gui=none
+hi Define guifg=#F92672
+hi Special gui=none
+hi Type gui=italic
+hi rubyClass guifg=#F92672 gui=none
+hi rubyControl guifg=#F92672 gui=none
 
-  " The following color groups depend on rails.vim
-  hi rubyRailsARMethod guifg=#A6E22E
-  hi rubyRailsMethod guifg=#A4E7F4
-  hi link rubyRailsControllerMethod rubyRailsARMethod
-end
+" The following color groups depend on rails.vim
+hi rubyRailsARMethod guifg=#A6E22E
+hi rubyRailsMethod guifg=#A4E7F4
+hi link rubyRailsControllerMethod rubyRailsARMethod
