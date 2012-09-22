@@ -1,7 +1,3 @@
-" Just source this file and run :BundleInstall
-
-set nocompatible " Be iMproved
-
 filetype off " Required
 
 " Load Vundle
