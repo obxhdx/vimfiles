@@ -73,11 +73,7 @@ noremap ) <C-w>>
 nnoremap <leader>cd :lcd %:p:h<CR>
 
 " Load additional config
-if has('unix')
-  let $VIMHOME = $HOME."/.vim"
-else
-  let $VIMHOME = $VIM."/vimfiles"
-endif
+let $VIMHOME = $HOME."/.vim"
 
 so $VIMHOME/functions.vim " Custom funcions and commands
 so $VIMHOME/bundles.vim " Vundle and bundles
