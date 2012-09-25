@@ -84,8 +84,9 @@ so $VIMHOME/bundles.vim " Vundle and bundles
 
 " Syntax highlighting
 syntax on " Turn it on
-
-set t_Co=256 " Enable 256 colors
 set background=dark " Background style
 
-color neverland
+if $TERM=='xterm-256color'
+  set t_Co=256
+  color neverland
+end
