@@ -22,10 +22,17 @@ color molokai
 hi Define guifg=#F92672
 hi Special gui=none
 hi Type gui=italic
+
+" Ruby highlighting
 hi rubyClass guifg=#F92672 gui=none
 hi rubyControl guifg=#F92672 gui=none
-
-" The following color groups depend on rails.vim
 hi rubyRailsARMethod guifg=#A6E22E
 hi rubyRailsMethod guifg=#A4E7F4
 hi link rubyRailsControllerMethod rubyRailsARMethod
+
+" Markdown highlighting
+hi markdownH2 guifg=pink
+hi markdownH3 markdownH2
+hi markdownH4 markdownH2
+hi markdownH5 markdownH2
+hi markdownH6 markdownH2
