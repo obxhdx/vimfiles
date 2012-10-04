@@ -6,6 +6,7 @@ call vundle#rc()
 
 " Utilities
 Bundle 'gmarik/vundle'
+Bundle 'kassio/ColorSelect'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
