@@ -72,7 +72,7 @@ let g:gist_post_private = 1
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
 map <leader>p :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR><C-w><C-w>
+map <leader>f :NERDTreeFind<CR>
 
 " Sparkup
 let g:sparkupExecuteMapping = '<leader>e'
