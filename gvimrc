@@ -32,7 +32,7 @@ hi link rubyRailsControllerMethod rubyRailsARMethod
 
 " Markdown highlighting
 hi markdownH2 guifg=pink
-hi markdownH3 markdownH2
-hi markdownH4 markdownH2
-hi markdownH5 markdownH2
-hi markdownH6 markdownH2
+hi link markdownH3 markdownH2
+hi link markdownH4 markdownH2
+hi link markdownH5 markdownH2
+hi link markdownH6 markdownH2
