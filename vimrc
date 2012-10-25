@@ -85,4 +85,5 @@ set background=dark " Background style
 if $TERM=='xterm-256color'
   set t_Co=256
   color neverland
+  highlight Pmenu ctermbg=238
 end
