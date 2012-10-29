@@ -51,13 +51,8 @@ nmap ; :
 vmap ; :
 imap jk <ESC>
 
-if has('mac')
-  map <D-c> "+y
-  imap <D-v> jk"+gpi
-else
-  map <C-c> "+y
-  imap <C-v> jk"+gpi
-end
+map <C-c> "+y
+imap <C-v> jk"+gpi
 
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
