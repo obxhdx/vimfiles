@@ -19,6 +19,7 @@ Bundle 'tpope/vim-fugitive'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
+Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
