@@ -3,7 +3,8 @@ set nocompatible " Be iMproved
 set encoding=utf8 " Default encoding
 set history=9999 " Remember more commands and search history
 set undolevels=9999 " Use many levels of undo
-set wildmode=list:longest,full " Command line tab completion option
+set wildmode=longest:list " Command line tab completion option
+set wildmenu
 set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
 set tags+=gems.tags " Load gem tags when present
@@ -51,7 +52,7 @@ vmap ; :
 imap jk <ESC>
 
 map <C-c> "+y
-imap <C-v> jk"+gpi
+imap <C-v> <ESC>"+gpi
 
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
