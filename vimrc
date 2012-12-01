@@ -78,3 +78,6 @@ if $TERM=='xterm-256color'
   set t_Co=256
   color badwolf
 end
+
+" Abbreviations
+iab xpry require 'pry'; binding.pry
