@@ -39,8 +39,15 @@ set autoindent " Copy the indentation from the previous line, when starting a ne
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set nowrap " Disable line wrapping
 
-autocmd BufRead,BufNewFile *.erb set ft=eruby.html
-autocmd BufRead,BufNewFile *.php set ft=php.html
+au BufRead,BufNewFile *.erb set ft=eruby.html
+au BufRead,BufNewFile *.php set ft=php.html
+
+" Highlight current line only on active buffer
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " Key mappings
 let mapleader = ","
