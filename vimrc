@@ -14,7 +14,7 @@ set mouse=a " Enable mouse
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
-set listchars=tab:».,eol:¬,trail:.,extends:❯,precedes:❮,nbsp:° " Unprintable chars
+set listchars=tab:».,trail:.,extends:❯,precedes:❮,nbsp:° " Unprintable chars
 set list " Show unprintable chars
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
