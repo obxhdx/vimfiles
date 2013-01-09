@@ -9,7 +9,7 @@ set guioptions-=r   " Remove right hand scrollbar
 set nomousehide     " Do not hide mouse pointer when using NERDTree
 
 if has('mac')
-  set guifont=Monaco\ for\ Powerline:h14
+  set guifont=Monaco\ for\ Powerline:h12
 elseif has('unix')
   set guifont=Ubuntu\ Mono\ 14
 else
