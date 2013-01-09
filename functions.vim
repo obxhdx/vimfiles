@@ -102,14 +102,17 @@ endfunc
 
 " Toggles overlength highlighting {{{
 function! HighlightOverLength()
-  highlight OverLength ctermbg=52 guibg=#592929
+  highlight ColorColumn ctermfg=9
+  highlight OverLength ctermbg=9 guibg=#592929
 
   if !exists('b:overlength') || b:overlength == 'false'
     let b:overlength = 'true'
+    set colorcolumn=80
     match OverLength /\%>80v.\+/
     echo "Overlength highlighting enabled."
   else
     let b:overlength = 'false'
+    set colorcolumn=
     match OverLength //
     echo "Overlength highlighting disabled."
   endif
