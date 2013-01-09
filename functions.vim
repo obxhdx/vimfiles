@@ -101,21 +101,29 @@ endfunc
 " }}}
 
 " Toggles overlength highlighting {{{
-function! HighlightOverLength()
-  highlight ColorColumn ctermfg=9
-  highlight OverLength ctermbg=9 guibg=#592929
+highlight ColorColumn ctermfg=9
+highlight OverLength ctermbg=9 ctermfg=9 ctermbg=none
 
+function! HighlightOverLength()
   if !exists('b:overlength') || b:overlength == 'false'
-    let b:overlength = 'true'
-    set colorcolumn=80
-    match OverLength /\%>80v.\+/
+    call EnableOverlengthHighlighting()
     echo 'Overlength highlighting enabled.'
   else
-    let b:overlength = 'false'
-    set colorcolumn=
-    match OverLength //
+    call DisableOverlengthHighlighting()
     echo 'Overlength highlighting disabled.'
   endif
+endfunc
+
+function! EnableOverlengthHighlighting()
+  let b:overlength = 'true'
+  set colorcolumn=80
+  match OverLength /\%>80v.\+/
+endfunc
+
+function! DisableOverlengthHighlighting()
+  let b:overlength = 'false'
+  set colorcolumn=
+  match OverLength //
 endfunc
 " }}}
 
