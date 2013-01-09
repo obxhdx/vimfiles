@@ -12,14 +12,14 @@ function! SetWildIgnore(ignored_strings_file)
   if filereadable(a:ignored_strings_file)
     let igstring = ''
     for oline in readfile(a:ignored_strings_file)
-      let line = substitute(oline, '\s|\n|\r', '', "g")
+      let line = substitute(oline, '\s|\n|\r', '', 'g')
       if line =~ '^#' | con | endif
       if line == '' | con  | endif
       if line =~ '^!' | con  | endif
-      if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-      let igstring .= "," . line
+      if line =~ '/$' | let igstring .= ',' . line . '*' | con | endif
+      let igstring .= ',' . line
     endfor
-    let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
+    let execstring = 'set wildignore='.substitute(igstring, '^,', '', 'g')
     execute execstring
   endif
 endfunc
@@ -39,7 +39,7 @@ endfunc
 
 " Shows syntax highlighting groups for word under cursor {{{
 function! <SID>SynStack()
-  if !exists("*synstack")
+  if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
@@ -50,7 +50,7 @@ nmap <leader>sg :call <SID>SynStack()<CR>
 
 " Returns '\s' if trailing white space is detected {{{
 function! StatuslineTrailingSpaceWarning()
-  if !exists("b:statusline_trailing_space_warning")
+  if !exists('b:statusline_trailing_space_warning')
     if search('\s\+$', 'nw') != 0
       let b:statusline_trailing_space_warning = '\s'
     else
@@ -65,16 +65,16 @@ au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warn
 
 " Returns number of (chars|lines|blocks) selected {{{
 function! VisualSelectionSize()
-  if mode() == "v"
+  if mode() == 'v'
     " Exit and re-enter visual mode, because the marks
     " ('< and '>) have not been updated yet.
     exe "normal \<ESC>gv"
-    if line("'<") != line("'>")
+    if line(''<') != line("'>")
       return (line("'>") - line("'<") + 1) . ' lines'
     else
       return (col("'>") - col("'<") + 1) . ' chars'
     endif
-  elseif mode() == "V"
+  elseif mode() == 'V'
     exe "normal \<ESC>gv"
     return (line("'>") - line("'<") + 1) . ' lines'
   elseif mode() == "\<C-V>"
@@ -91,11 +91,11 @@ function! WordProcessingToggle()
   if !exists('b:wordprocessing') || b:wordprocessing == 'false'
     let b:wordprocessing = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
-    echo "Word processing mode enabled."
+    echo 'Word processing mode enabled.'
   else
     let b:wordprocessing = 'false'
     setlocal tw=0 fo=tcq nowrap nolbr nolist nospell
-    echo "Word processing mode disabled."
+    echo 'Word processing mode disabled.'
   endif
 endfunc
 " }}}
@@ -109,12 +109,12 @@ function! HighlightOverLength()
     let b:overlength = 'true'
     set colorcolumn=80
     match OverLength /\%>80v.\+/
-    echo "Overlength highlighting enabled."
+    echo 'Overlength highlighting enabled.'
   else
     let b:overlength = 'false'
     set colorcolumn=
     match OverLength //
-    echo "Overlength highlighting disabled."
+    echo 'Overlength highlighting disabled.'
   endif
 endfunc
 " }}}
@@ -162,9 +162,9 @@ function! s:CloseHiddenBuffers()
     call extend(open_buffers, tabpagebuflist(i + 1))
   endfor
 
-  for num in range(1, bufnr("$") + 1)
+  for num in range(1, bufnr('$') + 1)
     if buflisted(num) && index(open_buffers, num) == -1
-      exec "bdelete ".num
+      exec 'bdelete '.num
     endif
   endfor
 endfunc
@@ -174,8 +174,8 @@ command! CloseHiddenBuffers call s:CloseHiddenBuffers()
 
 " Link buffer being displayed with NERDTree {{{
 function! ShowBufferOnNERDTree()
-  if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) > 0
-    exec "NERDTreeFind"
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) > 0
+    exec 'NERDTreeFind'
   endif
 endfunc
 
