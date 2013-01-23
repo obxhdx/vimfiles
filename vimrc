@@ -72,7 +72,11 @@ noremap - <C-w>-
 noremap ( <C-w><
 noremap ) <C-w>>
 
+" Change path to current file path
 nnoremap <leader>cd :lcd %:p:h<CR>
+
+" Expand %% to file path
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Load additional config
 let $VIMHOME = $HOME."/.vim"
