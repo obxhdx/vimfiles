@@ -9,6 +9,8 @@ set backupdir=~/.vimbackup,/tmp " Group backup files in one place
 set directory=~/.vimbackup,/tmp " Group swap files in one place
 set tags+=gems.tags " Load gem tags when present
 set mouse=a " Enable mouse
+set splitbelow " Put splitted windows below the current one
+set splitright " Put splitted windows right of the current one
 
 " Appearance
 set number " Display line numbers
