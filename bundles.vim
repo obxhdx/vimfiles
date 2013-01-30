@@ -32,7 +32,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 
 " Syntax files
-Bundle 'bbommarito/vim-slim'
+Bundle 'slim-template/vim-slim'
 Bundle 'groenewege/vim-less'
 Bundle 'juvenn/mustache.vim'
 Bundle 'kchmck/vim-coffee-script'
