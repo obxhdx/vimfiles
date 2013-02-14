@@ -17,6 +17,7 @@ Bundle 'thomas-glaessle/hexHighlight'
 Bundle 'tpope/vim-fugitive'
 
 " Editing helpers
+Bundle 'Raimondi/delimitMate'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
@@ -30,6 +31,7 @@ Bundle 'tpope/vim-surround'
 " Syntax files
 Bundle 'slim-template/vim-slim'
 Bundle 'groenewege/vim-less'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
