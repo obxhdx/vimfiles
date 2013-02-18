@@ -44,7 +44,6 @@ set nowrap " Disable line wrapping
 
 au BufRead,BufNewFile *.erb set ft=eruby.html
 au BufRead,BufNewFile *.php set ft=php.html
-au BufRead,BufNewFile *.js.erb set ft=javascript
 
 " Highlight current line only on active buffer
 augroup CursorLine
