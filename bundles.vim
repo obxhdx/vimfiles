@@ -57,9 +57,12 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Powerline
-let g:Powerline_theme = 'obxhdx'
-let g:Powerline_colorscheme = 'obxhdx'
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_dividers_override = ['', [0x2502], '', [0x2502]]
+let g:Powerline_stl_path_style = 'filename'
+let g:Powerline_colorscheme = 'custom'
+call Pl#Theme#InsertSegment('extra:indicators', 'after', 'fileinfo')
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Gist
 let g:gist_detect_filetype = 1
