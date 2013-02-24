@@ -1,5 +1,5 @@
-set columns=80      " Number of columns
-set lines=35        " Number of lines
+set columns=75      " Number of columns
+set lines=33        " Number of lines
 
 set guioptions-=m   " Remove the menu
 set guioptions-=T   " Remove the toolbar
@@ -11,7 +11,7 @@ set nomousehide     " Do not hide mouse pointer when using NERDTree
 if has('mac')
   set guifont=Monaco\ for\ Powerline:h12
 elseif has('unix')
-  set guifont=Ubuntu\ Mono\ 14
+  set guifont=Ubuntu\ Mono\ 12
 else
   set guifont=Consolas:h12
 endif
