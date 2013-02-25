@@ -46,6 +46,10 @@ Bundle 'trapd00r/neverland-vim-theme'
 
 filetype plugin indent on " Required
 
+" Colorscheme
+set background=dark
+color badwolf
+
 " ctrlp
 noremap <leader>o :CtrlPBuffer<CR>
 let g:ctrlp_root_markers = ['.htaccess']

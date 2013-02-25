@@ -78,20 +78,18 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-" Load additional config
-let $VIMHOME = $HOME."/.vim"
-
-so $VIMHOME/functions.vim " Custom funcions and commands
-so $VIMHOME/bundles.vim " Vundle and bundles
-
 " Syntax highlighting
-syntax on " Turn it on
-set background=dark " Background style
+syntax on
+set background=light
 
-if $TERM=='xterm-256color'
+if $TERM == 'xterm-256color'
   set t_Co=256
-  color badwolf
 end
 
 " Abbreviations
 iab xpry require 'pry'; binding.pry
+
+" Load additional config files
+let s:vim_home=$HOME.'/.vim'
+exec 'so '.expand(s:vim_home.'/functions.vim')
+exec 'so '.expand(s:vim_home.'/bundles.vim')
