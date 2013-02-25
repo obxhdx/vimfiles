@@ -21,10 +21,12 @@ function! SetWildIgnore(ignored_strings_file)
     endfor
     let execstring = 'set wildignore='.substitute(igstring, '^,', '', 'g')
     execute execstring
+  else
+    echo "Can't open file " . a:ignored_strings_file
   endif
 endfunc
 
-au VimEnter * call SetWildIgnore('.wildignore')
+au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
 
 " Displays right hand scrollbar only when needed {{{
