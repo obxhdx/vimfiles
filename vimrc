@@ -92,4 +92,4 @@ iab xpry require 'pry'; binding.pry
 " Load additional config files
 let s:vim_home=$HOME.'/.vim'
 exec 'so '.expand(s:vim_home.'/functions.vim')
-exec 'so '.expand(s:vim_home.'/bundles.vim')
+exec 'so '.expand(s:vim_home.'/plugins.vim')
