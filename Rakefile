@@ -46,6 +46,19 @@ task :bundles do
   sh 'vim +BundleInstall +qall', :verbose => false
 end
 
+task :purge do
+  puts 'Purging config files...'
+
+  %w[.vimrc .gvimrc .vim .vimbackup .viminfo].each do |f|
+    file = File.join(ENV['HOME'], f)
+    begin
+      FileUtils.rm_r file
+      puts "#{file} deleted!"
+    rescue
+    end
+  end
+end
+
 task :commandt do
   puts 'Compiling Command-T C extension... '
 
