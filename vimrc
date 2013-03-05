@@ -11,6 +11,7 @@ set tags+=gems.tags " Load gem tags when present
 set mouse=a " Enable mouse
 set splitbelow " Put splitted windows below the current one
 set splitright " Put splitted windows right of the current one
+set vb t_vb= " Disable visual bell
 
 " Appearance
 set number " Display line numbers
