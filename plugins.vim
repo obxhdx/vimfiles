@@ -22,6 +22,7 @@ Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
+Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
@@ -85,6 +86,9 @@ let g:sparkupNextMapping = '<leader>n'
 
 " Gundo
 map <leader>g :GundoToggle<CR>
+
+" Markdown folding
+let g:markdown_fold_style = 'nested'
 
 " Ruby autocomplete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
