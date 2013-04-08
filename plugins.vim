@@ -42,9 +42,7 @@ Bundle 'vim-ruby/vim-ruby'
 
 " Colors
 Bundle 'sjl/badwolf'
-Bundle 'taxilian/Wombat'
 Bundle 'tomasr/molokai'
-Bundle 'trapd00r/neverland-vim-theme'
 
 filetype plugin indent on " Required
 
