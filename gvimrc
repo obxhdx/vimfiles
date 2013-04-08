@@ -16,23 +16,25 @@ else
   set guifont=Consolas:h12
 endif
 
-let g:molokai_original = 1
+" let g:molokai_original = 1
 color molokai
 
-hi Define guifg=#F92672
-hi Special gui=none
-hi Type gui=italic
+" Molokai customizations {{{
+  hi Define guifg=#F92672
+  hi Special gui=none
+  hi Type gui=italic
 
-" Ruby highlighting
-hi rubyClass guifg=#F92672 gui=none
-hi rubyControl guifg=#F92672 gui=none
-hi rubyRailsARMethod guifg=#A6E22E
-hi rubyRailsMethod guifg=#A4E7F4
-hi link rubyRailsControllerMethod rubyRailsARMethod
+  " Ruby highlighting
+  hi rubyClass guifg=#F92672 gui=none
+  hi rubyControl guifg=#F92672 gui=none
+  hi rubyRailsARMethod guifg=#A6E22E
+  hi rubyRailsMethod guifg=#A4E7F4
+  hi link rubyRailsControllerMethod rubyRailsARMethod
 
-" Markdown highlighting
-hi markdownH2 guifg=pink
-hi link markdownH3 markdownH2
-hi link markdownH4 markdownH2
-hi link markdownH5 markdownH2
-hi link markdownH6 markdownH2
+  " Markdown highlighting
+  hi markdownH2 guifg=pink
+  hi link markdownH3 markdownH2
+  hi link markdownH4 markdownH2
+  hi link markdownH5 markdownH2
+  hi link markdownH6 markdownH2
+" }}}

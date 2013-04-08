@@ -79,18 +79,18 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-" Syntax highlighting
-syntax on
-set background=light
-
-if $TERM == 'xterm-256color'
-  set t_Co=256
-end
-
 " Abbreviations
 iab xpry require 'pry'; binding.pry
 
-" Load additional config files
-let s:vim_home=$HOME.'/.vim'
-exec 'so '.expand(s:vim_home.'/functions.vim')
-exec 'so '.expand(s:vim_home.'/plugins.vim')
+" Load plugins and stuff
+source $HOME/.vim/functions.vim
+source $HOME/.vim/plugins.vim
+
+" Syntax highlighting
+syntax on
+
+if $TERM == 'xterm-256color'
+  set t_Co=256
+  set background=dark
+  color badwolf
+end
