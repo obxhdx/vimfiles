@@ -4,7 +4,7 @@ au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
 
 " Remove trailing spaces {{{
 command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
-au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.sql RemoveTrailingSpaces
+au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.ru,*.sql RemoveTrailingSpaces
 " }}}
 
 " Dynamically sets wildignore list {{{
