@@ -23,6 +23,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
