@@ -71,8 +71,6 @@ map <leader>f :NERDTreeFind<CR>
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_dividers_override = ['', [0x2502], '', [0x2502]]
 let g:Powerline_stl_path_style = 'filename'
-let g:Powerline_colorscheme = 'custom'
-call Pl#Theme#InsertSegment('extra:indicators', 'after', 'fileinfo')
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " ctrlp
