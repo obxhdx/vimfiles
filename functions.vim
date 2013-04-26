@@ -13,6 +13,22 @@ endfunc
 nmap <leader>sg :call <SID>SynStack()<CR>
 " }}}
 
+" Toggles JavaScript mode (tabstop and related stuff) {{{
+function! s:JavascriptModeToggle()
+  if !exists('b:javascriptmode') || b:javascriptmode == 'false'
+    let b:javascriptmode = 'true'
+    setlocal ts=4 sw=4 sts=4 et
+    echo 'JavaScript mode enabled.'
+  else
+    let b:javascriptmode = 'false'
+    setlocal ts=2 sw=2 sts=2 et
+    echo 'JavaScript mode disabled.'
+  endif
+endfunc
+command! JavascriptModeToggle call s:JavascriptModeToggle()
+au BufRead,BufNewFile *.js JavascriptModeToggle
+" }}}
+
 " Toggles a few options for better long text editing {{{
 function! s:WordProcessingToggle()
   if !exists('b:wordprocessing') || b:wordprocessing == 'false'
