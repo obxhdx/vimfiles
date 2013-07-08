@@ -53,21 +53,27 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
-" Key mappings
+" Better leader
 let mapleader = ","
 nmap \ ,
 
+" Disable F1
 map <F1> <nop>
+
+" Better ESC
 nmap ; :
 vmap ; :
 imap jk <ESC>
 
+" Copy/Paste
 map <C-c> "+y
 imap <C-v> <ESC>"+gpi
 
+" Scroll three lines instead of one
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Resize split windows
 noremap + <C-w>+
 noremap - <C-w>-
 noremap ( <C-w><
@@ -78,9 +84,6 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" Abbreviations
-iab xpry require 'pry'; binding.pry
 
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
