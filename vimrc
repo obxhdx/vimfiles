@@ -85,6 +85,10 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
+" Use Python/Perl regexp syntax
+nnoremap / /\v
+vnoremap / /\v
+
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
