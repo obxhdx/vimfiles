@@ -28,6 +28,7 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 
 " Syntax files
