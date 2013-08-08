@@ -109,3 +109,23 @@ function! SetWildIgnore(ignored_strings_file)
 endfunc
 au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
+
+" Toggles minimalist mode {{{
+function! s:Minimal()
+  if !exists('b:minimalmode') || b:minimalmode == 'false'
+    let b:minimalmode = 'true'
+    setlocal nonu
+    let g:Powerline_theme = 'minimal'
+    silent! PowerlineReloadColorscheme
+    silent! PowerlineClearCache
+  else
+    let b:minimalmode = 'false'
+    setlocal nu
+    let g:Powerline_theme = 'default'
+    silent! PowerlineReloadColorscheme
+    silent! PowerlineClearCache
+  end
+endfunc
+command! Minimal call s:Minimal()
+Minimal
+" }}}
