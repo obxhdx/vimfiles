@@ -16,5 +16,4 @@ else
   set guifont=Consolas:h12
 endif
 
-" let g:molokai_original = 1
-color molokai
+let g:default_dark_colors = 'molokai'

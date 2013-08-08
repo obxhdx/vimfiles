@@ -130,6 +130,30 @@ command! Minimal call s:Minimal()
 Minimal
 " }}}
 
+" Turns lights on/off {{{
+if has('gui_running')
+  function! s:TurnOffLights()
+    if !exists('g:default_dark_colors') || g:default_dark_colors == ''
+      echo 'Default dark colorscheme is not defined (g:default_dark_colors)'
+      return
+    endif
+
+    if !exists('b:lights_on') || b:lights_on == 'true'
+      let b:lights_on = 'false'
+      exec('colo ' . g:default_dark_colors)
+      setlocal background=dark
+    else
+      let b:lights_on = 'true'
+      colo default
+      setlocal background=light
+    endif
+  endfunc
+
+  command! TurnOffLights call s:TurnOffLights()
+  cabbrev T TurnOffLights
+endif
+" }}}
+
 " A few tweaks for molokai {{{
 function! FixMolokai()
   if g:colors_name == 'molokai'
