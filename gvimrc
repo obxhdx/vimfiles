@@ -17,3 +17,5 @@ else
 endif
 
 let g:default_dark_colors = 'molokai'
+
+autocmd VimEnter,ColorScheme * call HighlightRemoveAttr('bold')
