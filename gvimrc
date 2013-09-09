@@ -18,4 +18,7 @@ endif
 
 let g:default_dark_colors = 'molokai'
 
+" Markdown underscore char fix
+hi markdownError guifg=red ctermfg=red
+
 autocmd VimEnter,ColorScheme * call HighlightRemoveAttr('bold')
