@@ -10,8 +10,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
-Bundle 'thomas-glaessle/hexHighlight'
-Bundle 'tpope/vim-fugitive'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
