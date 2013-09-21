@@ -11,7 +11,7 @@ set nomousehide     " Do not hide mouse pointer when using NERDTree
 if has('mac')
   set guifont=Monaco\ for\ Powerline:h12
 elseif has('unix')
-  set guifont=Ubuntu\ Mono\ 12
+  set guifont=Ubuntu\ Mono\ for\ Powerline\ Bold\ 11
 else
   set guifont=Consolas:h12
 endif
