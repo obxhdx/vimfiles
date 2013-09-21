@@ -7,6 +7,7 @@ set guioptions-=L   " Remove left hand scrollbar
 set guioptions-=r   " Remove right hand scrollbar
 
 set nomousehide     " Do not hide mouse pointer when using NERDTree
+set vb t_vb=        " Disable visual bell
 
 if has('mac')
   set guifont=Monaco\ for\ Powerline:h12
