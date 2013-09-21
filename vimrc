@@ -100,4 +100,10 @@ if $TERM == 'xterm-256color'
   set t_Co=256
   set background=dark
   color badwolf
+
+  if has('unix')
+    hi Normal ctermbg=NONE
+    hi LineNr ctermbg=NONE
+    hi NonText ctermbg=NONE
+  end
 end
