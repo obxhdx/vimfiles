@@ -1,6 +1,6 @@
 " Remove trailing spaces {{{
 command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
-au BufWritePre *.css,*.html,*.js,*.php,*.rb,*.ru,*.sql RemoveTrailingSpaces
+au FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
