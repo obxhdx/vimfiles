@@ -18,11 +18,9 @@ function! s:JavascriptModeToggle()
   if !exists('b:javascriptmode') || b:javascriptmode == 'false'
     let b:javascriptmode = 'true'
     setlocal ts=4 sw=4 sts=4 et
-    echo 'JavaScript mode enabled.'
   else
     let b:javascriptmode = 'false'
     setlocal ts=2 sw=2 sts=2 et
-    echo 'JavaScript mode disabled.'
   endif
 endfunc
 command! JavascriptModeToggle call s:JavascriptModeToggle()
