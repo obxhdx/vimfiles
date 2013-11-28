@@ -13,13 +13,12 @@ if has('mac')
   set guifont=Monaco\ for\ Powerline:h12
 elseif has('unix')
   set guifont=Ubuntu\ Mono\ for\ Powerline\ Bold\ 11
+  au VimEnter,ColorScheme * call HighlightRemoveAttr('bold')
 else
   set guifont=Consolas:h12
 endif
 
-let g:default_dark_colors = 'molokai'
+color badwolf
 
 " Markdown underscore char fix
 hi markdownError guifg=red ctermfg=red
-
-autocmd VimEnter,ColorScheme * call HighlightRemoveAttr('bold')
