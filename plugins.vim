@@ -6,6 +6,7 @@ call vundle#rc()
 
 " Utilities
 Bundle 'gmarik/vundle'
+Bundle 'jaytang0923/taglist.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
@@ -89,3 +90,7 @@ if executable('ag')
   " Define a new command 'Ag' to search for the provided text
   command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 endif
+
+" Taglist
+let Tlist_Use_Right_Window = 1
+nnoremap <Leader>l :TlistToggle<CR>
