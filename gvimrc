@@ -19,6 +19,4 @@ else
 endif
 
 color badwolf
-
-" Markdown underscore char fix
-hi markdownError guifg=red ctermfg=red
+hi markdownError guibg=NONE guifg=red

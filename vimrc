@@ -101,6 +101,8 @@ if $TERM == 'xterm-256color'
   set background=dark
   color badwolf
 
+  hi markdownError ctermbg=NONE ctermfg=red
+
   if has('unix')
     hi Normal ctermbg=NONE
     hi LineNr ctermbg=NONE
