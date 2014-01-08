@@ -8,12 +8,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'jaytang0923/taglist.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mhinz/vim-startify'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'godlygeek/tabular'
 Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
@@ -94,3 +96,22 @@ endif
 " Taglist
 let Tlist_Use_Right_Window = 1
 nnoremap <Leader>l :TlistToggle<CR>
+
+" Startify
+let g:ctrlp_reuse_window  = 'startify'
+hi StartifyHeader  ctermfg=203
+hi StartifyFooter  ctermfg=111
+hi StartifyBracket ctermfg=240
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+let g:startify_custom_header = [
+      \ '   __      ___            ______ ____   ',
+      \ '   \ \    / (_)           |____  |___ \ ',
+      \ '    \ \  / / _ _ __ ___       / /  __) |',
+      \ '     \ \/ / | | ''_ ` _ \     / /  |__ <',
+      \ '      \  /  | | | | | | |   / /   ___) |',
+      \ '       \/   |_|_| |_| |_|  /_(_) |____/ ',
+      \ '',
+      \ '',
+      \ ]
