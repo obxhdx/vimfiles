@@ -99,12 +99,12 @@ nnoremap <Leader>l :TlistToggle<CR>
 
 " Startify
 let g:ctrlp_reuse_window  = 'startify'
-hi StartifyHeader  ctermfg=203
-hi StartifyFooter  ctermfg=111
-hi StartifyBracket ctermfg=240
-hi StartifyNumber  ctermfg=215
-hi StartifyPath    ctermfg=245
-hi StartifySlash   ctermfg=240
+hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
+hi StartifyFooter  ctermfg=111 guifg=#87afff
+hi StartifyBracket ctermfg=240 guifg=#585858
+hi StartifyNumber  ctermfg=215 guifg=#ffaf5f
+hi StartifyPath    ctermfg=245 guifg=#8a8a8a
+hi StartifySlash   ctermfg=240 guifg=#585858
 let g:startify_custom_header = [
       \ '   __      ___            ______ ____   ',
       \ '   \ \    / (_)           |____  |___ \ ',

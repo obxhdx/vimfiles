@@ -20,3 +20,9 @@ endif
 
 color badwolf
 hi markdownError guibg=NONE guifg=red
+hi StartifyHeader  guifg=#ff5f5f
+hi StartifyFooter  guifg=#87afff
+hi StartifyBracket guifg=#585858
+hi StartifyNumber  guifg=#ffaf5f
+hi StartifyPath    guifg=#8a8a8a
+hi StartifySlash   guifg=#585858
