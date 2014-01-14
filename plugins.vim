@@ -97,6 +97,9 @@ endif
 let Tlist_Use_Right_Window = 1
 nnoremap <Leader>l :TlistToggle<CR>
 
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<Down>']
+
 " Startify
 let g:ctrlp_reuse_window  = 'startify'
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
