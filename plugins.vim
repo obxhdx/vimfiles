@@ -64,16 +64,6 @@ let g:Powerline_dividers_override = ['', [0x2502], '', [0x2502]]
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" ctrlp
-noremap <leader>o :CtrlPBuffer<CR>
-let g:ctrlp_root_markers = ['.htaccess']
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '[\/]\.[^\/]\+$\|\.git$\|\.hg$\|\.svn$\|htdocs$\|opt$\|workspace-.\+$',
-  \ 'file': '[\/]\.[^\/]\+$\|\.exe$\|\.so$\|\.dll$',
-  \ 'link': '[\/]\.[^\/]\+$\|SOME_BAD_SYMBOLIC_LINKS',
-  \ }
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
