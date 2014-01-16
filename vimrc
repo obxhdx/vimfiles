@@ -85,7 +85,7 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-" Use Python/Perl regexp syntax
+" Use 'very magic' regex mode (help \v)
 nnoremap / /\v
 vnoremap / /\v
 

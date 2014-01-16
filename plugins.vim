@@ -21,7 +21,6 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'obxhdx/snipmate-snippets'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
