@@ -107,3 +107,8 @@ let g:startify_custom_header = [
       \ '',
       \ '',
       \ ]
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
