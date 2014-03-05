@@ -10,9 +10,9 @@ set nomousehide     " Do not hide mouse pointer when using NERDTree
 set vb t_vb=        " Disable visual bell
 
 if has('mac')
-  set guifont=Monaco\ for\ Powerline:h12
+  set guifont=Monaco:h12
 elseif has('unix')
-  set guifont=Ubuntu\ Mono\ for\ Powerline\ Bold\ 11
+  set guifont=Ubuntu\ Mono\ Bold\ 11
   au VimEnter,ColorScheme * call HighlightRemoveAttr('bold')
 else
   set guifont=Consolas:h12
