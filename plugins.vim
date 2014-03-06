@@ -18,7 +18,7 @@ Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/UltiSnips'
+Bundle 'SirVer/ultisnips'
 
 " Syntax files
 Bundle 'groenewege/vim-less'
