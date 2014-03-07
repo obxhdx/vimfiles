@@ -35,6 +35,9 @@ Bundle 'tomasr/molokai'
 
 filetype plugin indent on " Required
 
+" CtrlP
+let g:ctrlp_working_path_mode = 'a'
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
