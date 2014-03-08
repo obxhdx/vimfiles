@@ -8,6 +8,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 
