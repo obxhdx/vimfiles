@@ -14,20 +14,15 @@ Bundle 'scrooloose/nerdtree'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
+Bundle 'SirVer/ultisnips'
 Bundle 'gregsexton/MatchTag'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
-Bundle 'SirVer/ultisnips'
 
 " Syntax files
-Bundle 'groenewege/vim-less'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'slim-template/vim-slim'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-markdown'
+Bundle 'sheerun/vim-polyglot'
 
 " Colors
 Bundle 'altercation/vim-colors-solarized'
