@@ -5,16 +5,17 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Utilities
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
 Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 Bundle 'gregsexton/MatchTag'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tmhedberg/matchit'
@@ -63,11 +64,12 @@ if executable('ag')
   nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   " Define a new command 'Ag' to search for the provided text
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 endif
 
 " Startify
 let g:ctrlp_reuse_window  = 'startify'
+let g:startify_skiplist_server = [ 'GVIM' ]
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
 hi StartifyFooter  ctermfg=111 guifg=#87afff
 hi StartifyBracket ctermfg=240 guifg=#585858
