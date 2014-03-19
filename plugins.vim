@@ -15,8 +15,9 @@ Bundle 'scrooloose/nerdtree'
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
 Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
 Bundle 'gregsexton/MatchTag'
+Bundle 'honza/vim-snippets'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tmhedberg/matchit'
 Bundle 'tomtom/tcomment_vim'
@@ -45,6 +46,12 @@ let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
 map <leader>p :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
+
+" Rainbow parentheses
+au BufEnter * RainbowParenthesesLoadRound
+au BufEnter * RainbowParenthesesLoadSquare
+au BufEnter * RainbowParenthesesLoadBraces
+au BufEnter * RainbowParenthesesLoadChevrons
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
