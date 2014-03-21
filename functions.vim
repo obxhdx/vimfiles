@@ -125,7 +125,6 @@ function! s:Minimal()
   end
 endfunc
 command! Minimal call s:Minimal()
-Minimal
 " }}}
 
 " A few tweaks for molokai {{{
