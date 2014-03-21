@@ -42,6 +42,9 @@ let g:ctrlp_working_path_mode = 'a'
 
 " Syntastic
 let g:syntastic_ruby_checkers = ['rubylint']
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['ruby'],
+                           \ 'passive_filetypes': [] }
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
