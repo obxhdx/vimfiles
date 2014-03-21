@@ -11,6 +11,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 
 " Editing helpers
 Bundle 'Raimondi/delimitMate'
@@ -38,6 +40,9 @@ filetype plugin indent on " Required
 " CtrlP
 let g:ctrlp_working_path_mode = 'a'
 
+" Syntastic
+let g:syntastic_ruby_checkers = ['rubylint']
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
@@ -57,7 +62,7 @@ au BufEnter * RainbowParenthesesLoadChevrons
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
-let g:Powerline_dividers_override = ['', [0x2502], '', [0x2502]]
+let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
