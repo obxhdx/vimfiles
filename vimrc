@@ -54,30 +54,17 @@ augroup CursorLine
 augroup END
 
 " Better leader
-let mapleader = ","
-nmap \ ,
-
-" Disable F1
-map <F1> <nop>
-
-" Better ESC
-nmap ; :
-vmap ; :
-imap jk <ESC>
+let mapleader = "\<Space>"
+nmap \ <Space>
 
 " Copy/Paste
-map <C-c> "+y
-imap <C-v> <ESC>"+gpi
+vmap <Leader>y "+y
+nmap <Leader>p "+p
 
-" Scroll three lines instead of one
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" Resize split windows
-noremap + <C-w>+
-noremap - <C-w>-
-noremap ( <C-w><
-noremap ) <C-w>>
+" Faster way to save/quit
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>q :q<CR>
 
 " Change path to current file path
 nnoremap <leader>cd :lcd %:p:h<CR>
@@ -85,9 +72,28 @@ nnoremap <leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
+" Disable F1
+map <F1> <nop>
+
+" Better ESC
+imap jk <ESC>
+
+" Use semicolon as colon
+nmap ; :
+vmap ; :
+
+" Resize split windows
+noremap + <C-w>+
+noremap - <C-w>-
+noremap ( <C-w><
+noremap ) <C-w>>
+
 " Use 'very magic' regex mode (help \v)
 nnoremap / /\v
 vnoremap / /\v
+
+" Turn off match highlights
+map <Enter> :noh<CR>
 
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
