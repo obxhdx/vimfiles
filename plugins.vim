@@ -39,6 +39,12 @@ filetype plugin indent on " Required
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_user_command = 'find %s -type f -not -path "*/.*"'
+" if executable('ag')
+"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'ag %s -l --nocolor -g ""']
+" else
+  " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f -not -path "*/.*"']
+" endif
 
 " Syntastic
 let g:syntastic_ruby_checkers = ['rubylint']
@@ -54,7 +60,7 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
-map <leader>p :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
 " Rainbow parentheses
@@ -70,19 +76,9 @@ let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " Bind K to grep word under cursor
-  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-  " Define a new command 'Ag' to search for the provided text
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-endif
+set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " Bind K to search word under cursor
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " Ag command to search provided text
 
 " Startify
 let g:ctrlp_reuse_window  = 'startify'
