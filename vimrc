@@ -102,6 +102,7 @@ if $TERM == 'xterm-256color'
   color badwolf
 
   hi markdownError ctermbg=NONE ctermfg=red
+  hi Search ctermbg=45
 
   if has('unix')
     hi Normal ctermbg=NONE
