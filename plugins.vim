@@ -11,7 +11,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 
 " Editing helpers
@@ -39,18 +38,12 @@ filetype plugin indent on " Required
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_user_command = 'find %s -type f -not -path "*/.*"'
 " if executable('ag')
 "   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'ag %s -l --nocolor -g ""']
 " else
   " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f -not -path "*/.*"']
 " endif
-
-" Syntastic
-let g:syntastic_ruby_checkers = ['rubylint']
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['ruby'],
-                           \ 'passive_filetypes': [] }
+let g:ctrlp_user_command = 'find %s -type f -not -path "*/.*"'
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
