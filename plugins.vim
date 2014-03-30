@@ -31,6 +31,7 @@ Bundle 'sheerun/vim-polyglot'
 
 " Colors
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'ronny/birds-of-paradise.vim'
 Bundle 'sjl/badwolf'
 Bundle 'tomasr/molokai'
 
