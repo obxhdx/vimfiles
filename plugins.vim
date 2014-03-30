@@ -61,7 +61,6 @@ map <leader>f :NERDTreeFind<CR>
 au BufEnter * RainbowParenthesesLoadRound
 au BufEnter * RainbowParenthesesLoadSquare
 au BufEnter * RainbowParenthesesLoadBraces
-au BufEnter * RainbowParenthesesLoadChevrons
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
