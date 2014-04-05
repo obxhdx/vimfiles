@@ -23,7 +23,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'tmhedberg/matchit'
-Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 
 " Syntax files
