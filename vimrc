@@ -53,9 +53,8 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
-" Better leader
-let mapleader = "\<Space>"
-nmap \ <Space>
+" Space as leader
+let mapleader = " "
 
 " Copy/Paste
 vmap <Leader>y "+y
@@ -67,7 +66,7 @@ nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :q<CR>
 
 " Change path to current file path
-nnoremap <leader>cd :lcd %:p:h<CR>
+nnoremap <Leader>cd :lcd %:p:h<CR>
 
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>

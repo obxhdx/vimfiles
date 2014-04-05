@@ -53,8 +53,8 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
-map <leader>n :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind<CR>
 
 " Rainbow parentheses
 au BufEnter * RainbowParenthesesLoadRound
