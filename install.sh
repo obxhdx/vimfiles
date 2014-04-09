@@ -76,7 +76,7 @@ else
 fi
 
 # Install bundles
-vim -u $VIMFILES_LOCAL_DIR/plugins.vim +BundleInstall +qall
+vim -N -u $VIMFILES_LOCAL_DIR/plugins.vim +BundleInstall +qa
 ok_msg 'Bundles installed'
 
 # Uninstall script
