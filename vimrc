@@ -94,6 +94,10 @@ vnoremap / /\v
 " Turn off match highlights
 map <Enter> :noh<CR>
 
+" Find/replace
+noremap <Leader>r :%s/\C<c-r>=expand("<cword>")<cr>/<c-r>=expand("<cword>")<cr>/gc<left><left><left>
+noremap <Leader><Leader>r :%s/\C\<<c-r>=expand("<cword>")<cr>\>//gc<left><left><left>
+
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
