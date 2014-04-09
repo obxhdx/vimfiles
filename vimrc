@@ -73,6 +73,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 " Disable F1
 map <F1> <nop>
+imap <F1> <nop>
 
 " Better ESC
 imap jk <ESC>
@@ -92,7 +93,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Turn off match highlights
-map <Enter> :noh<CR>
+map <CR> :noh<CR>
 
 " Find/replace
 noremap <Leader>r :%s/\C<c-r>=expand("<cword>")<cr>/<c-r>=expand("<cword>")<cr>/gc<left><left><left>
