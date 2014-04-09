@@ -57,9 +57,11 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
 " Rainbow parentheses
-au BufEnter * RainbowParenthesesLoadRound
-au BufEnter * RainbowParenthesesLoadSquare
-au BufEnter * RainbowParenthesesLoadBraces
+if exists('g:rbpt_loadcmd_toggle')
+  au BufEnter * RainbowParenthesesLoadRound
+  au BufEnter * RainbowParenthesesLoadSquare
+  au BufEnter * RainbowParenthesesLoadBraces
+endif
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
