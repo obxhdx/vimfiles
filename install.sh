@@ -30,37 +30,32 @@ function ok_msg {
   printf "$COL_GREEN$check_mark $1$COL_RESET\n" >&2
 }
 
-# Clone vimfiles repo
-VIMFILES_PATH="$PWD/vimfiles"
-if ! [[ -d $VIMFILES_PATH ]]; then
-  git clone --recursive https://github.com/obxhdx/vimfiles
-  ok_msg "Vimfiles repo cloned at $VIMFILES_PATH"
-else
-  warn_msg "Folder $VIMFILES_PATH already exists"
-fi
+VIMFILES_LOCAL_DIR="$PWD/vimfiles"
+VIMFILES_GIT_REPO="https://github.com/obxhdx/vimfiles"
 
-# # Clone vundle repo
-# path="$HOME/.vim/bundle/vundle"
-# if ! [[ -d $path ]]; then
-#   mkdir -p $HOME/.vim/bundle/vundle
-#   git clone https://github.com/gmarik/vundle $HOME/.vim/bundle/vundle
-#   ok_msg "Vimfiles repo cloned at $path"
-# else
-#   warn_msg "Folder $path already exists"
-# fi
+# Clone vimfiles repo
+if [[ -d $VIMFILES_LOCAL_DIR ]]; then
+  warn_msg "Folder $VIMFILES_LOCAL_DIR already exists"
+elif [[ `git config --get remote.origin.url` == $VIMFILES_GIT_REPO ]]; then
+  VIMFILES_LOCAL_DIR="$PWD"
+  warn_msg "Current dir is already a copy of $VIMFILES_GIT_REPO"
+else
+  git clone --recursive $VIMFILES_GIT_REPO
+  ok_msg "Vimfiles repo cloned at $VIMFILES_LOCAL_DIR"
+fi
 
 # Symlink repo to .vim
 target="$HOME/.vim"
 if ! [[ -h $target ]]; then
-  ln -s $VIMFILES_PATH $target
-  ok_msg "$VIMFILES_PATH symlinked to $target"
+  ln -s $VIMFILES_LOCAL_DIR $target
+  ok_msg "$VIMFILES_LOCAL_DIR symlinked to $target"
 else
   warn_msg "Symlink $target already exists"
 fi
 
 # Symlink *rc files
 for file in 'vimrc' 'gvimrc'; do
-  origin="$VIMFILES_PATH/$file"
+  origin="$VIMFILES_LOCAL_DIR/$file"
   target="$HOME/.$file"
 
   if ! [[ -h $target ]]; then
@@ -81,7 +76,7 @@ else
 fi
 
 # Install bundles
-vim -u $VIMFILES_PATH/plugins.vim +BundleInstall +qall
+vim -u $VIMFILES_LOCAL_DIR/plugins.vim +BundleInstall +qall
 ok_msg 'Bundles installed'
 
 # Uninstall script
