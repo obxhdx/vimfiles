@@ -1,3 +1,5 @@
+set nocompatible
+
 filetype off " Required
 
 " Load Vundle
