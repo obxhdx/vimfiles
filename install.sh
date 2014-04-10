@@ -35,9 +35,11 @@ VIMFILES_GIT_REPO="https://github.com/obxhdx/vimfiles"
 
 # Clone vimfiles repo
 if [[ -d $VIMFILES_LOCAL_DIR ]]; then
-  warn_msg "Folder $VIMFILES_LOCAL_DIR already exists"
+  warn_msg "Folder $VIMFILES_LOCAL_DIR already exists. Exiting..."
+  exit
 elif [[ `git config --get remote.origin.url` == $VIMFILES_GIT_REPO ]]; then
   VIMFILES_LOCAL_DIR="$PWD"
+  git submodule update bundle/vundle
   warn_msg "Current dir is already a copy of $VIMFILES_GIT_REPO"
 else
   git clone --recursive $VIMFILES_GIT_REPO
