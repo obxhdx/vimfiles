@@ -48,7 +48,7 @@ fi
 
 # Symlink repo to .vim
 target="$HOME/.vim"
-if ! [[ -h $target ]]; then
+if ! [[ -e $target ]]; then
   ln -s $VIMFILES_LOCAL_DIR $target
   ok_msg "$VIMFILES_LOCAL_DIR symlinked to $target"
 else
@@ -60,7 +60,7 @@ for file in 'vimrc' 'gvimrc'; do
   origin="$VIMFILES_LOCAL_DIR/$file"
   target="$HOME/.$file"
 
-  if ! [[ -h $target ]]; then
+  if ! [[ -e $target ]]; then
     ln -s $origin $target
     ok_msg "$origin symlinked to $target"
   else
