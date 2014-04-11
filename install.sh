@@ -38,9 +38,10 @@ if [[ -d $VIMFILES_LOCAL_DIR ]]; then
   warn_msg "Folder $VIMFILES_LOCAL_DIR already exists. Exiting..."
   exit
 elif [[ `git config --get remote.origin.url` == $VIMFILES_GIT_REPO ]]; then
-  VIMFILES_LOCAL_DIR="$PWD"
-  git submodule update bundle/vundle
   warn_msg "Current dir is already a copy of $VIMFILES_GIT_REPO"
+  git submodule init > /dev/null 2>&1
+  git submodule update bundle/vundle
+  VIMFILES_LOCAL_DIR="$PWD"
 else
   git clone --recursive $VIMFILES_GIT_REPO
   ok_msg "Vimfiles repo cloned at $VIMFILES_LOCAL_DIR"
