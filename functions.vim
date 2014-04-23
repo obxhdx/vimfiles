@@ -42,6 +42,22 @@ endfunc
 command! WordProcessingToggle call s:WordProcessingToggle()
 " }}}
 
+" True fullscreen for GVim on Linux {{{
+if has('unix') && has('gui_running')
+  function! ToggleFullscreen()
+    if !exists('g:fullscreen') || g:fullscreen == 0
+      let g:fullscreen = 1
+      let l:action = 'add'
+    else
+      let g:fullscreen = 0
+      let l:action = 'remove'
+    endif
+    exec '!wmctrl -r :ACTIVE: -b ' . l:action . ',fullscreen'
+  endfunc
+  nmap <F11> :call ToggleFullscreen()<CR>
+endif
+" }}}
+
 " Close all hidden buffers {{{
 function! s:CloseHiddenBuffers()
   let open_buffers = []
