@@ -78,10 +78,6 @@ imap <F1> <nop>
 " Better ESC
 imap jk <ESC>
 
-" Use semicolon as colon
-nmap ; :
-vmap ; :
-
 " Resize split windows
 noremap + <C-w>+
 noremap - <C-w>-
