@@ -59,6 +59,8 @@ let mapleader = " "
 " Copy/Paste
 vmap <Leader>y "+y
 nmap <Leader>p "+p
+vmap <Leader>Y "+Y
+nmap <Leader>P "+P
 
 " Faster way to save/quit
 nnoremap <Leader>w :w<CR>
