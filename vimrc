@@ -104,19 +104,17 @@ source $HOME/.vim/plugins.vim
 " Syntax highlighting
 syntax on
 
-if $TERM == 'xterm-256color'
-  set t_Co=256
-  set background=dark
-  color badwolf
+set t_Co=256
+set background=dark
+color badwolf
 
-  hi markdownError ctermbg=NONE ctermfg=red
-  hi Search ctermbg=45
-  hi htmlTag ctermbg=NONE
-  hi htmlEndTag ctermbg=NONE
+hi markdownError ctermbg=NONE ctermfg=red
+hi Search ctermbg=45
+hi htmlTag ctermbg=NONE
+hi htmlEndTag ctermbg=NONE
 
-  if has('unix')
-    hi Normal ctermbg=NONE
-    hi LineNr ctermbg=NONE
-    hi NonText ctermbg=NONE
-  end
+if has('unix')
+  hi Normal ctermbg=NONE
+  hi LineNr ctermbg=NONE
+  hi NonText ctermbg=NONE
 end
