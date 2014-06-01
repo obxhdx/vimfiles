@@ -1,5 +1,14 @@
-" Sorts CSS file (Taken from http://bit.ly/znHbfG) {{{
-au FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" Sorts CSS file (http://bit.ly/znHbfG) {{{
+autocmd FileType css command! SortCSSBraceContents :g#\({\n\)\@<=#.,/}/sort
+" }}}
+
+" Link buffer being displayed with NERDTree {{{
+function! ShowBufferOnNERDTree()
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) > 0
+    exec 'NERDTreeFind'
+  endif
+endfunc
+autocmd BufWinEnter * call ShowBufferOnNERDTree()
 " }}}
 
 " Displays right hand scrollbar only when needed {{{
@@ -12,26 +21,10 @@ function! HandleScrollbars()
 endfunc
 " }}}
 
-" Returns '\s' if trailing white space is detected {{{
-function! StatuslineTrailingSpaceWarning()
-  if !exists('b:statusline_trailing_space_warning')
-    if search('\s\+$', 'nw') != 0
-      let b:statusline_trailing_space_warning = '\s'
-    else
-      let b:statusline_trailing_space_warning = ''
-    endif
-  endif
-  return b:statusline_trailing_space_warning
-endfunc
-
-au CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
-" }}}
-
 " Returns number of (chars|lines|blocks) selected {{{
 function! VisualSelectionSize()
   if mode() == 'v'
-    " Exit and re-enter visual mode, because the marks
-    " ('< and '>) have not been updated yet.
+    " Exit and re-enter visual mode, because the marks ('< and '>) have not been updated yet
     exe "normal \<ESC>gv"
     if line(''<') != line("'>")
       return (line("'>") - line("'<") + 1) . ' lines'
@@ -50,46 +43,27 @@ function! VisualSelectionSize()
 endfunc
 " }}}
 
-" Toggles fullscreen mode {{{
-function! ToggleFullscreen()
-  if executable('wmctrl')
-    exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
-  else
-    echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
+" A few tweaks for molokai {{{
+function! FixMolokai()
+  if g:colors_name == 'molokai'
+    " General
+    hi Define guifg=#F92672
+    hi Special gui=none
+    hi Type gui=italic
+
+    " Ruby highlighting
+    hi rubyClass guifg=#F92672 gui=none
+    hi rubyControl guifg=#F92672 gui=none
+    hi rubyRailsARMethod guifg=#A6E22E
+    hi rubyRailsMethod guifg=#A4E7F4
+    hi link rubyRailsControllerMethod rubyRailsARMethod
+
+    " Markdown highlighting
+    hi markdownH2 guifg=pink
+    hi link markdownH3 markdownH2
+    hi link markdownH4 markdownH2
+    hi link markdownH5 markdownH2
+    hi link markdownH6 markdownH2
   endif
 endfunc
-
-nmap <silent> <F11> :call ToggleFullscreen()<CR>
-" }}}
-
-" Do not show invisible chars when editing files with no ft {{{
-function! HandleUnprintableChars()
-  if strlen(&ft) == 0
-    set nolist
-  else
-    set list
-  endif
-endfunc
-" au BufRead,BufWritePost,VimEnter * call HandleUnprintableChars()
-" }}}
-
-" Return number of open buffers {{{
-function! CountListedBuffers()
-  let cnt = 0
-  for num in range(1, bufnr('$'))
-    if buflisted(num) && !empty(bufname(num))
-      let cnt += 1
-    endif
-  endfor
-  return cnt
-endfunc
-" }}}
-
-" Link buffer being displayed with NERDTree {{{
-function! ShowBufferOnNERDTree()
-  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) > 0
-    exec 'NERDTreeFind'
-  endif
-endfunc
-au BufWinEnter * call ShowBufferOnNERDTree()
 " }}}

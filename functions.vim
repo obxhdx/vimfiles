@@ -1,6 +1,6 @@
 " Remove trailing spaces {{{
 command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
-au FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
+autocmd FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
@@ -13,49 +13,30 @@ endfunc
 nmap <leader>sg :call <SID>SynStack()<CR>
 " }}}
 
-" Toggles JavaScript mode (tabstop and related stuff) {{{
-function! s:JavascriptModeToggle()
-  if !exists('b:javascriptmode') || b:javascriptmode == 'false'
-    let b:javascriptmode = 'true'
-    setlocal ts=4 sw=4 sts=4 et
+" True fullscreen for GVim on Linux {{{
+function! ToggleFullscreen()
+  if executable('wmctrl')
+    exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
   else
-    let b:javascriptmode = 'false'
-    setlocal ts=2 sw=2 sts=2 et
+    echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
   endif
 endfunc
-command! JavascriptModeToggle call s:JavascriptModeToggle()
-au BufRead,BufNewFile *.js JavascriptModeToggle
+nmap <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Toggles a few options for better long text editing {{{
-function! s:WordProcessingToggle()
-  if !exists('b:wordprocessing') || b:wordprocessing == 'false'
-    let b:wordprocessing = 'true'
+function! s:TextEditorMode()
+  if !exists('b:texted_mode') || b:texted_mode == 'false'
+    let b:texted_mode = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
-    echo 'Word processing mode enabled.'
+    echo 'Text editor mode enabled.'
   else
-    let b:wordprocessing = 'false'
+    let b:texted_mode = 'false'
     setlocal tw=0 fo=tcq nowrap nolbr nolist nospell
-    echo 'Word processing mode disabled.'
+    echo 'Text editor mode disabled.'
   endif
 endfunc
-command! WordProcessingToggle call s:WordProcessingToggle()
-" }}}
-
-" True fullscreen for GVim on Linux {{{
-if has('unix') && has('gui_running')
-  function! ToggleFullscreen()
-    if !exists('g:fullscreen') || g:fullscreen == 0
-      let g:fullscreen = 1
-      let l:action = 'add'
-    else
-      let g:fullscreen = 0
-      let l:action = 'remove'
-    endif
-    exec '!wmctrl -r :ACTIVE: -b ' . l:action . ',fullscreen'
-  endfunc
-  nmap <F11> :call ToggleFullscreen()<CR>
-endif
+command! TExtEditorMode call s:TextEditorMode()
 " }}}
 
 " Close all hidden buffers {{{
@@ -73,34 +54,6 @@ function! s:CloseHiddenBuffers()
   endfor
 endfunc
 command! CloseHiddenBuffers call s:CloseHiddenBuffers()
-" }}}
-
-" Toggles overlength highlighting {{{
-highlight ColorColumn ctermfg=9
-highlight OverLength ctermbg=9 ctermfg=9 ctermbg=none
-
-function! s:OverlengthToggle()
-  if !exists('b:overlength') || b:overlength == 'false'
-    call OverlengthToggle(1)
-    echo 'Overlength highlighting enabled.'
-  else
-    call OverlengthToggle(0)
-    echo 'Overlength highlighting disabled.'
-  endif
-endfunc
-command! OverlengthToggle call s:OverlengthToggle()
-
-function! OverlengthToggle(enable)
-  if (a:enable)
-    let b:overlength = 'true'
-    set colorcolumn=80
-    match OverLength /\%>80v.\+/
-  else
-    let b:overlength = 'false'
-    set colorcolumn=
-    match OverLength //
-  endif
-endfunc
 " }}}
 
 " Dynamically sets wildignore list {{{
@@ -121,51 +74,7 @@ function! SetWildIgnore(ignored_strings_file)
     echo "Can't open file " . a:ignored_strings_file
   endif
 endfunc
-au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
-" }}}
-
-" Toggles minimalist mode {{{
-function! s:Minimal()
-  if !exists('b:minimalmode') || b:minimalmode == 'false'
-    let b:minimalmode = 'true'
-    setlocal nonu
-    let g:Powerline_theme = 'minimal'
-    silent! PowerlineReloadColorscheme
-    silent! PowerlineClearCache
-  else
-    let b:minimalmode = 'false'
-    setlocal nu
-    let g:Powerline_theme = 'default'
-    silent! PowerlineReloadColorscheme
-    silent! PowerlineClearCache
-  end
-endfunc
-command! Minimal call s:Minimal()
-" }}}
-
-" A few tweaks for molokai {{{
-function! FixMolokai()
-  if g:colors_name == 'molokai'
-    " General
-    hi Define guifg=#F92672
-    hi Special gui=none
-    hi Type gui=italic
-
-    " Ruby highlighting
-    hi rubyClass guifg=#F92672 gui=none
-    hi rubyControl guifg=#F92672 gui=none
-    hi rubyRailsARMethod guifg=#A6E22E
-    hi rubyRailsMethod guifg=#A4E7F4
-    hi link rubyRailsControllerMethod rubyRailsARMethod
-
-    " Markdown highlighting
-    hi markdownH2 guifg=pink
-    hi link markdownH3 markdownH2
-    hi link markdownH4 markdownH2
-    hi link markdownH5 markdownH2
-    hi link markdownH6 markdownH2
-  endif
-endfunc
+autocmd VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
 
 " Function written by Steve Hall on vim@vim.org
