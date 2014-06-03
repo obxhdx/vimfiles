@@ -56,10 +56,18 @@ augroup END
 " Space as leader
 let mapleader = " "
 
-" Copy/Paste
+" Yank/Paste from/to clipboard
 vmap <Leader>y "+y
+vmap <Leader>p "+p
+
+" yank with motion
+nmap <Leader>y "+y
+" yank line
+nmap <Leader>Y "+Y
+
+" paste after cursor
 nmap <Leader>p "+p
-vmap <Leader>Y "+Y
+" paste before cursor
 nmap <Leader>P "+P
 
 " Faster way to save/quit
