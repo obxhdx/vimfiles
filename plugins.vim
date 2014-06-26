@@ -1,39 +1,42 @@
-filetype off " Required
+filetype off
 
-" Load Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
 
 " Utilities
-Bundle 'gmarik/vundle'
-Bundle 'mhinz/vim-startify'
-Bundle 'obxhdx/vim-powerline'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
+Plugin 'mhinz/vim-startify'
+Plugin 'obxhdx/vim-powerline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
 
 " Editing helpers
-Bundle 'Raimondi/delimitMate'
-Bundle 'SirVer/ultisnips'
-Bundle 'gregsexton/MatchTag'
-Bundle 'honza/vim-snippets'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'tmhedberg/matchit'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/ultisnips'
+Plugin 'gregsexton/MatchTag'
+Plugin 'honza/vim-snippets'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 
 " Syntax files
-Bundle 'sheerun/vim-polyglot'
+Plugin 'sheerun/vim-polyglot'
 
 " Colors
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'ronny/birds-of-paradise.vim'
-Bundle 'sjl/badwolf'
-Bundle 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ronny/birds-of-paradise.vim'
+Plugin 'sjl/badwolf'
+Plugin 'tomasr/molokai'
 
-filetype plugin indent on " Required
+call vundle#end()
+filetype plugin indent on
+
+" Customizations start here...
 
 " FZF
 set rtp+=~/.fzf
