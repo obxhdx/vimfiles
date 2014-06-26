@@ -61,11 +61,6 @@ let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" The Silver Searcher
-set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " Bind K to search word under cursor
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " Ag command to search provided text
-
 " Startify
 let g:startify_skiplist_server = [ 'GVIM' ]
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
