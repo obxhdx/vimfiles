@@ -43,16 +43,6 @@ set autoindent " Copy the indentation from the previous line, when starting a ne
 set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 set nowrap " Disable line wrapping
 
-au BufRead,BufNewFile *.erb set ft=eruby.html
-au BufRead,BufNewFile *.php set ft=php.html
-
-" Highlight current line only on active buffer
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
 " Space as leader
 let mapleader = " "
 
@@ -116,13 +106,29 @@ set t_Co=256
 set background=dark
 color badwolf
 
-hi markdownError ctermbg=NONE ctermfg=red
+hi MatchParen ctermfg=235 ctermbg=2
 hi Search ctermbg=45
-hi htmlTag ctermbg=NONE
 hi htmlEndTag ctermbg=NONE
+hi htmlTag ctermbg=NONE
+hi markdownError ctermbg=NONE ctermfg=red
 
 if has('unix')
-  hi Normal ctermbg=NONE
   hi LineNr ctermbg=NONE
   hi NonText ctermbg=NONE
+  hi Normal ctermbg=NONE
 end
+
+" Some small fixes by file type
+augroup highlight
+  au!
+  au BufRead,BufNewFile *.erb set ft=eruby.html
+  au BufRead,BufNewFile *.php set ft=php.html
+  au BufRead,BufNewFile *.md set commentstring=<!--%s-->
+augroup END
+
+" Highlight current line only on active buffer
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
