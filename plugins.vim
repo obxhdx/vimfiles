@@ -37,7 +37,7 @@ filetype plugin indent on " Required
 
 " FZF
 set rtp+=~/.fzf
-map <Leader>p :FZF<CR>
+map <Leader>f :FZF<CR>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -47,8 +47,8 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>f :NERDTreeFind<CR>
+map <Leader>nt :NERDTreeToggle<CR>
+map <Leader>nf :NERDTreeFind<CR>
 
 " Rainbow parentheses
 au BufEnter * RainbowParenthesesLoadRound
