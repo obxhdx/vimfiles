@@ -6,7 +6,6 @@ call vundle#rc()
 
 " Utilities
 Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'obxhdx/vim-powerline'
 Bundle 'scrooloose/nerdtree'
@@ -36,14 +35,9 @@ Bundle 'tomasr/molokai'
 
 filetype plugin indent on " Required
 
-" CtrlP
-let g:ctrlp_working_path_mode = 'a'
-" if executable('ag')
-"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'ag %s -l --nocolor -g ""']
-" else
-  " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f -not -path "*/.*"']
-" endif
-let g:ctrlp_user_command = 'find %s -type f -not -path "*/.*"'
+" FZF
+set rtp+=~/.fzf
+map <Leader>p :FZF<CR>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -73,7 +67,6 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR> " Bind K to search word under curs
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw! " Ag command to search provided text
 
 " Startify
-let g:ctrlp_reuse_window  = 'startify'
 let g:startify_skiplist_server = [ 'GVIM' ]
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
 hi StartifyFooter  ctermfg=111 guifg=#87afff
