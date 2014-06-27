@@ -77,29 +77,6 @@ endfunc
 autocmd VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
 
-" Use Tab to trigger completion and snippets {{{
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<Tab>"
-  endif
-
-  if pumvisible() > 0
-    return "\<C-p>"
-  endif
-
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res > 0
-    return ""
-  endif
-
-  return "\<C-p>"
-endfunction
-
-inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-N>
-" }}}
-
 " Function written by Steve Hall on vim@vim.org
 " See :help attr-list for possible attrs to pass
 function! HighlightRemoveAttr(attr)

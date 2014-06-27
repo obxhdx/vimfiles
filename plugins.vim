@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Utilities
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-startify'
 Plugin 'obxhdx/vim-powerline'
 Plugin 'scrooloose/nerdtree'
@@ -43,9 +44,14 @@ set rtp+=~/.fzf
 map <Leader>f :FZF<CR>
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsExpandTrigger='<Tab>'
+let g:UltiSnipsJumpForwardTrigger='<Tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
@@ -54,9 +60,12 @@ map <Leader>nt :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 
 " Rainbow parentheses
-au BufEnter * RainbowParenthesesLoadRound
-au BufEnter * RainbowParenthesesLoadSquare
-au BufEnter * RainbowParenthesesLoadBraces
+augroup RainbowParentheses
+  au!
+  au BufEnter * RainbowParenthesesLoadRound
+  au BufEnter * RainbowParenthesesLoadSquare
+  au BufEnter * RainbowParenthesesLoadBraces
+augroup END
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
