@@ -119,7 +119,7 @@ if has('unix')
 end
 
 " Some small fixes by file type
-augroup highlight
+augroup Highlight
   au!
   au BufRead,BufNewFile *.erb set ft=eruby.html
   au BufRead,BufNewFile *.php set ft=php.html
@@ -131,4 +131,12 @@ augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
+augroup END
+
+" Rainbow parentheses
+augroup RainbowParentheses
+  au!
+  au BufEnter,FileType * RainbowParenthesesLoadRound
+  au BufEnter,FileType * RainbowParenthesesLoadSquare
+  au BufEnter,FileType * RainbowParenthesesLoadBraces
 augroup END

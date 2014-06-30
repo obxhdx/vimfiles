@@ -59,14 +59,6 @@ let NERDTreeQuitOnOpen = 1
 map <Leader>nt :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 
-" Rainbow parentheses
-augroup RainbowParentheses
-  au!
-  au BufEnter * RainbowParenthesesLoadRound
-  au BufEnter * RainbowParenthesesLoadSquare
-  au BufEnter * RainbowParenthesesLoadBraces
-augroup END
-
 " Powerline
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
