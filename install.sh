@@ -39,12 +39,17 @@ if [[ -d $VIMFILES_LOCAL_DIR ]]; then
   exit
 elif [[ `git config --get remote.origin.url` == $VIMFILES_GIT_REPO ]]; then
   warn_msg "Current dir is already a copy of $VIMFILES_GIT_REPO"
-  git submodule init > /dev/null 2>&1
-  git submodule update bundle/vundle
   VIMFILES_LOCAL_DIR="$PWD"
 else
-  git clone --recursive $VIMFILES_GIT_REPO
+  git clone $VIMFILES_GIT_REPO
   ok_msg "Vimfiles repo cloned at $VIMFILES_LOCAL_DIR"
+fi
+
+# Clone Vundle repo
+vundle_dir="$VIMFILES_LOCAL_DIR/bundle/Vundle.vim"
+if ! [[ -d $vundle_dir ]]; then
+  git clone "https://github.com/gmarik/Vundle.vim" $vundle_dir
+  ok_msg "Vundle repo cloned at $vundle_dir"
 fi
 
 # Symlink repo to .vim
@@ -79,7 +84,7 @@ else
 fi
 
 # Install bundles
-vim -N -u $VIMFILES_LOCAL_DIR/plugins.vim +BundleInstall +qa
+vim -N -u $VIMFILES_LOCAL_DIR/plugins.vim +PluginInstall +qa
 ok_msg 'Bundles installed'
 
 # Uninstall script
