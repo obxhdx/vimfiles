@@ -17,6 +17,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'gregsexton/MatchTag'
 Plugin 'honza/vim-snippets'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
@@ -83,3 +85,29 @@ let g:startify_custom_header = [
       \ '',
       \ '',
       \ ]
+
+" Limelight
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Goyo
+function! GoyoBefore()
+  silent !tmux set status off
+  set noshowmode
+  set noshowcmd
+  set spell spl=en,pt
+  Limelight
+endfunction
+
+function! GoyoAfter()
+  silent !tmux set status on
+  set showmode
+  set showcmd
+  set nospell
+  Limelight!
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+
+" Map Goyo toggle to <Leader> + g
+nnoremap <Leader>g :Goyo<CR>
