@@ -95,6 +95,9 @@ map <CR> :noh<CR>
 noremap <Leader>r :%s/\C<c-r>=expand("<cword>")<cr>/<c-r>=expand("<cword>")<cr>/gc<left><left><left>
 noremap <Leader><Leader>r :%s/\C\<<c-r>=expand("<cword>")<cr>\>//gc<left><left><left>
 
+" Select last pasted text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
