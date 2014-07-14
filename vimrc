@@ -101,6 +101,7 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
+source $HOME/.vim/abbreviations.vim
 
 " Syntax highlighting
 syntax on
