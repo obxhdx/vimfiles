@@ -3,34 +3,35 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Tools
 Plugin 'gmarik/Vundle.vim'
-
-" Utilities
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'mhinz/vim-startify'
 Plugin 'obxhdx/vim-powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 
-" Editing helpers
+" Code completion
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
-Plugin 'gregsexton/MatchTag'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'honza/vim-snippets'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 
-" Syntax files
-Plugin 'sheerun/vim-polyglot'
+" Text editing helpers
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'nelstrom/vim-visual-star-search'
 
-" Colors
+" Code highlighting
+Plugin 'sheerun/vim-polyglot'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'gregsexton/MatchTag'
+
+" Colors schemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ronny/birds-of-paradise.vim'
 Plugin 'sjl/badwolf'
