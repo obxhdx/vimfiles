@@ -103,24 +103,8 @@ source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
 source $HOME/.vim/abbreviations.vim
 
-" Syntax highlighting
-syntax on
-
-set t_Co=256
-set background=dark
-color badwolf
-
-hi MatchParen ctermfg=235 ctermbg=2
-hi Search ctermbg=45
-hi htmlEndTag ctermbg=NONE
-hi htmlTag ctermbg=NONE
-hi markdownError ctermbg=NONE ctermfg=red
-
-if has('unix')
-  hi LineNr ctermbg=NONE
-  hi NonText ctermbg=NONE
-  hi Normal ctermbg=NONE
-end
+" Some predefined coloring tweaks
+au ColorScheme * call ColoringTweaks()
 
 " Some small fixes by file type
 augroup Highlight
@@ -144,3 +128,9 @@ augroup RainbowParentheses
   au BufEnter,FileType * RainbowParenthesesLoadSquare
   au BufEnter,FileType * RainbowParenthesesLoadBraces
 augroup END
+
+" Syntax highlighting
+syntax on
+set t_Co=256
+set background=dark
+color badwolf

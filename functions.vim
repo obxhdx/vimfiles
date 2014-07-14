@@ -1,3 +1,19 @@
+" Some predefined coloring tweaks {{{
+fun ColoringTweaks()
+  highlight MatchParen ctermfg=235 ctermbg=2
+  highlight Search ctermbg=45
+  highlight markdownError ctermbg=NONE ctermfg=red
+
+  if !has('gui_running')
+    highlight LineNr ctermbg=NONE
+    highlight NonText ctermbg=NONE
+    highlight Normal ctermbg=NONE
+    highlight htmlEndTag ctermbg=NONE
+    highlight htmlTag ctermbg=NONE
+  end
+endf
+" }}}
+
 " Remove trailing spaces {{{
 command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
 autocmd FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
@@ -36,7 +52,7 @@ function! s:TextEditorMode()
     echo 'Text editor mode disabled.'
   endif
 endfunc
-command! TExtEditorMode call s:TextEditorMode()
+command! TextEditorMode call s:TextEditorMode()
 " }}}
 
 " Close all hidden buffers {{{

@@ -92,23 +92,21 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
 " Goyo
-function! GoyoBefore()
-  silent !tmux set status off
-  set noshowmode
-  set noshowcmd
-  set spell spl=en,pt
+fun! GoyoBefore()
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+  TextEditorMode
   Limelight
-endfunction
+endf
 
-function! GoyoAfter()
-  silent !tmux set status on
-  set showmode
-  set showcmd
-  set nospell
+fun! GoyoAfter()
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+  TextEditorMode
   Limelight!
-endfunction
+endf
 
 let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-
-" Map Goyo toggle to <Leader> + g
 nnoremap <Leader>g :Goyo<CR>
