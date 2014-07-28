@@ -5,7 +5,6 @@ call vundle#begin()
 
 " Tools
 Plugin 'gmarik/Vundle.vim'
-Plugin 'mhinz/vim-startify'
 Plugin 'obxhdx/vim-powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
