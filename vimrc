@@ -111,6 +111,7 @@ augroup Highlight
   au!
   au BufRead,BufNewFile *.erb set ft=eruby.html
   au BufRead,BufNewFile *.php set ft=php.html
+  au BufNewFile,BufRead *.gradle set ft=groovy
   au BufRead,BufNewFile *.md set commentstring=<!--%s-->
 augroup END
 
