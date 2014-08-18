@@ -95,7 +95,7 @@ fun! GoyoBefore()
   if exists('$TMUX')
     silent !tmux set status off
   endif
-  TextEditorMode
+  call TextEditorMode()
   Limelight
 endf
 
@@ -103,7 +103,7 @@ fun! GoyoAfter()
   if exists('$TMUX')
     silent !tmux set status on
   endif
-  TextEditorMode
+  call TextEditorMode()
   Limelight!
 endf
 

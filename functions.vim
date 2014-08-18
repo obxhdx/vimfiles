@@ -41,7 +41,7 @@ nmap <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Toggles a few options for better long text editing {{{
-function! s:TextEditorMode()
+function! TextEditorMode()
   if !exists('b:texted_mode') || b:texted_mode == 'false'
     let b:texted_mode = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
@@ -52,7 +52,7 @@ function! s:TextEditorMode()
     echo 'Text editor mode disabled.'
   endif
 endfunc
-command! TextEditorMode call s:TextEditorMode()
+nmap <F10> :call TextEditorMode()<CR>
 " }}}
 
 " Close all hidden buffers {{{
