@@ -1,5 +1,5 @@
 " Some predefined coloring tweaks {{{
-fun ColoringTweaks()
+fun! ColoringTweaks()
   highlight MatchParen ctermfg=235 ctermbg=2
   highlight Search ctermbg=45
   highlight markdownError ctermbg=NONE ctermfg=red
@@ -15,33 +15,33 @@ endf
 " }}}
 
 " Remove trailing spaces {{{
-command! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
-autocmd FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
+com! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
+au FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
-function! <SID>SynStack()
+func! <SID>SynStack()
   if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+endf
 nmap <leader>sg :call <SID>SynStack()<CR>
 " }}}
 
 " True fullscreen for GVim on Linux {{{
-function! ToggleFullscreen()
+func! ToggleFullscreen()
   if executable('wmctrl')
     exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
   else
     echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
   endif
-endfunc
+endf
 nmap <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Toggles a few options for better long text editing {{{
-function! TextEditorMode()
+func! TextEditorMode()
   if !exists('b:texted_mode') || b:texted_mode == 'false'
     let b:texted_mode = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
@@ -51,12 +51,12 @@ function! TextEditorMode()
     setlocal tw=0 fo=tcq nowrap nolbr nolist nospell
     echo 'Text editor mode disabled.'
   endif
-endfunc
+endf
 nmap <F10> :call TextEditorMode()<CR>
 " }}}
 
 " Close all hidden buffers {{{
-function! s:CloseHiddenBuffers()
+func! s:CloseHiddenBuffers()
   let open_buffers = []
 
   for i in range(tabpagenr('$'))
@@ -68,12 +68,12 @@ function! s:CloseHiddenBuffers()
       exec 'bdelete '.num
     endif
   endfor
-endfunc
-command! CloseHiddenBuffers call s:CloseHiddenBuffers()
+endf
+com! CloseHiddenBuffers call s:CloseHiddenBuffers()
 " }}}
 
 " Dynamically sets wildignore list {{{
-function! SetWildIgnore(ignored_strings_file)
+func! SetWildIgnore(ignored_strings_file)
   if filereadable(a:ignored_strings_file)
     let igstring = ''
     for oline in readfile(a:ignored_strings_file)
@@ -89,13 +89,13 @@ function! SetWildIgnore(ignored_strings_file)
   else
     echo "Can't open file " . a:ignored_strings_file
   endif
-endfunc
-autocmd VimEnter * call SetWildIgnore($HOME.'/.wildignore')
+endf
+au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
 
 " Function written by Steve Hall on vim@vim.org
 " See :help attr-list for possible attrs to pass
-function! HighlightRemoveAttr(attr)
+func! HighlightRemoveAttr(attr)
   " save selection registers
   new
   silent! put
@@ -113,11 +113,11 @@ function! HighlightRemoveAttr(attr)
   "   http://vim.sourceforge.net/scripts/script.php?script_id=85)
   " delete empty,'links' and 'cleared' lines
   silent! g/^$\| links \| cleared/d
-  " join any lines wrapped by the highlight command output
+  " join any lines wrapped by the highlight com output
   silent! %s/\n \+/ /
   " remove the xxx's
   silent! %s/ xxx / /
-  " add highlight commands
+  " add highlight coms
   silent! %s/^/highlight /
   " protect spaces in some font names
   silent! %s/font=\(.*\)/font='\1'/
@@ -137,4 +137,4 @@ function! HighlightRemoveAttr(attr)
   " restore selection registers
   silent! normal ggVGy
   bwipeout!
-endfunction
+endf
