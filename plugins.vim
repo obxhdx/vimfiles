@@ -25,6 +25,9 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'nelstrom/vim-visual-star-search'
 
+" Code linting
+Plugin 'sareyko/neat.vim'
+
 " Code highlighting
 Plugin 'sheerun/vim-polyglot'
 Plugin 'kien/rainbow_parentheses.vim'
