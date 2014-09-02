@@ -29,6 +29,7 @@ Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'gregsexton/MatchTag'
+Plugin 'vim-scripts/groovyindent'
 
 " Colors schemes
 Plugin 'altercation/vim-colors-solarized'

@@ -113,6 +113,7 @@ augroup Highlight
   au BufRead,BufNewFile *.php set ft=php.html
   au BufNewFile,BufRead *.gradle set ft=groovy
   au BufRead,BufNewFile *.md set commentstring=<!--%s-->
+  au BufRead,BufNewFile *.groovy,*.gradle set commentstring=//%s
 augroup END
 
 " Highlight current line only on active buffer
