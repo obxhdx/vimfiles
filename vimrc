@@ -71,9 +71,10 @@ nnoremap <Leader>cd :lcd %:p:h<CR>
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-" Disable F1
+" Disable annoying keys
 map <F1> <nop>
 imap <F1> <nop>
+map K <nop>
 
 " Better ESC
 imap jk <ESC>
