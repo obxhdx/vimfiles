@@ -3,13 +3,11 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Tools
-Plugin 'gmarik/Vundle.vim'
+" Appearance
+Plugin 'kshenoy/vim-signature'
 Plugin 'obxhdx/vim-powerline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
 
-" Code completion
+" Code Completion
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
@@ -18,27 +16,37 @@ Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 
-" Text editing helpers
+" Code Lint
+Plugin 'sareyko/neat.vim'
+
+" Color Schemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ronny/birds-of-paradise.vim'
+Plugin 'sjl/badwolf'
+Plugin 'tomasr/molokai'
+
+" Git
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" Misc
+Plugin 'chrisbra/Recover.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'nelstrom/vim-visual-star-search'
 
-" Code linting
-Plugin 'sareyko/neat.vim'
-
-" Code highlighting
-Plugin 'sheerun/vim-polyglot'
-Plugin 'kien/rainbow_parentheses.vim'
+" Syntax Utils
 Plugin 'gregsexton/MatchTag'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/groovyindent'
 
-" Colors schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ronny/birds-of-paradise.vim'
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
+" Tools
+Plugin 'gmarik/Vundle.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
@@ -49,15 +57,35 @@ filetype plugin indent on
 set rtp+=~/.fzf
 map <Leader>f :FZF<CR>
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger='<Tab>'
-let g:UltiSnipsJumpForwardTrigger='<Tab>'
-let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+" GitGutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterRevertHunk
 
-" YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" Goyo
+fun! GoyoBefore()
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+  call TextEditorMode()
+  Limelight
+endf
+
+fun! GoyoAfter()
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+  call TextEditorMode()
+  Limelight!
+endf
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+nnoremap <Leader>g :Goyo<CR>
+
+" Limelight
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
 
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
@@ -90,26 +118,12 @@ let g:startify_custom_header = [
       \ '',
       \ ]
 
-" Limelight
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
+" UltiSnips
+let g:UltiSnipsExpandTrigger='<Tab>'
+let g:UltiSnipsJumpForwardTrigger='<Tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 
-" Goyo
-fun! GoyoBefore()
-  if exists('$TMUX')
-    silent !tmux set status off
-  endif
-  call TextEditorMode()
-  Limelight
-endf
-
-fun! GoyoAfter()
-  if exists('$TMUX')
-    silent !tmux set status on
-  endif
-  call TextEditorMode()
-  Limelight!
-endf
-
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-nnoremap <Leader>g :Goyo<CR>
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
