@@ -100,13 +100,13 @@ let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Startify
-let g:startify_skiplist_server = [ 'GVIM' ]
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
 hi StartifyFooter  ctermfg=111 guifg=#87afff
 hi StartifyBracket ctermfg=240 guifg=#585858
 hi StartifyNumber  ctermfg=215 guifg=#ffaf5f
 hi StartifyPath    ctermfg=245 guifg=#8a8a8a
 hi StartifySlash   ctermfg=240 guifg=#585858
+let g:startify_skiplist_server = [ 'GVIM' ]
 let g:startify_custom_header = [
       \ '   __      ___            ______ ____   ',
       \ '   \ \    / (_)           |____  |___ \ ',
@@ -117,6 +117,11 @@ let g:startify_custom_header = [
       \ '',
       \ '',
       \ ]
+let g:startify_skiplist = [
+        \ $VIMRUNTIME .'/doc',
+        \ '/usr/local/Cellar/vim/.*/doc',
+        \ 'bundle/.*/doc',
+        \ ]
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<Tab>'
