@@ -1,7 +1,7 @@
 " Some predefined coloring tweaks {{{
 fun! ColoringTweaks()
   highlight MatchParen ctermfg=235 ctermbg=2
-  highlight Search ctermbg=45
+  highlight Search ctermfg=15 ctermbg=201
   highlight markdownError ctermbg=NONE ctermfg=red
 
   if !has('gui_running')
