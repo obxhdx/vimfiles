@@ -115,6 +115,7 @@ augroup Highlight
   au BufNewFile,BufRead *.gradle set ft=groovy
   au BufRead,BufNewFile *.md set commentstring=<!--%s-->
   au BufRead,BufNewFile *.groovy,*.gradle set commentstring=//%s
+  au BufRead,BufNewFile *.groovy,*.gradley,*.gradle set tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 
 " Highlight current line only on active buffer
