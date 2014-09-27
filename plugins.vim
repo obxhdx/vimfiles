@@ -5,7 +5,7 @@ call vundle#begin()
 
 " Appearance
 Plugin 'kshenoy/vim-signature'
-Plugin 'obxhdx/vim-powerline'
+Plugin 'itchyny/lightline.vim'
 
 " Code Completion
 Plugin 'Raimondi/delimitMate'
