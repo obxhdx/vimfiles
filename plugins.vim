@@ -60,8 +60,6 @@ map <Leader>f :FZF<CR>
 " GitGutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterRevertHunk
 
 " Goyo
 fun! GoyoBefore()
