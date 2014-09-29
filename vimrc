@@ -108,6 +108,7 @@ set background=dark
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
 source $HOME/.vim/abbreviations.vim
+source $HOME/.vim/lightline.vim
 
 " Some predefined coloring tweaks
 au ColorScheme * call ColoringTweaks()
