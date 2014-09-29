@@ -99,6 +99,11 @@ noremap <Leader><Leader>r :%s/\C\<<c-r>=expand("<cword>")<cr>\>//gc<left><left><
 " Select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" Syntax highlighting
+syntax on
+set t_Co=256
+set background=dark
+
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
@@ -106,6 +111,8 @@ source $HOME/.vim/abbreviations.vim
 
 " Some predefined coloring tweaks
 au ColorScheme * call ColoringTweaks()
+" Default theme
+color badwolf
 
 " Some small fixes by file type
 augroup Highlight
@@ -132,9 +139,3 @@ augroup RainbowParentheses
   au BufEnter,FileType * RainbowParenthesesLoadSquare
   au BufEnter,FileType * RainbowParenthesesLoadBraces
 augroup END
-
-" Syntax highlighting
-syntax on
-set t_Co=256
-set background=dark
-color badwolf

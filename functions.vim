@@ -10,6 +10,7 @@ fun! ColoringTweaks()
     highlight Normal ctermbg=NONE
     highlight htmlEndTag ctermbg=NONE
     highlight htmlTag ctermbg=NONE
+    highlight StatusLine ctermfg=7 ctermbg=233
   end
 endf
 " }}}
