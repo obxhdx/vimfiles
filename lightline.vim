@@ -87,7 +87,7 @@ endfunction
 
 function! MyLineInfo()
   let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' : printf("%3d:%-2d", line('.'), col('.'))
+  return fname =~ 'NERD_tree' ? '' : printf(" %3d:%-2d", line('.'), col('.'))
 endfunction
 
 function! MyPercent()
