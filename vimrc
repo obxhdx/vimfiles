@@ -107,7 +107,6 @@ set background=dark
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
-source $HOME/.vim/abbreviations.vim
 source $HOME/.vim/lightline.vim
 
 " Some predefined coloring tweaks
