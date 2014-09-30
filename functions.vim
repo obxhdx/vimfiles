@@ -1,17 +1,37 @@
 " Some predefined coloring tweaks {{{
 fun! ColoringTweaks()
-  highlight MatchParen ctermfg=235 ctermbg=2
-  highlight Search ctermfg=15 ctermbg=201
-  highlight markdownError ctermbg=NONE ctermfg=red
+  hi MatchParen ctermfg=235 ctermbg=2
+  hi Search ctermfg=15 ctermbg=201
+  hi markdownError ctermbg=NONE ctermfg=red
 
   if !has('gui_running')
-    highlight LineNr ctermbg=NONE
-    highlight NonText ctermbg=NONE
-    highlight Normal ctermbg=NONE
-    highlight htmlEndTag ctermbg=NONE
-    highlight htmlTag ctermbg=NONE
-    highlight StatusLine ctermfg=7 ctermbg=233
+    hi LineNr ctermbg=NONE
+    hi NonText ctermbg=NONE
+    hi Normal ctermbg=NONE
+    hi htmlEndTag ctermbg=NONE
+    hi htmlTag ctermbg=NONE
+    hi StatusLine ctermfg=7 ctermbg=233
   end
+
+  if g:colors_name == 'molokai'
+    hi Define guifg=#F92672
+    hi Special gui=none
+    hi Type gui=italic
+
+    " Ruby highlighting
+    hi rubyClass guifg=#F92672 gui=none
+    hi rubyControl guifg=#F92672 gui=none
+    hi rubyRailsARMethod guifg=#A6E22E
+    hi rubyRailsMethod guifg=#A4E7F4
+    hi link rubyRailsControllerMethod rubyRailsARMethod
+
+    " Markdown highlighting
+    hi markdownH2 guifg=pink
+    hi link markdownH3 markdownH2
+    hi link markdownH4 markdownH2
+    hi link markdownH5 markdownH2
+    hi link markdownH6 markdownH2
+  endif
 endf
 " }}}
 
@@ -139,3 +159,13 @@ func! HighlightRemoveAttr(attr)
   silent! normal ggVGy
   bwipeout!
 endf
+
+" Displays right hand scrollbar only when needed (GVim) {{{
+function! HandleScrollbars()
+  if line('$') > &lines
+    set guioptions+=r
+  else
+    set guioptions-=r
+  endif
+endfunc
+" }}}
