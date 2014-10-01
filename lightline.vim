@@ -4,7 +4,7 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'paste' ], [ 'mode' ], [ 'fugitive' ], [ 'filename' ], [ 'flags' ] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'syntastic', 'trailing', 'indentation' ] ]
+      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation', 'syntastic' ] ]
       \ },
       \ 'component_function': {
       \   'mode': 'MyMode',
@@ -30,8 +30,6 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
-
-autocmd CursorHold,BufWritePost,InsertLeave * call s:component_expand()
 
 function! MyMode()
   let fname = expand('%:t')
@@ -95,6 +93,7 @@ function! MyPercent()
   return fname =~ 'NERD_tree' ? '' : printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
 
+autocmd CursorHold,BufWritePost,InsertLeave * call s:component_expand()
 function! s:component_expand()
   call TrailingSpaceWarning()
   call MixedIndentSpaceWarning()

@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 
 " Code Lint
 Plugin 'sareyko/neat.vim'
+Plugin 'scrooloose/syntastic'
 
 " Color Schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -120,6 +121,14 @@ let g:startify_skiplist = [
         \ '/usr/local/Cellar/vim/.*/doc',
         \ 'bundle/.*/doc',
         \ ]
+
+" Syntastic
+let g:syntastic_ruby_checkers = [ 'rubocop' ]
+let g:syntastic_sh_checkers = [ 'shellcheck' ]
+let g:syntastic_zsh_checkers = [ 'zsh' ]
+let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<Tab>'
