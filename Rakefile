@@ -1,4 +1,4 @@
-task :default => [:tempdirs, :dotvim, :dotfiles, :vundle, :bundles]
+task default: [:tempdirs, :dotvim, :dotfiles, :vundle, :bundles]
 
 task :tempdirs do
   puts 'Creating backup dirs...'
@@ -8,7 +8,7 @@ task :tempdirs do
 end
 
 task :dotvim do
-  vimdir = File.join(ENV['HOME'], ".vim")
+  vimdir = File.join(ENV['HOME'], '.vim')
   if File.directory? vimdir
     puts "'#{vimdir}' already exists, nothing changed!"
   else
@@ -19,7 +19,7 @@ end
 task :dotfiles do
   puts 'Sourcing dot files...'
 
-  %w[vimrc gvimrc].each do |file|
+  %w(vimrc gvimrc).each do |file|
     dotfile = File.join(ENV['HOME'], ".#{file}")
     if File.exist? dotfile
       puts "'#{dotfile}' already exists, nothing changed!"
@@ -36,26 +36,23 @@ task :vundle do
 
   unless File.directory? File.join(bundledir, '/vundle')
     Dir.chdir bundledir
-    sh 'git clone https://github.com/gmarik/vundle', :verbose => false
+    sh 'git clone https://github.com/gmarik/vundle', verbose: false
   end
 end
 
 task :bundles do
   puts 'Installing bundles...'
 
-  sh 'vim +BundleInstall +qall', :verbose => false
+  sh 'vim +BundleInstall +qall', verbose: false
 end
 
 task :purge do
   puts 'Purging config files...'
 
-  %w[.vimrc .gvimrc .vim .vimbackup .viminfo].each do |f|
+  %w(.vimrc .gvimrc .vim .vimbackup .viminfo).each do |f|
     file = File.join(ENV['HOME'], f)
-    begin
-      FileUtils.rm_r file
-      puts "#{file} deleted!"
-    rescue
-    end
+    FileUtils.rm_r file
+    puts "#{file} deleted!"
   end
 end
 
@@ -63,7 +60,7 @@ task :commandt do
   puts 'Compiling Command-T C extension... '
 
   Dir.chdir(File.join(ENV['HOME'], '/.vim/bundle/command-t/ruby/command-t')) do
-    sh 'ruby extconf.rb >/dev/null 2>&1', :verbose => false
-    sh 'make clean && make >/dev/null 2>&1', :verbose => false
+    sh 'ruby extconf.rb >/dev/null 2>&1', verbose: false
+    sh 'make clean && make >/dev/null 2>&1', verbose: false
   end
 end
