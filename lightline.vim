@@ -107,7 +107,7 @@ function! TrailingSpaceWarning()
 
   let trailing = search('\s$', 'nw')
   if trailing != 0
-    return "… trailing[" . trailing . "]"
+    return '… trailing[' . trailing . ']'
   else
     return ''
   endif
@@ -118,9 +118,11 @@ function! MixedIndentSpaceWarning()
     return ''
   endif
 
-  let mixed = search('\v(^\t+ +)|(^ +\t+)', 'nw')
-  if mixed != 0
-    return "» mixed-indent[" . mixed . "]"
+  let tabs = search('^\t', 'nw')
+  let spaces = search('^ ', 'nw')
+
+  if (tabs != 0) && (spaces != 0)
+    return '» mixed-indent[' . tabs . ']'
   else
     return ''
   endif
