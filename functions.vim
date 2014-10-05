@@ -1,5 +1,5 @@
 " Some predefined coloring tweaks {{{
-fun! ColoringTweaks()
+function! ColoringTweaks()
   hi MatchParen ctermfg=235 ctermbg=2
   hi Search ctermfg=15 ctermbg=201
   hi markdownError ctermbg=NONE ctermfg=red
@@ -35,13 +35,21 @@ fun! ColoringTweaks()
 endf
 " }}}
 
+" Use the new Ruby 1.9 syntax {{{
+command! NewRubyHashSyntax :%s/\v[:']([a-z]*)'?\s\=\>/\1:/gc
+" }}}
+
+" Replace " with ' {{{
+command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
+" }}}
+
 " Remove trailing spaces {{{
-com! RemoveTrailingSpaces :%s/\s\+$//e | exec 'nohlsearch'
+command! RemoveTrailingSpaces :%s/\s\+$//e
 au FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
-func! <SID>SynStack()
+function! <SID>SynStack()
   if !exists('*synstack')
     return
   endif
@@ -51,7 +59,7 @@ nmap <leader>sg :call <SID>SynStack()<CR>
 " }}}
 
 " True fullscreen for GVim on Linux {{{
-func! ToggleFullscreen()
+function! ToggleFullscreen()
   if executable('wmctrl')
     exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
   else
@@ -62,7 +70,7 @@ nmap <F11> :call ToggleFullscreen()<CR>
 " }}}
 
 " Toggles a few options for better long text editing {{{
-func! TextEditorMode()
+function! TextEditorMode()
   if !exists('b:texted_mode') || b:texted_mode == 'false'
     let b:texted_mode = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
@@ -77,7 +85,7 @@ nmap <F10> :call TextEditorMode()<CR>
 " }}}
 
 " Close all hidden buffers {{{
-func! s:CloseHiddenBuffers()
+function! s:CloseHiddenBuffers()
   let open_buffers = []
 
   for i in range(tabpagenr('$'))
@@ -90,11 +98,11 @@ func! s:CloseHiddenBuffers()
     endif
   endfor
 endf
-com! CloseHiddenBuffers call s:CloseHiddenBuffers()
+command! CloseHiddenBuffers call s:CloseHiddenBuffers()
 " }}}
 
 " Dynamically sets wildignore list {{{
-func! SetWildIgnore(ignored_strings_file)
+function! SetWildIgnore(ignored_strings_file)
   if filereadable(a:ignored_strings_file)
     let igstring = ''
     for oline in readfile(a:ignored_strings_file)
@@ -116,7 +124,7 @@ au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 
 " Function written by Steve Hall on vim@vim.org
 " See :help attr-list for possible attrs to pass
-func! HighlightRemoveAttr(attr)
+function! HighlightRemoveAttr(attr)
   " save selection registers
   new
   silent! put
