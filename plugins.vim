@@ -14,6 +14,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'honza/vim-snippets'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 
 " Code Lint
@@ -36,7 +37,10 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+
+" Navigation
 Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'tpope/vim-unimpaired'
 
 " Syntax Utils
 Plugin 'gregsexton/MatchTag'
