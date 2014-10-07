@@ -62,6 +62,10 @@ filetype plugin indent on
 
 " Customizations start here...
 
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
 " FZF
 set rtp+=~/.fzf
 map <Leader>f :FZF<CR>
