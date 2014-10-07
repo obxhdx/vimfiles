@@ -35,8 +35,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'chrisbra/Recover.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
 
 " Navigation
 Plugin 'nelstrom/vim-visual-star-search'
@@ -47,6 +45,11 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/groovyindent'
+
+" Text Objects
+Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
 
 " Tools
 Plugin 'gmarik/Vundle.vim'
