@@ -38,6 +38,7 @@ Plugin 'junegunn/limelight.vim'
 
 " Navigation
 Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tpope/vim-unimpaired'
 
 " Syntax Utils
@@ -104,6 +105,12 @@ let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" Smooth Scroll
+noremap <silent> <C-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <C-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " Startify
 hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
