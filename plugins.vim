@@ -144,7 +144,6 @@ let g:startify_skiplist = [
 let g:syntastic_ruby_checkers = [ 'rubocop' ]
 let g:syntastic_sh_checkers = [ 'shellcheck' ]
 let g:syntastic_zsh_checkers = [ 'zsh' ]
-let g:syntastic_check_on_open = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
 
