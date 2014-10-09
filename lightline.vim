@@ -6,6 +6,10 @@ let g:lightline = {
       \   'left': [ [ 'paste' ], [ 'mode' ], [ 'fugitive' ], [ 'filename' ], [ 'flags' ] ],
       \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation', 'syntastic' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ [ 'filename' ], [ 'flags' ] ],
+      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \ },
       \ 'component_function': {
       \   'mode': 'MyMode',
       \   'fugitive': 'MyFugitive',
@@ -149,7 +153,7 @@ let s:p.replace.middle = s:p.normal.middle
 let s:p.replace.right = s:p.normal.right
 
 let s:p.inactive.right = [ ['gray1', 'gray5'], ['gray4', 'gray1'], ['gray4', 'gray0'] ]
-let s:p.inactive.left = s:p.inactive.right[1:]
+let s:p.inactive.left = [ s:p.inactive.right[1], s:p.normal.middle[0] ]
 
 let s:p.tabline.left = [ [ 'gray9', 'gray1' ] ]
 let s:p.tabline.tabsel = [ [ 'gray9', 'gray4' ] ]
