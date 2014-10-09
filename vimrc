@@ -117,12 +117,12 @@ color badwolf
 " Some small fixes by file type
 augroup Highlight
   au!
+  au BufRead,BufNewFile *.gradle set ft=groovy
   au BufRead,BufNewFile *.erb set ft=eruby.html
   au BufRead,BufNewFile *.php set ft=php.html
-  au BufNewFile,BufRead *.gradle set ft=groovy
-  au BufRead,BufNewFile *.md set commentstring=<!--%s-->
-  au BufRead,BufNewFile *.groovy,*.gradle set commentstring=//%s
-  au BufRead,BufNewFile *.groovy,*.gradley,*.gradle set tabstop=4 shiftwidth=4 softtabstop=4
+  au FileType groovy set commentstring=//%s tabstop=4 shiftwidth=4 softtabstop=4
+  au FileType markdown set commentstring=<!--%s-->
+  au FileType tmux set commentstring=#%s
 augroup END
 
 " Highlight current line only on active buffer
