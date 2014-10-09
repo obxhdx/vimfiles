@@ -44,8 +44,21 @@ command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
 " }}}
 
 " Remove trailing spaces {{{
-command! RemoveTrailingSpaces :%s/\s\+$//e
-au FileType css,html,javascript,php,ruby,sql au BufWritePre * RemoveTrailingSpaces
+autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre * call Preserve('%s/\s\+$//e')
+" }}}
+
+" Preserve cursor state when performing commands like regex replaces (http://goo.gl/DJ7xA)
+function! Preserve(command)
+  " Save last search and cursor position
+  let _s=@/
+  let l = line('.')
+  let c = col('.')
+  " Do the business
+  execute a:command
+  " Restore previous search history and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
