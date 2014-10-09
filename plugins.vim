@@ -37,6 +37,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 
 " Navigation
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tpope/vim-unimpaired'
