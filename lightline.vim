@@ -136,19 +136,19 @@ endfunction
 "
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 
-let s:p.normal.left = [ ['white', 'red'], ['darkestgreen', 'brightgreen', 'bold'], ['white', 'gray4'], [ 'white', 'gray4', 'bold' ], [ 'red', 'gray2' ] ]
+let s:p.normal.left = [ ['white', 'red'], ['darkestgreen', 'brightgreen'], ['white', 'gray4'], [ 'white', 'gray4' ], [ 'red', 'gray2' ] ]
 let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
 let s:p.normal.right = [ ['gray5', 'gray10'], ['gray9', 'gray4'], ['gray8', 'gray2'] ]
 let s:p.normal.error = [ [ 'gray9', 'brightestred' ] ]
 let s:p.normal.warning = [ [ 'gray1', 'brightorange' ] ]
 
-let s:p.visual.left = [ s:p.normal.left[0], ['darkred', 'brightorange', 'bold'], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
+let s:p.visual.left = [ s:p.normal.left[0], ['darkred', 'brightorange'], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
 
-let s:p.insert.left = [ s:p.normal.left[0], ['darkestcyan', 'white', 'bold'], ['white', 'darkblue'], ['white', 'darkblue', 'bold'] ]
+let s:p.insert.left = [ s:p.normal.left[0], ['darkestcyan', 'white'], ['white', 'darkblue'], ['white', 'darkblue'] ]
 let s:p.insert.middle = [ [ 'mediumcyan', 'darkestblue' ] ]
 let s:p.insert.right = [ [ 'darkestcyan', 'mediumcyan' ], [ 'mediumcyan', 'darkblue' ], [ 'mediumcyan', 'darkestblue' ] ]
 
-let s:p.replace.left = [ s:p.normal.left[0], ['white', 'brightred', 'bold'], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
+let s:p.replace.left = [ s:p.normal.left[0], ['white', 'brightred'], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
 let s:p.replace.middle = s:p.normal.middle
 let s:p.replace.right = s:p.normal.right
 
