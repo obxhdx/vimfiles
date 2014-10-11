@@ -23,6 +23,7 @@ Plugin 'scrooloose/syntastic'
 
 " Color Schemes
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'dhruvasagar/vim-railscasts-theme'
 Plugin 'ronny/birds-of-paradise.vim'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'

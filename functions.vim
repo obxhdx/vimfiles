@@ -13,6 +13,10 @@ function! ColoringTweaks()
     hi StatusLine ctermfg=7 ctermbg=233
   end
 
+  if g:colors_name == 'railscasts'
+    hi LineNr ctermbg=234 guibg=#444444
+  endif
+
   if g:colors_name == 'molokai'
     hi Define guifg=#F92672
     hi Special gui=none
