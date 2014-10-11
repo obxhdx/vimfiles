@@ -48,7 +48,7 @@ let mapleader = " "
 
 " Yank/Paste from/to clipboard
 vmap <Leader>y "+y
-vmap <Leader>p "+p
+vmap <Leader>p "+pgp=
 
 " yank with motion
 nmap <Leader>y "+y
