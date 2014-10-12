@@ -4,8 +4,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Appearance
-Plugin 'kshenoy/vim-signature'
+Plugin 'inside/vim-search-pulse'
 Plugin 'itchyny/lightline.vim'
+Plugin 'kshenoy/vim-signature'
 
 " Code Completion
 Plugin 'Raimondi/delimitMate'
