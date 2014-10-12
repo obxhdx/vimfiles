@@ -70,7 +70,7 @@ let delimitMate_expand_space = 1
 
 " FZF
 set rtp+=~/.fzf
-map <Leader>f :FZF<CR>
+map <Leader>z :FZF<CR>
 
 " GitGutter
 nmap ]h <Plug>GitGutterNextHunk
@@ -103,8 +103,8 @@ let g:limelight_conceal_ctermfg = 240
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
 let NERDTreeQuitOnOpen = 1
-map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>nf :NERDTreeFind<CR>
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind<CR>
 
 " Powerline
 let g:Powerline_symbols = 'compatible'
