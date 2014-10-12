@@ -9,7 +9,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Appearance
-Plug 'inside/vim-search-pulse'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 
@@ -44,7 +43,8 @@ Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-pseudocl'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
