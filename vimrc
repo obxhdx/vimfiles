@@ -106,7 +106,7 @@ set background=dark
 
 " Load plugins and stuff
 source $HOME/.vim/functions.vim
-source $HOME/.vim/plugins.vim
+source $HOME/.vim/plugs.vim
 source $HOME/.vim/lightline.vim
 
 " Some predefined coloring tweaks
@@ -130,12 +130,4 @@ augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
-augroup END
-
-" Rainbow parentheses
-augroup RainbowParentheses
-  au!
-  au BufEnter,FileType * RainbowParenthesesLoadRound
-  au BufEnter,FileType * RainbowParenthesesLoadSquare
-  au BufEnter,FileType * RainbowParenthesesLoadBraces
 augroup END

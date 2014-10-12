@@ -1,4 +1,6 @@
+autoload/
 bundle/
+plugged/
 session/
 spell/
 *.swp

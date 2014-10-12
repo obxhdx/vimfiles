@@ -1,67 +1,88 @@
-filetype off
+if empty(glob('~/.vim/autoload/plug.vim'))
+  echo "Vim-Plug is not installed...\nInstalling now..."
+  silent !mkdir -p ~/.vim/autoload
+  silent !curl -fLS --progress -o ~/.vim/autoload/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " Appearance
-Plugin 'inside/vim-search-pulse'
-Plugin 'itchyny/lightline.vim'
-Plugin 'kshenoy/vim-signature'
+Plug 'inside/vim-search-pulse'
+Plug 'itchyny/lightline.vim'
+Plug 'kshenoy/vim-signature'
 
 " Code Completion
-Plugin 'Raimondi/delimitMate'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'honza/vim-snippets'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate', { 'on': [] }
+Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
+Plug 'honza/vim-snippets', { 'on': [] }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " Code Lint
-Plugin 'sareyko/neat.vim'
-Plugin 'scrooloose/syntastic'
+Plug 'sareyko/neat.vim'
+Plug 'scrooloose/syntastic', { 'for': [ 'ruby', 'bash' ] }
 
 " Color Schemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'dhruvasagar/vim-railscasts-theme'
-Plugin 'ronny/birds-of-paradise.vim'
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dhruvasagar/vim-railscasts-theme'
+Plug 'ronny/birds-of-paradise.vim'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
 
 " Git
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter', { 'on': [] }
+Plug 'tpope/vim-fugitive'
 
 " Misc
-Plugin 'chrisbra/Recover.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
+Plug 'chrisbra/Recover.vim'
+Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
+Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 
 " Navigation
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'terryma/vim-smooth-scroll'
-Plugin 'tpope/vim-unimpaired'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-unimpaired'
 
 " Syntax Utils
-Plugin 'gregsexton/MatchTag'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'vim-scripts/groovyindent'
+Plug 'gregsexton/MatchTag'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/groovyindent'
 
 " Text Objects
-Plugin 'kana/vim-textobj-indent'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 
 " Tools
-Plugin 'gmarik/Vundle.vim'
-Plugin 'mhinz/vim-startify'
-Plugin 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
+
+augroup InitCompletionPlugins
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets')
+        \| call youcompleteme#Enable() | autocmd! InitCompletionPlugins
+augroup END
+
+augroup InitGitPlugins
+  autocmd!
+  autocmd VimEnter * call LoadGitGutter() | autocmd! InitGitPlugins
+augroup END
+
+function! LoadGitGutter()
+  if exists('*fugitive#head')
+    call plug#load('vim-gitgutter')
+  endif
+endfunction
 
 " Customizations start here...
 
@@ -70,7 +91,7 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
 " FZF
-set rtp+=~/.fzf
+" set rtp+=~/.fzf
 map <Leader>z :FZF<CR>
 
 " GitGutter
@@ -95,7 +116,7 @@ fun! GoyoAfter()
 endf
 
 let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-nnoremap <Leader>g :Goyo<CR>
+autocmd FileType markdown nnoremap <Leader>g :Goyo<CR>
 
 " Limelight
 let g:limelight_conceal_ctermfg = 'gray'
@@ -112,6 +133,14 @@ let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" Rainbow parentheses
+augroup RainbowParentheses
+  au!
+  au BufEnter,FileType * RainbowParenthesesLoadRound
+  au BufEnter,FileType * RainbowParenthesesLoadSquare
+  au BufEnter,FileType * RainbowParenthesesLoadBraces
+augroup END
 
 " Smooth Scroll
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
