@@ -66,13 +66,13 @@ endfunction
 " }}}
 
 " Shows syntax highlighting groups for word under cursor {{{
-function! <SID>SynStack()
+function! SyntaxGroups()
   if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endf
-nmap <leader>sg :call <SID>SynStack()<CR>
+nmap <leader>sg :call SyntaxGroups()<CR>
 " }}}
 
 " True fullscreen for GVim on Linux {{{
