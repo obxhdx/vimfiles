@@ -149,28 +149,42 @@ nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " Startify
-hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
-hi StartifyFooter  ctermfg=111 guifg=#87afff
 hi StartifyBracket ctermfg=240 guifg=#585858
+hi StartifyFile    ctermfg=231 guifg=#ffffff
+hi StartifyFooter  ctermfg=111 guifg=#87afff
+hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
 hi StartifyNumber  ctermfg=215 guifg=#ffaf5f
 hi StartifyPath    ctermfg=245 guifg=#8a8a8a
+hi StartifySection ctermfg=111 guifg=#87afff
 hi StartifySlash   ctermfg=240 guifg=#585858
-let g:startify_skiplist_server = [ 'GVIM' ]
+hi StartifySpecial ctermfg=245 guifg=#8a8a8a
+
 let g:startify_custom_header = [
-      \ '   __      ___            ______ ____   ',
-      \ '   \ \    / (_)           |____  |___ \ ',
-      \ '    \ \  / / _ _ __ ___       / /  __) |',
-      \ '     \ \/ / | | ''_ ` _ \     / /  |__ <',
-      \ '      \  /  | | | | | | |   / /   ___) |',
-      \ '       \/   |_|_| |_| |_|  /_(_) |____/ ',
+      \ '                                 ________  __ __        ',
+      \ '            __                  /\_____  \/\ \\ \       ',
+      \ '    __  __ /\_\    ___ ___      \/___//''/''\ \ \\ \    ',
+      \ '   /\ \/\ \\/\ \ /'' __` __`\        /'' /''  \ \ \\ \_ ',
+      \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \      /'' /''__  \ \__ ,__\',
+      \ '    \ \___/  \ \_\ \_\ \_\ \_\    /\_/ /\_\  \/_/\_\_/  ',
+      \ '     \/__/    \/_/\/_/\/_/\/_/    \//  \/_/     \/_/    ',
       \ '',
       \ '',
       \ ]
+
+let g:startify_custom_footer =
+      \ ['', "   Vim is charityware. Please read ':help uganda'.", '']
+
+let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
+
+let g:startify_skiplist_server = [ 'GVIM' ]
+
 let g:startify_skiplist = [
-        \ $VIMRUNTIME .'/doc',
-        \ '/usr/local/Cellar/vim/.*/doc',
-        \ 'bundle/.*/doc',
-        \ ]
+      \ 'COMMIT_EDITMSG',
+      \ $VIMRUNTIME .'/doc',
+      \ '/usr/local/Cellar/vim/.*/doc',
+      \ 'bundle/.*/doc',
+      \ 'plugged/.*/doc',
+      \ ]
 
 " Syntastic
 let g:syntastic_ruby_checkers = [ 'rubocop' ]
