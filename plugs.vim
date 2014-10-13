@@ -17,7 +17,7 @@ Plug 'Raimondi/delimitMate', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
 Plug 'honza/vim-snippets', { 'on': [] }
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
@@ -67,6 +67,8 @@ Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 
 call plug#end()
 
+" On demand loading configuration
+
 augroup InitCompletionPlugins
   autocmd!
   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets')
@@ -85,6 +87,10 @@ function! LoadGitGutter()
 endfunction
 
 " Customizations start here...
+
+" Commentary
+map  gc  <Plug>Commentary
+nmap gcc <Plug>CommentaryLine
 
 " delimitMate
 let delimitMate_expand_cr = 1
