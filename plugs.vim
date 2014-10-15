@@ -50,6 +50,7 @@ Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
 
 " Syntax Utils
+Plug 'dzeban/vim-log-syntax'
 Plug 'gregsexton/MatchTag'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'sheerun/vim-polyglot'
