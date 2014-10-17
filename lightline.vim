@@ -97,7 +97,7 @@ function! MyPercent()
   return fname =~ 'NERD_tree' ? '' : printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
 
-autocmd CursorHold,BufWritePost,InsertLeave * call s:component_expand()
+autocmd BufWritePost,InsertLeave * call s:component_expand()
 function! s:component_expand()
   call TrailingSpaceWarning()
   call MixedIndentSpaceWarning()
