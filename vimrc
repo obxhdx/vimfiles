@@ -12,6 +12,7 @@ set mouse=a " Enable mouse
 set splitbelow " Put splitted windows below the current one
 set splitright " Put splitted windows right of the current one
 set vb t_vb= " Disable visual bell
+set timeout timeoutlen=1000 ttimeoutlen=0 " Disable key code delay time
 
 " Appearance
 set number " Display line numbers
