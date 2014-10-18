@@ -43,6 +43,7 @@ Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'inside/vim-search-pulse'
 Plug 'junegunn/vim-oblique'
 Plug 'junegunn/vim-pseudocl'
 Plug 'terryma/vim-smooth-scroll'
@@ -134,11 +135,23 @@ let NERDTreeQuitOnOpen = 1
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
+" Oblique
+let g:oblique#incsearch_highlight_all = 1
+
 " Powerline
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" Pulse
+let g:vim_search_pulse_disable_auto_mappings = 1
+autocmd! User Oblique
+autocmd! User ObliqueStar
+autocmd! User ObliqueRepeat
+autocmd  User Oblique       call search_pulse#Pulse()
+autocmd  User ObliqueStar   call search_pulse#Pulse()
+autocmd  User ObliqueRepeat call search_pulse#Pulse()
 
 " Rainbow parentheses
 augroup RainbowParentheses
