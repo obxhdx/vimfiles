@@ -62,7 +62,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 
 " Tools
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 
@@ -98,7 +98,6 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
 " FZF
-" set rtp+=~/.fzf
 map <Leader>z :FZF<CR>
 
 " GitGutter
