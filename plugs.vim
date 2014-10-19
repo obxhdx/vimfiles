@@ -90,7 +90,11 @@ endfunction
 
 " Customizations start here...
 
-colorscheme badwolf
+try
+  colo badwolf
+catch
+  colo desert
+endtry
 
 " Commentary
 map  gc  <Plug>Commentary
@@ -156,12 +160,9 @@ autocmd  User ObliqueStar   call search_pulse#Pulse()
 autocmd  User ObliqueRepeat call search_pulse#Pulse()
 
 " Rainbow parentheses
-augroup RainbowParentheses
-  au!
-  au BufEnter,FileType * RainbowParenthesesLoadRound
-  au BufEnter,FileType * RainbowParenthesesLoadSquare
-  au BufEnter,FileType * RainbowParenthesesLoadBraces
-augroup END
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 " Smooth Scroll
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
