@@ -99,18 +99,7 @@ syntax on
 set t_Co=256
 set background=dark
 
-" Load plugins and stuff
-source $HOME/.vim/functions.vim
-source $HOME/.vim/plugs.vim
-source $HOME/.vim/lightline.vim
-
-" Some predefined coloring tweaks
-au ColorScheme * call ColoringTweaks()
-" Default theme
-color badwolf
-
-" Some small fixes by file type
-augroup Highlight
+augroup FiletypeFixes
   au!
   au BufRead,BufNewFile *.gradle set ft=groovy
   au BufRead,BufNewFile *.erb set ft=eruby.html
@@ -120,9 +109,13 @@ augroup Highlight
   au FileType tmux set commentstring=#%s
 augroup END
 
-" Highlight current line only on active buffer
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+" Load extra stuff
+source $HOME/.vim/functions.vim
+source $HOME/.vim/plugs.vim
+source $HOME/.vim/lightline.vim

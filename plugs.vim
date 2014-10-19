@@ -90,6 +90,8 @@ endfunction
 
 " Customizations start here...
 
+colorscheme badwolf
+
 " Commentary
 map  gc  <Plug>Commentary
 nmap gcc <Plug>CommentaryLine

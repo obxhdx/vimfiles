@@ -45,6 +45,7 @@ function! ColoringTweaks()
     hi link markdownH6 markdownH2
   endif
 endf
+autocmd ColorScheme * call ColoringTweaks()
 " }}}
 
 " Use the new Ruby 1.9 syntax {{{
