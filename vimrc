@@ -77,9 +77,6 @@ map <F1> <nop>
 imap <F1> <nop>
 map K <nop>
 
-" Better ESC
-imap jk <ESC>
-
 " Resize split windows
 noremap + <C-w>+
 noremap - <C-w>-
