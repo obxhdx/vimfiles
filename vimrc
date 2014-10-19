@@ -90,9 +90,6 @@ noremap ) <C-w>>
 nnoremap / /\v
 vnoremap / /\v
 
-" Turn off match highlights
-map <CR> :noh<CR>
-
 " Find/replace
 noremap <Leader>r :%s/\C<c-r>=expand("<cword>")<cr>/<c-r>=expand("<cword>")<cr>/gc<left><left><left>
 noremap <Leader><Leader>r :%s/\C\<<c-r>=expand("<cword>")<cr>\>//gc<left><left><left>

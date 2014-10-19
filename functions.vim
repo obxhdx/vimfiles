@@ -1,3 +1,11 @@
+" The Silver Searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
+  nnoremap \ :Ag<SPACE>
+  nnoremap K :Ag <C-R><C-W><CR>
+endif
+
 " Some predefined coloring tweaks {{{
 function! ColoringTweaks()
   hi MatchParen ctermfg=235 ctermbg=2
