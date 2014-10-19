@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 
 " Appearance
 Plug 'itchyny/lightline.vim'
-Plug 'kshenoy/vim-signature'
 
 " Code Completion
 Plug 'Raimondi/delimitMate', { 'on': [] }
@@ -22,8 +21,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 " Code Lint
-Plug 'sareyko/neat.vim'
-Plug 'scrooloose/syntastic', { 'for': [ 'ruby', 'bash' ] }
+Plug 'sareyko/neat.vim', { 'on': 'Neat' }
+Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 
 " Color Schemes
 Plug 'altercation/vim-colors-solarized'
@@ -40,6 +39,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
 Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
+Plug 'kshenoy/vim-signature'
 
 " Navigation
 Plug 'christoomey/vim-tmux-navigator'

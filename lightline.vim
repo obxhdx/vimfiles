@@ -97,13 +97,6 @@ function! MyPercent()
   return fname =~ 'NERD_tree' ? '' : printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
 
-autocmd BufWritePost,InsertLeave * call s:component_expand()
-function! s:component_expand()
-  call TrailingSpaceWarning()
-  call MixedIndentSpaceWarning()
-  call lightline#update()
-endfunction
-
 function! TrailingSpaceWarning()
   if &ft == 'help' || winwidth(0) < 70
     return ''
@@ -130,6 +123,23 @@ function! MixedIndentSpaceWarning()
   else
     return ''
   endif
+endfunction
+
+augroup ComponentExpand
+  autocmd!
+  autocmd BufWritePost *.rb,*.sh call s:syntastic()
+  autocmd BufWritePost,InsertLeave * call s:flags()
+augroup END
+
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+function! s:flags()
+  call TrailingSpaceWarning()
+  call MixedIndentSpaceWarning()
+  call lightline#update()
 endfunction
 
 " Colors
