@@ -128,18 +128,22 @@ endfunction
 augroup ComponentExpand
   autocmd!
   autocmd BufWritePost *.rb,*.sh call s:syntastic()
-  autocmd BufWritePost,InsertLeave * call s:flags()
+  autocmd CursorHold,BufWritePost,InsertLeave * call s:flags()
 augroup END
 
 function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
+  if exists('#LightLine')
+    SyntasticCheck
+    call lightline#update()
+  endif
 endfunction
 
 function! s:flags()
-  call TrailingSpaceWarning()
-  call MixedIndentSpaceWarning()
-  call lightline#update()
+  if exists('#LightLine')
+    call TrailingSpaceWarning()
+    call MixedIndentSpaceWarning()
+    call lightline#update()
+  endif
 endfunction
 
 " Colors
