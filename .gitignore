@@ -6,3 +6,4 @@ spell/
 *.swp
 *~
 .DS_Store
+.netrwhist
