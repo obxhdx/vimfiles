@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Appearance
+Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 Plug 'itchyny/lightline.vim'
 
 " Code Completion
