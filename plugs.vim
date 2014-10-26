@@ -80,12 +80,13 @@ augroup END
 
 augroup InitGitPlugins
   autocmd!
-  autocmd VimEnter * call LoadGitGutter() | autocmd! InitGitPlugins
+  autocmd BufEnter * call LoadGitGutter()
 augroup END
 
 function! LoadGitGutter()
-  if exists('*fugitive#head')
+  if !empty(fugitive#head())
     call plug#load('vim-gitgutter')
+    GitGutterEnable
   endif
 endfunction
 
