@@ -139,7 +139,6 @@ let g:limelight_conceal_ctermfg = 240
 
 " NERDTree
 let NERDTreeCasadeOpenSingleChildDir = 1
-let NERDTreeQuitOnOpen = 1
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
