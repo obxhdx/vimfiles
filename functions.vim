@@ -1,8 +1,8 @@
 " The Silver Searcher
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
-  nnoremap \ :Ag<SPACE>
+  set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cwindow | redraw!
   nnoremap K :Ag <C-R><C-W><CR>
 endif
 
