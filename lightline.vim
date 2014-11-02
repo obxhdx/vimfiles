@@ -127,16 +127,8 @@ endfunction
 
 augroup ComponentExpand
   autocmd!
-  autocmd BufWritePost *.rb,*.sh call s:syntastic()
   autocmd CursorHold,BufWritePost,InsertLeave * call s:flags()
 augroup END
-
-function! s:syntastic()
-  if exists('#LightLine')
-    SyntasticCheck
-    call lightline#update()
-  endif
-endfunction
 
 function! s:flags()
   if exists('#LightLine')
