@@ -21,6 +21,10 @@ function! ColoringTweaks()
     hi StatusLine ctermfg=7 ctermbg=233
   end
 
+  if g:colors_name == 'badwolf'
+    hi SignColumn ctermbg=234 guibg=#444444
+  endif
+
   if g:colors_name == 'railscasts'
     hi LineNr ctermbg=234 guibg=#444444
   endif
