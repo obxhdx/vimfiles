@@ -61,7 +61,7 @@ command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
 " }}}
 
 " Remove trailing spaces {{{
-autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre * call Preserve('%s/\s\+$//e')
+autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> call Preserve('%s/\s\+$//e')
 " }}}
 
 " Preserve cursor state when performing commands like regex replaces (http://goo.gl/DJ7xA)
