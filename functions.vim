@@ -3,6 +3,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cwindow | redraw!
+  cabbr ag Ag
   nnoremap K :Ag <C-R><C-W><CR>
 endif
 
