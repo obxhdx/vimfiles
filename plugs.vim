@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Appearance
+Plug 'ap/vim-buftabline'
 Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 Plug 'itchyny/lightline.vim'
 
@@ -97,6 +98,12 @@ try
 catch
   colo desert
 endtry
+
+" BufTabline
+hi BufTabLineCurrent ctermbg=203 ctermfg=232
+hi BufTabLineActive ctermbg=236 ctermfg=203
+hi BufTabLineHidden ctermbg=236
+hi BufTabLineFill ctermbg=236
 
 " Commentary
 map  gc  <Plug>Commentary
