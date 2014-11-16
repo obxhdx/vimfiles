@@ -1,48 +1,52 @@
-" General
+" General options " {{{
 set nocompatible " Be iMproved
 set encoding=utf8 " Default encoding
-set history=9999 " Remember more commands and search history
-set undolevels=9999 " Use many levels of undo
-set wildmode=longest:list " Command line tab completion option
-set wildmenu
-set backupdir=~/.vimbackup,/tmp " Group backup files in one place
-set directory=~/.vimbackup,/tmp " Group swap files in one place
+set history=10000 " Remember more commands and search history
+set wildmenu " Enable command line completion menu
+set wildmode=longest:list " Command line completion mode
+set backup " Enable file backup
+set backupdir=~/.vim/tmp/backup// " Backup files dir
+set directory=~/.vim/tmp/swap// " Swap files dir
 set tags+=gems.tags " Load gem tags when present
 set mouse=a " Enable mouse
-set splitbelow " Put splitted windows below the current one
-set splitright " Put splitted windows right of the current one
 set vb t_vb= " Disable visual bell
-set timeout timeoutlen=1000 ttimeoutlen=0 " Disable key code delay time
+set notimeout ttimeout ttimeoutlen=10 " Time out on key codes but not mappings
+" }}}
 
-" Appearance
+" Appearance " {{{
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
-set listchars=tab:».,trail:.,extends:❯,precedes:❮,nbsp:° " Unprintable chars
 set list " Show unprintable chars
+set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable chars
+set showbreak=↪  " Line break character
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
+" }}}
 
-" Searching
+" Searching " {{{
 set incsearch " Enable incremental search
 set ignorecase " Ignore case sensitivity
 set smartcase " Enable case-smart searching
 set hlsearch " Highlight search matches
+" }}}
 
-" Folding
+" Folding " {{{
 set foldmethod=indent " Fold based on indent
-set foldnestmax=10 " Max folding levels
 set nofoldenable " Do not fold by default
-set foldlevel=1
+" }}}
 
-" Formatting
-set expandtab " Insert space characters whenever the tab key is pressed
-set tabstop=2 " Number of spaces for a tab
-set shiftwidth=2 " Number of space characters inserted for indentation
-set softtabstop=2 " Makes the backspace key treat the two spaces like a tab (so one backspace goes back a full 2 spaces)
-set autoindent " Copy the indentation from the previous line, when starting a new line
-set backspace=indent,eol,start " Allow backspacing over everything in insert mode
+" Formatting " {{{
+set expandtab " Use spaces instead of tabs
+set tabstop=2 " Number of spaces for each <Tab>
+set shiftwidth=2 " Number of spaces used for indentation
+set softtabstop=2 " Makes <BS> (backspace key) treat two spaces like a tab
+set autoindent " When starting a new line, use same indentation level as the previous line
+set backspace=indent,eol,start " Allow <BS> over everything in insert mode
 set nowrap " Disable line wrapping
+" }}}
+
+" Key mappings " {{{
 
 " Space as leader
 let mapleader = " "
@@ -94,20 +98,38 @@ noremap <Leader><Leader>r :%s/\C\<<c-r>=expand("<cword>")<cr>\>//gc<left><left><
 " Select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Use Emacs-style movement keys in command prompt
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <M-b> <S-Left>
-cnoremap <M-f> <S-Right>
+" Hit % with <Tab>
+map <Tab> %
+" }}}
 
-" Syntax highlighting
+" Syntax highlighting " {{{
 syntax on
 set t_Co=256
 set background=dark
+" }}}
 
-augroup FiletypeFixes
+" Autocommands " {{{
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" Go to last line when opening a file
+augroup LineReturn
+  au!
+  au BufWinEnter *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+" Highlight cursor line only for current buffer
+augroup CursorLine
+  au!
+  au WinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+augroup FileTypeFixes
   au!
   au BufRead,BufNewFile *.gradle set ft=groovy
   au BufRead,BufNewFile *.erb set ft=eruby.html
@@ -116,14 +138,12 @@ augroup FiletypeFixes
   au FileType markdown set commentstring=<!--%s-->
   au FileType tmux set commentstring=#%s
 augroup END
+" }}}
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-
-" Load extra stuff
+" Extra config files " {{{
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugs.vim
 source $HOME/.vim/lightline.vim
+" }}}
+
+" vim: set foldmethod=marker :

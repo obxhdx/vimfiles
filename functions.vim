@@ -1,4 +1,4 @@
-" The Silver Searcher
+" Ag command (grep with Silver Searcher) {{{
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
@@ -6,9 +6,21 @@ if executable('ag')
   cabbr ag Ag
   nnoremap K :Ag <C-R><C-W><CR>
 endif
+" }}}
 
-" Some predefined coloring tweaks {{{
-function! ColoringTweaks()
+" NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
+command! NewRubyHashSyntax :%s/\v[:']([a-z]*)'?\s\=\>/\1:/gc
+" }}}
+
+" SingleQuotes command (replaces all " with ') {{{
+command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
+" }}}
+
+" Strip trailing white spaces {{{
+autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> call ExecPreservingCursorPos('%s/\s\+$//e')
+" }}}
+
+function! ColoringTweaks() "{{{
   hi MatchParen ctermfg=235 ctermbg=2
   hi Search ctermfg=15 ctermbg=201
   hi markdownError ctermbg=NONE ctermfg=red
@@ -24,6 +36,8 @@ function! ColoringTweaks()
 
   if g:colors_name == 'badwolf'
     hi SignColumn ctermbg=234 guibg=#444444
+    hi FoldColumn ctermbg=234 guibg=#444444
+    hi Folded ctermbg=234 guibg=#444444
   endif
 
   if g:colors_name == 'railscasts'
@@ -53,55 +67,49 @@ endf
 autocmd ColorScheme * call ColoringTweaks()
 " }}}
 
-" Use the new Ruby 1.9 syntax {{{
-command! NewRubyHashSyntax :%s/\v[:']([a-z]*)'?\s\=\>/\1:/gc
-" }}}
+function! ExecPreservingCursorPos(command) "{{{
+  " Taken from http://goo.gl/DJ7xA
 
-" Replace " with ' {{{
-command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
-" }}}
-
-" Remove trailing spaces {{{
-autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> call Preserve('%s/\s\+$//e')
-" }}}
-
-" Preserve cursor state when performing commands like regex replaces (http://goo.gl/DJ7xA)
-function! Preserve(command)
   " Save last search and cursor position
   let _s=@/
   let l = line('.')
   let c = col('.')
+
   " Do the business
   execute a:command
+
   " Restore previous search history and cursor position
   let @/=_s
   call cursor(l, c)
 endfunction
 " }}}
 
-" Shows syntax highlighting groups for word under cursor {{{
-function! SyntaxGroups()
+function! SyntaxGroupsForWordUnderCursor() "{{{
   if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endf
-nmap <leader>sg :call SyntaxGroups()<CR>
+nmap <leader>sg :call SyntaxGroupsForWordUnderCursor()<CR>
 " }}}
 
-" True fullscreen for GVim on Linux {{{
-function! ToggleFullscreen()
+function! ToggleFullscreen() "{{{
+  if !( has('unix') && has('gui_running') )
+    echo 'This function only works in GVim for Linux.'
+    return
+  endif
+
   if executable('wmctrl')
     exec 'silent !wmctrl -r :ACTIVE: -b toggle,fullscreen'
   else
     echo 'You must install wmctrl in order to use GVim fullscreen toggling.'
   endif
 endf
+
 nmap <F11> :call ToggleFullscreen()<CR>
 " }}}
 
-" Toggles a few options for better long text editing {{{
-function! TextEditorMode()
+function! TextEditorMode() "{{{
   if !exists('b:texted_mode') || b:texted_mode == 'false'
     let b:texted_mode = 'true'
     setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt
@@ -115,8 +123,7 @@ endf
 nmap <F10> :call TextEditorMode()<CR>
 " }}}
 
-" Close all hidden buffers {{{
-function! s:CloseHiddenBuffers()
+function! s:CloseHiddenBuffers() "{{{
   let open_buffers = []
 
   for i in range(tabpagenr('$'))
@@ -132,8 +139,7 @@ endf
 command! CloseHiddenBuffers call s:CloseHiddenBuffers()
 " }}}
 
-" Dynamically sets wildignore list {{{
-function! SetWildIgnore(ignored_strings_file)
+function! SetWildIgnore(ignored_strings_file) "{{{
   if filereadable(a:ignored_strings_file)
     let igstring = ''
     for oline in readfile(a:ignored_strings_file)
@@ -153,58 +159,89 @@ endf
 au VimEnter * call SetWildIgnore($HOME.'/.wildignore')
 " }}}
 
-" Function written by Steve Hall on vim@vim.org
-" See :help attr-list for possible attrs to pass
-function! HighlightRemoveAttr(attr)
-  " save selection registers
+function! HighlightRemoveAttr(attr) "{{{
+  " Written by Steve Hall (http://comments.gmane.org/gmane.editors.vim/24861)
+  " See :help attr-list for possible attrs to pass
+
+  " Save selection registers
   new
   silent! put
 
-  " get current highlight configuration
+  " Get current highlight configuration
   redir @x
   silent! highlight
   redir END
-  " open temp buffer
+  " Open temp buffer
   new
-  " paste in
+  " Paste in
   silent! put x
 
-  " convert to vim syntax (from Mkcolorscheme.vim,
-  "   http://vim.sourceforge.net/scripts/script.php?script_id=85)
-  " delete empty,'links' and 'cleared' lines
+  " Convert to vim syntax (from Mkcolorscheme.vim, http://vim.sourceforge.net/scripts/script.php?script_id=85)
+  " Delete empty 'links' and 'cleared' lines
   silent! g/^$\| links \| cleared/d
-  " join any lines wrapped by the highlight com output
+  " Join any lines wrapped by the highlight com output
   silent! %s/\n \+/ /
-  " remove the xxx's
+  " Remove the xxx's
   silent! %s/ xxx / /
-  " add highlight coms
+  " Add highlight coms
   silent! %s/^/highlight /
-  " protect spaces in some font names
+  " Protect spaces in some font names
   silent! %s/font=\(.*\)/font='\1'/
 
-  " substitute bold with 'NONE'
+  " Substitute bold with 'NONE'
   execute 'silent! %s/' . a:attr . '\([\w,]*\)/NONE\1/geI'
-  " yank entire buffer
+  " Yank entire buffer
   normal ggVG
-  " copy
+  " Copy
   silent! normal "xy
-  " run
+  " Run
   execute @x
 
-  " remove temp buffer
+  " Remove temp buffer
   bwipeout!
 
-  " restore selection registers
+  " Restore selection registers
   silent! normal ggVGy
   bwipeout!
 endf
-
-" Displays right hand scrollbar only when needed (GVim) {{{
-function! HandleScrollbars()
-  if line('$') > &lines
-    set guioptions+=r
-  else
-    set guioptions-=r
-  endif
-endfunc
 " }}}
+
+function! FoldTextForIndentMethod() "{{{
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '+-- ' . printf("%9s", lines_count . ' lines') . ':'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart(line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextend . foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength)
+endfunction
+" }}}
+
+function! FoldTextForMarkerMethod() "{{{
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+" }}}
+
+function! SetFoldText() "{{{
+  if &foldmethod == 'indent'
+    setlocal foldtext=FoldTextForIndentMethod()
+  elseif &foldmethod == 'marker' || &foldmethod == 'expr'
+    setlocal foldtext=FoldTextForMarkerMethod()
+  endif
+
+  if &foldmethod == 'marker'
+    setlocal foldenable
+  endif
+endfunction
+au BufEnter * call SetFoldText()
+" }}}
+
+" vim: set foldmethod=marker :

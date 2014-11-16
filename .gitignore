@@ -3,6 +3,7 @@ bundle/
 plugged/
 session/
 spell/
+tmp/
 *.swp
 *~
 .DS_Store
