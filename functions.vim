@@ -35,9 +35,9 @@ function! ColoringTweaks() "{{{
   end
 
   if g:colors_name == 'badwolf'
-    hi SignColumn ctermbg=234 guibg=#444444
-    hi FoldColumn ctermbg=234 guibg=#444444
-    hi Folded ctermbg=234 guibg=#444444
+    hi SignColumn ctermbg=NONE guibg=NONE
+    hi FoldColumn ctermbg=NONE guibg=NONE
+    hi Folded ctermbg=NONE guibg=NONE
   endif
 
   if g:colors_name == 'railscasts'
