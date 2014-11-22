@@ -21,23 +21,22 @@ autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre
 " }}}
 
 function! ColoringTweaks() "{{{
+  hi LineNr ctermbg=NONE
   hi MatchParen ctermfg=235 ctermbg=2
+  hi NonText ctermbg=NONE
+  hi Normal ctermbg=NONE
   hi Search ctermfg=15 ctermbg=201
+  hi StatusLine ctermfg=7 ctermbg=233
+  hi htmlEndTag ctermbg=NONE
+  hi htmlTag ctermbg=NONE
   hi markdownError ctermbg=NONE ctermfg=red
 
-  if !has('gui_running')
-    hi LineNr ctermbg=NONE
-    hi NonText ctermbg=NONE
-    hi Normal ctermbg=NONE
-    hi htmlEndTag ctermbg=NONE
-    hi htmlTag ctermbg=NONE
-    hi StatusLine ctermfg=7 ctermbg=233
-  end
-
   if g:colors_name == 'badwolf'
-    hi SignColumn ctermbg=NONE guibg=NONE
+    hi CursorLineNr ctermbg=235
     hi FoldColumn ctermbg=NONE guibg=NONE
     hi Folded ctermbg=NONE guibg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+    hi SpecialKey ctermbg=NONE
   endif
 
   if g:colors_name == 'railscasts'
