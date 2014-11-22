@@ -20,7 +20,7 @@ set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
 set list " Show unprintable chars
 set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable chars
-set showbreak=↪  " Line break character
+set showbreak=… " Line break character
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
 " }}}
