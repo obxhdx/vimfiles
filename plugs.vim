@@ -138,24 +138,23 @@ nmap [h <Plug>GitGutterPrevHunk
 " }}}
 
 " Goyo"{{{
-fun! GoyoBefore()
-  if exists('$TMUX')
-    silent !tmux set status off
-  endif
+fun! s:GoyoEnter()
+  silent !tmux set status off
   call TextEditorMode()
-  Limelight
+  hi NonText ctermfg=238
+  hi SpellBad ctermbg=234
 endf
 
-fun! GoyoAfter()
-  if exists('$TMUX')
-    silent !tmux set status on
-  endif
+fun! s:GoyoLeave()
+  silent !tmux set status on
   call TextEditorMode()
+  call buftabline#update(0)
   Limelight!
+  exec 'colorscheme ' . g:colors_name
 endf
 
-let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-autocmd FileType markdown nnoremap <Leader>g :Goyo<CR>
+autocmd! User GoyoEnter nested call <SID>GoyoEnter()
+autocmd! User GoyoLeave nested call <SID>GoyoLeave()
 " }}}
 
 " Limelight"{{{
