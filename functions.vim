@@ -17,7 +17,8 @@ command! SingleQuotes :%s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
 " }}}
 
 " Strip trailing white spaces {{{
-autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> call ExecPreservingCursorPos('%s/\s\+$//e')
+command! StripTrailingWhitespaces :call ExecPreservingCursorPos('%s/\s\+$//e')
+autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> StripTrailingWhitespaces
 " }}}
 
 function! ColoringTweaks() "{{{
