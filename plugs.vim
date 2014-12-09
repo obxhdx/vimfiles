@@ -72,6 +72,8 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 " }}}
 
 " Tools"{{{
+Plug 'epeli/slimux', { 'on': [ 'SlimuxREPLSendLine', 'SlimuxREPLSendSelection', 'SlimuxShellLast',
+      \ 'SlimuxShellPrompt', 'SlimuxSendKeysLast', 'SlimuxSendKeysPrompt' ] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
@@ -206,6 +208,26 @@ nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 15, 4)<CR>
 nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 15, 4)<CR>
 nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 15, 4)<CR>
 " }}}
+
+" Slimux"{{{
+let g:slimux_select_from_current_window = 1
+let g:slimux_pane_format = '[#{session_name}] #{window_index}.#{pane_index} [#{window_name}] #{pane_title}'
+
+au FileType slimux syntax match slimuxPaneId /\v^\%[0-9]+\ze:/
+au FileType slimux syntax match slimuxPaneIndex /\v[0-9]+\.[0-9]+/
+au FileType slimux syntax match slimuxSessionOrWindowName /\v\s\[[[:alnum:]]+\]\s/
+
+hi def link slimuxPaneId WarningMsg
+hi def link slimuxPaneIndex Constant
+hi def link slimuxSessionOrWindowName Title
+
+nmap <C-c><C-c> :SlimuxREPLSendLine<CR>
+vmap <C-c><C-c> :SlimuxREPLSendSelection<CR>
+nmap <C-c>s :SlimuxShellLast<CR>
+nmap <C-c><C-s> :SlimuxShellPrompt<CR>
+nmap <C-c>k :SlimuxSendKeysLast<CR>
+nmap <C-c><C-k> :SlimuxSendKeysPrompt<CR>
+"}}}
 
 " Startify"{{{
 hi StartifyBracket ctermfg=240 guifg=#585858
