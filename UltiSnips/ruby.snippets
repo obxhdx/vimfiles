@@ -1,3 +1,13 @@
 snippet # "#{}"
 #{${1}}${0}
 endsnippet
+
+snippet "([0-9])\.tim" "times { |<i>| <block> }" r
+`!p snip.rv=match.group(1)`.times { |${1:i}| ${2:# TODO} }${0}
+endsnippet
+
+snippet "([0-9])\.Tim" "times do |<i>| <block> end" r
+`!p snip.rv=match.group(1)`.times do |${1:i}|
+  ${2:# TODO}
+end
+endsnippet
