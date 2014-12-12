@@ -45,6 +45,8 @@ Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
 Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 Plug 'kshenoy/vim-signature'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 " }}}
 
 " Navigation"{{{
@@ -172,6 +174,49 @@ let g:markdown_folding = 1
 let NERDTreeCasadeOpenSingleChildDir = 1
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
+" }}}
+
+" Notes"{{{
+let g:notes_directories = [ '~/Dropbox/Notes' ]
+let g:notes_suffix = '.txt'
+
+au FileType notes syntax match notesDoneItem /\v^<DONE>.*$/ contains=@notesInline
+
+hi link notesFixme ErrorMsg
+hi link notesTodo WarningMsg
+hi notesDoneMarker term=standout cterm=bold ctermfg=238 gui=bold guifg=#444444
+
+function! EnableTodoMode()
+  syntax match notesGroupHeading /\v^(%1l|TODO|XXX|FIXME|CURRENT|INPROGRESS|STARTED|WIP|DONE|.*:|[^A-Za-z]|$)@!.{1,50}$/ contains=@notesInline
+  hi link notesGroupHeading markdownH1
+endfunction
+
+function! NotesFolds()
+  let l:syntax_group_id = synstack(v:lnum, col('.'))
+  let l:syntax_group_name = empty(l:syntax_group_id) ? '' : synIDattr(l:syntax_group_id[0], 'name')
+
+  if l:syntax_group_name == 'notesGroupHeading'
+    return '>1'
+  elseif l:syntax_group_name == 'notesShortHeading'
+    return '>2'
+  else
+    return '='
+  endif
+endfunction
+
+au FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | setlocal foldexpr=NotesFolds() | endif
+au FileType notes au CursorHold,InsertLeave <buffer> write
+
+function! ChangeTaskStatus(status)
+  let l:regex = 's/\<\(TODO\|XXX\|FIXME\|CURRENT\|INPROGRESS\|STARTED\|WIP\|DONE\)\>/' . a:status
+  call ExecPreservingCursorPos(l:regex)
+  write
+endfunction
+
+au FileType notes nnoremap tt :call ChangeTaskStatus('TODO')<CR>
+au FileType notes nnoremap ti :call ChangeTaskStatus('INPROGRESS')<CR>
+au FileType notes nnoremap td :call ChangeTaskStatus('DONE')<CR>
+au FileType notes nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
 " }}}
 
 " Oblique"{{{
