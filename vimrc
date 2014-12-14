@@ -10,7 +10,8 @@ set directory=~/.vim/tmp/swap// " Swap files dir
 set tags+=gems.tags " Load gem tags when present
 set mouse=a " Enable mouse
 set vb t_vb= " Disable visual bell
-set notimeout ttimeout ttimeoutlen=10 " Time out on key codes but not mappings
+set timeoutlen=1000 " Leader key timeout (ms)
+set ttimeoutlen=10 " Disable Esc delay
 set hidden " Hide buffers instead of closing them
 " }}}
 
