@@ -1,5 +1,4 @@
-" Components
-"
+" Components {{{
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
@@ -34,40 +33,25 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+"}}}
 
+" Display always "{{{
 function! MyMode()
   let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! MyFugitive()
-  let fname = expand('%:t')
-  try
-    if &ft !~? 'help' && fname !~? 'NERD' && exists('*fugitive#head')
-      let mark = ' '
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
+  return FileNameMatches('NERD_tree') ? 'NERDTree' : (BufferMinPercent(35) ? lightline#mode() : strpart(lightline#mode(), 0, 1))
 endfunction
 
 function! MyFileName()
   let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' :
-        \ ('' != fname ? fname : '[No Name]')
+  return FileNameMatches('NERD_tree') ? '' : (empty(fname) ? '[No Name]' : fname)
 endfunction
 
 function! MyModified()
-  let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' :
-        \ &modified ? '+' : &modifiable ? '' : '-'
+  return FileNameMatches('NERD_tree') ? '' : (&modified ? '+' : (&modifiable ? '' : '-'))
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help' && &readonly ? '' : ''
+  return (FtDifferentThan('help') && &readonly) ? '' : ''
 endfunction
 
 function! MyFlags()
@@ -75,30 +59,17 @@ function! MyFlags()
        \ ('' != MyModified() ? MyModified() . ' ' : '')
 endfunction
 
-function! MyFileFormat()
-  return &ft !~? 'help' && winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! MyFileEncoding()
-  return &ft !~? 'help' && winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! MyFileType()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
 function! MyLineInfo()
-  let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' : printf(" %3d:%-2d", line('.'), col('.'))
+  return FileNameMatches('NERD_tree') ? '' : printf(" %3d:%-2d", line('.'), col('.'))
 endfunction
 
 function! MyPercent()
-  let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' : printf("%3d%%", line('.') * 100 / line('$'))
+  return FileNameMatches('NERD_tree') ? '' : printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
-
+"}}}
+" Hide if smaller than 70 {{{
 function! TrailingSpaceWarning()
-  if &ft == 'help' || winwidth(0) < 70
+  if !FtDifferentThan('help') || winwidth(0) < 80
     return ''
   endif
 
@@ -111,7 +82,7 @@ function! TrailingSpaceWarning()
 endfunction
 
 function! MixedIndentSpaceWarning()
-  if &ft == 'help' || winwidth(0) < 70
+  if !FtDifferentThan('help') || winwidth(0) < 80
     return ''
   endif
 
@@ -124,7 +95,56 @@ function! MixedIndentSpaceWarning()
     return ''
   endif
 endfunction
+"}}}
+" Hide if smaller than 40% {{{
+function! MyFileFormat()
+  return FtDifferentThan('help') && BufferMinPercent(40) ? &fileformat : ''
+endfunction
 
+function! MyFileEncoding()
+  return FtDifferentThan('help') && BufferMinPercent(40) ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+"}}}
+" Hide if smaller than 30% {{{
+function! MyFileType()
+  return BufferMinPercent(30) ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+"}}}
+" Hide if smaller than 25% {{{
+function! MyFugitive()
+  let fname = expand('%:t')
+  try
+    if !BufferMinPercent(25)
+      return ''
+    elseif (FtDifferentThan('help') && fname !~? 'NERD') && exists('*fugitive#head')
+      let mark = ' '
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+"}}}
+
+" Helper functions {{{
+au VimEnter * let g:total_width = winwidth(0)
+
+function! BufferMinPercent(percent)
+  return winwidth(0) > (g:total_width * a:percent / 100)
+endfunction
+
+function! FtDifferentThan(ft_name)
+  return &ft !~? a:ft_name
+endfunction
+
+function! FileNameMatches(file_name)
+  let fname = expand('%:t')
+  return fname =~ a:file_name
+endfunction
+"}}}
+
+" Components manual update config {{{
 augroup ComponentExpand
   autocmd!
   autocmd CursorHold,BufWritePost,InsertLeave * call s:flags()
@@ -137,9 +157,9 @@ function! s:flags()
     call lightline#update()
   endif
 endfunction
+"}}}
 
-" Colors
-"
+" Colors definitions {{{
 let s:black           = [ '#000000', 16  ]
 let s:blue            = [ '#268bd2', 33  ]
 let s:brightestorange = [ '#ffaf00', 214 ]
@@ -180,7 +200,8 @@ let s:red             = [ '#dc322f', 160 ]
 let s:violet          = [ '#6c71c4', 61  ]
 let s:white           = [ '#ffffff', 231 ]
 let s:yellow          = [ '#b58900', 136 ]
-
+"}}}
+" Color scheme {{{
 let s:p = { 'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {} }
 
 let s:p.normal.left      = [ [s:white, s:red], [s:darkestgreen, s:brightgreen], [s:white, s:gray4], [s:white, s:gray4], [s:red, s:gray2] ]
@@ -204,3 +225,6 @@ let s:p.tabline.right    = [ [s:gray9, s:gray3] ]
 let s:p.tabline.tabsel   = [ [s:gray9, s:gray4] ]
 
 let g:lightline#colorscheme#powerline#palette = lightline#colorscheme#flatten(s:p)
+"}}}
+
+" vim: set foldmethod=marker :
