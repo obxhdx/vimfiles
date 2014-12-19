@@ -74,7 +74,7 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 " }}}
 
 " Tools"{{{
-Plug 'epeli/slimux', { 'on': [ 'SlimuxREPLSendLine', 'SlimuxREPLSendSelection', 'SlimuxShellLast',
+Plug 'obxhdx/slimux', { 'on': [ 'SlimuxREPLSendLine', 'SlimuxREPLSendSelection', 'SlimuxShellLast',
       \ 'SlimuxShellPrompt', 'SlimuxSendKeysLast', 'SlimuxSendKeysPrompt' ] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'mhinz/vim-startify'
