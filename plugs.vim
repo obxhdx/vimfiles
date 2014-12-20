@@ -45,7 +45,7 @@ Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
 Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 Plug 'kshenoy/vim-signature'
-Plug 'xolox/vim-misc'
+Plug 'xolox/vim-misc' " Dependency for vim-notes
 Plug 'xolox/vim-notes'
 " }}}
 
@@ -53,7 +53,7 @@ Plug 'xolox/vim-notes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'junegunn/vim-oblique'
-Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
