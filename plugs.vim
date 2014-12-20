@@ -6,6 +6,12 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ihacklog/HiCursorWords'
+let g:HiCursorWords_delay = 0
+au BufEnter * hi! WordUnderTheCursor ctermbg=236 ctermfg=magenta
+au BufEnter * hi! link Search WordUnderTheCursor
+au BufEnter * hi! link IncSearch MatchParen
+
 " Appearance"{{{
 Plug 'ap/vim-buftabline'
 Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
