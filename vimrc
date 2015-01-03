@@ -148,8 +148,7 @@ augroup END
 
 " Extra config files " {{{
 source $HOME/.vim/functions.vim
-source $HOME/.vim/plugs.vim
-source $HOME/.vim/lightline.vim
+source $HOME/.vim/plugins.vim
 " }}}
 
 " vim: set foldmethod=marker :

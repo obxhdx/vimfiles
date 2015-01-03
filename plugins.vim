@@ -1,10 +1,10 @@
-if empty(glob('~/.vim/plugged'))
+if empty(glob('~/.vim/bundle'))
   autocmd VimEnter * PlugInstall
 endif
 
 " Plugin Declarations "{{{
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
 Plug 'ihacklog/HiCursorWords'
 let g:HiCursorWords_delay = 0
@@ -115,7 +115,10 @@ endfunction
 " Plugin Customizations"{{{
 
 " Colorscheme {{{
-colo badwolf
+try
+  colorscheme badwolf
+catch
+endtry
 " }}}
 
 " BufTabline"{{{
@@ -171,6 +174,13 @@ autocmd! User GoyoLeave nested call <SID>GoyoLeave()
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 " }}}
+
+" Lightline"{{{
+try
+source $HOME/.vim/lightline.vim
+catch
+endtry
+"}}}
 
 " Markdown"{{{
 let g:markdown_folding = 1
