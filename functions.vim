@@ -1,11 +1,31 @@
 " Ag command (grep with Silver Searcher) {{{
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
-  set grepformat=%f:%l:%c:%m
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cwindow | redraw!
-  cabbr ag Ag
-  nnoremap K :Ag <C-R><C-W><CR>
-endif
+set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cwindow | redraw!
+cabbr ag Ag
+" }}}
+
+" Grep with motions (http://goo.gl/iB5nFs) {{{
+function! s:AckMotion(type) abort
+  let reg_save = @@
+
+  call s:CopyMotionForType(a:type)
+
+  execute "normal! :Ag " . shellescape(@@) . "\<cr>"
+
+  let @@ = reg_save
+endfunction
+
+function! s:CopyMotionForType(type)
+  if a:type ==# 'v'
+    silent execute "normal! `<" . a:type . "`>y"
+  elseif a:type ==# 'char'
+    silent execute "normal! `[v`]y"
+  endif
+endfunction
+
+nnoremap <silent> <Leader>a :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <Leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 " }}}
 
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
