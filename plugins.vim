@@ -200,7 +200,7 @@ au FileType notes syntax match notesDoneItem /\v^<DONE>.*$/ contains=@notesInlin
 
 hi link notesFixme ErrorMsg
 hi link notesTodo WarningMsg
-hi notesDoneMarker term=standout cterm=bold ctermfg=238 gui=bold guifg=#444444
+hi notesDoneMarker term=standout cterm=bold ctermfg=237 gui=bold guifg=#444444
 
 function! EnableTodoMode()
   syntax match notesGroupHeading /\v^(%1l|TODO|XXX|FIXME|CURRENT|INPROGRESS|STARTED|WIP|DONE|.*:|[^A-Za-z]|$)@!.{1,50}$/ contains=@notesInline
