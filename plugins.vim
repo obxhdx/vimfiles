@@ -233,6 +233,7 @@ au FileType notes nnoremap tt :call ChangeTaskStatus('TODO')<CR>
 au FileType notes nnoremap ti :call ChangeTaskStatus('INPROGRESS')<CR>
 au FileType notes nnoremap td :call ChangeTaskStatus('DONE')<CR>
 au FileType notes nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
+au FileType notes nnoremap tn :normal GoTODO <CR>a
 " }}}
 
 " Oblique"{{{
