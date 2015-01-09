@@ -46,6 +46,17 @@ set softtabstop=2 " Makes <BS> (backspace key) treat two spaces like a tab
 set autoindent " When starting a new line, use same indentation level as the previous line
 set backspace=indent,eol,start " Allow <BS> over everything in insert mode
 set nowrap " Disable line wrapping
+set formatoptions= " Clear options
+set formatoptions+=r " Continue comments by default
+set formatoptions+=o " Make comment when using o or O from comment line
+set formatoptions+=q " Format comments with gq
+set formatoptions+=n " Recognize numbered lists
+set formatoptions+=2 " Use indent from 2nd line of a paragraph
+set formatoptions+=l " Don't break lines that are already long
+set formatoptions+=c " Format comments
+set formatoptions+=t " Wrap when using textwidth
+set formatoptions+=1 " Break before 1-letter words
+set formatoptions+=j " Remove comment characters when joining lines
 " }}}
 
 " Key mappings " {{{

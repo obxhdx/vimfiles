@@ -132,11 +132,11 @@ nmap <F11> :call ToggleFullscreen()<CR>
 function! TextEditorMode() "{{{
   if !exists('b:texted_mode') || b:texted_mode == 'false'
     let b:texted_mode = 'true'
-    setlocal tw=0 fo= wrap lbr nolist spell spl=en,pt showtabline=0
+    setlocal fo+=a wrap lbr nolist spell spl=en,pt showtabline=0
     echo 'Text editor mode enabled.'
   else
     let b:texted_mode = 'false'
-    setlocal tw=0 fo=tcq nowrap nolbr nolist nospell showtabline=1
+    setlocal fo-=a nowrap nolbr nolist nospell showtabline=1
     echo 'Text editor mode disabled.'
   endif
 endf
