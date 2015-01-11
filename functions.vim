@@ -46,7 +46,7 @@ function! ColoringTweaks() "{{{
   hi MatchParen ctermfg=235 ctermbg=2
   hi NonText ctermbg=NONE
   hi Normal ctermbg=NONE
-  hi Search ctermfg=15 ctermbg=201
+  hi Search ctermfg=255 ctermbg=198
   hi StatusLine ctermfg=7 ctermbg=233
   hi htmlEndTag ctermbg=NONE
   hi htmlTag ctermbg=NONE
@@ -143,7 +143,7 @@ endf
 nmap <F10> :call TextEditorMode()<CR>
 " }}}
 
-function! s:CloseHiddenBuffers() "{{{
+function! CloseHiddenBuffers() "{{{
   let open_buffers = []
 
   for i in range(tabpagenr('$'))
@@ -156,7 +156,7 @@ function! s:CloseHiddenBuffers() "{{{
     endif
   endfor
 endf
-command! CloseHiddenBuffers call s:CloseHiddenBuffers()
+command! CloseHiddenBuffers call CloseHiddenBuffers()
 " }}}
 
 function! SetWildIgnore(ignored_strings_file) "{{{
@@ -225,6 +225,32 @@ function! HighlightRemoveAttr(attr) "{{{
   bwipeout!
 endf
 " }}}
+
+function! HighlightWordUnderCursor() "{{{
+  let s:word = expand('<cword>')
+  let s:word = substitute(s:word, '[^[:alnum:]_]', '', 'g')
+  execute 'match WordUnderCursor /\v<'.s:word.'>/'
+endfunction
+
+highlight WordUnderCursor ctermbg=236 ctermfg=magenta
+
+autocmd FileType vim,ruby,groovy autocmd CursorMoved * call HighlightWordUnderCursor()
+"}}}
+
+function! HighlightCurrentSearchMatch() "{{{
+  set hlsearch
+  execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'
+  call search_pulse#Pulse()
+endfunction
+
+nnoremap <silent> * *:call HighlightCurrentSearchMatch()<CR>
+nnoremap <silent> # #:call HighlightCurrentSearchMatch()<CR>
+nnoremap <silent> n n:call HighlightCurrentSearchMatch()<CR>
+nnoremap <silent> N N:call HighlightCurrentSearchMatch()<CR>
+nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>/
+
+autocmd CursorMoved * match None | set nohlsearch
+"}}}
 
 function! FoldTextForIndentMethod() "{{{
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '

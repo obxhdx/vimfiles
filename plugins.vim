@@ -6,12 +6,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'ihacklog/HiCursorWords'
-let g:HiCursorWords_delay = 0
-au BufEnter * hi! WordUnderTheCursor ctermbg=236 ctermfg=magenta
-au BufEnter * hi! link Search WordUnderTheCursor
-au BufEnter * hi! link IncSearch MatchParen
-
 " Appearance"{{{
 Plug 'ap/vim-buftabline'
 Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
@@ -58,8 +52,6 @@ Plug 'xolox/vim-notes'
 " Navigation"{{{
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
-Plug 'junegunn/vim-oblique'
-Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
@@ -236,10 +228,6 @@ au FileType notes nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
 au FileType notes nnoremap tn :normal GoTODO <CR>a
 " }}}
 
-" Oblique"{{{
-let g:oblique#incsearch_highlight_all = 1
-" }}}
-
 " Powerline"{{{
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
@@ -250,12 +238,6 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 " Pulse"{{{
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:vim_search_pulse_duration = 10
-autocmd! User Oblique
-autocmd! User ObliqueStar
-autocmd! User ObliqueRepeat
-autocmd  User Oblique       call search_pulse#Pulse()
-autocmd  User ObliqueStar   call search_pulse#Pulse()
-autocmd  User ObliqueRepeat call search_pulse#Pulse()
 " }}}
 
 " Rainbow parentheses"{{{
