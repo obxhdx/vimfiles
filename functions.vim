@@ -290,4 +290,15 @@ endfunction
 au BufEnter * call SetFoldText()
 " }}}
 
+function! s:SearchSelectedText(cmdtype) "{{{
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
+xnoremap * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
+xnoremap # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
+"}}}
+
 " vim: set foldmethod=marker :
