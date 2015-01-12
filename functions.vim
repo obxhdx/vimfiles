@@ -229,7 +229,9 @@ endf
 function! HighlightWordUnderCursor() "{{{
   let s:word = expand('<cword>')
   let s:word = substitute(s:word, '[^[:alnum:]_]', '', 'g')
-  execute 'match WordUnderCursor /\v<'.s:word.'>/'
+  if len(s:word) > 1
+    execute 'match WordUnderCursor /\v<'.s:word.'>/'
+  endif
 endfunction
 
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
