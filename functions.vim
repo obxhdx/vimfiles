@@ -234,7 +234,7 @@ endfunction
 
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
-autocmd FileType vim,ruby,groovy autocmd CursorMoved * call HighlightWordUnderCursor()
+autocmd FileType * autocmd CursorMoved * call HighlightWordUnderCursor()
 "}}}
 
 function! HighlightCurrentSearchMatch() "{{{
