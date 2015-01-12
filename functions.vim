@@ -239,7 +239,7 @@ autocmd FileType vim,ruby,groovy autocmd CursorMoved * call HighlightWordUnderCu
 
 function! HighlightCurrentSearchMatch() "{{{
   set hlsearch
-  execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'
+  execute 'match IncSearch /\c\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'
   call search_pulse#Pulse()
 endfunction
 
