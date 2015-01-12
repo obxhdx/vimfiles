@@ -113,10 +113,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Hit % with <Tab>
 map <Tab> %
-
-" Close all folds, make current line visible and center it
-nnoremap zv zMzvzz
-
 " }}}
 
 " Syntax highlighting " {{{
