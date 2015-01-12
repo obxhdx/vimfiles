@@ -207,6 +207,8 @@ function! NotesFolds()
     return '>1'
   elseif l:syntax_group_name == 'notesShortHeading'
     return '>2'
+  elseif foldlevel(v:lnum-1) != '-1'
+    return foldlevel(v:lnum-1)
   else
     return '='
   endif
