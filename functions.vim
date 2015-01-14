@@ -300,8 +300,8 @@ function! s:SearchSelectedText(cmdtype) "{{{
   let @s = temp
 endfunction
 
-xnoremap * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
-xnoremap # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
+xnoremap <silent> * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
+xnoremap <silent> # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
 "}}}
 
 " vim: set foldmethod=marker :
