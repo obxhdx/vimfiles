@@ -250,6 +250,7 @@ nnoremap <silent> # #:call HighlightCurrentSearchMatch()<CR>
 nnoremap <silent> n n:call HighlightCurrentSearchMatch()<CR>
 nnoremap <silent> N N:call HighlightCurrentSearchMatch()<CR>
 nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>/
+nnoremap <silent> ? :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>?
 
 autocmd CursorMoved * match None | set nohlsearch
 "}}}
