@@ -252,7 +252,21 @@ nnoremap <silent> N N:call HighlightCurrentSearchMatch()<CR>
 nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>/
 nnoremap <silent> ? :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>?
 
-autocmd CursorMoved * match None | set nohlsearch
+autocmd CursorMoved * call <SID>ClearSearchMatches()
+
+function! s:ClearSearchMatches()
+  if get(g:, 'freeze_search_matches') == 0
+    match None
+    set nohlsearch
+  endif
+endfunction
+
+function! s:ToggleSearchMatchCleaning(status)
+  let g:freeze_search_matches = a:status
+endfunction
+
+command! FreezeSearchMatches call <SID>ToggleSearchMatchCleaning(1)
+command! UnfreezeSearchMatches call <SID>ToggleSearchMatchCleaning(0)
 "}}}
 
 function! FoldTextForIndentMethod() "{{{
