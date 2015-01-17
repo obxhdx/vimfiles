@@ -226,7 +226,7 @@ function! HighlightRemoveAttr(attr) "{{{
 endf
 " }}}
 
-function! HighlightWordUnderCursor() "{{{
+function! s:HighlightWordUnderCursor() "{{{
   let s:word = expand('<cword>')
   let s:word = substitute(s:word, '[^[:alnum:]_]', '', 'g')
   if len(s:word) > 1
@@ -236,37 +236,51 @@ endfunction
 
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
-autocmd FileType * autocmd CursorMoved * call HighlightWordUnderCursor()
+autocmd FileType * autocmd CursorMoved * call s:HighlightWordUnderCursor()
 "}}}
 
-function! HighlightCurrentSearchMatch() "{{{
-  set hlsearch
-  execute 'match IncSearch /\c\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'
+function! HighlightSearchMatches(use_cword) "{{{
+  if a:use_cword == 1
+    let @/ = '\<'.expand('<cword>').'\>'
+  endif
+  call clearmatches()
+  call matchadd('Search', '\c'.@/, 11)
+  call matchadd('IncSearch', '\c\%#'.@/, 11)
+  call histadd('/', @/)
   call search_pulse#Pulse()
 endfunction
 
-nnoremap <silent> * *:call HighlightCurrentSearchMatch()<CR>
-nnoremap <silent> # #:call HighlightCurrentSearchMatch()<CR>
-nnoremap <silent> n n:call HighlightCurrentSearchMatch()<CR>
-nnoremap <silent> N N:call HighlightCurrentSearchMatch()<CR>
-nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>/
-nnoremap <silent> ? :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightCurrentSearchMatch()<'.'CR>')<CR>?
+nnoremap <silent> * *:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> # #:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> n n:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> N N:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/
+nnoremap <silent> ? :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?
+nnoremap <silent> <Leader>* :call HighlightSearchMatches(1)<CR>
+"}}}
 
-autocmd CursorMoved * call <SID>ClearSearchMatches()
-
-function! s:ClearSearchMatches()
+function! s:ClearSearchMatches() "{{{
   if get(g:, 'freeze_search_matches') == 0
-    match None
+    call clearmatches()
     set nohlsearch
   endif
 endfunction
 
-function! s:ToggleSearchMatchCleaning(status)
-  let g:freeze_search_matches = a:status
+autocmd! CursorMoved * call s:ClearSearchMatches()
+command! FreezeSearchMatches let g:freeze_search_matches = 1
+command! UnfreezeSearchMatches let g:freeze_search_matches = 0
+"}}}
+
+function! s:SearchSelectedText(cmd_type) "{{{
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmd_type.'\'), '\n', '\\n', 'g')
+  let @s = temp
 endfunction
 
-command! FreezeSearchMatches call <SID>ToggleSearchMatchCleaning(1)
-command! UnfreezeSearchMatches call <SID>ToggleSearchMatchCleaning(0)
+xnoremap <silent> * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
+xnoremap <silent> # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
+xnoremap <silent> <Leader>* :<C-u>call <SID>SearchSelectedText('/')<CR>:call HighlightSearchMatches(0)<CR>
 "}}}
 
 function! FoldTextForIndentMethod() "{{{
@@ -306,16 +320,5 @@ function! SetFoldText() "{{{
 endfunction
 au BufEnter * call SetFoldText()
 " }}}
-
-function! s:SearchSelectedText(cmdtype) "{{{
-  let temp = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-  let @s = temp
-endfunction
-
-xnoremap <silent> * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
-xnoremap <silent> # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightCurrentSearchMatch()<CR>
-"}}}
 
 " vim: set foldmethod=marker :
