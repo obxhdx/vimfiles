@@ -46,7 +46,7 @@ Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
 Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
 Plug 'kshenoy/vim-signature'
 Plug 'xolox/vim-misc' " Dependency for vim-notes
-Plug 'xolox/vim-notes'
+Plug 'xolox/vim-notes', { 'on': 'Note' }
 " }}}
 
 " Navigation"{{{
