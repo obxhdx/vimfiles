@@ -134,7 +134,32 @@ let delimitMate_expand_space = 1
 " }}}
 
 " FZF"{{{
-map <Leader>z :FZF<CR>
+nnoremap <Leader>zf :FZF<CR>
+nnoremap <Leader>zl :LoadFZF<CR>:FZFLines<CR>
+
+command! LoadFZF if stridx(&rtp, g:plugs.fzf.dir) <= 0 | call plug#load('fzf') | endif
+
+command! FZFLines call fzf#run({
+      \ 'source': s:FZFBuffersLines(),
+      \ 'sink': function('s:FZFLineHandler'),
+      \ 'options': '--extended --nth=3..,',
+      \ 'tmux_height': '40%'
+      \})
+
+function! s:FZFLineHandler(l)
+  let keys = split(a:l, ':\t')
+  exec 'buf ' . keys[0]
+  exec keys[1]
+  normal! ^zz
+endfunction
+
+function! s:FZFBuffersLines()
+  let results = []
+  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    call extend(results, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
+  endfor
+  return reverse(results)
+endfunction
 " }}}
 
 " GitGutter"{{{
