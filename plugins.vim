@@ -30,6 +30,7 @@ Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 " Color Schemes"{{{
 Plug 'altercation/vim-colors-solarized'
 Plug 'dhruvasagar/vim-railscasts-theme'
+Plug 'gosukiwi/vim-atom-dark'
 Plug 'ronny/birds-of-paradise.vim'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
