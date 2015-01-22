@@ -228,7 +228,7 @@ endf
 
 function! s:HighlightWordUnderCursor() "{{{
   let s:word = expand('<cword>')
-  let s:word = substitute(s:word, '[^[:alnum:]_]', '', 'g')
+  let s:word = substitute(s:word, '[^[:alnum:]_-]', '', 'g')
   if len(s:word) > 1
     execute 'match WordUnderCursor /\v<'.s:word.'>/'
   endif
