@@ -250,6 +250,8 @@ function! HighlightSearchMatches(use_cword) "{{{
   call search_pulse#Pulse()
 endfunction
 
+nnoremap <silent> gd gd:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> gD gD:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> * *:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> # #:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> n n:call HighlightSearchMatches(0)<CR>
