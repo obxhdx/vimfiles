@@ -24,8 +24,8 @@ function! s:CopyMotionForType(type)
   endif
 endfunction
 
-nnoremap <silent> <Leader>a :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <Leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
+nnoremap <silent> <Leader>g :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <Leader>g :<C-U>call <SID>AckMotion(visualmode())<CR>
 " }}}
 
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
