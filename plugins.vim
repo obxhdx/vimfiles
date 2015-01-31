@@ -164,8 +164,9 @@ endfunction
 " }}}
 
 " GitGutter"{{{
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+let g:gitgutter_map_keys = 0
+nmap ]c <Plug>GitGutterNextHunk
+nmap [c <Plug>GitGutterPrevHunk
 " }}}
 
 " Goyo"{{{
