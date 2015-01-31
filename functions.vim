@@ -87,6 +87,29 @@ endf
 autocmd ColorScheme * call ColoringTweaks()
 " }}}
 
+function! s:DidYouMean() "{{{
+  let matching_files = split(glob(expand('%').'*', 1), '\n')
+  if empty(matching_files)
+    return
+  endif
+
+  let shown_items = ['Did you mean:']
+  for i in range(1, len(matching_files))
+    call add(shown_items, i.'. '.matching_files[i-1])
+  endfor
+
+  let chosen_number = inputlist(shown_items)
+  if chosen_number >= 1 && chosen_number <= len(matching_files)
+    let empty_buffer_nr = bufnr("%")
+    execute ':edit ' . matching_files[chosen_number-1]
+    execute ':silent bdelete ' . empty_buffer_nr
+    filetype detect
+  endif
+endfunction
+
+autocmd BufNewFile * call s:DidYouMean()
+"}}}
+
 function! ExecPreservingCursorPos(command) "{{{
   " Taken from http://goo.gl/DJ7xA
 
