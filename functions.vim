@@ -261,14 +261,14 @@ function! HighlightSearchMatches(use_cword) "{{{
   call search_pulse#Pulse()
 endfunction
 
-nnoremap <silent> gd gd:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> gD gD:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> gd gdzv:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> gD gDzv:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> * *:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> # #:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> n n:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> N N:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> / :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/
-nnoremap <silent> ? :exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?
+nnoremap <silent> n zvn:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> N zvN:call HighlightSearchMatches(0)<CR>
+nnoremap <silent> / zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/
+nnoremap <silent> ? zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?
 nnoremap <silent> <Leader>* :call HighlightSearchMatches(1)<CR>
 "}}}
 
