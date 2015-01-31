@@ -113,6 +113,10 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Hit % with <Tab>
 map <Tab> %
+
+" Move faster with C-e/C-y
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 " }}}
 
 " Syntax highlighting " {{{
