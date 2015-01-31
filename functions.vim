@@ -240,6 +240,17 @@ autocmd FileType * autocmd CursorMoved * call s:HighlightWordUnderCursor()
 "}}}
 
 function! HighlightSearchMatches(use_cword) "{{{
+  if get(g:, 'clear_search_warning') == 1
+    let v:warningmsg = ''
+    let g:clear_search_warning = 0
+  endif
+
+  if (v:warningmsg =~ 'search hit .*, continuing at .*')
+    let g:clear_search_warning = 1
+  else
+    echo '/'.@/
+  endif
+
   if a:use_cword == 1
     let @/ = '\<'.expand('<cword>').'\>'
   endif
