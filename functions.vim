@@ -227,6 +227,10 @@ endf
 " }}}
 
 function! s:HighlightWordUnderCursor() "{{{
+  if get(g:, 'wuc_disabled') == 1
+    return
+  endif
+
   let s:word = expand('<cword>')
   let s:word = substitute(s:word, '[^[:alnum:]_-]', '', 'g')
   if len(s:word) > 1
@@ -236,7 +240,8 @@ endfunction
 
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
-autocmd FileType * autocmd CursorMoved * call s:HighlightWordUnderCursor()
+autocmd FileType * set updatetime=300
+autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
 "}}}
 
 function! HighlightSearchMatches(use_cword) "{{{
