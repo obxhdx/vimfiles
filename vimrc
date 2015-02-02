@@ -26,6 +26,17 @@ set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
 " }}}
 
+" Auto-complete (^N and ^P) {{{
+set complete=   " Clear options
+set complete+=. " Scan the current buffer
+set complete+=w " Scan buffers from other windows
+set complete+=b " Scan other loaded buffers that are in the buffer list
+set complete+=u " Scan unloaded buffers that are in the buffer list
+set complete+=U " Scan buffers that are not in the buffer list
+set complete+=i " Scan current and included files
+set complete+=] " Tag completion
+"}}}
+
 " Searching " {{{
 set incsearch " Enable incremental search
 set ignorecase " Ignore case sensitivity
