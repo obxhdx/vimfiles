@@ -37,7 +37,7 @@ Plug 'tomasr/molokai'
 " }}}
 
 " Git"{{{
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'on': [] }
 Plug 'tpope/vim-fugitive'
 " }}}
 
@@ -85,22 +85,24 @@ call plug#end()
 " }}}
 
 " On-demand Activation"{{{
+
 augroup InitCompletionPlugins
   autocmd!
-  autocmd InsertEnter *
-        \ call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets') |
-        \ call youcompleteme#Enable() |
-        \ autocmd! InitCompletionPlugins
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets')
+        \| call youcompleteme#Enable() | autocmd! InitCompletionPlugins
 augroup END
 
-augroup InitGitGutter
+augroup InitGitPlugins
   autocmd!
-  autocmd! BufReadPost *
-        \ if !empty(fugitive#head()) |
-        \   call plug#load('vim-gitgutter') |
-        \ endif |
-        \ autocmd! InitGitGutter
+  autocmd BufEnter * call LoadGitGutter()
 augroup END
+
+function! LoadGitGutter()
+  if !empty(fugitive#head())
+    call plug#load('vim-gitgutter')
+    GitGutterEnable
+  endif
+endfunction
 " }}}
 
 " Plugin Customizations"{{{
