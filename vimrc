@@ -128,9 +128,6 @@ map <Tab> %
 " Move faster with C-e/C-y
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-
-" Enter command-line mode more easily
-nnoremap ; :
 " }}}
 
 " Syntax highlighting " {{{
