@@ -29,11 +29,11 @@ xnoremap <silent> <Leader>g :<C-U>call <SID>AckMotion(visualmode())<CR>
 " }}}
 
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
-command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v[:']([a-z_]*)'?\s\=\>/\1:/gc
+command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-})('|")?\s\=\>/\2:/gc
 " }}}
 
 " SingleQuotes command (replaces all " with ') {{{
-command! -range=% SingleQuotes :<line1>,<line2>s/\v"(<[A-Za-z?! ]{-}>)"/'\1'/gc
+command! -range=% SingleQuotes :<line1>,<line2>s/\v"(<[[:alnum:][:punct:][:blank:]]{-}>)?"/'\1'/gc
 " }}}
 
 " Strip trailing white spaces {{{
