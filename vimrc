@@ -128,6 +128,10 @@ map <Tab> %
 " Move faster with C-e/C-y
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" gt/gT moves to next/prev buffer/tab
+nnoremap <silent>gt :exec tabpagenr('$') == 1 ? 'bn' : 'tabnext'<CR>
+nnoremap <silent>gT :exec tabpagenr('$') == 1 ? 'bp' : 'tabprevious'<CR>
 " }}}
 
 " Syntax highlighting " {{{
