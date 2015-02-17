@@ -364,4 +364,17 @@ endfunction
 au BufEnter * call SetFoldText()
 " }}}
 
+function! ZoomWindow() "{{{
+  if get(g:, 'window_zommed_in') == 0
+    call feedkeys("\<C-W>_\<C-W>|")
+  else
+    call feedkeys("\<C-W>=")
+  endif
+
+  let g:window_zommed_in = !get(g:, 'window_zommed_in')
+endfunction
+
+nnoremap <C-W>z :call ZoomWindow()<CR>
+"}}}
+
 " vim: set foldmethod=marker :
