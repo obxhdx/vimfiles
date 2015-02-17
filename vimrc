@@ -24,6 +24,8 @@ set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable c
 set showbreak=… " Line break character
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
+let &t_SI = "\<Esc>[5 q" " Use a blinking upright bar cursor in Insert mode
+let &t_EI = "\<Esc>[1 q" " Use a blinking block in Normal
 " }}}
 
 " Auto-complete (^N and ^P) {{{
