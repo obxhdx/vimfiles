@@ -263,7 +263,6 @@ endfunction
 
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
-autocmd FileType * set updatetime=300
 autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
 
 command! ToggleWordUnderCursor let g:wuc_disabled = !get(g:, 'wuc_disabled')

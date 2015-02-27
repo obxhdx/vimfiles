@@ -13,6 +13,7 @@ set vb t_vb= " Disable visual bell
 set timeoutlen=1000 " Leader key timeout (ms)
 set ttimeoutlen=10 " Disable Esc delay
 set hidden " Hide buffers instead of closing them
+set updatetime=500
 " }}}
 
 " Appearance " {{{
