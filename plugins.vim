@@ -52,6 +52,7 @@ Plug 'xolox/vim-notes', { 'on': 'Note' }
 
 " Navigation"{{{
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'deris/vim-shot-f'
 Plug 'inside/vim-search-pulse'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
@@ -274,6 +275,10 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 " }}}
+
+" Shot-F {{{
+hi! ShotFGraph cterm=bold ctermbg=235 ctermfg=51
+"}}}
 
 " Smooth Scroll"{{{
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 15, 4)<CR>
