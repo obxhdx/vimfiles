@@ -18,6 +18,7 @@ Plug 'Raimondi/delimitMate', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
 Plug 'honza/vim-snippets', { 'on': [] }
+Plug 'jgdavey/vim-blockle', { 'on': '<Plug>BlockToggle' }
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -108,6 +109,11 @@ endfunction
 " }}}
 
 " Plugin Customizations"{{{
+
+" Blockle {{{
+let g:blockle_mapping = ''
+nmap sb <Plug>BlockToggle
+"}}}
 
 " Colorscheme {{{
 try
