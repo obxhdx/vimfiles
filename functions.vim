@@ -58,6 +58,7 @@ function! ColoringTweaks() "{{{
     hi Folded ctermbg=NONE guibg=NONE
     hi SignColumn ctermbg=NONE guibg=NONE
     hi SpecialKey ctermbg=NONE
+    hi VertSplit ctermfg=236 ctermbg=NONE guibg=NONE
   endif
 
   if g:colors_name == 'railscasts'
