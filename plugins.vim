@@ -13,6 +13,7 @@ Plug 'itchyny/lightline.vim'
 " }}}
 
 " Code Completion"{{{
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
@@ -305,6 +306,13 @@ nmap <C-c>s :SlimuxShellLast<CR>
 nmap <C-c><C-s> :SlimuxShellPrompt<CR>
 nmap <C-c>k :SlimuxSendKeysLast<CR>
 nmap <C-c><C-k> :SlimuxSendKeysPrompt<CR>
+"}}}
+
+" Splitjoin {{{
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nmap sj :SplitjoinSplit<CR>
+nmap sk :SplitjoinJoin<CR>
 "}}}
 
 " Startify"{{{
