@@ -255,10 +255,14 @@ function! s:HighlightWordUnderCursor() "{{{
     return
   endif
 
+  if !exists('w:wuc_match_ids')
+    let w:wuc_match_ids = []
+  endif
+
   let s:word = expand('<cword>')
   let s:word = substitute(s:word, '[^[:alnum:]_-]', '', 'g')
   if len(s:word) > 1
-    call matchadd('WordUnderCursor', '\<'.s:word.'\>', 9)
+    call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 9))
   endif
 endfunction
 
@@ -284,9 +288,13 @@ function! HighlightSearchMatches(use_cword) "{{{
   if a:use_cword == 1
     let @/ = '\<'.expand('<cword>').'\>'
   endif
-  call clearmatches()
-  call matchadd('Search', '\c'.@/, 11)
-  call matchadd('IncSearch', '\c\%#'.@/, 11)
+
+  if !exists('w:search_match_ids')
+    let w:search_match_ids = []
+  endif
+
+  call add(w:search_match_ids, matchadd('Search', '\c'.@/, 11))
+  call add(w:search_match_ids, matchadd('IncSearch', '\c\%#'.@/, 11))
   call histadd('/', @/)
   call search_pulse#Pulse()
 endfunction
@@ -304,8 +312,17 @@ nnoremap <silent> <Leader>* :call HighlightSearchMatches(1)<CR>
 
 function! s:ClearSearchMatches() "{{{
   if get(g:, 'freeze_search_matches') == 0
-    call clearmatches()
+    silent! call s:ClearMatchList(w:wuc_match_ids)
+    silent! call s:ClearMatchList(w:search_match_ids)
     set nohlsearch
+  endif
+endfunction
+
+function! s:ClearMatchList(list)
+  if type(a:list) == type([])
+    while !empty(a:list)
+      call matchdelete(remove(a:list, -1))
+    endwhile
   endif
 endfunction
 
