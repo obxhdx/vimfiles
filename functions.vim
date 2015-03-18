@@ -111,6 +111,32 @@ endfunction
 autocmd BufNewFile * call s:DidYouMean()
 "}}}
 
+function! DistractionFreeMode() "{{{
+  if get(b:, 'distraction_free_on') == 0
+    setlocal nonu
+    setlocal nocursorline
+    setlocal laststatus=0
+    let g:wuc_disabled = 1
+    call s:ClearSearchMatches()
+    silent! call lightline#disable()
+    silent! !tmux set -q status off
+    silent! Limelight
+  else
+    setlocal nu
+    setlocal cursorline
+    setlocal laststatus=2
+    let g:wuc_disabled = 0
+    call s:ClearSearchMatches()
+    silent! call lightline#enable()
+    silent! !tmux set -q status on
+    silent! Limelight!
+  endif
+
+  let b:distraction_free_on = !get(b:, 'distraction_free_on')
+endfunction
+command! DistractionFreeMode :call DistractionFreeMode()
+"}}}
+
 function! ExecPreservingCursorPos(command) "{{{
   " Taken from http://goo.gl/DJ7xA
 

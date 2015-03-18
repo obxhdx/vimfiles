@@ -45,8 +45,7 @@ Plug 'tpope/vim-fugitive'
 
 " Misc"{{{
 Plug 'chrisbra/Recover.vim'
-Plug 'junegunn/goyo.vim', { 'for': [ 'markdown' ] }
-Plug 'junegunn/limelight.vim', { 'for': [ 'markdown' ] }
+Plug 'junegunn/limelight.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'xolox/vim-misc' " Dependency for vim-notes
 Plug 'xolox/vim-notes', { 'on': 'Note' }
@@ -175,26 +174,6 @@ endfunction
 let g:gitgutter_map_keys = 0
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
-" }}}
-
-" Goyo"{{{
-fun! s:GoyoEnter()
-  silent !tmux set status off
-  call TextEditorMode()
-  hi NonText ctermfg=238
-  hi SpellBad ctermbg=234
-endf
-
-fun! s:GoyoLeave()
-  silent !tmux set status on
-  call TextEditorMode()
-  call buftabline#update(0)
-  Limelight!
-  exec 'colorscheme ' . g:colors_name
-endf
-
-autocmd! User GoyoEnter nested call <SID>GoyoEnter()
-autocmd! User GoyoLeave nested call <SID>GoyoLeave()
 " }}}
 
 " Limelight"{{{
