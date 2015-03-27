@@ -84,6 +84,8 @@ function! ColoringTweaks() "{{{
     hi link markdownH5 markdownH2
     hi link markdownH6 markdownH2
   endif
+
+  autocmd FileType ruby syntax match Error '\<binding.pry\>'
 endf
 autocmd ColorScheme * call ColoringTweaks()
 " }}}
