@@ -331,8 +331,8 @@ nnoremap <silent> * *:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> # #:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> n zvn:call HighlightSearchMatches(0)<CR>
 nnoremap <silent> N zvN:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> / zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/
-nnoremap <silent> ? zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?
+nnoremap <silent> / zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/\v
+nnoremap <silent> ? zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?\v
 nnoremap <silent> <Leader>* :call HighlightSearchMatches(1)<CR>
 "}}}
 
