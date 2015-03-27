@@ -300,6 +300,8 @@ command! ToggleWordUnderCursor let g:wuc_disabled = !get(g:, 'wuc_disabled')
 "}}}
 
 function! HighlightSearchMatches(use_cword) "{{{
+  call s:ClearSearchMatches()
+
   if get(g:, 'clear_search_warning') == 1
     let v:warningmsg = ''
     let g:clear_search_warning = 0
@@ -319,8 +321,10 @@ function! HighlightSearchMatches(use_cword) "{{{
     let w:search_match_ids = []
   endif
 
-  call add(w:search_match_ids, matchadd('Search', '\c'.@/, 11))
-  call add(w:search_match_ids, matchadd('IncSearch', '\c\%#'.@/, 11))
+  let l:mod = (@/ =~# '[A-Z]') ? '\C' : '\c'
+
+  call add(w:search_match_ids, matchadd('Search', l:mod.@/, 11))
+  call add(w:search_match_ids, matchadd('IncSearch', l:mod.'\%#'.@/, 11))
   call histadd('/', @/)
   call search_pulse#Pulse()
 endfunction
