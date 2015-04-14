@@ -169,6 +169,7 @@ augroup FileTypeFixes
   au BufRead,BufNewFile *.gradle set ft=groovy
   au BufRead,BufNewFile *.erb set ft=eruby.html
   au BufRead,BufNewFile *.php set ft=php.html
+  au BufRead,BufNewFile *.podspec set ft=ruby
   au FileType groovy set commentstring=//%s tabstop=4 shiftwidth=4 softtabstop=4
   au FileType markdown set commentstring=<!--%s-->
   au FileType tmux set commentstring=#%s
