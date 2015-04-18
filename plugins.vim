@@ -194,9 +194,41 @@ let g:markdown_folding = 1
 "}}}
 
 " NERDTree"{{{
-let NERDTreeCasadeOpenSingleChildDir = 1
+let NERDTreeChDirMode = 2
+let NERDTreeShowLineNumbers = 1
+let NERDTreeWinSize = 40
+let NERDTreeMinimalUI = 1
+let NERDTreeCascadeOpenSingleChildDir = 1
+
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
+
+hi NERDTreeCWD       ctermfg=2    ctermbg=NONE  cterm=NONE
+hi NERDTreeDir       ctermfg=240  ctermbg=NONE  cterm=NONE
+hi NERDTreeFile      ctermfg=246  ctermbg=NONE  cterm=NONE
+hi NERDTreeOpenable  ctermfg=3    ctermbg=NONE  cterm=NONE
+
+function! NERDTreeHighlightFile(extension, fg, bg, mod)
+  exec 'autocmd filetype nerdtree syn match ' . a:extension . ' #^\s\+.*' . a:extension . '\*\?$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension . ' ctermbg=' . a:bg . ' ctermfg=' . a:fg . ' cterm=' . a:mod
+endfunction
+
+call NERDTreeHighlightFile('css',         '13',   'NONE',  'NONE')
+call NERDTreeHighlightFile('feature',     '41',   'NONE',  'NONE')
+call NERDTreeHighlightFile('gradle',      '222',  'NONE',  'NONE')
+call NERDTreeHighlightFile('groovy',      '131',  'NONE',  'NONE')
+call NERDTreeHighlightFile('html',        '215',  'NONE',  'NONE')
+call NERDTreeHighlightFile('java',        '130',  'NONE',  'NONE')
+call NERDTreeHighlightFile('js',          '201',  'NONE',  'NONE')
+call NERDTreeHighlightFile('json',        '191',  'NONE',  'NONE')
+call NERDTreeHighlightFile('md',          '184',  'NONE',  'NONE')
+call NERDTreeHighlightFile('properties',  '229',  'NONE',  'NONE')
+call NERDTreeHighlightFile('rb',          '197',  'NONE',  'NONE')
+call NERDTreeHighlightFile('sh',          '208',  'NONE',  'NONE')
+call NERDTreeHighlightFile('vim',         '255',  'NONE',  'NONE')
+call NERDTreeHighlightFile('xml',         '210',  'NONE',  'NONE')
+call NERDTreeHighlightFile('yaml',        '229',  'NONE',  'NONE')
+call NERDTreeHighlightFile('yml',         '229',  'NONE',  'NONE')
 " }}}
 
 " Notes"{{{
