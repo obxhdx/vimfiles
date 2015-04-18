@@ -10,6 +10,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'ap/vim-buftabline'
 Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-webdevicons'
 " }}}
 
 " Code Completion"{{{
@@ -362,6 +363,11 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " }}}
 
+" WebDevIcons {{{
+let g:webdevicons_enable_airline_tabline = 0
+let g:webdevicons_enable_airline_statusline = 0
+let g:webdevicons_enable_nerdtree = 0
+autocmd VimEnter * let g:webdevicons_enable_nerdtree = 1
 " }}}
 
 " vim: set foldmethod=marker :
