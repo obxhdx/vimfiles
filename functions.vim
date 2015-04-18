@@ -297,6 +297,10 @@ endfunction
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
 autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
+autocmd BufEnter * if expand('%:t') =~ 'NERD'
+      \|   let g:wuc_disabled = 1
+      \| else
+      \|   let g:wuc_disabled = 0
 
 command! ToggleWordUnderCursor let g:wuc_disabled = !get(g:, 'wuc_disabled')
 "}}}
