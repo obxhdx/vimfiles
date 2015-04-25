@@ -120,7 +120,7 @@ function! DistractionFreeMode() "{{{
     setlocal nocursorline
     setlocal laststatus=0
     let g:wuc_disabled = 1
-    call s:ClearSearchMatches()
+    call s:ClearAllSearchMatches()
     silent! call lightline#disable()
     silent! !tmux set -q status off
     silent! Limelight
@@ -129,7 +129,7 @@ function! DistractionFreeMode() "{{{
     setlocal cursorline
     setlocal laststatus=2
     let g:wuc_disabled = 0
-    call s:ClearSearchMatches()
+    call s:ClearAllSearchMatches()
     silent! call lightline#enable()
     silent! !tmux set -q status on
     silent! Limelight!
@@ -280,7 +280,14 @@ endf
 " }}}
 
 function! s:HighlightWordUnderCursor() "{{{
+  silent! call s:ClearMatchList(w:wuc_match_ids)
+
   if get(g:, 'wuc_disabled') == 1
+    return
+  endif
+
+  let s:match_groups = map(copy(getmatches()), 'v:val["group"]')
+  if !empty(filter(s:match_groups, 'v:val == "ObliqueCurrentMatch"'))
     return
   endif
 
@@ -291,7 +298,7 @@ function! s:HighlightWordUnderCursor() "{{{
   let s:word = expand('<cword>')
   let s:word = substitute(s:word, '[^[:alnum:]_-]', '', 'g')
   if len(s:word) > 1
-    call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 9))
+    call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 0))
   endif
 endfunction
 
@@ -306,52 +313,9 @@ autocmd BufEnter * if expand('%:t') =~ 'NERD'
 command! ToggleWordUnderCursor let g:wuc_disabled = !get(g:, 'wuc_disabled')
 "}}}
 
-function! HighlightSearchMatches(use_cword) "{{{
-  call s:ClearSearchMatches()
-
-  if get(g:, 'clear_search_warning') == 1
-    let v:warningmsg = ''
-    let g:clear_search_warning = 0
-  endif
-
-  if (v:warningmsg =~ 'search hit .*, continuing at .*')
-    let g:clear_search_warning = 1
-  else
-    echo '/'.@/
-  endif
-
-  if a:use_cword == 1
-    let @/ = '\<'.expand('<cword>').'\>'
-  endif
-
-  if !exists('w:search_match_ids')
-    let w:search_match_ids = []
-  endif
-
-  let l:mod = (@/ =~# '[A-Z]') ? '\C' : '\c'
-
-  call add(w:search_match_ids, matchadd('Search', l:mod.@/, 11))
-  call add(w:search_match_ids, matchadd('IncSearch', l:mod.'\%#'.@/, 11))
-  call histadd('/', @/)
-  call search_pulse#Pulse()
-endfunction
-
-nnoremap <silent> gd gdzv:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> gD gDzv:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> * *:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> # #:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> n zvn:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> N zvN:call HighlightSearchMatches(0)<CR>
-nnoremap <silent> / zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>/\v
-nnoremap <silent> ? zn:exec('cnoremap <'.'CR> <'.'CR>:exec("cunmap <"."CR>")<'.'CR>:call HighlightSearchMatches(0)<'.'CR>')<CR>?\v
-nnoremap <silent> <Leader>* :call HighlightSearchMatches(1)<CR>
-"}}}
-
-function! s:ClearSearchMatches() "{{{
+function! s:ClearAllSearchMatches() "{{{
   if get(g:, 'freeze_search_matches') == 0
     silent! call s:ClearMatchList(w:wuc_match_ids)
-    silent! call s:ClearMatchList(w:search_match_ids)
-    set nohlsearch
   endif
 endfunction
 
@@ -363,9 +327,9 @@ function! s:ClearMatchList(list)
   endif
 endfunction
 
-autocmd! CursorMoved * call s:ClearSearchMatches()
-command! FreezeSearchMatches let g:freeze_search_matches = 1
-command! UnfreezeSearchMatches let g:freeze_search_matches = 0
+autocmd! CursorMoved * call s:ClearAllSearchMatches()
+command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
+command! UnfreezeSearchMatches let g:oblique#clear_highlight = 1 | call clearmatches() | set nohlsearch
 "}}}
 
 function! s:SearchSelectedText(cmd_type) "{{{

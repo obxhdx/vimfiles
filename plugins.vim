@@ -55,7 +55,8 @@ Plug 'xolox/vim-notes', { 'on': 'Note' }
 " Navigation"{{{
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'deris/vim-shot-f'
-Plug 'inside/vim-search-pulse'
+Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
@@ -277,16 +278,15 @@ au FileType notes nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
 au FileType notes nnoremap tn :normal GoTODO <CR>a
 " }}}
 
+" Oblique {{{
+autocmd! User ObliqueStar normal n
+"}}}
+
 " Powerline"{{{
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_symbols_override = { 'BRANCH': '±' }
 let g:Powerline_stl_path_style = 'filename'
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-" }}}
-
-" Pulse"{{{
-let g:vim_search_pulse_disable_auto_mappings = 1
-let g:vim_search_pulse_duration = 10
 " }}}
 
 " Rainbow parentheses"{{{
