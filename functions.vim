@@ -51,6 +51,7 @@ function! ColoringTweaks() "{{{
   hi htmlEndTag ctermbg=NONE
   hi htmlTag ctermbg=NONE
   hi markdownError ctermbg=NONE ctermfg=red
+  hi ErrorMsg ctermbg=NONE
 
   if g:colors_name == 'badwolf'
     hi CursorLineNr ctermbg=235
