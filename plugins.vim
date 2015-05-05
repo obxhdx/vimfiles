@@ -280,6 +280,7 @@ au FileType notes nnoremap tn :normal GoTODO <CR>a
 
 " Oblique {{{
 autocmd! User ObliqueStar normal n
+let g:oblique#incsearch_highlight_all = 1
 "}}}
 
 " Powerline"{{{
