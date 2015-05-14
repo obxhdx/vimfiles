@@ -247,27 +247,12 @@ function! EnableTodoMode()
   hi link notesGroupHeading markdownH1
 endfunction
 
-function! NotesFolds()
-  let l:syntax_group_id = synstack(v:lnum, col('.'))
-  let l:syntax_group_name = empty(l:syntax_group_id) ? '' : synIDattr(l:syntax_group_id[0], 'name')
-
-  if l:syntax_group_name == 'notesGroupHeading'
-    return '>1'
-  elseif l:syntax_group_name == 'notesShortHeading'
-    return '>2'
-  elseif foldlevel(v:lnum-1) != '-1'
-    return foldlevel(v:lnum-1)
-  else
-    return '='
-  endif
-endfunction
-
-au FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | setlocal foldexpr=NotesFolds() | endif
+au FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | endif
 au FileType notes au CursorHold,InsertLeave <buffer> write
 
 function! ChangeTaskStatus(status)
   let l:regex = 's/\<\(TODO\|XXX\|FIXME\|CURRENT\|INPROGRESS\|STARTED\|WIP\|DONE\)\>/' . a:status
-  call ExecPreservingCursorPos(l:regex)
+  silent! call ExecPreservingCursorPos(l:regex)
   write
 endfunction
 
