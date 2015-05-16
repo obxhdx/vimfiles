@@ -266,6 +266,8 @@ au FileType notes nnoremap tn :normal GoTODO <CR>a
 
 " Oblique {{{
 autocmd! User ObliqueStar normal n
+autocmd VimEnter * noremap gd gd:normal n<CR>:normal N<CR>
+autocmd VimEnter * noremap gD gD:normal n<CR>:normal N<CR>
 let g:oblique#incsearch_highlight_all = 1
 "}}}
 
