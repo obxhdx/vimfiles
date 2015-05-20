@@ -237,31 +237,30 @@ call NERDTreeHighlightFile('yml',         '229',  'NONE',  'NONE')
 let g:notes_directories = [ '~/Dropbox/Notes' ]
 let g:notes_suffix = '.txt'
 
-au FileType notes syntax match notesDoneItem /\v^<DONE>.*$/ contains=@notesInline
-
-hi link notesFixme ErrorMsg
-hi link notesTodo WarningMsg
-hi notesDoneMarker term=standout cterm=bold ctermfg=237 gui=bold guifg=#444444
+autocmd FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | endif
+autocmd FileType notes au CursorHold,InsertLeave <buffer> write
 
 function! EnableTodoMode()
   syntax match notesGroupHeading /\v^(%1l|TODO|XXX|FIXME|CURRENT|INPROGRESS|STARTED|WIP|DONE|.*:|[^A-Za-z]|$)@!.{1,50}$/ contains=@notesInline
-  hi link notesGroupHeading markdownH1
-endfunction
+  syntax match notesDoneItem /\v^<DONE>.*$/ contains=@notesInline
 
-au FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | endif
-au FileType notes au CursorHold,InsertLeave <buffer> write
+  highlight link notesGroupHeading markdownH1
+  highlight link notesFixme ErrorMsg
+  highlight link notesTodo WarningMsg
+  highlight notesDoneMarker term=standout cterm=bold ctermfg=237 gui=bold guifg=#444444
+
+  nnoremap tt :call ChangeTaskStatus('TODO')<CR>
+  nnoremap ti :call ChangeTaskStatus('INPROGRESS')<CR>
+  nnoremap td :call ChangeTaskStatus('DONE')<CR>
+  nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
+  nnoremap tn :normal oTODO <CR>a
+endfunction
 
 function! ChangeTaskStatus(status)
   let l:regex = 's/\<\(TODO\|XXX\|FIXME\|CURRENT\|INPROGRESS\|STARTED\|WIP\|DONE\)\>/' . a:status
   silent! call ExecPreservingCursorPos(l:regex)
   write
 endfunction
-
-au FileType notes nnoremap tt :call ChangeTaskStatus('TODO')<CR>
-au FileType notes nnoremap ti :call ChangeTaskStatus('INPROGRESS')<CR>
-au FileType notes nnoremap td :call ChangeTaskStatus('DONE')<CR>
-au FileType notes nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
-au FileType notes nnoremap tn :normal GoTODO <CR>a
 " }}}
 
 " Oblique {{{
