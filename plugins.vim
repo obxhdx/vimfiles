@@ -48,8 +48,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'kshenoy/vim-signature'
-Plug 'xolox/vim-misc' " Dependency for vim-notes
-Plug 'xolox/vim-notes', { 'on': 'Note' }
 " }}}
 
 " Navigation"{{{
@@ -231,36 +229,6 @@ call NERDTreeHighlightFile('vim',         '255',  'NONE',  'NONE')
 call NERDTreeHighlightFile('xml',         '210',  'NONE',  'NONE')
 call NERDTreeHighlightFile('yaml',        '229',  'NONE',  'NONE')
 call NERDTreeHighlightFile('yml',         '229',  'NONE',  'NONE')
-" }}}
-
-" Notes"{{{
-let g:notes_directories = [ '~/Dropbox/Notes' ]
-let g:notes_suffix = '.txt'
-
-autocmd FileType notes if bufname('%') =~ 'tasks\|todo' | call EnableTodoMode() | endif
-autocmd FileType notes au CursorHold,InsertLeave <buffer> write
-
-function! EnableTodoMode()
-  syntax match notesGroupHeading /\v^(%1l|TODO|XXX|FIXME|CURRENT|INPROGRESS|STARTED|WIP|DONE|.*:|[^A-Za-z]|$)@!.{1,50}$/ contains=@notesInline
-  syntax match notesDoneItem /\v^<DONE>.*$/ contains=@notesInline
-
-  highlight link notesGroupHeading markdownH1
-  highlight link notesFixme ErrorMsg
-  highlight link notesTodo WarningMsg
-  highlight notesDoneMarker term=standout cterm=bold ctermfg=237 gui=bold guifg=#444444
-
-  nnoremap tt :call ChangeTaskStatus('TODO')<CR>
-  nnoremap ti :call ChangeTaskStatus('INPROGRESS')<CR>
-  nnoremap td :call ChangeTaskStatus('DONE')<CR>
-  nnoremap tf :call ChangeTaskStatus('FIXME')<CR>
-  nnoremap tn :normal oTODO <CR>a
-endfunction
-
-function! ChangeTaskStatus(status)
-  let l:regex = 's/\<\(TODO\|XXX\|FIXME\|CURRENT\|INPROGRESS\|STARTED\|WIP\|DONE\)\>/' . a:status
-  silent! call ExecPreservingCursorPos(l:regex)
-  write
-endfunction
 " }}}
 
 " Oblique {{{
