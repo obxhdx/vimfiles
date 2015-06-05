@@ -119,7 +119,7 @@ function! DistractionFreeMode() "{{{
     setlocal nonu
     setlocal nocursorline
     setlocal laststatus=0
-    let g:wuc_disabled = 1
+    let b:wuc_disabled = 1
     call s:ClearAllSearchMatches()
     silent! call lightline#disable()
     silent! !tmux set -q status off
@@ -128,7 +128,7 @@ function! DistractionFreeMode() "{{{
     setlocal nu
     setlocal cursorline
     setlocal laststatus=2
-    let g:wuc_disabled = 0
+    let b:wuc_disabled = 0
     call s:ClearAllSearchMatches()
     silent! call lightline#enable()
     silent! !tmux set -q status on
@@ -282,7 +282,7 @@ endf
 function! s:HighlightWordUnderCursor() "{{{
   silent! call s:ClearMatchList(w:wuc_match_ids)
 
-  if get(g:, 'wuc_disabled') == 1
+  if get(b:, 'wuc_disabled') == 1
     return
   endif
 
@@ -305,12 +305,9 @@ endfunction
 highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
 autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
-autocmd BufEnter * if expand('%:t') =~ 'NERD'
-      \|   let g:wuc_disabled = 1
-      \| else
-      \|   let g:wuc_disabled = 0
+autocmd BufEnter * if expand('%:t') =~ 'NERD' | let b:wuc_disabled = 1
 
-command! ToggleWordUnderCursor let g:wuc_disabled = !get(g:, 'wuc_disabled')
+command! ToggleWordUnderCursor let b:wuc_disabled = !get(b:, 'wuc_disabled')
 "}}}
 
 function! s:ClearAllSearchMatches() "{{{
