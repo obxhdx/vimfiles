@@ -154,15 +154,6 @@ set background=dark
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Go to last line when opening a file
-augroup LineReturn
-  au!
-  au BufWinEnter *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-
 " Highlight cursor line only for current buffer
 augroup CursorLine
   au!

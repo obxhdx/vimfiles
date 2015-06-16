@@ -1,10 +1,11 @@
+*.swp
+*~
+.DS_Store
+.netrwhist
 autoload/
 bundle/
 plugged/
 session/
 spell/
 tmp/
-*.swp
-*~
-.DS_Store
-.netrwhist
+view/

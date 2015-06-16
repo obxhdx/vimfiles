@@ -48,6 +48,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'EinfachToll/DidYouMean'
 Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'kopischke/vim-stay'
 Plug 'kshenoy/vim-signature'
 " }}}
 
