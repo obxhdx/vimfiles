@@ -279,12 +279,7 @@ hi def link slimuxPaneId WarningMsg
 hi def link slimuxPaneIndex Constant
 hi def link slimuxSessionOrWindowName Title
 
-nmap <C-c><C-c> :SlimuxREPLSendLine<CR>
-vmap <C-c><C-c> :SlimuxREPLSendSelection<CR>
-nmap <C-c>s :SlimuxShellLast<CR>
-nmap <C-c><C-s> :SlimuxShellPrompt<CR>
-nmap <C-c>k :SlimuxSendKeysLast<CR>
-nmap <C-c><C-k> :SlimuxSendKeysPrompt<CR>
+nmap <Leader>t :SlimuxREPLSendLine<CR>
 "}}}
 
 " Splitjoin {{{
