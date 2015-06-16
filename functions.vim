@@ -392,4 +392,19 @@ endfunction
 nnoremap <C-W>z :call ZoomWindow()<CR>
 "}}}
 
+" Prevent vp from replacing paste buffer {{{
+" From http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+
+vmap <silent> <expr> p <sid>Repl()
+"}}}
+
 " vim: set foldmethod=marker :
