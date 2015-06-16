@@ -59,6 +59,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'deris/vim-shot-f'
 Plug 'junegunn/vim-oblique'
 Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
+Plug 'kopischke/vim-fetch'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
