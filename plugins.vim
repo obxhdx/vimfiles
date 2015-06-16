@@ -47,6 +47,7 @@ Plug 'tpope/vim-fugitive'
 " Misc"{{{
 Plug 'EinfachToll/DidYouMean'
 Plug 'chrisbra/Recover.vim'
+Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/limelight.vim'
 Plug 'kopischke/vim-stay'
 Plug 'kshenoy/vim-signature'
