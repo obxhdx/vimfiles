@@ -51,6 +51,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/limelight.vim'
 Plug 'kopischke/vim-stay'
 Plug 'kshenoy/vim-signature'
+Plug 'tpope/vim-rsi'
 " }}}
 
 " Navigation"{{{
