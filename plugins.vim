@@ -55,7 +55,6 @@ Plug 'tpope/vim-rsi'
 
 " Navigation"{{{
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'deris/vim-shot-f'
 Plug 'junegunn/vim-oblique'
 Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
 Plug 'kopischke/vim-fetch'
@@ -249,10 +248,6 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 " }}}
-
-" Shot-F {{{
-hi! ShotFGraph cterm=bold ctermbg=235 ctermfg=51
-"}}}
 
 " Smooth Scroll"{{{
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 15, 4)<CR>
