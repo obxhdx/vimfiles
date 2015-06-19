@@ -204,6 +204,7 @@ hi NERDTreeCWD       ctermfg=2    ctermbg=NONE  cterm=NONE
 hi NERDTreeDir       ctermfg=240  ctermbg=NONE  cterm=NONE
 hi NERDTreeFile      ctermfg=246  ctermbg=NONE  cterm=NONE
 hi NERDTreeOpenable  ctermfg=3    ctermbg=NONE  cterm=NONE
+hi link NERDTreeDirSlash NERDTreeDir
 
 function! NERDTreeHighlightFile(extension, fg, bg, mod)
   exec 'autocmd filetype nerdtree syn match ' . a:extension . ' #^\s\+.*' . a:extension . '\*\?$#'
@@ -338,10 +339,7 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " }}}
 
 " WebDevIcons {{{
-let g:webdevicons_enable_airline_tabline = 0
-let g:webdevicons_enable_airline_statusline = 0
-let g:webdevicons_enable_nerdtree = 0
-autocmd VimEnter * let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 " }}}
 
 " vim: set foldmethod=marker :
