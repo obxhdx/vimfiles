@@ -78,10 +78,9 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 " }}}
 
 " Tools"{{{
-Plug 'obxhdx/slimux', { 'on': [ 'SlimuxREPLSendLine', 'SlimuxREPLSendSelection', 'SlimuxShellLast',
-      \ 'SlimuxShellPrompt', 'SlimuxSendKeysLast', 'SlimuxSendKeysPrompt' ] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'mhinz/vim-startify'
+Plug 'obxhdx/slimux', { 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 " }}}
 
@@ -267,8 +266,6 @@ au FileType slimux syntax match slimuxSessionOrWindowName /\v\s\[[[:alnum:]]+\]\
 hi def link slimuxPaneId WarningMsg
 hi def link slimuxPaneIndex Constant
 hi def link slimuxSessionOrWindowName Title
-
-nmap <Leader>t :SlimuxREPLSendLine<CR>
 "}}}
 
 " Splitjoin {{{

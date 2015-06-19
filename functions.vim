@@ -5,29 +5,6 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cw
 cabbr ag Ag
 " }}}
 
-" Grep with motions (http://goo.gl/iB5nFs) {{{
-function! s:AckMotion(type) abort
-  let reg_save = @@
-
-  call s:CopyMotionForType(a:type)
-
-  execute "normal! :Ag " . shellescape(@@) . "\<cr>"
-
-  let @@ = reg_save
-endfunction
-
-function! s:CopyMotionForType(type)
-  if a:type ==# 'v'
-    silent execute "normal! `<" . a:type . "`>y"
-  elseif a:type ==# 'char'
-    silent execute "normal! `[v`]y"
-  endif
-endfunction
-
-nnoremap <silent> <Leader>g :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <Leader>g :<C-U>call <SID>AckMotion(visualmode())<CR>
-" }}}
-
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
 command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-})('|")?\s\=\>/\2:/gc
 " }}}
@@ -383,5 +360,92 @@ endfunction
 
 vmap <silent> <expr> p <sid>Repl()
 "}}}
+
+" Act on text objects with custom functions {{{1
+" Adapted from unimpaired.vim by Tim Pope
+" Source: http://vim.wikia.com/wiki/Act_on_text_objects_with_custom_functions
+
+function! s:DoAction(algorithm,type) "{{{2
+  " backup settings that we will change
+  let sel_save = &selection
+  let cb_save = &clipboard
+  " make selection and clipboard work the way we need
+  set selection=inclusive clipboard-=unnamed clipboard-=unnamedplus
+  " backup the unnamed register, which we will be yanking into
+  let reg_save = @@
+  " yank the relevant text, and also set the visual selection (which will be reused if the text
+  " needs to be replaced)
+  if a:type =~ '^\d\+$'
+    " if type is a number, then select that many lines
+    silent exe 'normal! V'.a:type.'$y'
+  elseif a:type =~ '^.$'
+    " if type is 'v', 'V', or '<C-V>' (i.e. 0x16) then reselect the visual region
+    silent exe "normal! `<" . a:type . "`>y"
+  elseif a:type == 'line'
+    " line-based text motion
+    silent exe "normal! '[V']y"
+  elseif a:type == 'block'
+    " block-based text motion
+    silent exe "normal! `[\<C-V>`]y"
+  else
+    " char-based text motion
+    silent exe "normal! `[v`]y"
+  endif
+  " call the user-defined function, passing it the contents of the unnamed register
+  let repl = s:{a:algorithm}(@@)
+  " if the function returned a value, then replace the text
+  if type(repl) == 1
+    " put the replacement text into the unnamed register, and also set it to be a
+    " characterwise, linewise, or blockwise selection, based upon the selection type of the
+    " yank we did above
+    call setreg('@', repl, getregtype('@'))
+    " relect the visual region and paste
+    normal! gvp
+  endif
+  " restore saved settings and register value
+  let @@ = reg_save
+  let &selection = sel_save
+  let &clipboard = cb_save
+endfunction
+"}}}2
+
+function! s:ActionOpfunc(type) "{{{2
+  return s:DoAction(s:encode_algorithm, a:type)
+endfunction
+"}}}2
+
+function! s:ActionSetup(algorithm) "{{{2
+  let s:encode_algorithm = a:algorithm
+  let &opfunc = matchstr(expand('<sfile>'), '<SNR>\d\+_') . 'ActionOpfunc'
+endfunction
+"}}}2
+
+function! MapAction(algorithm, key) "{{{2
+  execute 'nnoremap <silent> <Plug>actions'    .a:algorithm.' :<C-U>call <SID>ActionSetup("'.a:algorithm.'")<CR>g@'
+  execute 'xnoremap <silent> <Plug>actions'    .a:algorithm.' :<C-U>call <SID>DoAction("'.a:algorithm.'",visualmode())<CR>'
+  execute 'nnoremap <silent> <Plug>actionsLine'.a:algorithm.' :<C-U>call <SID>DoAction("'.a:algorithm.'",v:count1)<CR>'
+  execute 'nmap '.a:key.' <Plug>actions'.a:algorithm
+  execute 'xmap '.a:key.' <Plug>actions'.a:algorithm
+  execute 'nmap '.a:key.a:key[strlen(a:key)-1].' <Plug>actionsLine'.a:algorithm
+endfunction
+"}}}2
+
+call MapAction('SendTextToREPL', '<leader>t') " {{{2
+function! s:SendTextToREPL(str)
+  execute 'SlimuxREPLSendSelection'
+endfunction
+"}}}2
+
+call MapAction('AckWithMotions', '<leader>g') " {{{2
+function! s:AckWithMotions(str)
+  try
+    execute 'Ag ' . shellescape(a:str, 1)
+  catch
+    redraw!
+    echohl WarningMsg | echo 'AckWithMotions does not play well with line breaks' | echohl None
+  endtry
+endfunction
+"}}}2
+"}}}1
 
 " vim: set foldmethod=marker :
