@@ -448,4 +448,19 @@ endfunction
 "}}}2
 "}}}1
 
+" Send keystrokes to REPL using Slimux {{{
+function! SendKeysToREPL()
+  let l:keys = ""
+  if getchar(1)
+    let l:keys = nr2char(getchar())
+  endif
+  call SlimuxSendKeys(l:keys)
+  call feedkeys("\<Esc>")
+  return ""
+endfunction
+
+imap <C-y><Esc> <Nop> | imap <C-y> <C-r>=SendKeysToREPL()<cr>
+nnoremap <Leader>k :call feedkeys("i\<C-y>")<CR>
+"}}}
+
 " vim: set foldmethod=marker :
