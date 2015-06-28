@@ -290,9 +290,9 @@ function! s:SearchSelectedText(cmd_type) "{{{
   let @s = temp
 endfunction
 
-xnoremap <silent> * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
-xnoremap <silent> # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
-xnoremap <silent> <Leader>* :<C-u>call <SID>SearchSelectedText('/')<CR>:call HighlightSearchMatches(0)<CR>
+" xnoremap <silent> * :<C-u>call <SID>SearchSelectedText('/')<CR>/<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
+" xnoremap <silent> # :<C-u>call <SID>SearchSelectedText('?')<CR>?<C-R>=@/<CR><CR>:call HighlightSearchMatches(0)<CR>
+" xnoremap <silent> <Leader>* :<C-u>call <SID>SearchSelectedText('/')<CR>:call HighlightSearchMatches(0)<CR>
 "}}}
 
 function! FoldTextForIndentMethod() "{{{
