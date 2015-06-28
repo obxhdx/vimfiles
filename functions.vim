@@ -463,4 +463,82 @@ imap <C-y><Esc> <Nop> | imap <C-y> <C-r>=SendKeysToREPL()<cr>
 nnoremap <Leader>k :call feedkeys("i\<C-y>")<CR>
 "}}}
 
+" Variable patterns per filetype {{{
+let g:var_patterns = {
+      \   'javascript': {
+      \     'template': 'var %s = %s;',
+      \     'regex': '\v^\s*var\s*(%s)\s*\=\s*(.*);$'
+      \   },
+      \   'ruby': {
+      \     'template': '%s = %s',
+      \     'regex': '\v^\s*(%s)\s*\=\s*(.*)$'
+      \   },
+      \   'vim': {
+      \     'template': 'let %s = %s',
+      \     'regex': '\v^\s*let\s([gswtblav]*:*%s)\s*\=\s*(.*)$'
+      \   },
+      \ }
+
+" let g:var_patterns = {
+"       \ 'javascript' : 'var %s = %s;',
+"       \ 'ruby'       : '%s = %s',
+"       \ 'vim'        : 'let %s = %s',
+"       \ }
+
+" function! s:GetVarTemplate(var_name, var_value)
+"   let l:pattern = get(g:var_patterns, &ft)
+"   return printf(l:pattern, a:var_name, a:var_value)
+" endfunction
+
+function! s:GetVarTemplate(var_name, var_value)
+  let l:var_pattern = get(g:var_patterns, &ft)
+  let l:var_template = l:var_pattern["template"]
+  return printf(l:var_template, a:var_name, a:var_value)
+endfunction
+
+function! s:GetVarPattern(var_name)
+  let l:var_pattern = get(g:var_patterns, &ft)
+  let l:var_template = l:var_pattern["regex"]
+  return printf(l:var_template, a:var_name)
+endfunction
+"}}}
+
+function! ExtractLocalVariable() "{{{
+  let l:temp = @s
+  normal! gv"sy
+  let l:var_value = substitute(@s, "\n", "\\n", "g")
+  let @s = l:temp
+
+  let l:var_name = input("Variable name: ")
+
+  execute "normal! O" . s:GetVarTemplate(l:var_name, l:var_value)
+  call ExecPreservingCursorPos(".+1,$s/" . substitute(l:var_value, '\([][]\)', '\\\1', 'g') . "/" . l:var_name . "/gc")
+endfunction
+
+vnoremap <Leader>e :call ExtractLocalVariable()<CR>
+"}}}
+
+function! InlineLocalVariable() "{{{
+  let l:var_name = expand("<cword>")
+  " let l:var_pattern = s:GetVarTemplate(l:var_name, '\(.*\)')
+  " let l:regexd_pattern = substitute(l:var_pattern, '\s', '\\s\\?', 'g')
+  let l:regexd_pattern = s:GetVarPattern(l:var_name)
+
+  if search(regexd_pattern) > 0
+    let l:result = matchlist(getline("."), l:regexd_pattern)
+    " let l:var_value = l:result[1]
+    let l:var_name = l:result[1]
+    " let l:var_value = l:result[2]
+    let l:var_value = substitute(l:result[2], '\(&:\)', '\\\1', 'g')
+
+    call ExecPreservingCursorPos('.+1,$s/\C\<' . l:var_name . '\>/' . l:var_value . "/gc")
+    execute "normal! dd"
+  else
+    echohl ErrorMsg | echo 'Unable to find where variable "'.l:var_name.'" was declared.' | echohl None
+  endif
+endfunction
+
+nnoremap <Leader>i :call InlineLocalVariable()<CR>
+"}}}
+
 " vim: set foldmethod=marker :
