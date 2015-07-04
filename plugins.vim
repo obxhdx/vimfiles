@@ -80,7 +80,7 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
 " Tools"{{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'mhinz/vim-startify'
-Plug 'obxhdx/slimux', { 'on': [ 'SlimuxREPLSendSelection' ] }
+Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 " }}}
 
