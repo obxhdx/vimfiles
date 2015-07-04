@@ -19,6 +19,7 @@ Plug 'Raimondi/delimitMate', { 'on': [] }
 Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
 Plug 'honza/vim-snippets', { 'on': [] }
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -330,6 +331,12 @@ let g:syntastic_mode_map = { 'mode': 'passive',
       \ 'active_filetypes': [],
       \ 'passive_filetypes': [] }
 " }}}
+
+" Tern.js"{{{
+let g:tern_map_keys = 1
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_signature_in_pum = 1
+"}}}
 
 " UltiSnips"{{{
 let g:UltiSnipsExpandTrigger='<Tab>'
