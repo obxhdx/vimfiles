@@ -166,14 +166,17 @@ augroup CursorLine
 augroup END
 
 augroup FileTypeFixes
-  au!
-  au BufRead,BufNewFile *.gradle set ft=groovy
-  au BufRead,BufNewFile *.erb set ft=eruby.html
-  au BufRead,BufNewFile *.php set ft=php.html
-  au BufRead,BufNewFile *.podspec set ft=ruby
-  au FileType groovy set commentstring=//%s tabstop=4 shiftwidth=4 softtabstop=4
-  au FileType markdown set commentstring=<!--%s-->
-  au FileType tmux set commentstring=#%s
+  autocmd!
+  autocmd BufRead,BufNewFile *.gradle  setf groovy
+  autocmd BufRead,BufNewFile *.erb     setf eruby.html
+  autocmd BufRead,BufNewFile *.php     setf php.html
+  autocmd BufRead,BufNewFile *.podspec setf ruby
+
+  autocmd FileType java       setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 completeopt-=preview
+  autocmd FileType groovy     setlocal tabstop=4 shiftwidth=4 softtabstop=4 commentstring=//%s
+  autocmd FileType markdown   setlocal commentstring=<!--%s-->
+  autocmd FileType tmux       setlocal commentstring=#%s
 augroup END
 " }}}
 
