@@ -250,7 +250,6 @@ function! s:HighlightWordUnderCursor() "{{{
   endif
 
   let s:word = expand('<cword>')
-  let s:word = substitute(s:word, '[^[:alnum:]_-]', '', 'g')
   if len(s:word) > 1
     call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 0))
   endif
