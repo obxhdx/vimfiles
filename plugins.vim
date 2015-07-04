@@ -50,7 +50,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/limelight.vim'
 Plug 'kopischke/vim-stay'
 Plug 'kshenoy/vim-signature'
-Plug 'tpope/vim-rsi'
+Plug 'sim590/vim-rsi', { 'branch': 'no_meta_opts' }
 " }}}
 
 " Navigation"{{{
@@ -249,6 +249,10 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 " }}}
+
+" Rsi"{{{
+let g:rsi_no_insert_meta = 1
+"}}}
 
 " Smooth Scroll"{{{
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 15, 4)<CR>
