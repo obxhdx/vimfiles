@@ -98,7 +98,7 @@ augroup END
 
 augroup InitGitPlugins
   autocmd!
-  autocmd BufEnter * call LoadGitGutter()
+  autocmd VimEnter * call LoadGitGutter()
 augroup END
 
 function! LoadGitGutter()
@@ -168,6 +168,7 @@ endfunction
 " }}}
 
 " GitGutter"{{{
+let g:gitgutter_eager = 0
 let g:gitgutter_map_keys = 0
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
