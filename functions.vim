@@ -10,7 +10,7 @@ command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-}
 " }}}
 
 " SingleQuotes command (replaces all " with ') {{{
-command! -range=% SingleQuotes :<line1>,<line2>s/\v"(<[[:alnum:][:punct:][:blank:]]{-}>)?"/'\1'/gc
+command! -range=% SingleQuotes :<line1>,<line2>s/\v"(.{-})?"/'\1'/gc
 " }}}
 
 " Strip trailing white spaces {{{
