@@ -142,6 +142,9 @@ nnoremap <silent>gT :exec tabpagenr('$') == 1 ? 'bp' : 'tabprevious'<CR>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+
+" Add ; more easily
+autocmd BufRead,BufNewFile *.js inoremap <buffer> ;; <ESC>A;<ESC>
 " }}}
 
 " Syntax highlighting " {{{
