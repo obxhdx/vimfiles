@@ -19,52 +19,40 @@ autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre
 " }}}
 
 function! ColoringTweaks() "{{{
-  hi LineNr ctermbg=NONE
-  hi MatchParen ctermfg=235 ctermbg=2
-  hi NonText ctermbg=NONE
+  set background=dark
   hi Normal ctermbg=NONE
+
+  " That's the way (uh-huh uh-huh), I like it (uh-huh uh-huh)
+  " hi MatchParen ctermfg=235 ctermbg=2
+  hi Pmenu ctermfg=236 ctermbg=218
+  hi PmenuSel ctermfg=252 ctermbg=237
   hi Search ctermfg=255 ctermbg=198
-  hi StatusLine ctermfg=7 ctermbg=233
-  hi htmlEndTag ctermbg=NONE
-  hi htmlTag ctermbg=NONE
-  hi markdownError ctermbg=NONE ctermfg=red
-  hi ErrorMsg ctermbg=NONE
+
+  " Plugin-specific syntax groups
+  hi BufTabLineCurrent ctermbg=203 ctermfg=232
+  hi BufTabLineActive ctermbg=236 ctermfg=203
+  hi BufTabLineHidden ctermbg=236
+  hi BufTabLineFill ctermbg=236
+  hi WordUnderCursor ctermbg=236 ctermfg=magenta
 
   if g:colors_name == 'badwolf'
-    hi CursorLineNr ctermbg=235
-    hi FoldColumn ctermbg=NONE guibg=NONE
-    hi Folded ctermbg=NONE guibg=NONE
-    hi SignColumn ctermbg=NONE guibg=NONE
+    hi FoldColumn ctermbg=NONE
+    hi Folded ctermbg=NONE
+    hi LineNr ctermbg=NONE
+    hi NonText ctermbg=NONE
     hi SpecialKey ctermbg=NONE
-    hi VertSplit ctermfg=236 ctermbg=NONE guibg=NONE
+    hi VertSplit ctermfg=236 ctermbg=NONE
+    hi htmlEndTag ctermbg=NONE
+    hi htmlTag ctermbg=NONE
+    hi markdownError ctermbg=NONE ctermfg=red
+
+    hi DiffAdd cterm=NONE ctermfg=193 ctermbg=22
+    hi DiffChange cterm=NONE ctermfg=NONE ctermbg=24
+    hi DiffDelete cterm=NONE ctermfg=16 ctermbg=52
+    hi DiffText cterm=reverse ctermfg=81 ctermbg=16
   endif
-
-  if g:colors_name == 'railscasts'
-    hi LineNr ctermbg=234 guibg=#444444
-  endif
-
-  if g:colors_name == 'molokai'
-    hi Define guifg=#F92672
-    hi Special gui=none
-    hi Type gui=italic
-
-    " Ruby highlighting
-    hi rubyClass guifg=#F92672 gui=none
-    hi rubyControl guifg=#F92672 gui=none
-    hi rubyRailsARMethod guifg=#A6E22E
-    hi rubyRailsMethod guifg=#A4E7F4
-    hi link rubyRailsControllerMethod rubyRailsARMethod
-
-    " Markdown highlighting
-    hi markdownH2 guifg=pink
-    hi link markdownH3 markdownH2
-    hi link markdownH4 markdownH2
-    hi link markdownH5 markdownH2
-    hi link markdownH6 markdownH2
-  endif
-
-  autocmd FileType ruby syntax match Error '\<binding.pry\>'
 endf
+
 autocmd ColorScheme * call ColoringTweaks()
 " }}}
 
@@ -254,8 +242,6 @@ function! s:HighlightWordUnderCursor() "{{{
     call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 0))
   endif
 endfunction
-
-highlight WordUnderCursor ctermbg=236 ctermfg=magenta
 
 autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
 autocmd BufRead * if expand('%:t') =~ 'NERD' | let b:wuc_disabled = 1 | endif

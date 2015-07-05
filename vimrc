@@ -177,6 +177,7 @@ augroup FileTypeFixes
   autocmd FileType groovy     setlocal tabstop=4 shiftwidth=4 softtabstop=4 commentstring=//%s
   autocmd FileType markdown   setlocal commentstring=<!--%s-->
   autocmd FileType tmux       setlocal commentstring=#%s
+  autocmd FileType ruby       syntax match Error '\<binding.pry\>'
 augroup END
 " }}}
 

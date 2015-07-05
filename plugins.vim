@@ -31,12 +31,11 @@ Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 " }}}
 
 " Color Schemes"{{{
-Plug 'altercation/vim-colors-solarized'
-Plug 'dhruvasagar/vim-railscasts-theme'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'ronny/birds-of-paradise.vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
+Plug 'sickill/vim-monokai'
 Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
+Plug 'zeis/vim-kolor'
 " }}}
 
 " Git"{{{
@@ -123,10 +122,6 @@ endtry
 let g:buftabline_show = 1
 let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
-hi BufTabLineCurrent ctermbg=203 ctermfg=232
-hi BufTabLineActive ctermbg=236 ctermfg=203
-hi BufTabLineHidden ctermbg=236
-hi BufTabLineFill ctermbg=236
 " }}}
 
 " Commentary"{{{
