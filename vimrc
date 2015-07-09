@@ -78,6 +78,7 @@ set formatoptions+=j " Remove comment characters when joining lines
 
 " Space as leader
 let mapleader = " "
+let maplocalleader = "\\"
 
 " Yank/Paste from/to clipboard
 vmap <Leader>y "+y
