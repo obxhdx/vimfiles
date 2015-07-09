@@ -98,7 +98,7 @@ nmap <Leader>P "+P
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>d :bd<CR>
+autocmd BufRead,BufEnter * if expand('%:t') !~? 'NERD' | execute 'nnoremap <buffer> <Leader>d :bd<CR>' | endif
 
 " Change path to current file path
 nnoremap <Leader>cd :lcd %:p:h<CR>
