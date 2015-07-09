@@ -244,7 +244,7 @@ function! s:HighlightWordUnderCursor() "{{{
 endfunction
 
 autocmd FileType * autocmd CursorHold * call s:HighlightWordUnderCursor()
-autocmd BufRead * if expand('%:t') =~ 'NERD' | let b:wuc_disabled = 1 | endif
+autocmd BufRead,BufEnter * if expand('%:t') =~ 'NERD' | let b:wuc_disabled = 1 | endif
 
 command! ToggleWordUnderCursor let b:wuc_disabled = !get(b:, 'wuc_disabled')
 "}}}
