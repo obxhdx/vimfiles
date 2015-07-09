@@ -1,3 +1,33 @@
-snippet $ "${}"
-${${1}}${0}
+snippet tas
+task ${1:taskName} << {
+	${2}
+}${0}
+endsnippet
+
+snippet task
+task ${1:taskName} << {
+	${2}
+}${0}
+endsnippet
+
+snippet dof
+doFirst {
+	${1}
+}${0}
+endsnippet
+
+snippet dol
+doLast {
+	${1}
+}${0}
+endsnippet
+
+snippet def
+def ${1:varName}${0}
+endsnippet
+
+snippet defm
+def ${1:methodName}(${2}) {
+	${3}
+}${0}
 endsnippet
