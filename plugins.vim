@@ -333,9 +333,34 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " }}}
 
 " Tern.js"{{{
-let g:tern_map_keys = 1
-let g:tern_show_argument_hints = 'on_hold'
+autocmd! FileType javascript autocmd! CursorHold <buffer> call DisplayTernType()
+
+function! DisplayTernType()
+  echo ''
+
+  let l:current_char = matchstr(getline('.'), '\%' . col('.') . 'c.')
+  let l:current_word = expand('<cword>')
+
+  if l:current_char =~ '\v\s|\=|\&|\(|\)|\[\]\{|\}'
+    return
+  endif
+
+  if l:current_word =~# '\v<(var|function|return|if|for|in|while)>'
+    return
+  endif
+
+  if l:current_word =~? '\w\+'
+    execute 'TernType'
+  endif
+
+endfunction
+
+let g:tern_map_keys = 0
 let g:tern_show_signature_in_pum = 1
+let prefix = '<LocalLeader>'
+execute 'nnoremap <buffer> '.prefix.'td' ':TernDef<CR>'
+execute 'nnoremap <buffer> '.prefix.'tr' ':TernRefs<CR>'
+execute 'nnoremap <buffer> '.prefix.'tR' ':TernRename<CR>'
 "}}}
 
 " UltiSnips"{{{
