@@ -68,6 +68,7 @@ Plug 'tpope/vim-unimpaired'
 " Syntax Utils"{{{
 Plug 'dzeban/vim-log-syntax'
 Plug 'gregsexton/MatchTag'
+Plug 'jelera/vim-javascript-syntax'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/groovyindent'
