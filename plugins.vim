@@ -212,9 +212,13 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 " }}}
 
 " Rainbow parentheses"{{{
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+augroup Rainbows
+  autocmd!
+  autocmd Syntax groovy,java silent! RainbowParenthesesActivate
+  autocmd Syntax groovy,java silent! RainbowParenthesesLoadRound
+  autocmd Syntax groovy,java silent! RainbowParenthesesLoadSquare
+  autocmd Syntax groovy,java silent! RainbowParenthesesLoadBraces
+augroup END
 " }}}
 
 " Rsi"{{{
