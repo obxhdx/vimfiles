@@ -173,6 +173,7 @@ augroup FileTypeFixes
   autocmd BufRead,BufNewFile *.php     setf php.html
   autocmd BufRead,BufNewFile *.podspec setf ruby
 
+  autocmd FileType json       setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType java       setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 completeopt-=preview
   autocmd FileType groovy     setlocal tabstop=4 shiftwidth=4 softtabstop=4 commentstring=//%s
