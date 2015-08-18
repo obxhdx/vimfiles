@@ -25,17 +25,28 @@ function! ColoringTweaks() "{{{
   " That's the way (uh-huh uh-huh), I like it (uh-huh uh-huh)
   " hi MatchParen ctermfg=235 ctermbg=2
   hi Pmenu ctermfg=236 ctermbg=218
-  hi PmenuSel ctermfg=252 ctermbg=237
   hi Search ctermfg=255 ctermbg=198
+  hi IncSearch ctermbg=38 ctermfg=232 term=NONE cterm=bold
 
   " Plugin-specific syntax groups
   hi BufTabLineCurrent ctermbg=203 ctermfg=232
   hi BufTabLineActive ctermbg=236 ctermfg=203
   hi BufTabLineHidden ctermbg=236
   hi BufTabLineFill ctermbg=236
-  hi WordUnderCursor ctermbg=236 ctermfg=magenta
+
+  if g:colors_name == 'iceberg'
+    hi PmenuSel ctermfg=black ctermbg=39
+    hi! link jsFunction Statement
+    hi! link Folded Comment
+    hi! link jpropertiesIdentifier Statement
+    hi VertSplit ctermbg=NONE ctermfg=235 term=none cterm=none
+    " hi jsFuncName ctermfg=209
+    hi Visual ctermbg=239
+  endif
 
   if g:colors_name == 'badwolf'
+    hi PmenuSel ctermfg=252 ctermbg=237
+
     hi FoldColumn ctermbg=NONE
     hi Folded ctermbg=NONE
     hi LineNr ctermbg=NONE
