@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'
 " }}}
 
 " Code Lint"{{{
+Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
 Plug 'sareyko/neat.vim', { 'on': 'Neat' }
 Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 " }}}
@@ -140,6 +141,15 @@ let g:gitgutter_map_keys = 0
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
 " }}}
+
+" JsBeautify "{{{
+augroup JsBeautify
+  autocmd!
+  autocmd FileType javascript noremap <buffer> <Leader>= :call JsBeautify()<CR>
+  autocmd FileType html noremap <buffer> <Leader>= :call HtmlBeautify()<CR>
+  autocmd FileType css noremap <buffer> <Leader>= :call CSSBeautify()<CR>
+augroup END
+"}}}
 
 " Limelight"{{{
 let g:limelight_conceal_ctermfg = 'gray'
