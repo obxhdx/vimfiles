@@ -1,0 +1,23 @@
+snippet wf
+waitsFor(function () {
+	return ${1}
+});${0}
+endsnippet
+
+snippet ru
+runs(function () {
+	${1}
+});${0}
+endsnippet
+
+snippet des
+describe('${1:Description}', function () {
+	${0}
+});
+endsnippet
+
+snippet iit
+iit('${1:Scenario description}', function (${2}) {
+	${0}
+});
+endsnippet
