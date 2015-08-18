@@ -88,25 +88,22 @@ call plug#end()
 
 " }}}
 
-" On-demand Activation"{{{
-
-augroup InitCompletionPlugins
+" On-demand Loading"{{{
+augroup LoadCompletionPlugins
   autocmd!
   autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets')
-        \| call youcompleteme#Enable() | autocmd! InitCompletionPlugins
+        \| call youcompleteme#Enable()
+        \| autocmd! LoadCompletionPlugins
 augroup END
 
-augroup InitGitPlugins
+augroup LoadGitGutter
   autocmd!
-  autocmd VimEnter * call LoadGitGutter()
+  autocmd BufWritePost * if !empty(fugitive#head()) && get(g:, 'gitgutter_enabled') == 0
+        \| call plug#load('vim-gitgutter')
+        \| execute 'GitGutterEnable'
+        \| execute 'autocmd! LoadGitGutter'
+        \| endif
 augroup END
-
-function! LoadGitGutter()
-  if !empty(fugitive#head())
-    call plug#load('vim-gitgutter')
-    GitGutterEnable
-  endif
-endfunction
 " }}}
 
 " Plugin Customizations"{{{
