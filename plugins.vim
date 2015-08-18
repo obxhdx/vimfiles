@@ -32,6 +32,7 @@ Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 " }}}
 
 " Color Schemes"{{{
+Plug 'chriskempson/base16-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sickill/vim-monokai'
@@ -111,7 +112,11 @@ augroup END
 
 " Colorscheme {{{
 try
-  colorscheme badwolf
+  set term=screen-256color
+  set t_Co=256
+  set background=dark
+  let base16colorspace=256
+  colorscheme iceberg
 catch
 endtry
 " }}}
