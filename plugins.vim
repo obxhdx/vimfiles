@@ -139,6 +139,7 @@ let delimitMate_expand_space = 1
 " }}}
 
 " FZF"{{{
+nnoremap <Leader>z :FZF<CR>
 " }}}
 
 " GitGutter"{{{
@@ -181,13 +182,14 @@ let NERDTreeMinimalUI = 1
 let NERDTreeCascadeOpenSingleChildDir = 1
 autocmd FileType nerdtree nnoremap <silent> <buffer> <C-j> :call nerdtree#ui_glue#invokeKeyMap(g:NERDTreeMapActivateNode)<CR>
 
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>f :NERDTreeFind<CR>
+map <Leader>nt :NERDTreeToggle<CR>
+map <Leader>nf :NERDTreeFind<CR>
 
 hi NERDTreeCWD       ctermfg=2    ctermbg=NONE  cterm=NONE
 hi NERDTreeDir       ctermfg=240  ctermbg=NONE  cterm=NONE
 hi NERDTreeFile      ctermfg=246  ctermbg=NONE  cterm=NONE
 hi NERDTreeOpenable  ctermfg=3    ctermbg=NONE  cterm=NONE
+hi NERDTreeClosable  ctermfg=2    ctermbg=NONE  cterm=NONE
 hi link NERDTreeDirSlash NERDTreeDir
 
 function! NERDTreeHighlightFile(extension, fg, bg, mod)
@@ -201,7 +203,7 @@ call NERDTreeHighlightFile('gradle',      '222',  'NONE',  'NONE')
 call NERDTreeHighlightFile('groovy',      '131',  'NONE',  'NONE')
 call NERDTreeHighlightFile('html',        '215',  'NONE',  'NONE')
 call NERDTreeHighlightFile('java',        '132',  'NONE',  'NONE')
-call NERDTreeHighlightFile('js',          '201',  'NONE',  'NONE')
+call NERDTreeHighlightFile('js',          '162',  'NONE',  'NONE')
 call NERDTreeHighlightFile('json',        '191',  'NONE',  'NONE')
 call NERDTreeHighlightFile('md',          '184',  'NONE',  'NONE')
 call NERDTreeHighlightFile('properties',  '229',  'NONE',  'NONE')
@@ -238,12 +240,15 @@ augroup END
 " }}}
 
 " Rsi"{{{
-autocmd VimEnter * iunmap <C-A>
-autocmd VimEnter * iunmap <C-X><C-A>
-autocmd VimEnter * iunmap <C-B>
-autocmd VimEnter * iunmap <C-D>
-autocmd VimEnter * iunmap <C-E>
-autocmd VimEnter * iunmap <C-F>
+augroup DisableRsiMappings
+  autocmd!
+  autocmd VimEnter * iunmap <C-A>
+  autocmd VimEnter * iunmap <C-X><C-A>
+  autocmd VimEnter * iunmap <C-B>
+  autocmd VimEnter * iunmap <C-D>
+  autocmd VimEnter * iunmap <C-E>
+  autocmd VimEnter * iunmap <C-F>
+augroup END
 "}}}
 
 " Smooth Scroll"{{{
@@ -324,7 +329,10 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " }}}
 
 " Tern.js"{{{
-autocmd! FileType javascript autocmd! CursorHold <buffer> call DisplayTernType()
+augroup DisplayTernType
+  autocmd!
+  autocmd FileType javascript autocmd CursorHold <buffer> call DisplayTernType()
+augroup END
 
 function! DisplayTernType()
   echo ''

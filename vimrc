@@ -159,12 +159,12 @@ set background=dark
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Highlight cursor line only for current buffer
-augroup CursorLine
-  au!
-  au WinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+" " Highlight cursor line only for current buffer
+" augroup CursorLine
+"   au!
+"   au WinEnter * setlocal cursorline
+"   au WinLeave * setlocal nocursorline
+" augroup END
 
 augroup FileTypeFixes
   autocmd!

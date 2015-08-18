@@ -464,6 +464,7 @@ imap <C-y><Esc> <Nop> | imap <C-y> <C-r>=SendKeysToREPL()<cr>
 nnoremap <Leader>k :call feedkeys("i\<C-y>")<CR>
 "}}}
 
+" Extract/inline variables {{{
 " Variable patterns per filetype {{{
 let g:var_patterns = {
       \   'javascript': {
@@ -540,6 +541,7 @@ function! InlineLocalVariable() "{{{
 endfunction
 
 nnoremap <Leader>i :call InlineLocalVariable()<CR>
+"}}}
 "}}}
 
 " vim: set foldmethod=marker :
