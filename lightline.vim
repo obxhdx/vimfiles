@@ -3,7 +3,7 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'paste' ], [ 'mode' ], [ 'fugitive' ], [ 'filename' ], [ 'flags' ] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation', 'syntastic' ] ]
+      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation', 'syntastic', 'ternjs' ] ]
       \ },
       \ 'inactive': {
       \   'left': [ [ 'filename' ], [ 'flags' ] ],
@@ -22,11 +22,13 @@ let g:lightline = {
       \ },
       \ 'component_expand': {
       \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'ternjs': 'TernJS',
       \   'trailing': 'TrailingSpaceWarning',
       \   'indentation': 'MixedIndentSpaceWarning',
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
+      \   'ternjs': 'ternjs',
       \   'trailing': 'warning',
       \   'indentation': 'warning',
       \ },
@@ -79,6 +81,10 @@ function! TrailingSpaceWarning()
   else
     return ''
   endif
+endfunction
+
+function! TernJS()
+  return empty(get(b:, 'tern_type', '')) ? '' : DisplayTernType()
 endfunction
 
 function! MixedIndentSpaceWarning()
@@ -209,9 +215,11 @@ let s:p.normal.middle    = [ [s:gray7, s:gray2] ]
 let s:p.normal.right     = [ [s:gray5, s:gray10], [s:gray9, s:gray4], [s:gray8, s:gray2] ]
 let s:p.normal.error     = [ [s:gray0, s:brightestred] ]
 let s:p.normal.warning   = [ [s:gray0, s:brightorange] ]
+let s:p.normal.ternjs    = [ [s:brightgreen, s:gray2] ]
 let s:p.insert.left      = [ s:p.normal.left[0], [s:darkestcyan, s:white], [s:white, s:darkblue], [s:white, s:darkblue] ]
 let s:p.insert.middle    = [ [s:mediumcyan, s:darkestblue] ]
 let s:p.insert.right     = [ [s:darkestcyan, s:mediumcyan], [s:mediumcyan, s:darkblue], [s:mediumcyan, s:darkestblue] ]
+let s:p.insert.ternjs    = [ [s:mediumcyan, s:darkestblue] ]
 let s:p.visual.left      = [ s:p.normal.left[0], [s:darkred, s:brightorange], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
 let s:p.replace.left     = [ s:p.normal.left[0], [s:white, s:brightred], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
 let s:p.replace.middle   = [ [s:gray7, s:gray2] ]

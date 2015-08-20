@@ -331,27 +331,28 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " Tern.js"{{{
 augroup DisplayTernType
   autocmd!
+  autocmd VimEnter * autocmd FileType javascript call DisplayTernType()
   autocmd FileType javascript autocmd CursorHold <buffer> call DisplayTernType()
 augroup END
 
 function! DisplayTernType()
-  echo ''
-
   let l:current_char = matchstr(getline('.'), '\%' . col('.') . 'c.')
   let l:current_word = expand('<cword>')
 
   if l:current_char =~ '\v\s|\=|\&|\(|\)|\[\]\{|\}'
-    return
+    return ''
   endif
 
   if l:current_word =~# '\v<(var|function|return|if|for|in|while)>'
-    return
+    return ''
   endif
 
   if l:current_word =~? '\w\+'
     execute 'TernType'
+    return get(b:, 'tern_type', '')
   endif
 
+  return ''
 endfunction
 
 let g:tern_map_keys = 0
