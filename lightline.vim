@@ -39,48 +39,43 @@ let g:lightline = {
 
 " Display always "{{{
 function! MyMode()
-  let fname = expand('%:t')
-  return FileNameMatches('NERD_tree') ? 'NERDTree' : (BufferMinPercent(35) ? lightline#mode() : strpart(lightline#mode(), 0, 1))
+  if s:ftMatches('help') | return '' | endif
+  if s:fnameMatches('NERD_tree') | return 'NERDTree' | endif
+  return s:bufferMinPercent(35) ? lightline#mode() : strpart(lightline#mode(), 0, 1)
 endfunction
 
 function! MyFileName()
+  if s:fnameMatches('NERD_tree') | return '' | endif
   let fname = expand('%:t')
-  return FileNameMatches('NERD_tree') ? '' : (empty(fname) ? '[No Name]' : fname)
+  return empty(fname) ? '[No Name]' : fname
 endfunction
 
 function! MyModified()
-  return FileNameMatches('NERD_tree') ? '' : (&modified ? '+' : (&modifiable ? '' : '-'))
+  return s:isFileBuffer() ? (&modified ? '+' : (&modifiable ? '' : '-')) : ''
 endfunction
 
 function! MyReadonly()
-  return (FtDifferentThan('help') && &readonly) ? '' : ''
+  return (s:ftMatches('help') || &readonly) ? '' : ''
 endfunction
 
 function! MyFlags()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != MyModified() ? MyModified() . ' ' : '')
+  return (empty(MyReadonly()) ? '' : MyReadonly() . ' ') .
+       \ (empty(MyModified()) ? '' : MyModified() . ' ')
 endfunction
 
 function! MyLineInfo()
-  return FileNameMatches('NERD_tree') ? '' : printf(" %3d:%-2d", line('.'), col('.'))
+  return s:fnameMatches('NERD_tree') ? '' : printf(" %3d:%-2d", line('.'), col('.'))
 endfunction
 
 function! MyPercent()
-  return FileNameMatches('NERD_tree') ? '' : printf("%3d%%", line('.') * 100 / line('$'))
+  return s:fnameMatches('NERD_tree') ? '' : printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
 "}}}
 " Hide if smaller than 70 {{{
 function! TrailingSpaceWarning()
-  if !FtDifferentThan('help') || winwidth(0) < 80
-    return ''
-  endif
-
-  let trailing = search('\s$', 'nw')
-  if trailing != 0
-    return '… trailing[' . trailing . ']'
-  else
-    return ''
-  endif
+  if s:ftMatches('help') || winwidth(0) < 80 | return '' | endif
+  let l:trailing = search('\s$', 'nw')
+  return (l:trailing != 0) ? '… trailing[' . trailing . ']' : ''
 endfunction
 
 function! TernJS()
@@ -88,65 +83,53 @@ function! TernJS()
 endfunction
 
 function! MixedIndentSpaceWarning()
-  if !FtDifferentThan('help') || winwidth(0) < 80
-    return ''
-  endif
-
-  let tabs = search('^\t', 'nw')
-  let spaces = search('^ ', 'nw')
-
-  if (tabs != 0) && (spaces != 0)
-    return '» mixed-indent[' . tabs . ']'
-  else
-    return ''
-  endif
+  if s:ftMatches('help') || winwidth(0) < 80 | return '' | endif
+  let l:tabs = search('^\t', 'nw')
+  let l:spaces = search('^ ', 'nw')
+  return (l:tabs != 0 && l:spaces != 0) ? '» mixed-indent[' . tabs . ']' : ''
 endfunction
 "}}}
 " Hide if smaller than 40% {{{
 function! MyFileFormat()
-  return FtDifferentThan('help') && BufferMinPercent(40) ? &fileformat : ''
+  return !s:ftMatches('help') && s:bufferMinPercent(40) ? &fileformat : ''
 endfunction
 
 function! MyFileEncoding()
-  return FtDifferentThan('help') && BufferMinPercent(40) ? (strlen(&fenc) ? &fenc : &enc) : ''
+  return !s:ftMatches('help') && s:bufferMinPercent(40) ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 "}}}
 " Hide if smaller than 30% {{{
 function! MyFileType()
-  return BufferMinPercent(30) ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  return s:bufferMinPercent(30) ? (strlen(&filetype) ? &filetype : 'no ft') : ''
 endfunction
 "}}}
 " Hide if smaller than 25% {{{
 function! MyFugitive()
-  let fname = expand('%:t')
-  try
-    if !BufferMinPercent(25)
-      return ''
-    elseif (FtDifferentThan('help') && fname !~? 'NERD') && exists('*fugitive#head')
-      let mark = ' '
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
+  if !s:isFileBuffer() || !s:bufferMinPercent(25) | return '' | endif
+  if exists('*fugitive#head')
+    let l:branch = fugitive#head()
+    return strlen(l:branch) ? ' '.l:branch : ''
+  endif
 endfunction
 "}}}
 
 " Helper functions {{{
 au VimEnter * let g:total_width = winwidth(0)
 
-function! BufferMinPercent(percent)
+function! s:bufferMinPercent(percent)
   return winwidth(0) > (g:total_width * a:percent / 100)
 endfunction
 
-function! FtDifferentThan(ft_name)
-  return &ft !~? a:ft_name
+function! s:ftMatches(ft_name)
+  return &ft =~ a:ft_name
 endfunction
 
-function! FileNameMatches(file_name)
-  let fname = expand('%:t')
-  return fname =~ a:file_name
+function! s:fnameMatches(file_name)
+  return expand('%:t') =~ a:file_name
+endfunction
+
+function! s:isFileBuffer()
+  return empty(&buftype)
 endfunction
 "}}}
 
