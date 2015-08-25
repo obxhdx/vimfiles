@@ -258,8 +258,7 @@ augroup WordUnderCursor
   autocmd!
   autocmd CursorHold * call s:HighlightWordUnderCursor()
   autocmd Colorscheme * highlight WordUnderCursor ctermbg=236 ctermfg=NONE
-  autocmd BufRead,BufEnter * if expand('%:t') =~ 'NERD' | let b:wuc_disabled = 1 | endif
-  autocmd BufRead,BufNewFile *.todo let b:wuc_disabled = 1
+  autocmd Syntax * if (&ft =~ 'nerdtree\|vim-plug\|todo') | let b:wuc_disabled = 1 | endif
 augroup END
 
 command! ToggleWordUnderCursor let b:wuc_disabled = !get(b:, 'wuc_disabled')
