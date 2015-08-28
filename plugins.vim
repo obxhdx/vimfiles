@@ -197,6 +197,10 @@ function! NERDTreeHighlightFile(extension, fg, bg, mod)
   exec 'autocmd filetype nerdtree highlight ' . a:extension . ' ctermbg=' . a:bg . ' ctermfg=' . a:fg . ' cterm=' . a:mod
 endfunction
 
+function! NERDTreeMapFileNameToExt(filename, extension)
+  exec 'autocmd filetype nerdtree syn match ' . a:extension . ' #^\s\+.*' . a:filename . '\*\?$#'
+endfunction
+
 call NERDTreeHighlightFile('css',         '13',   'NONE',  'NONE')
 call NERDTreeHighlightFile('feature',     '41',   'NONE',  'NONE')
 call NERDTreeHighlightFile('gradle',      '222',  'NONE',  'NONE')
@@ -213,6 +217,8 @@ call NERDTreeHighlightFile('vim',         '255',  'NONE',  'NONE')
 call NERDTreeHighlightFile('xml',         '210',  'NONE',  'NONE')
 call NERDTreeHighlightFile('yaml',        '229',  'NONE',  'NONE')
 call NERDTreeHighlightFile('yml',         '229',  'NONE',  'NONE')
+
+call NERDTreeMapFileNameToExt('Rakefile', 'rb')
 " }}}
 
 " Oblique {{{
@@ -382,6 +388,8 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " WebDevIcons {{{
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['rakefile'] = ''
 " }}}
 
 " vim: set foldmethod=marker :
