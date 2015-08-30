@@ -28,7 +28,7 @@ Plug 'tpope/vim-surround'
 " Code Lint"{{{
 Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
 Plug 'sareyko/neat.vim', { 'on': 'Neat' }
-Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
+Plug 'scrooloose/syntastic', { 'on': [ 'SyntasticCheck', 'SyntasticToggleMode' ] }
 " }}}
 
 " Color Schemes"{{{
@@ -329,14 +329,19 @@ let g:startify_skiplist = [
 " }}}
 
 " Syntastic"{{{
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_mode_map = {
+      \ 'mode': 'passive',
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': []
+      \ }
+let g:syntastic_javascript_checkers = [ 'jslint' ]
+let g:syntastic_javascript_jslint_args = '--browser --devel --node --nomen --this --white'
 let g:syntastic_ruby_checkers = [ 'rubocop' ]
 let g:syntastic_sh_checkers = [ 'shellcheck' ]
 let g:syntastic_zsh_checkers = [ 'zsh' ]
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_mode_map = { 'mode': 'passive',
-      \ 'active_filetypes': [],
-      \ 'passive_filetypes': [] }
+nnoremap gs :SyntasticToggleMode<CR>
 " }}}
 
 " Tern.js"{{{
