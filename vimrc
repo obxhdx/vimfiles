@@ -135,9 +135,9 @@ map <Tab> %
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" gt/gT moves to next/prev buffer/tab
-nnoremap <silent>gt :exec tabpagenr('$') == 1 ? 'bn' : 'tabnext'<CR>
-nnoremap <silent>gT :exec tabpagenr('$') == 1 ? 'bp' : 'tabprevious'<CR>
+" Navigate buffers more easily
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprev<CR>
 
 " Automatically jump to end of pasted text
 vnoremap <silent> y y`]
