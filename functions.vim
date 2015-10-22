@@ -28,12 +28,6 @@ function! ColoringTweaks() "{{{
   hi Search ctermfg=255 ctermbg=198
   hi IncSearch ctermbg=38 ctermfg=232 term=NONE cterm=bold
 
-  " Plugin-specific syntax groups
-  hi BufTabLineCurrent ctermbg=203 ctermfg=232
-  hi BufTabLineActive ctermbg=236 ctermfg=203
-  hi BufTabLineHidden ctermbg=236
-  hi BufTabLineFill ctermbg=236
-
   if g:colors_name == 'iceberg'
     hi PmenuSel ctermfg=black ctermbg=39
     hi! link jsFunction Statement

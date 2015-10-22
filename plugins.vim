@@ -126,6 +126,10 @@ endtry
 let g:buftabline_show = 1
 let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
+hi BufTabLineCurrent ctermbg=203 ctermfg=232
+hi BufTabLineActive ctermbg=236 ctermfg=203
+hi BufTabLineHidden ctermbg=236
+hi BufTabLineFill ctermbg=236
 " }}}
 
 " Commentary"{{{
