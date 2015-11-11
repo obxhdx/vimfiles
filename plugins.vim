@@ -183,6 +183,7 @@ let NERDTreeShowLineNumbers = 1
 let NERDTreeWinSize = 40
 let NERDTreeMinimalUI = 1
 let NERDTreeCascadeOpenSingleChildDir = 1
+let NERDTreeShowHidden = 1
 autocmd FileType nerdtree nnoremap <silent> <buffer> <C-j> :call nerdtree#ui_glue#invokeKeyMap(g:NERDTreeMapActivateNode)<CR>
 
 map <Leader>nt :NERDTreeToggle<CR>
