@@ -187,6 +187,7 @@ augroup END
 " Extra config files " {{{
 source $HOME/.vim/functions.vim
 source $HOME/.vim/plugins.vim
+call SourceFileIfItExists('$HOME/.vimrc.local')
 " }}}
 
 " vim: set foldmethod=marker :

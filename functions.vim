@@ -537,4 +537,13 @@ nnoremap <Leader>i :call InlineLocalVariable()<CR>
 "}}}
 "}}}
 
+function! SourceFileIfItExists(path) "{{{
+  let l:expanded_path = expand(a:path)
+
+  if filereadable(l:expanded_path)
+    execute 'source ' . l:expanded_path
+  endif
+endfunction
+"}}}
+
 " vim: set foldmethod=marker :
