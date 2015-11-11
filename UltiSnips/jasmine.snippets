@@ -16,8 +16,26 @@ describe('${1:Description}', function () {
 });
 endsnippet
 
+snippet it
+it('${1:Scenario description}', function (${2}) {
+	${0}
+});
+endsnippet
+
 snippet iit
 iit('${1:Scenario description}', function (${2}) {
+	${0}
+});
+endsnippet
+
+snippet bef
+beforeEach(function () {
+	${0}
+});
+endsnippet
+
+snippet aft
+afterEach(function () {
 	${0}
 });
 endsnippet
