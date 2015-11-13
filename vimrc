@@ -7,7 +7,7 @@ set wildmode=longest:list " Command line completion mode
 set backup " Enable file backup
 set backupdir=~/.vim/tmp/backup// " Backup files dir
 set directory=~/.vim/tmp/swap// " Swap files dir
-set tags+=gems.tags " Load gem tags when present
+set tags+=~/.vim/tags/ruby_gems " Load gem tags when present
 set mouse=a " Enable mouse
 set vb t_vb= " Disable visual bell
 set timeoutlen=1000 " Leader key timeout (ms)
