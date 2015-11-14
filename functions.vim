@@ -243,8 +243,9 @@ function! s:HighlightWordUnderCursor() "{{{
   endif
 
   let s:word = expand('<cword>')
-  if len(s:word) > 1
-    call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:word.'\>', 0))
+  let s:escaped_word = substitute(s:word, '\(*\|\~\)', '\\\1', 'g')
+  if len(s:escaped_word) > 1
+    call add(w:wuc_match_ids, matchadd('WordUnderCursor', '\<'.s:escaped_word.'\>', 0))
   endif
 endfunction
 
