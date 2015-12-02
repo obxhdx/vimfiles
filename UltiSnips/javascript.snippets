@@ -1,17 +1,21 @@
-snippet var
-var ${1:var_name} = ${2:var_value};${0}
-endsnippet
-
 snippet al
-alert("${1}");${0}
+alert('${1}');${0}
 endsnippet
 
-snippet jstr
-JSON.stringify(${1});${0}
+snippet cl
+console.log(${1:'value'});${0}
 endsnippet
 
-snippet else
+snippet els
 else {
 	${1}
 }${0}
+endsnippet
+
+snippet str
+JSON.stringify(${1});${0}
+endsnippet
+
+snippet var
+var ${1:var_name} = ${2:var_value};${0}
 endsnippet
