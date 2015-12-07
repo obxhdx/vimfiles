@@ -20,6 +20,7 @@ Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
 Plug 'honza/vim-snippets', { 'on': [] }
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
+Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
