@@ -36,6 +36,7 @@ function! ColoringTweaks() "{{{
     hi VertSplit ctermbg=NONE ctermfg=235 term=none cterm=none
     " hi jsFuncName ctermfg=209
     hi Visual ctermbg=239
+    hi markdownH2 ctermfg=green
   endif
 
   if g:colors_name == 'badwolf'
