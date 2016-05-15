@@ -39,3 +39,13 @@ afterEach(function () {
 	${0}
 });
 endsnippet
+
+snippet inj
+inject(function ($injector) {
+	${1} = $injector.get('${1/\w+\s*/\u$0/g}');
+});${0}
+endsnippet
+
+snippet inget
+${1} = $injector.get('${1/\w+\s*/\u$0/g}');${0}
+endsnippet
