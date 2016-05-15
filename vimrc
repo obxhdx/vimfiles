@@ -3,7 +3,7 @@ set nocompatible " Be iMproved
 set encoding=utf8 " Default encoding
 set history=10000 " Remember more commands and search history
 set wildmenu " Enable command line completion menu
-set wildmode=longest:list " Command line completion mode
+set wildmode=longest:full,full " Command line completion mode
 set backup " Enable file backup
 set backupdir=~/.vim/tmp/backup// " Backup files dir
 set directory=~/.vim/tmp/swap// " Swap files dir
