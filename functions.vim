@@ -22,21 +22,18 @@ function! ColoringTweaks() "{{{
   set background=dark
   hi Normal ctermbg=NONE
 
-  " That's the way (uh-huh uh-huh), I like it (uh-huh uh-huh)
-  " hi MatchParen ctermfg=235 ctermbg=2
+  hi MatchParen ctermfg=196 ctermbg=234
   hi Pmenu ctermfg=236 ctermbg=218
-  hi Search ctermfg=255 ctermbg=198
-  hi IncSearch ctermbg=38 ctermfg=232 term=NONE cterm=bold
 
   if g:colors_name == 'iceberg'
-    hi PmenuSel ctermfg=black ctermbg=39
-    hi! link jsFunction Statement
     hi! link Folded Comment
     hi! link jpropertiesIdentifier Statement
+    hi MatchParen ctermfg=203 ctermbg=234
     hi VertSplit ctermbg=NONE ctermfg=235 term=none cterm=none
-    " hi jsFuncName ctermfg=209
     hi Visual ctermbg=239
     hi markdownH2 ctermfg=green
+    hi IncSearch ctermbg=203 ctermfg=232 cterm=none term=none
+    hi StatusLine ctermbg=236 cterm=none
   endif
 
   if g:colors_name == 'badwolf'
