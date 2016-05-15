@@ -143,7 +143,7 @@ nmap [c <Plug>GitGutterPrevHunk
 " JsBeautify "{{{
 augroup JsBeautify
   autocmd!
-  autocmd FileType javascript noremap <buffer> <Leader>= :call JsBeautify()<CR>:execute('%s/\v(function)(\()/\1\ \2/g')<CR>
+  autocmd FileType javascript noremap <buffer> <Leader>= :call JsBeautify()<CR>
   autocmd FileType html noremap <buffer> <Leader>= :call HtmlBeautify()<CR>
   autocmd FileType css noremap <buffer> <Leader>= :call CSSBeautify()<CR>
 augroup END
