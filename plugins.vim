@@ -8,7 +8,6 @@ call plug#begin('~/.vim/bundle')
 
 " Appearance"{{{
 Plug 'ap/vim-buftabline'
-Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-webdevicons'
 " }}}
@@ -47,10 +46,6 @@ Plug 'tpope/vim-fugitive'
 " }}}
 
 " Misc"{{{
-Plug 'EinfachToll/DidYouMean'
-Plug 'chrisbra/Recover.vim'
-Plug 'chrisbra/vim-diff-enhanced'
-Plug 'junegunn/limelight.vim'
 Plug 'kopischke/vim-stay'
 Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-rsi'
@@ -67,7 +62,6 @@ Plug 'tpope/vim-unimpaired'
 " }}}
 
 " Syntax Utils"{{{
-Plug 'dzeban/vim-log-syntax'
 Plug 'gregsexton/MatchTag'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'kien/rainbow_parentheses.vim'
@@ -75,15 +69,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/groovyindent'
 " }}}
 
-" Text Objects"{{{
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': [ 'ruby' ] }
-" }}}
-
 " Tools"{{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
-Plug 'mhinz/vim-startify'
 Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 " }}}
@@ -161,11 +148,6 @@ augroup JsBeautify
   autocmd FileType css noremap <buffer> <Leader>= :call CSSBeautify()<CR>
 augroup END
 "}}}
-
-" Limelight"{{{
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-" }}}
 
 " Lightline"{{{
 try
@@ -293,45 +275,6 @@ let g:splitjoin_join_mapping = ''
 nmap sj :SplitjoinSplit<CR>
 nmap sk :SplitjoinJoin<CR>
 "}}}
-
-" Startify"{{{
-hi StartifyBracket ctermfg=240 guifg=#585858
-hi StartifyFile    ctermfg=231 guifg=#ffffff
-hi StartifyFooter  ctermfg=111 guifg=#87afff
-hi StartifyHeader  ctermfg=203 guifg=#ff5f5f
-hi StartifyNumber  ctermfg=215 guifg=#ffaf5f
-hi StartifyPath    ctermfg=245 guifg=#8a8a8a
-hi StartifySection ctermfg=111 guifg=#87afff
-hi StartifySlash   ctermfg=240 guifg=#585858
-hi StartifySpecial ctermfg=245 guifg=#8a8a8a
-
-let g:startify_custom_header = [
-      \ '                                 ________  __ __        ',
-      \ '            __                  /\_____  \/\ \\ \       ',
-      \ '    __  __ /\_\    ___ ___      \/___//''/''\ \ \\ \    ',
-      \ '   /\ \/\ \\/\ \ /'' __` __`\        /'' /''  \ \ \\ \_ ',
-      \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \      /'' /''__  \ \__ ,__\',
-      \ '    \ \___/  \ \_\ \_\ \_\ \_\    /\_/ /\_\  \/_/\_\_/  ',
-      \ '     \/__/    \/_/\/_/\/_/\/_/    \//  \/_/     \/_/    ',
-      \ '',
-      \ '',
-      \ ]
-
-let g:startify_custom_footer =
-      \ ['', "   Vim is charityware. Please read ':help uganda'.", '']
-
-let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
-
-let g:startify_skiplist_server = [ 'GVIM' ]
-
-let g:startify_skiplist = [
-      \ 'COMMIT_EDITMSG',
-      \ $VIMRUNTIME .'/doc',
-      \ '/usr/local/Cellar/vim/.*/doc',
-      \ 'bundle/.*/doc',
-      \ 'plugged/.*/doc',
-      \ ]
-" }}}
 
 " Syntastic"{{{
 let g:syntastic_auto_loc_list = 1
