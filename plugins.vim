@@ -343,6 +343,7 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['rakefile'] = ''
+let g:WebDevIconsOS = 'Darwin'
 " }}}
 
 " vim: set foldmethod=marker :
