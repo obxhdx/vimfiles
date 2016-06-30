@@ -13,6 +13,10 @@ command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-}
 command! -range=% SingleQuotes :<line1>,<line2>s/\v"(.{-})?"/'\1'/gc
 " }}}
 
+" Format text in columns using provided character {{{
+command! -nargs=1 -range=% Tabify :execute "<line1>,<line2>!sed 's/" . <f-args> . "/@". <f-args> . "/g' | column -s@ -t"
+"}}}
+
 " Strip trailing white spaces {{{
 command! StripTrailingWhitespaces :call ExecPreservingCursorPos('%s/\s\+$//e')
 autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> StripTrailingWhitespaces
