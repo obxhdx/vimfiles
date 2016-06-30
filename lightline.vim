@@ -140,7 +140,7 @@ augroup ComponentExpand
 augroup END
 
 function! s:flags()
-  if exists('#LightLine')
+  if exists('#lightline')
     call TrailingSpaceWarning()
     call MixedIndentSpaceWarning()
     call lightline#update()
