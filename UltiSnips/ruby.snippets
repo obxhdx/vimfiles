@@ -2,6 +2,14 @@ snippet # "#{}"
 #{${1}}${0}
 endsnippet
 
+snippet p'
+puts '${1:foo}'${0}
+endsnippet
+
+snippet p"
+puts "#{${1:foo}}"${0}
+endsnippet
+
 snippet "([0-9])\.tim" "times { |<i>| <block> }" r
 `!p snip.rv=match.group(1)`.times { |${1:i}| ${2:# TODO} }${0}
 endsnippet
