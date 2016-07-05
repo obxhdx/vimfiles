@@ -60,7 +60,7 @@ if ! [[ -f "$VIMFILES_HOME_DIR/autoload/plug.vim" ]]; then
 fi
 
 # Install plugins
-vim -N -u "$VIMFILES_HOME_DIR/plugs.vim" +PlugInstall +qa
+vim -N -u "$VIMFILES_HOME_DIR/plugins.vim" +PlugInstall +qa
 ok_msg 'All plugins installed'
 
 # Uninstall script
