@@ -163,17 +163,9 @@ command! CloseHiddenBuffers call CloseHiddenBuffers()
 
 function! SetWildIgnore(ignored_strings_file) "{{{
   if filereadable(a:ignored_strings_file)
-    let igstring = ''
-    for oline in readfile(a:ignored_strings_file)
-      let line = substitute(oline, '\s|\n|\r', '', 'g')
-      if line =~ '^#' | con | endif
-      if line == '' | con  | endif
-      if line =~ '^!' | con  | endif
-      if line =~ '/$' | let igstring .= ',' . line . '*' | con | endif
-      let igstring .= ',' . line
+    for pattern in readfile(a:ignored_strings_file)
+      execute 'set wildignore+=' . pattern
     endfor
-    let execstring = 'set wildignore='.substitute(igstring, '^,', '', 'g')
-    execute execstring
   else
     echo "Can't open file " . a:ignored_strings_file
   endif
