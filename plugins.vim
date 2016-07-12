@@ -82,9 +82,17 @@ call plug#end()
 " On-demand Loading"{{{
 augroup LoadCompletionPlugins
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe', 'delimitMate', 'vim-snippets')
-        \| call youcompleteme#Enable()
+  autocmd InsertEnter * call plug#load('ultisnips', 'delimitMate', 'vim-snippets')
         \| autocmd! LoadCompletionPlugins
+augroup END
+
+augroup LoadYCM
+  autocmd!
+  autocmd CursorHold * if index(['javascript', 'ruby'], &filetype) >= 0
+        \| call plug#load('YouCompleteMe')
+        \| call youcompleteme#Enable()
+        \| echo 'YouCompleteMe loaded!'
+        \| autocmd! LoadYCM
 augroup END
 
 augroup LoadGitGutter
