@@ -112,10 +112,10 @@ imap <F1> <nop>
 map K <nop>
 
 " Resize split windows
-noremap + <C-w>+
-noremap - <C-w>-
-noremap ( <C-w><
-noremap ) <C-w>>
+nnoremap + :exe 'resize ' . (winheight(0) * 3/2)<CR>
+nnoremap - :exe 'resize ' . (winheight(0) * 2/3)<CR>
+nnoremap ) :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+nnoremap ( :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
 
 " Use 'very magic' regex mode (help \v)
 nnoremap / /\v
