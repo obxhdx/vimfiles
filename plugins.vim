@@ -8,6 +8,7 @@ call plug#begin('~/.vim/bundle')
 
 " Appearance"{{{
 Plug 'ap/vim-buftabline'
+Plug 'blueyed/vim-diminactive'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-webdevicons'
 " }}}
