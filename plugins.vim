@@ -75,6 +75,7 @@ Plug 'vim-scripts/groovyindent'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
 Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
+Plug 'tpope/vim-projectionist'
 " }}}
 
 call plug#end()
