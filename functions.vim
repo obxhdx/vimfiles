@@ -541,4 +541,39 @@ function! SourceFileIfItExists(path) "{{{
 endfunction
 "}}}
 
+function! s:DefineVerticalResizeMappings() "{{{
+  let rightmost_window = (<SID>CountColumnsOnRightmostWindow() == 0)
+
+  if rightmost_window
+    nnoremap <buffer> ( :exec 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+    nnoremap <buffer> ) :exec 'vertical resize ' . (winwidth(0) * 2/3)<CR>
+  else
+    nnoremap <buffer> ) :exec 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+    nnoremap <buffer> ( :exec 'vertical resize ' . (winwidth(0) * 2/3)<CR>
+  endif
+endfunction
+
+function! s:CountColumnsOnRightmostWindow()
+  let lz_setting = &lazyredraw
+  set lazyredraw
+  let original_nr = winnr()
+  let last_nr = original_nr
+  let total_columns = 0
+  while 1
+    wincmd l
+    let nr = winnr()
+    if nr == last_nr
+      break
+    endif
+    let total_columns = total_columns + winwidth(0) + 1
+    let last_nr = nr
+  endwhile
+  exec original_nr . 'wincmd w'
+  let &lazyredraw = lz_setting
+  return total_columns
+endfunction!
+
+autocmd WinEnter * :call <SID>DefineVerticalResizeMappings()
+"}}}
+
 " vim: set foldmethod=marker :
