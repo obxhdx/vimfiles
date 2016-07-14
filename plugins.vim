@@ -11,6 +11,7 @@ Plug 'ap/vim-buftabline'
 Plug 'blueyed/vim-diminactive'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-webdevicons'
+Plug 'zhaocai/GoldenView.Vim'
 " }}}
 
 " Code Completion"{{{
@@ -148,6 +149,11 @@ let g:gitgutter_map_keys = 0
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
 " }}}
+
+" GoldenView "{{{
+let g:goldenview__enable_default_mapping = 0
+nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
+"}}}
 
 " JsBeautify "{{{
 augroup JsBeautify
