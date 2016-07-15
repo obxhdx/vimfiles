@@ -15,6 +15,7 @@ set ttimeoutlen=10 " Disable Esc delay
 set hidden " Hide buffers instead of closing them
 set updatetime=500
 set viewoptions=cursor,folds,slash,unix
+set nrformats-=octal " Do not consider numbers starting with zero to be octal
 " }}}
 
 " Appearance " {{{
