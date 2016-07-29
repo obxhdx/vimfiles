@@ -2,8 +2,8 @@
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
-      \   'left': [ [ 'paste' ], [ 'mode' ], [ 'fugitive' ], [ 'filename' ], [ 'flags' ] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation', 'syntastic', 'ternjs' ] ]
+      \   'left': [ [ 'paste' ], [ 'mode' ], [ 'filename' ], [ 'flags' ] ],
+      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', 'trailing', 'indentation' ] ]
       \ },
       \ 'inactive': {
       \   'left': [ [ 'filename' ], [ 'flags' ] ],
@@ -11,7 +11,6 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'mode': 'MyMode',
-      \   'fugitive': 'MyFugitive',
       \   'filename': 'MyFileName',
       \   'flags': 'MyFlags',
       \   'fileformat': 'MyFileFormat',
@@ -21,14 +20,10 @@ let g:lightline = {
       \   'lineinfo': 'MyLineInfo',
       \ },
       \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \   'ternjs': 'TernJS',
       \   'trailing': 'TrailingSpaceWarning',
       \   'indentation': 'MixedIndentSpaceWarning',
       \ },
       \ 'component_type': {
-      \   'syntastic': 'error',
-      \   'ternjs': 'ternjs',
       \   'trailing': 'warning',
       \   'indentation': 'warning',
       \ },
@@ -40,12 +35,10 @@ let g:lightline = {
 " Display always "{{{
 function! MyMode()
   if s:ftMatches('help') | return '' | endif
-  if s:fnameMatches('NERD_tree') | return 'NERDTree' | endif
   return s:bufferMinPercent(35) ? lightline#mode() : strpart(lightline#mode(), 0, 1)
 endfunction
 
 function! MyFileName()
-  if s:fnameMatches('NERD_tree') | return '' | endif
   let fname = expand('%:t')
   return empty(fname) ? '[No Name]' : fname
 endfunction
@@ -64,11 +57,11 @@ function! MyFlags()
 endfunction
 
 function! MyLineInfo()
-  return s:fnameMatches('NERD_tree') ? '' : printf(" %3d:%-2d", line('.'), col('.'))
+  return printf(" %3d:%-2d", line('.'), col('.'))
 endfunction
 
 function! MyPercent()
-  return s:fnameMatches('NERD_tree') ? '' : printf("%3d%%", line('.') * 100 / line('$'))
+  return printf("%3d%%", line('.') * 100 / line('$'))
 endfunction
 "}}}
 " Hide if smaller than 70 {{{
@@ -76,10 +69,6 @@ function! TrailingSpaceWarning()
   if s:ftMatches('help') || winwidth(0) < 80 | return '' | endif
   let l:trailing = search('\s$', 'nw')
   return (l:trailing != 0) ? '… trailing[' . trailing . ']' : ''
-endfunction
-
-function! TernJS()
-  return empty(get(b:, 'tern_type', '')) ? '' : DisplayTernType()
 endfunction
 
 function! MixedIndentSpaceWarning()
@@ -104,13 +93,6 @@ function! MyFileType()
 endfunction
 "}}}
 " Hide if smaller than 25% {{{
-function! MyFugitive()
-  if !s:isFileBuffer() || !s:bufferMinPercent(25) | return '' | endif
-  if exists('*fugitive#head')
-    let l:branch = fugitive#head()
-    return strlen(l:branch) ? ' '.l:branch : ''
-  endif
-endfunction
 "}}}
 
 " Helper functions {{{
@@ -193,18 +175,16 @@ let s:yellow          = [ '#b58900', 136 ]
 " Color scheme {{{
 let s:p = { 'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {} }
 
-let s:p.normal.left      = [ [s:white, s:red], [s:darkestgreen, s:brightgreen], [s:white, s:gray4], [s:white, s:gray4], [s:red, s:gray2] ]
+let s:p.normal.left      = [ [s:white, s:red], [s:darkestgreen, s:brightgreen], [s:white, s:gray4], [s:red, s:gray2] ]
 let s:p.normal.middle    = [ [s:gray7, s:gray2] ]
 let s:p.normal.right     = [ [s:gray5, s:gray10], [s:gray9, s:gray4], [s:gray8, s:gray2] ]
 let s:p.normal.error     = [ [s:gray0, s:brightestred] ]
 let s:p.normal.warning   = [ [s:gray0, s:brightorange] ]
-let s:p.normal.ternjs    = [ [s:brightgreen, s:gray2] ]
-let s:p.insert.left      = [ s:p.normal.left[0], [s:darkestcyan, s:white], [s:white, s:darkblue], [s:white, s:darkblue] ]
+let s:p.insert.left      = [ s:p.normal.left[0], [s:darkestcyan, s:white], [s:white, s:darkblue], [s:mediumcyan, s:darkestblue] ]
 let s:p.insert.middle    = [ [s:mediumcyan, s:darkestblue] ]
 let s:p.insert.right     = [ [s:darkestcyan, s:mediumcyan], [s:mediumcyan, s:darkblue], [s:mediumcyan, s:darkestblue] ]
-let s:p.insert.ternjs    = [ [s:mediumcyan, s:darkestblue] ]
-let s:p.visual.left      = [ s:p.normal.left[0], [s:darkred, s:brightorange], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
-let s:p.replace.left     = [ s:p.normal.left[0], [s:white, s:brightred], s:p.normal.left[2], s:p.normal.left[3], s:p.normal.left[4] ]
+let s:p.visual.left      = [ s:p.normal.left[0], [s:darkred, s:brightorange], s:p.normal.left[2], s:p.normal.left[3] ]
+let s:p.replace.left     = [ s:p.normal.left[0], [s:white, s:brightred], s:p.normal.left[2], s:p.normal.left[3] ]
 let s:p.replace.middle   = [ [s:gray7, s:gray2] ]
 let s:p.replace.right    = [ [s:gray5, s:gray10], [s:gray9, s:gray4], [s:gray8, s:gray2] ]
 let s:p.inactive.left    = [ [s:gray7, s:gray2], [s:gray7, s:gray2] ]

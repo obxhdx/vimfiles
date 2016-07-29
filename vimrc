@@ -164,14 +164,7 @@ set background=dark
 " Autocommands " {{{
 
 " Resize splits when the window is resized
-au VimResized * :wincmd =
-
-" " Highlight cursor line only for current buffer
-" augroup CursorLine
-"   au!
-"   au WinEnter * setlocal cursorline
-"   au WinLeave * setlocal nocursorline
-" augroup END
+autocmd VimResized * :wincmd =
 
 autocmd FilterWritePre * if &diff
       \|   setlocal nocursorline | exe 'DisableAutoHighlightWord'
@@ -198,9 +191,10 @@ augroup END
 " }}}
 
 " Extra config files " {{{
-source $HOME/.vim/functions.vim
-source $HOME/.vim/plugins.vim
-call SourceFileIfItExists('$HOME/.vimrc.local')
+" source $HOME/.vim/functions.vim
+" source $HOME/.vim/plugins.vim
+source $HOME/.vim/functions.min.vim
+source $HOME/.vim/plugins.min.vim
 " }}}
 
 " vim: set foldmethod=marker :
