@@ -173,6 +173,12 @@ au VimResized * :wincmd =
 "   au WinLeave * setlocal nocursorline
 " augroup END
 
+autocmd FilterWritePre * if &diff
+      \|   setlocal nocursorline | exe 'DisableAutoHighlightWord'
+      \| else
+      \|   setlocal cursorline | exe 'EnableAutoHighlightWord'
+      \| endif
+
 augroup FileTypeFixes
   autocmd!
   autocmd BufRead,BufNewFile *.gradle  setf groovy
