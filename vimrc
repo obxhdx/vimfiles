@@ -87,18 +87,18 @@ let g:netrw_altv=1 " Open files on right
 let mapleader = " "
 let maplocalleader = "\\"
 
-" Yank/Paste from/to clipboard
+" Yank visual selection to clipboard
 vmap <Leader>y "+y
-vmap <Leader>p "+p
-
-" yank with motion
+" Yank with motion to clipboard
 nmap <Leader>y "+y
-" yank line
+" Yank line to clipboard
 nmap <Leader>Y "+Y
 
-" paste after cursor
+" Paste clipboard contents on visual selection
+vmap <Leader>p "+p
+" Paste clipboard contents after cursor
 nmap <Leader>p "+p
-" paste before cursor
+" Paste clipboard contents before cursor
 nmap <Leader>P "+P
 
 " Faster way to save/quit
@@ -134,9 +134,6 @@ noremap <Leader><Leader>r :%s/\C<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword
 
 " Select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Hit % with <Tab>
-map <Tab> %
 
 " Move faster with C-e/C-y
 nnoremap <C-e> 3<C-e>
