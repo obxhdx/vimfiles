@@ -118,10 +118,10 @@ catch | endtry
 " BufTabline {{{
 let g:buftabline_show = 1
 let g:buftabline_indicators = 1
-hi BufTabLineCurrent ctermbg=203 ctermfg=232
-hi BufTabLineActive ctermbg=236 ctermfg=203
-hi BufTabLineHidden ctermbg=236
-hi BufTabLineFill ctermbg=236
+hi BufTabLineCurrent ctermbg=203 ctermfg=232 guibg=#ff5f5f guifg=#080808
+hi BufTabLineActive ctermbg=236 ctermfg=203 guibg=#303030 guifg=#ff5f5f
+hi BufTabLineHidden ctermbg=236 guibg=#303030
+hi BufTabLineFill ctermbg=236 guibg=#303030
 " }}}
 
 " Commentary {{{
