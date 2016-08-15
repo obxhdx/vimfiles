@@ -194,10 +194,8 @@ augroup END
 " }}}
 
 " Extra config files " {{{
-" source $HOME/.vim/functions.vim
-" source $HOME/.vim/plugins.vim
-source $HOME/.vim/functions.min.vim
-source $HOME/.vim/plugins.min.vim
+source $HOME/.vim/functions.vim
+source $HOME/.vim/plugins.vim
 " }}}
 
 " vim: set foldmethod=marker :

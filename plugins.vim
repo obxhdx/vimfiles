@@ -2,38 +2,44 @@ if empty(glob('~/.vim/bundle'))
   autocmd VimEnter * PlugInstall
 endif
 
-" Plugin Declarations "{{{
+" Plugin Declarations {{{
 
 call plug#begin('~/.vim/bundle')
 
-" Appearance"{{{
+Plug '~/Projects/Lab/vim-extract-inline'
+
+Plug '~/Projects/Lab/vim-simple-todo' " 'obxhdx/vim-simple-todo'
+autocmd ColorScheme * hi todoTitle            cterm=bold ctermfg=231
+autocmd ColorScheme * hi todoHeading          cterm=bold ctermfg=11
+autocmd ColorScheme * hi todoAtxHeading       cterm=none ctermfg=154
+autocmd ColorScheme * hi todoPendingMarker    cterm=bold ctermfg=211 ctermbg=234
+autocmd ColorScheme * hi todoProgressMarker   cterm=bold ctermfg=222
+autocmd ColorScheme * hi todoHoldMarker       cterm=bold ctermfg=12
+autocmd ColorScheme * hi todoDoneMarker       cterm=bold ctermfg=237
+autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
+
+" Appearance {{{
 Plug 'ap/vim-buftabline'
 Plug 'blueyed/vim-diminactive'
 Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-webdevicons'
 Plug 'zhaocai/GoldenView.Vim'
 " }}}
 
-" Code Completion"{{{
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Raimondi/delimitMate', { 'on': [] }
+" Code Completion {{{
 Plug 'SirVer/ultisnips', { 'on': [] }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'on': [] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer', 'on': [], 'for': [ 'javascript', 'ruby' ] }
 Plug 'honza/vim-snippets', { 'on': [] }
-Plug 'obxhdx/tern_for_vim', { 'for': 'javascript' }
-Plug 'rstacruz/vim-closer'
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " }}}
 
-" Code Lint"{{{
+" Code Linters/Formatters {{{
 Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
 Plug 'sareyko/neat.vim', { 'on': 'Neat' }
-Plug 'scrooloose/syntastic', { 'on': [ 'SyntasticCheck', 'SyntasticToggleMode' ] }
 " }}}
 
-" Color Schemes"{{{
+" Color Schemes {{{
 Plug 'chriskempson/base16-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
@@ -42,39 +48,29 @@ Plug 'sjl/badwolf'
 Plug 'zeis/vim-kolor'
 " }}}
 
-" Git"{{{
+" Misc {{{
 Plug 'airblade/vim-gitgutter', { 'on': [] }
-Plug 'tpope/vim-fugitive'
-" }}}
-
-" Misc"{{{
-Plug 'kopischke/vim-stay'
-Plug 'kshenoy/vim-signature'
+Plug 'obxhdx/vim-action-mapper'
 Plug 'tpope/vim-rsi'
 " }}}
 
-" Navigation"{{{
+" Navigation {{{
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/vim-oblique'
-Plug 'junegunn/vim-pseudocl' " Dependency for vim-oblique
+Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
 Plug 'kopischke/vim-fetch'
-Plug 'terryma/vim-smooth-scroll'
+Plug 'obxhdx/vim-auto-highlight'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-unimpaired'
 " }}}
 
-" Syntax Utils"{{{
-Plug 'gregsexton/MatchTag'
+" Syntax Utils {{{
 Plug 'jelera/vim-javascript-syntax'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/groovyindent'
 " }}}
 
-" Tools"{{{
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install', 'on': 'FZF' }
+" Tools {{{
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'frozen': 1, 'on': 'FZF' }
 Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
-Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind' ] }
 Plug 'tpope/vim-projectionist'
 " }}}
 
@@ -82,33 +78,32 @@ call plug#end()
 
 " }}}
 
-" On-demand Loading"{{{
+" On-demand Loading {{{
 augroup LoadCompletionPlugins
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'delimitMate', 'vim-snippets')
+  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets', 'YouCompleteMe')
         \| autocmd! LoadCompletionPlugins
-augroup END
-
-augroup LoadYCM
-  autocmd!
-  autocmd CursorHold * if index(['javascript', 'ruby'], &filetype) >= 0
-        \| call plug#load('YouCompleteMe')
-        \| call youcompleteme#Enable()
-        \| echo 'YouCompleteMe loaded!'
-        \| autocmd! LoadYCM
 augroup END
 
 augroup LoadGitGutter
   autocmd!
-  autocmd BufWritePost * if !empty(fugitive#head()) && get(g:, 'gitgutter_enabled') == 0
-        \| call plug#load('vim-gitgutter')
-        \| execute 'GitGutterEnable'
-        \| execute 'autocmd! LoadGitGutter'
-        \| endif
+  autocmd BufWritePost * call plug#load('vim-gitgutter')
+        \| GitGutterEnable
+        \| autocmd! LoadGitGutter
 augroup END
 " }}}
 
-" Plugin Customizations"{{{
+" Plugin Customizations {{{
+
+" ActionMapper {{{
+autocmd! User MapActions
+autocmd User MapActions call MapAction('SlimuxREPLSendSelection', '<leader>t')
+autocmd User MapActions call MapAction('Ag', '<leader>g')
+"}}}
+
+" AutoHighlight {{{
+let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo']
+"}}}
 
 " Colorscheme {{{
 try
@@ -117,41 +112,35 @@ try
   set background=dark
   let base16colorspace=256
   colorscheme iceberg
-catch
-endtry
+catch | endtry
 " }}}
 
-" BufTabline"{{{
+" BufTabline {{{
 let g:buftabline_show = 1
 let g:buftabline_indicators = 1
-hi BufTabLineCurrent ctermbg=203 ctermfg=232
-hi BufTabLineActive ctermbg=236 ctermfg=203
-hi BufTabLineHidden ctermbg=236
-hi BufTabLineFill ctermbg=236
+hi BufTabLineCurrent ctermbg=203 ctermfg=232 guibg=#ff5f5f guifg=#080808
+hi BufTabLineActive ctermbg=236 ctermfg=203 guibg=#303030 guifg=#ff5f5f
+hi BufTabLineHidden ctermbg=236 guibg=#303030
+hi BufTabLineFill ctermbg=236 guibg=#303030
 " }}}
 
-" Commentary"{{{
-map  gc  <Plug>Commentary
+" Commentary {{{
+map gc <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
 " }}}
 
-" delimitMate"{{{
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-" }}}
-
-" FZF"{{{
+" FZF {{{
 nnoremap <Leader>z :FZF<CR>
 " }}}
 
-" GitGutter"{{{
+" GitGutter {{{
 let g:gitgutter_eager = 0
 let g:gitgutter_map_keys = 0
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
 " }}}
 
-" GoldenView "{{{
+" GoldenView {{{
 let g:goldenview__enable_default_mapping = 0
 nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
 "}}}
@@ -165,114 +154,24 @@ augroup JsBeautify
 augroup END
 "}}}
 
-" Lightline"{{{
+" Lightline {{{
 try
-source $HOME/.vim/lightline.vim
-catch
-endtry
+  source $HOME/.vim/lightline.vim
+  set noshowmode
+catch | endtry
 "}}}
-
-" Markdown"{{{
-let g:markdown_folding = 1
-"}}}
-
-" NERDTree"{{{
-let NERDTreeChDirMode = 2
-let NERDTreeShowLineNumbers = 1
-let NERDTreeWinSize = 40
-let NERDTreeMinimalUI = 1
-let NERDTreeCascadeOpenSingleChildDir = 1
-let NERDTreeShowHidden = 1
-autocmd FileType nerdtree nnoremap <silent> <buffer> <C-j> :call nerdtree#ui_glue#invokeKeyMap(g:NERDTreeMapActivateNode)<CR>
-
-map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>nf :NERDTreeFind<CR>
-
-hi NERDTreeCWD       ctermfg=2    ctermbg=NONE  cterm=NONE
-hi NERDTreeDir       ctermfg=240  ctermbg=NONE  cterm=NONE
-hi NERDTreeFile      ctermfg=246  ctermbg=NONE  cterm=NONE
-hi NERDTreeOpenable  ctermfg=3    ctermbg=NONE  cterm=NONE
-hi NERDTreeClosable  ctermfg=2    ctermbg=NONE  cterm=NONE
-hi link NERDTreeDirSlash NERDTreeDir
-
-function! NERDTreeHighlightFile(extension, fg, bg, mod)
-  exec 'autocmd filetype nerdtree syn match ' . a:extension . ' #^\s\+.*' . a:extension . '\*\?$#'
-  exec 'autocmd filetype nerdtree highlight ' . a:extension . ' ctermbg=' . a:bg . ' ctermfg=' . a:fg . ' cterm=' . a:mod
-endfunction
-
-function! NERDTreeMapFileNameToExt(filename, extension)
-  exec 'autocmd filetype nerdtree syn match ' . a:extension . ' #^\s\+.*' . a:filename . '\*\?$#'
-endfunction
-
-call NERDTreeHighlightFile('css',         '13',   'NONE',  'NONE')
-call NERDTreeHighlightFile('feature',     '41',   'NONE',  'NONE')
-call NERDTreeHighlightFile('gradle',      '222',  'NONE',  'NONE')
-call NERDTreeHighlightFile('groovy',      '131',  'NONE',  'NONE')
-call NERDTreeHighlightFile('html',        '215',  'NONE',  'NONE')
-call NERDTreeHighlightFile('java',        '132',  'NONE',  'NONE')
-call NERDTreeHighlightFile('js',          '162',  'NONE',  'NONE')
-call NERDTreeHighlightFile('json',        '191',  'NONE',  'NONE')
-call NERDTreeHighlightFile('md',          '184',  'NONE',  'NONE')
-call NERDTreeHighlightFile('properties',  '229',  'NONE',  'NONE')
-call NERDTreeHighlightFile('rb',          '197',  'NONE',  'NONE')
-call NERDTreeHighlightFile('sh',          '208',  'NONE',  'NONE')
-call NERDTreeHighlightFile('vim',         '255',  'NONE',  'NONE')
-call NERDTreeHighlightFile('xml',         '210',  'NONE',  'NONE')
-call NERDTreeHighlightFile('yaml',        '229',  'NONE',  'NONE')
-call NERDTreeHighlightFile('yml',         '229',  'NONE',  'NONE')
-
-call NERDTreeMapFileNameToExt('Rakefile', 'rb')
-" }}}
 
 " Oblique {{{
-autocmd! User ObliqueStar normal n
-autocmd VimEnter * noremap gd gd:normal n<CR>:normal N<CR>
-autocmd VimEnter * noremap gD gD:normal n<CR>:normal N<CR>
 let g:oblique#incsearch_highlight_all = 1
+command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
+command! UnfreezeSearchMatches let g:oblique#clear_highlight = 1 | set nohlsearch
 "}}}
 
-" Powerline"{{{
-let g:Powerline_symbols = 'compatible'
-let g:Powerline_symbols_override = { 'BRANCH': '±' }
-let g:Powerline_stl_path_style = 'filename'
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-" }}}
-
-" Rainbow parentheses"{{{
-augroup Rainbows
-  autocmd!
-  autocmd Syntax groovy,java silent! RainbowParenthesesActivate
-  autocmd Syntax groovy,java silent! RainbowParenthesesLoadRound
-  autocmd Syntax groovy,java silent! RainbowParenthesesLoadSquare
-  autocmd Syntax groovy,java silent! RainbowParenthesesLoadBraces
-augroup END
-" }}}
-
-" Rsi"{{{
-augroup DisableRsiMappings
-  autocmd!
-  autocmd VimEnter * iunmap <C-A>
-  autocmd VimEnter * iunmap <C-X><C-A>
-  autocmd VimEnter * iunmap <C-B>
-  autocmd VimEnter * iunmap <C-D>
-  autocmd VimEnter * iunmap <C-E>
-  autocmd VimEnter * iunmap <C-F>
-augroup END
+" Polyglot {{{
+let g:jsx_ext_required = 1
 "}}}
 
-" Smooth Scroll"{{{
-augroup SmoothScroll
-  autocmd!
-  autocmd VimEnter * if &ft !=? 'todo'
-        \| execute 'nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 15, 4)<CR>'
-        \| execute 'nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 15, 4)<CR>'
-        \| execute 'nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 15, 4)<CR>'
-        \| execute 'nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 15, 4)<CR>'
-        \| endif
-augroup END
-" }}}
-
-" Slimux"{{{
+" Slimux {{{
 let g:slimux_select_from_current_window = 1
 let g:slimux_pane_format = '[#{session_name}] #{window_index}.#{pane_index} [#{window_name}] #{pane_title}'
 
@@ -283,83 +182,40 @@ au FileType slimux syntax match slimuxSessionOrWindowName /\v\s\[[[:alnum:]]+\]\
 hi def link slimuxPaneId WarningMsg
 hi def link slimuxPaneIndex Constant
 hi def link slimuxSessionOrWindowName Title
-"}}}
 
-" Splitjoin {{{
-let g:splitjoin_split_mapping = ''
-let g:splitjoin_join_mapping = ''
-nmap sj :SplitjoinSplit<CR>
-nmap sk :SplitjoinJoin<CR>
-"}}}
-
-" Syntastic"{{{
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_mode_map = {
-      \ 'mode': 'passive',
-      \ 'active_filetypes': [],
-      \ 'passive_filetypes': []
-      \ }
-let g:syntastic_javascript_checkers = [ 'jslint' ]
-let g:syntastic_javascript_jslint_args = '--browser --devel --node --nomen --this --white'
-let g:syntastic_ruby_checkers = [ 'rubocop' ]
-let g:syntastic_sh_checkers = [ 'shellcheck' ]
-let g:syntastic_zsh_checkers = [ 'zsh' ]
-nnoremap gs :SyntasticToggleMode<CR>
-" }}}
-
-" Tern.js"{{{
-augroup DisplayTernType
-  autocmd!
-  autocmd VimEnter * autocmd FileType javascript call DisplayTernType()
-  autocmd FileType javascript autocmd CursorHold <buffer> call DisplayTernType()
-augroup END
-
-function! DisplayTernType()
-  let l:current_char = matchstr(getline('.'), '\%' . col('.') . 'c.')
-  let l:current_word = expand('<cword>')
-
-  if l:current_char =~ '\v\s|\=|\&|\(|\)|\[\]\{|\}'
-    return ''
+function! s:SendKeysToREPL()
+  let l:keys = ""
+  if getchar(1)
+    let l:keys = nr2char(getchar())
   endif
-
-  if l:current_word =~# '\v<(var|function|return|if|for|in|while)>'
-    return ''
-  endif
-
-  if l:current_word =~? '\w\+'
-    execute 'TernType'
-    return get(b:, 'tern_type', '')
-  endif
-
-  return ''
+  call SlimuxSendKeys(l:keys)
+  call feedkeys("\<Esc>")
+  return ""
 endfunction
 
-let g:tern_map_keys = 0
-let g:tern_show_signature_in_pum = 1
-let prefix = '<LocalLeader>'
-execute 'nnoremap <buffer> '.prefix.'td' ':TernDef<CR>'
-execute 'nnoremap <buffer> '.prefix.'tr' ':TernRefs<CR>'
-execute 'nnoremap <buffer> '.prefix.'tR' ':TernRename<CR>'
+imap <C-y><Esc> <Nop> | imap <C-y> <C-r>=<SID>SendKeysToREPL()<cr>
+nnoremap <Leader>k :call feedkeys("i\<C-y>")<CR>
 "}}}
 
-" UltiSnips"{{{
-let g:UltiSnipsExpandTrigger='<Tab>'
-let g:UltiSnipsJumpForwardTrigger='<Tab>'
-let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+" Tern.js {{{
+let g:tern_map_keys = 0
+let g:tern_show_argument_hints = "on_hold"
+let g:tern_show_signature_in_pum = 1
+"}}}
+
+" UltiSnips {{{
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 " }}}
 
-" YouCompleteMe"{{{
+" YouCompleteMe {{{
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " }}}
 
-" WebDevIcons {{{
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['rakefile'] = ''
-let g:WebDevIconsOS = 'Darwin'
 " }}}
 
 " vim: set foldmethod=marker :
