@@ -150,6 +150,12 @@ nnoremap <silent> p p`]
 
 " Add ; more easily
 autocmd BufRead,BufNewFile *.js inoremap <buffer> ;; <ESC>A;<ESC>
+
+" Open stuff (URL, etc)
+if has('mac')
+  nnoremap <Leader>o :exe 'silent !open <cWORD>'<CR>
+endif
+
 " }}}
 
 " Syntax highlighting " {{{
