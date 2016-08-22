@@ -29,7 +29,7 @@ Plug 'zhaocai/GoldenView.Vim'
 Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer', 'on': [], 'for': [ 'javascript', 'ruby' ] }
 Plug 'honza/vim-snippets', { 'on': [] }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'on': [] }
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 " }}}
@@ -81,8 +81,16 @@ call plug#end()
 " On-demand Loading {{{
 augroup LoadCompletionPlugins
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets', 'YouCompleteMe')
+  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets')
+        \| echo 'UltiSnips loaded!'
         \| autocmd! LoadCompletionPlugins
+augroup END
+
+augroup LoadHeavyPlugins
+  autocmd!
+  autocmd CursorHold * call plug#load('tern_for_vim', 'YouCompleteMe')
+        \| echo 'Tern + YouCompleteMe loaded!'
+        \| autocmd! LoadHeavyPlugins
 augroup END
 
 augroup LoadGitGutter
