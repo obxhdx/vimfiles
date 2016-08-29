@@ -169,6 +169,10 @@ try
 catch | endtry
 "}}}
 
+" Neat {{{
+let neat#json#commands = [ '%!jq .' ]
+"}}}
+
 " Oblique {{{
 let g:oblique#incsearch_highlight_all = 1
 command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
