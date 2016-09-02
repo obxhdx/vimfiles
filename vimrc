@@ -178,8 +178,6 @@ autocmd FilterWritePre * if &diff
 augroup FileTypeFixes
   autocmd!
   autocmd BufRead,BufNewFile *.gradle  setf groovy
-  autocmd BufRead,BufNewFile *.erb     setf eruby.html
-  autocmd BufRead,BufNewFile *.php     setf php.html
   autocmd BufRead,BufNewFile *.podspec setf ruby
 
   autocmd FileType json       setlocal tabstop=4 shiftwidth=4 softtabstop=4
@@ -188,8 +186,6 @@ augroup FileTypeFixes
   autocmd FileType groovy     setlocal tabstop=4 shiftwidth=4 softtabstop=4 commentstring=//%s
   autocmd FileType markdown   setlocal commentstring=<!--%s-->
   autocmd FileType tmux       setlocal commentstring=#%s
-  autocmd FileType ruby       syntax match Error '\<binding.pry\>'
-  autocmd FileType nerdtree   setlocal nolist
 augroup END
 " }}}
 
