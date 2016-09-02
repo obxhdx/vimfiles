@@ -26,10 +26,10 @@ Plug 'zhaocai/GoldenView.Vim'
 " }}}
 
 " Code Completion {{{
-Plug 'SirVer/ultisnips', { 'on': [] }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer', 'on': [], 'for': [ 'javascript', 'ruby' ] }
-Plug 'honza/vim-snippets', { 'on': [] }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'on': [] }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 " }}}
@@ -79,20 +79,6 @@ call plug#end()
 " }}}
 
 " On-demand Loading {{{
-augroup LoadCompletionPlugins
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets')
-        \| echo 'UltiSnips loaded!'
-        \| autocmd! LoadCompletionPlugins
-augroup END
-
-augroup LoadHeavyPlugins
-  autocmd!
-  autocmd CursorHold * call plug#load('tern_for_vim', 'YouCompleteMe')
-        \| echo 'Tern + YouCompleteMe loaded!'
-        \| autocmd! LoadHeavyPlugins
-augroup END
-
 augroup LoadGitGutter
   autocmd!
   autocmd BufWritePost * call plug#load('vim-gitgutter')
@@ -173,6 +159,15 @@ catch | endtry
 let neat#json#commands = [ '%!jq .' ]
 "}}}
 
+" NeoComplete {{{
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#sources#omni#functions = {}
+let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+let g:neocomplete#sources#omni#input_patterns = {}
+let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+call neocomplete#custom#source('tag', 'disabled', 1)
+" }}}
+
 " Oblique {{{
 let g:oblique#incsearch_highlight_all = 1
 command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
@@ -220,12 +215,6 @@ let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-" }}}
-
-" YouCompleteMe {{{
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " }}}
 
 " }}}
