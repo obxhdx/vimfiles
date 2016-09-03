@@ -69,7 +69,8 @@ Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Tools {{{
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'frozen': 1, 'on': 'FZF' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
+Plug 'junegunn/fzf.vim'
 Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'tpope/vim-projectionist'
 " }}}
@@ -124,7 +125,9 @@ nmap gcc <Plug>CommentaryLine
 " }}}
 
 " FZF {{{
-nnoremap <Leader>z :FZF<CR>
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <Leader>z :FzfFiles<CR>
+cabbr Ag FzfAg
 " }}}
 
 " GitGutter {{{
