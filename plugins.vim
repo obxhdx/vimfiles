@@ -43,9 +43,7 @@ Plug 'sareyko/neat.vim', { 'on': 'Neat' }
 Plug 'chriskempson/base16-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
-Plug 'sickill/vim-monokai'
 Plug 'sjl/badwolf'
-Plug 'zeis/vim-kolor'
 " }}}
 
 " Misc {{{
