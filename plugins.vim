@@ -47,7 +47,7 @@ Plug 'sjl/badwolf'
 " }}}
 
 " Misc {{{
-Plug 'airblade/vim-gitgutter', { 'on': [] }
+Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
 Plug 'tpope/vim-rsi'
 " }}}
@@ -75,15 +75,6 @@ Plug 'tpope/vim-projectionist'
 
 call plug#end()
 
-" }}}
-
-" On-demand Loading {{{
-augroup LoadGitGutter
-  autocmd!
-  autocmd BufWritePost * call plug#load('vim-gitgutter')
-        \| GitGutterEnable
-        \| autocmd! LoadGitGutter
-augroup END
 " }}}
 
 " Plugin Customizations {{{
@@ -128,13 +119,6 @@ nnoremap <Leader>z :FzfFiles<CR>
 cabbr Ag FzfAg
 " }}}
 
-" GitGutter {{{
-let g:gitgutter_eager = 0
-let g:gitgutter_map_keys = 0
-nmap ]c <Plug>GitGutterNextHunk
-nmap [c <Plug>GitGutterPrevHunk
-" }}}
-
 " GoldenView {{{
 let g:goldenview__enable_default_mapping = 0
 nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
@@ -177,6 +161,12 @@ command! UnfreezeSearchMatches let g:oblique#clear_highlight = 1 | set nohlsearc
 
 " Polyglot {{{
 let g:jsx_ext_required = 1
+"}}}
+
+" Signify {{{
+highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
+highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
+highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
 "}}}
 
 " Slimux {{{
