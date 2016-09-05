@@ -149,10 +149,130 @@ augroup END
 "}}}
 
 " Lightline {{{
-try
-  source $HOME/.vim/lightline.vim
-  set noshowmode
-catch | endtry
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'modified' ], [ 'git_stats', 'trailing_whitespaces', 'mixed_indentation' ] ]
+      \ },
+      \ 'component_function': {
+      \   'mode': 'LightLineMode',
+      \   'fugitive': 'LightLineFugitive',
+      \   'filename': 'LightLineFilename',
+      \   'modified': 'LightLineModified',
+      \   'readonly': 'LightLineReadonly',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \ },
+      \ 'component_expand': {
+      \   'trailing_whitespaces': 'LightLineTrailingSpaces',
+      \   'mixed_indentation': 'LightLineMixedIndentation',
+      \   'git_stats': 'LightLineGitStats',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+augroup ComponentExpand
+  autocmd!
+  autocmd BufReadPost,BufWritePost,InsertLeave * call s:LightLineUpdateComponents()
+  autocmd CursorHold * call s:LightLineUpdateGitStats()
+augroup END
+
+function! s:LightLineUpdateGitStats()
+  if exists('#lightline')
+    call LightLineGitStats()
+    call lightline#update()
+  endif
+endfunction
+
+function! s:LightLineUpdateComponents()
+  if exists('#lightline')
+    call LightLineTrailingSpaces()
+    call LightLineMixedIndentation()
+    call lightline#update()
+  endif
+endfunction
+
+function! LightLineFugitive()
+  if exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
+  endif
+endfunction
+
+function! LightLineGitStats()
+  return &ft !~ 'help' && winwidth(0) > 80 ? s:GitStatsSummary() : ''
+endfunction
+
+function! LightLineTrailingSpaces()
+  if &ft =~ 'help' || winwidth(0) < 80 | return '' | endif
+  let trailing = search('\s$', 'nw')
+  return trailing > 0 ? '…(' . trailing . ')' : ''
+endfunction
+
+function! LightLineMixedIndentation()
+  if &ft =~ 'help' || winwidth(0) < 80 | return '' | endif
+  let tabs = search('^\t', 'nw')
+  let spaces = search('^ ', 'nw')
+  return (tabs > 0 && spaces > 0) ? '»(' . tabs . ')' : ''
+endfunction
+
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help' && &readonly ? '' : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]')
+endfunction
+
+function! LightLineFileformat()
+  return &ft =~ 'help' ? '' : winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+  return &ft =~ 'help' ? '' : winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  if &ft =~ 'help' || winwidth(0) < 40 | return '' | endif
+  return winwidth(0) > 60 ? lightline#mode() : strpart(lightline#mode(), 0, 1)
+endfunction
+
+let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+
+let s:p.inactive.left    = [ ['gray7', 'gray2'], ['gray7', 'gray2'] ]
+let s:p.inactive.middle  = [ ['gray7', 'gray2'] ]
+let s:p.inactive.right   = [ ['gray7', 'gray2'], ['gray7', 'gray2'], ['gray7', 'gray2'] ]
+let s:p.insert.left = [ ['darkestcyan', 'white', 'bold'], ['white', 'darkblue'] ]
+let s:p.insert.middle = [ [ 'mediumcyan', 'darkestblue' ] ]
+let s:p.insert.right = [ [ 'darkestcyan', 'mediumcyan' ], [ 'mediumcyan', 'darkblue' ], [ 'mediumcyan', 'darkestblue' ] ]
+let s:p.normal.left = [ ['darkestgreen', 'brightgreen', 'bold'], ['white', 'gray4'] ]
+let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
+let s:p.normal.right = [ ['gray5', 'gray10'], ['gray9', 'gray4'], ['gray8', 'gray2'] ]
+let s:p.normal.error     = [ ['brightestred', 'gray2'] ]
+let s:p.normal.warning   = [ ['brightorange', 'gray2'] ]
+let s:p.replace.left = [ ['white', 'brightred', 'bold'], ['white', 'gray4'] ]
+let s:p.replace.middle = s:p.normal.middle
+let s:p.replace.right = s:p.normal.right
+let s:p.tabline.left = [ [ 'gray9', 'gray4' ] ]
+let s:p.tabline.middle = [ [ 'gray2', 'gray8' ] ]
+let s:p.tabline.right = [ [ 'gray9', 'gray3' ] ]
+let s:p.tabline.tabsel = [ [ 'gray9', 'gray1' ] ]
+let s:p.visual.left = [ ['darkred', 'brightorange', 'bold'], ['white', 'gray4'] ]
+
+let g:lightline#colorscheme#powerline#palette = lightline#colorscheme#fill(s:p)
 "}}}
 
 " Neat {{{
@@ -183,6 +303,29 @@ let g:signify_sign_change = '~'
 highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
 highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
 highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
+
+function! s:GitStatsSummary()
+  if exists('*sy#buffer_is_active()') && sy#buffer_is_active() == 0
+    return ''
+  endif
+
+  let symbols = ['+', '-', '~']
+  let [added, modified, removed] = sy#repo#get_stats()
+  let stats = [added, removed, modified]
+  let hunkline = ''
+
+  for i in range(3)
+    if stats[i] >= 0
+      let hunkline .= printf('%s%s ', symbols[i], stats[i])
+    endif
+  endfor
+
+  if !empty(hunkline)
+    let hunkline = printf('%s', hunkline[:-2])
+  endif
+
+  return hunkline
+endfunction
 "}}}
 
 " Slimux {{{
