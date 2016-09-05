@@ -135,47 +135,6 @@ endf
 vmap <silent> <expr> p <SID>Repl()
 "}}}
 
-fun! s:ColoringTweaks() "{{{
-  set background=dark
-  hi Normal ctermbg=NONE
-
-  hi MatchParen ctermfg=196 ctermbg=234
-  hi Pmenu ctermfg=236 ctermbg=218
-
-  if g:colors_name == 'iceberg'
-    hi! link Folded Comment
-    hi! link jpropertiesIdentifier Statement
-    hi MatchParen ctermfg=203 ctermbg=234
-    hi VertSplit ctermbg=NONE ctermfg=235 term=none cterm=none
-    hi Visual ctermbg=239
-    hi markdownH2 ctermfg=green
-    hi IncSearch ctermbg=203 ctermfg=232 cterm=none term=none
-    hi StatusLine ctermbg=236 cterm=none
-  endif
-
-  if g:colors_name == 'badwolf'
-    hi PmenuSel ctermfg=252 ctermbg=237
-
-    hi FoldColumn ctermbg=NONE
-    hi Folded ctermbg=NONE
-    hi LineNr ctermbg=NONE
-    hi NonText ctermbg=NONE
-    hi SpecialKey ctermbg=NONE
-    hi VertSplit ctermfg=236 ctermbg=NONE
-    hi htmlEndTag ctermbg=NONE
-    hi htmlTag ctermbg=NONE
-    hi markdownError ctermbg=NONE ctermfg=red
-
-    hi DiffAdd cterm=NONE ctermfg=193 ctermbg=22
-    hi DiffChange cterm=NONE ctermfg=NONE ctermbg=24
-    hi DiffDelete cterm=NONE ctermfg=16 ctermbg=52
-    hi DiffText cterm=reverse ctermfg=81 ctermbg=16
-  endif
-endf
-
-autocmd ColorScheme * call <SID>ColoringTweaks()
-" }}}
-
 fun! s:ExecPreservingCursorPos(command) "{{{
   " Taken from http://goo.gl/DJ7xA
 

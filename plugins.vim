@@ -90,6 +90,21 @@ let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo']
 "}}}
 
 " Colorscheme {{{
+augroup ColorTweaks
+  autocmd ColorScheme *
+        \   hi MatchParen ctermfg=196 ctermbg=234 |
+        \   hi Normal ctermbg=NONE |
+        \   hi Pmenu ctermfg=236 ctermbg=218
+
+  autocmd ColorScheme iceberg
+        \   hi IncSearch ctermbg=203 ctermfg=232 cterm=none term=none |
+        \   hi MatchParen ctermfg=203 ctermbg=234 |
+        \   hi VertSplit ctermbg=NONE ctermfg=235 term=none cterm=none |
+        \   hi Visual ctermbg=239 |
+        \   hi! link Folded Comment |
+        \   hi! link jpropertiesIdentifier Statement
+augroup END
+
 try
   set term=screen-256color
   set t_Co=256
