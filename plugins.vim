@@ -178,6 +178,7 @@ let g:jsx_ext_required = 1
 "}}}
 
 " Signify {{{
+let g:signify_sign_change = '~'
 highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
 highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
 highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
