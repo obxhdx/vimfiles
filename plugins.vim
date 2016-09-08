@@ -6,6 +6,15 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = 1
+endif
+
 Plug '~/Projects/Lab/vim-extract-inline'
 
 Plug '~/Projects/Lab/vim-simple-todo' " 'obxhdx/vim-simple-todo'
@@ -28,8 +37,10 @@ Plug 'zhaocai/GoldenView.Vim'
 " Code Completion {{{
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'Shougo/neocomplete.vim'
+if !has('nvim')
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+  Plug 'Shougo/neocomplete.vim'
+endif
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
@@ -294,7 +305,9 @@ let g:neocomplete#sources#omni#functions = {}
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 let g:neocomplete#sources#omni#input_patterns = {}
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-call neocomplete#custom#source('tag', 'disabled', 1)
+if exists('*NeoCompleteEnable')
+  call neocomplete#custom#source('tag', 'disabled', 1)
+endif
 " }}}
 
 " Oblique {{{
