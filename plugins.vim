@@ -30,6 +30,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/neocomplete.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 " }}}
