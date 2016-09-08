@@ -70,6 +70,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 " }}}
 
