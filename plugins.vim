@@ -68,9 +68,9 @@ Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Tools {{{
+Plug 'jebaum/vim-tmuxify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-Plug 'obxhdx/slimux', { 'branch': 'pane-list', 'on': [ 'SlimuxREPLSendSelection' ] }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 " }}}
@@ -82,8 +82,15 @@ call plug#end()
 " Plugin Customizations {{{
 
 " ActionMapper {{{
+function! SendREPL(text)
+  if !exists('b:pane_id')
+    execute('TxRun')
+  endif
+  call tmuxify#pane_send('', a:text)
+endfunction
+
 autocmd! User MapActions
-autocmd User MapActions call MapAction('SlimuxREPLSendSelection', '<leader>t')
+autocmd User MapActions call MapAction('SendREPL', '<leader>t')
 autocmd User MapActions call MapAction('Ag', '<leader>g')
 "}}}
 
@@ -330,36 +337,18 @@ function! s:GitStatsSummary()
 endfunction
 "}}}
 
-" Slimux {{{
-let g:slimux_select_from_current_window = 1
-let g:slimux_pane_format = '[#{session_name}] #{window_index}.#{pane_index} [#{window_name}] #{pane_title}'
-
-au FileType slimux syntax match slimuxPaneId /\v^\%[0-9]+\ze:/
-au FileType slimux syntax match slimuxPaneIndex /\v[0-9]+\.[0-9]+/
-au FileType slimux syntax match slimuxSessionOrWindowName /\v\s\[[[:alnum:]]+\]\s/
-
-hi def link slimuxPaneId WarningMsg
-hi def link slimuxPaneIndex Constant
-hi def link slimuxSessionOrWindowName Title
-
-function! s:SendKeysToREPL()
-  let l:keys = ""
-  if getchar(1)
-    let l:keys = nr2char(getchar())
-  endif
-  call SlimuxSendKeys(l:keys)
-  call feedkeys("\<Esc>")
-  return ""
-endfunction
-
-imap <C-y><Esc> <Nop> | imap <C-y> <C-r>=<SID>SendKeysToREPL()<cr>
-nnoremap <Leader>k :call feedkeys("i\<C-y>")<CR>
-"}}}
-
 " Tern.js {{{
 let g:tern_map_keys = 0
 let g:tern_show_argument_hints = "on_hold"
 let g:tern_show_signature_in_pum = 1
+"}}}
+
+" Tmuxify {{{
+let g:tmuxify_custom_command = 'tmux split-window -d -h'
+let g:tmuxify_run = {
+      \  'javascript': 'node',
+      \ }
+nnoremap <Leader>t<Space> :TxClear<CR>
 "}}}
 
 " UltiSnips {{{
