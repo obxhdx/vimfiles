@@ -26,10 +26,10 @@ Plug 'zhaocai/GoldenView.Vim'
 " }}}
 
 " Code Completion {{{
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'Shougo/neocomplete.vim'
+Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'honza/vim-snippets', { 'on': [] }
+Plug 'ternjs/tern_for_vim', { 'on': [], 'do': 'npm install' }
+Plug 'Shougo/neocomplete.vim', { 'on': [] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
@@ -80,6 +80,15 @@ call plug#end()
 " }}}
 
 " Plugin Customizations {{{
+
+" On-demand Loading {{{
+augroup LoadCompletionPlugins
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets', 'tern_for_vim', 'neocomplete.vim')
+        \| echo 'Snippets + Completion plugins loaded!'
+        \| autocmd! LoadCompletionPlugins
+augroup END
+" }}}
 
 " ActionMapper {{{
 function! SendREPL(text)
@@ -295,7 +304,9 @@ let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 let g:neocomplete#sources#omni#input_patterns = {}
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#sources#omni#input_patterns.ruby = '\h\w*\|[^. \t]\.\w*'
-call neocomplete#custom#source('tag', 'disabled', 1)
+if exists(":NeoComplete")
+  call neocomplete#custom#source('tag', 'disabled', 1)
+endif
 " }}}
 
 " Oblique {{{
