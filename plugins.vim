@@ -294,6 +294,7 @@ let g:neocomplete#sources#omni#functions = {}
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 let g:neocomplete#sources#omni#input_patterns = {}
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.ruby = '\h\w*\|[^. \t]\.\w*'
 call neocomplete#custom#source('tag', 'disabled', 1)
 " }}}
 
