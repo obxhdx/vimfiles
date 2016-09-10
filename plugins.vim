@@ -208,7 +208,7 @@ endfunction
 function! LightLineFugitive()
   if exists("*fugitive#head")
     let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
+    return &ft !~ 'help' && winwidth(0) > 80 ? (branch !=# '' ? ' '.branch : '') : ''
   endif
 endfunction
 
