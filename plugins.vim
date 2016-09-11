@@ -58,9 +58,9 @@ Plug 'sheerun/vim-polyglot'
 " }}}
 
 " Tools {{{
-Plug 'jebaum/vim-tmuxify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 " }}}
@@ -81,15 +81,7 @@ augroup END
 " }}}
 
 " ActionMapper {{{
-function! SendREPL(text)
-  if !exists('b:pane_id')
-    execute('TxRun')
-  endif
-  call tmuxify#pane_send('', a:text)
-endfunction
-
 autocmd! User MapActions
-autocmd User MapActions call MapAction('SendREPL', '<leader>t')
 autocmd User MapActions call MapAction('Ag', '<leader>g')
 "}}}
 
@@ -134,6 +126,14 @@ hi BufTabLineFill ctermbg=236 guibg=#303030
 " Commentary {{{
 map gc <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
+" }}}
+
+" Dispatch {{{
+let g:dispatch_handlers = []
+nnoremap <Leader>b :Dispatch<CR>:silent Copen<CR>:silent wincmd p<CR>
+autocmd FileType ruby let b:dispatch = 'ruby %'
+autocmd FileType javascript let b:dispatch = 'node %'
+autocmd BufWritePost play.*.js :Dispatch
 " }}}
 
 " FZF {{{
@@ -354,14 +354,6 @@ endfunction
 let g:tern_map_keys = 0
 let g:tern_show_argument_hints = "on_hold"
 let g:tern_show_signature_in_pum = 1
-"}}}
-
-" Tmuxify {{{
-let g:tmuxify_custom_command = 'tmux split-window -d -h'
-let g:tmuxify_run = {
-      \  'javascript': 'node',
-      \ }
-nnoremap <Leader>t<Space> :TxClear<CR>
 "}}}
 
 " UltiSnips {{{
