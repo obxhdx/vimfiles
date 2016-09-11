@@ -6,18 +6,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug '~/Projects/Lab/vim-extract-inline'
-
-Plug '~/Projects/Lab/vim-simple-todo' " 'obxhdx/vim-simple-todo'
-autocmd ColorScheme * hi todoTitle            cterm=bold ctermfg=231
-autocmd ColorScheme * hi todoHeading          cterm=bold ctermfg=11
-autocmd ColorScheme * hi todoAtxHeading       cterm=none ctermfg=154
-autocmd ColorScheme * hi todoPendingMarker    cterm=bold ctermfg=211 ctermbg=234
-autocmd ColorScheme * hi todoProgressMarker   cterm=bold ctermfg=222
-autocmd ColorScheme * hi todoHoldMarker       cterm=bold ctermfg=12
-autocmd ColorScheme * hi todoDoneMarker       cterm=bold ctermfg=237
-autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
-
 " Appearance {{{
 Plug 'ap/vim-buftabline'
 Plug 'blueyed/vim-diminactive'
@@ -31,6 +19,7 @@ Plug 'honza/vim-snippets', { 'on': [] }
 Plug 'ternjs/tern_for_vim', { 'on': [], 'do': 'npm install' }
 Plug 'Shougo/neocomplete.vim', { 'on': [] }
 Plug 'jiangmiao/auto-pairs'
+Plug 'obxhdx/vim-extract-inline'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 " }}}
@@ -50,6 +39,7 @@ Plug 'sjl/badwolf'
 " Misc {{{
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
+Plug 'obxhdx/vim-simple-task-manager'
 Plug 'tpope/vim-rsi'
 " }}}
 
@@ -317,6 +307,17 @@ command! UnfreezeSearchMatches let g:oblique#clear_highlight = 1 | set nohlsearc
 
 " Polyglot {{{
 let g:jsx_ext_required = 1
+"}}}
+
+" Simple Task Manager {{{
+autocmd ColorScheme * hi todoTitle            cterm=bold ctermfg=231
+autocmd ColorScheme * hi todoHeading          cterm=bold ctermfg=11
+autocmd ColorScheme * hi todoAtxHeading       cterm=none ctermfg=154
+autocmd ColorScheme * hi todoPendingMarker    cterm=bold ctermfg=211 ctermbg=234
+autocmd ColorScheme * hi todoProgressMarker   cterm=bold ctermfg=222
+autocmd ColorScheme * hi todoHoldMarker       cterm=bold ctermfg=12
+autocmd ColorScheme * hi todoDoneMarker       cterm=bold ctermfg=237
+autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
 "}}}
 
 " Signify {{{
