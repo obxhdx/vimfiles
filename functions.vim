@@ -5,30 +5,6 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cw
 cabbr ag Ag
 " }}}
 
-" GitBlame command {{{
-command! -nargs=+ -complete=shellcmd R vnew | setlocal bufhidden=hide nobuflisted buftype=nofile noswapfile | 0read !<args>
-command! Gblame :call <SID>GitBlame()
-
-fun! s:GitBlame()
-  " original buffer
-  let l:winview = winsaveview()
-  setlocal scrollbind
-
-  " creates the blame buffer
-  execute 'R git blame ' . expand('%')
-  normal Gddgg
-  call winrestview(l:winview)
-
-  " original buffer
-  wincmd l
-  call winrestview(l:winview)
-
-  " moves back to blame buffer
-  wincmd h
-  vertical resize 56 | setlocal nomodifiable scrollbind
-endf
-"}}}
-
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
 command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-})('|")?\s\=\>/\2:/gc
 " }}}
