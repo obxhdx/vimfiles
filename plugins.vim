@@ -60,7 +60,7 @@ Plug 'sheerun/vim-polyglot'
 " Tools {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-dispatch'
+Plug 'metakirby5/codi.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 " }}}
@@ -126,29 +126,6 @@ hi BufTabLineFill ctermbg=236 guibg=#303030
 " Commentary {{{
 map gc <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
-" }}}
-
-" Dispatch {{{
-let g:dispatch_handlers = []
-nnoremap <Leader>b :Dispatch<CR>:silent Copen<CR>:silent wincmd p<CR>
-autocmd FileType ruby let b:dispatch = 'ruby %'
-autocmd FileType javascript let b:dispatch = 'node %'
-autocmd BufWritePost play.*.js :exe 'Dispatch node -e '.<SID>PreDispatchJS()
-
-function! s:PreDispatchJS()
-  let lines = []
-  for linenr in range(1, line('$'))
-    let line = getline(linenr)
-    if line =~ '^$'
-      continue " skip empty lines
-    endif
-    let line = substitute(line, '^\s\+', '', 'g') " remove leading spaces
-    let line = substitute(line, '["`]', "'", 'g') " replace unsupported quotes
-    let line = substitute(line, '\s\?//.*$', '', 'g') " remove trailing comments
-    call add(lines, line)
-  endfor
-  return shellescape(join(lines, ' '))
-endfunction
 " }}}
 
 " FZF {{{
