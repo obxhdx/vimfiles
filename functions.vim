@@ -1,10 +1,3 @@
-" Ag command (grep with Silver Searcher) {{{
-set grepprg=ag\ --nogroup\ --nocolor\ --stats\ --vimgrep\ $*
-set grepformat=%f:%l:%c:%m
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args> --ignore tags | cwindow | redraw!
-cabbr ag Ag
-" }}}
-
 " NewRubyHashSyntax command (use the new Ruby 1.9 syntax) {{{
 command! -range=% NewRubyHashSyntax :<line1>,<line2>s/\v(:|'|")?([[:alnum:]_]{-})('|")?\s\=\>/\2:/gc
 " }}}

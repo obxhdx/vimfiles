@@ -37,6 +37,7 @@ Plug 'sjl/badwolf'
 " }}}
 
 " Misc {{{
+Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
 Plug 'obxhdx/vim-simple-task-manager'
@@ -79,11 +80,6 @@ augroup LoadCompletionPlugins
         \| autocmd! LoadCompletionPlugins
 augroup END
 " }}}
-
-" ActionMapper {{{
-autocmd! User MapActions
-autocmd User MapActions call MapAction('Ag', '<leader>g')
-"}}}
 
 " AutoHighlight {{{
 let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo']
@@ -137,6 +133,17 @@ cabbr Ag FzfAg
 " GoldenView {{{
 let g:goldenview__enable_default_mapping = 0
 nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
+"}}}
+
+" Grepper {{{
+let g:grepper = {
+      \   'highlight': 1,
+      \   'switch': 0,
+      \ }
+nmap <Leader>g <plug>(GrepperOperator)
+xmap <Leader>g <plug>(GrepperOperator)
+autocmd User Grepper nmap ]q :exe "cnext \| normal \<Plug>(Oblique-n)"<CR>
+autocmd User Grepper nmap [q :exe "cprevious \| normal \<Plug>(Oblique-n)"<CR>
 "}}}
 
 " JsBeautify "{{{
