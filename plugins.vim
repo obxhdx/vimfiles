@@ -125,9 +125,9 @@ nmap gcc <Plug>CommentaryLine
 " }}}
 
 " FZF {{{
-let g:fzf_command_prefix = 'Fzf'
-nnoremap <Leader>z :FzfFiles<CR>
-cabbr Ag FzfAg
+let g:fzf_command_prefix = 'Fz'
+nnoremap <Leader>z :FzFiles<CR>
+nnoremap <Leader>h :FzHistory<CR>
 " }}}
 
 " GoldenView {{{
