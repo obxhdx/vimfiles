@@ -94,6 +94,7 @@ augroup ColorTweaks
 
   autocmd ColorScheme iceberg
         \   hi CursorLineNr ctermbg=235 |
+        \   hi htmlH2 ctermfg=156 |
         \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
         \   hi MatchParen ctermfg=203 ctermbg=234 |
         \   hi VertSplit ctermbg=NONE ctermfg=235 term=NONE cterm=NONE |
