@@ -81,6 +81,10 @@ augroup LoadCompletionPlugins
 augroup END
 " }}}
 
+" AutoPairs {{{
+let g:AutoPairsShortcutToggle = ''
+"}}}
+
 " AutoHighlight {{{
 let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo']
 "}}}
