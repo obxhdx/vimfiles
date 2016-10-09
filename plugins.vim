@@ -81,6 +81,17 @@ augroup LoadCompletionPlugins
 augroup END
 " }}}
 
+" ActionMapper {{{
+function! Shorten(text)
+  echon 'Shortening URL... '
+  execute "'<,'>!shorten --quiet ".shellescape(substitute(a:text, '\n', '', 'g'), 1)
+  echon 'done!'
+endfunction
+
+autocmd! User MapActions
+autocmd User MapActions call MapAction('Shorten', '<leader>s')
+"}}}
+
 " AutoPairs {{{
 let g:AutoPairsShortcutToggle = ''
 "}}}
