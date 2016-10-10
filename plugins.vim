@@ -84,7 +84,10 @@ augroup END
 " ActionMapper {{{
 function! Shorten(text)
   echon 'Shortening URL... '
+  let old_shellcmdflag = &shellcmdflag
+  set shellcmdflag=-ic
   execute "'<,'>!shorten --quiet ".shellescape(substitute(a:text, '\n', '', 'g'), 1)
+  set shellcmdflag=old_shellcmdflag
   echon 'done!'
 endfunction
 
