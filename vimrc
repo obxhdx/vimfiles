@@ -154,7 +154,7 @@ autocmd BufRead,BufNewFile *.js inoremap <buffer> ;; <ESC>A;<ESC>
 
 " Open stuff (URL, etc)
 if has('mac')
-  nnoremap <Leader>o :exe 'silent !open <cWORD>'<CR>
+  nnoremap <Leader>o :exe 'silent !open '.shellescape(expand('<cWORD>'), 1)<CR>:exe 'redraw!'<CR>
 endif
 
 " }}}
