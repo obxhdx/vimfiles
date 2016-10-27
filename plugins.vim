@@ -100,7 +100,7 @@ let g:AutoPairsShortcutToggle = ''
 "}}}
 
 " AutoHighlight {{{
-let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo']
+let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo', 'netrw']
 "}}}
 
 " Colorscheme {{{
