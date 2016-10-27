@@ -27,6 +27,7 @@ Plug 'tpope/vim-surround'
 " Code Linters/Formatters {{{
 Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
 Plug 'sareyko/neat.vim', { 'on': 'Neat' }
+Plug 'neomake/neomake'
 " }}}
 
 " Color Schemes {{{
@@ -115,6 +116,7 @@ augroup ColorTweaks
         \   hi htmlH2 ctermfg=156 |
         \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
         \   hi MatchParen ctermfg=203 ctermbg=234 |
+        \   hi SignColumn ctermbg=234 |
         \   hi VertSplit ctermbg=NONE ctermfg=235 term=NONE cterm=NONE |
         \   hi Visual ctermbg=239 |
         \   hi! link Folded Comment |
@@ -169,7 +171,7 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'modified' ], [ 'git_stats', 'trailing_whitespaces', 'mixed_indentation' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'modified' ], [ 'git_stats', 'trailing_whitespaces', 'mixed_indentation', 'neomake' ] ]
       \ },
       \ 'component_function': {
       \   'mode': 'LightLineMode',
@@ -185,6 +187,7 @@ let g:lightline = {
       \   'trailing_whitespaces': 'LightLineTrailingSpaces',
       \   'mixed_indentation': 'LightLineMixedIndentation',
       \   'git_stats': 'LightLineGitStats',
+      \   'neomake': 'LightLineNeoMake',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -199,6 +202,7 @@ augroup END
 function! s:LightLineUpdateGitStats()
   if exists('#lightline')
     call LightLineGitStats()
+    call LightLineNeoMake()
     call lightline#update()
   endif
 endfunction
@@ -207,8 +211,18 @@ function! s:LightLineUpdateComponents()
   if exists('#lightline')
     call LightLineTrailingSpaces()
     call LightLineMixedIndentation()
+    call LightLineNeoMake()
     call lightline#update()
   endif
+endfunction
+
+function! LightLineNeoMake()
+  let result = ''
+  let counts = neomake#statusline#LoclistCounts()
+  for k in keys(counts)
+    let result .= k.':'.counts[k].' '
+  endfor
+  return &ft !~ 'help' && winwidth(0) > 80 ? (empty(result) ? '' : result) : ''
 endfunction
 
 function! LightLineFugitive()
@@ -306,6 +320,19 @@ if exists(":NeoComplete")
 endif
 " }}}
 
+" NeoMake {{{
+let g:neomake_logfile = '/tmp/neomake.log'
+let g:neomake_open_list = 1
+
+augroup NeoMakeAutocommands
+  au!
+  autocmd BufWritePost *.js Neomake
+  autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=red ctermbg=234
+  autocmd User NeomakeCountsChanged call lightline#update()
+  autocmd User NeomakeFinished if empty(getloclist(0)) | lclose | else | lopen | wincmd p
+augroup END
+"}}}
+
 " Oblique {{{
 let g:oblique#incsearch_highlight_all = 1
 command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
@@ -329,9 +356,9 @@ autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
 
 " Signify {{{
 let g:signify_sign_change = '~'
-highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
-highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
-highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
+highlight SignifySignAdd    cterm=bold ctermbg=234 ctermfg=119
+highlight SignifySignChange cterm=bold ctermbg=234 ctermfg=227
+highlight SignifySignDelete cterm=bold ctermbg=234 ctermfg=167
 
 function! s:GitStatsSummary()
   if exists('*sy#buffer_is_active()') && sy#buffer_is_active() == 0
