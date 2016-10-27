@@ -37,7 +37,6 @@ Plug 'sjl/badwolf'
 " }}}
 
 " Misc {{{
-Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
 Plug 'obxhdx/vim-simple-task-manager'
@@ -92,6 +91,7 @@ function! Shorten(text)
 endfunction
 
 autocmd! User MapActions
+autocmd User MapActions call MapAction('Ag', '<leader>g')
 autocmd User MapActions call MapAction('Shorten', '<leader>s')
 "}}}
 
@@ -152,17 +152,6 @@ nnoremap <Leader>h :FzHistory<CR>
 " GoldenView {{{
 let g:goldenview__enable_default_mapping = 0
 nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
-"}}}
-
-" Grepper {{{
-let g:grepper = {
-      \   'highlight': 1,
-      \   'switch': 0,
-      \ }
-nmap <Leader>g <plug>(GrepperOperator)
-xmap <Leader>g <plug>(GrepperOperator)
-autocmd User Grepper nmap ]q :exe "cnext \| normal \<Plug>(Oblique-n)"<CR>
-autocmd User Grepper nmap [q :exe "cprevious \| normal \<Plug>(Oblique-n)"<CR>
 "}}}
 
 " JsBeautify "{{{
