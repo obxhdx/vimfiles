@@ -92,8 +92,12 @@ function! Shorten(text)
   echon 'done!'
 endfunction
 
+function! GrepWithFZF(text)
+  execute 'FzAg '.a:text
+endfunction
+
 autocmd! User MapActions
-autocmd User MapActions call MapAction('Ag', '<leader>g')
+autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
 autocmd User MapActions call MapAction('Shorten', '<leader>s')
 "}}}
 
@@ -154,8 +158,10 @@ nmap s <Plug>(easymotion-overwin-f2)
 
 " FZF {{{
 let g:fzf_command_prefix = 'Fz'
-nnoremap <Leader>z :FzFiles<CR>
+nnoremap <Leader>b :FzBuffers<CR>
+nnoremap <Leader>f :FzFiles<CR>
 nnoremap <Leader>h :FzHistory<CR>
+cabbrev ag FzAg
 " }}}
 
 " GoldenView {{{
