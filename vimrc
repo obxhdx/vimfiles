@@ -184,7 +184,7 @@ augroup FileTypeFixes
   autocmd FileType java       setlocal tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 completeopt-=preview
   autocmd FileType json       setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType markdown   setlocal commentstring=<!--%s--> spell
+  autocmd FileType markdown   setlocal commentstring=<!--%s-->
   autocmd FileType qf         setlocal nonu
   autocmd FileType tmux       setlocal commentstring=#%s
   autocmd FileType gitcommit  setlocal spell
