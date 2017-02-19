@@ -158,10 +158,17 @@ nmap s <Plug>(easymotion-overwin-f2)
 
 " FZF {{{
 let g:fzf_command_prefix = 'Fz'
-nnoremap <Leader>b :FzBuffers<CR>
-nnoremap <Leader>f :FzFiles<CR>
-nnoremap <Leader>h :FzHistory<CR>
+let g:fzf_files_options  = '--tiebreak=end ' " Prioritize matches that are closer to the end of the string
+let g:fzf_files_options .=
+      \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"' " File preview using Highlight
+
 cabbrev ag FzAg
+
+nnoremap <leader>ag :FzAg<CR>
+nnoremap <Leader>b  :FzBuffers<CR>
+nnoremap <Leader>c  :FzCommands<CR>
+nnoremap <Leader>f  :FzFiles<CR>
+nnoremap <Leader>h  :FzHistory<CR>
 " }}}
 
 " GoldenView {{{
