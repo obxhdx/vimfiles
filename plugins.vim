@@ -38,6 +38,7 @@ Plug 'sjl/badwolf'
 " }}}
 
 " Misc {{{
+Plug 'fcpg/vim-altscreen'
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
 Plug 'obxhdx/vim-simple-task-manager'
