@@ -135,6 +135,13 @@ try
   set t_Co=256
   set background=dark
   let base16colorspace=256
+
+  if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes work
+    " properly within 256-color terminals
+    set t_ut=
+  endif
+
   colorscheme iceberg
 catch | endtry
 " }}}
