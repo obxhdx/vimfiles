@@ -34,6 +34,7 @@ Plug 'neomake/neomake'
 Plug 'chriskempson/base16-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 " }}}
