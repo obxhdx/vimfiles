@@ -33,6 +33,7 @@ Plug 'neomake/neomake'
 " Color Schemes {{{
 Plug 'chriskempson/base16-vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 " }}}
