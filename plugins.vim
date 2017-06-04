@@ -110,6 +110,11 @@ let g:AutoPairsShortcutToggle = ''
 
 " AutoHighlight {{{
 let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo', 'netrw']
+autocmd FilterWritePre * if &diff
+      \|   setlocal nocursorline | exe 'DisableAutoHighlightWord'
+      \| else
+      \|   setlocal cursorline | exe 'EnableAutoHighlightWord'
+      \| endif
 "}}}
 
 " Colorscheme {{{
