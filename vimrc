@@ -111,7 +111,6 @@ nmap <Leader>P "+P
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :q<CR>
-autocmd BufRead,BufEnter * if expand('%:t') !~? 'NERD' | execute 'nnoremap <buffer> <Leader>d :bd<CR>' | endif
 
 " Change path to current file path
 nnoremap <Leader>cd :lcd %:p:h<CR>
@@ -154,14 +153,6 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-" Add ; more easily
-autocmd BufRead,BufNewFile *.js inoremap <buffer> ;; <ESC>A;<ESC>
-
-" Open stuff (URL, etc)
-if has('mac')
-  nnoremap <Leader>o :exe 'silent !open '.shellescape(expand('<cWORD>'), 1)<CR>:exe 'redraw!'<CR>
-endif
-
 " }}}
 
 " Syntax highlighting " {{{
@@ -171,30 +162,8 @@ set background=dark
 " }}}
 
 " Autocommands " {{{
-
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
-
-autocmd FilterWritePre * if &diff
-      \|   setlocal nocursorline | exe 'DisableAutoHighlightWord'
-      \| else
-      \|   setlocal cursorline | exe 'EnableAutoHighlightWord'
-      \| endif
-
-augroup FileTypeFixes
-  autocmd!
-  autocmd BufRead,BufNewFile *.gradle  setf groovy
-  autocmd BufRead,BufNewFile *.podspec setf ruby
-
-  autocmd FileType groovy     setlocal tabstop=4 shiftwidth=4 softtabstop=4 commentstring=//%s
-  autocmd FileType java       setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 completeopt-=preview
-  autocmd FileType json       setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType markdown   setlocal commentstring=<!--%s-->
-  autocmd FileType qf         setlocal nonu
-  autocmd FileType tmux       setlocal commentstring=#%s
-  autocmd FileType gitcommit  setlocal spell
-augroup END
 " }}}
 
 " Extra config files " {{{
