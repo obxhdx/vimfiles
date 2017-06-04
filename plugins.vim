@@ -129,7 +129,7 @@ augroup ColorTweaks
         \   hi htmlH2 ctermfg=156 |
         \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
         \   hi MatchParen ctermfg=203 ctermbg=234 |
-        \   hi SignColumn ctermbg=234 |
+        \   hi SignColumn ctermbg=235 |
         \   hi VertSplit ctermbg=NONE ctermfg=235 term=NONE cterm=NONE |
         \   hi Visual ctermbg=239 |
         \   hi! link Folded Comment |
@@ -391,9 +391,9 @@ autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
 
 " Signify {{{
 let g:signify_sign_change = '~'
-highlight SignifySignAdd    cterm=bold ctermbg=234 ctermfg=119
-highlight SignifySignChange cterm=bold ctermbg=234 ctermfg=227
-highlight SignifySignDelete cterm=bold ctermbg=234 ctermfg=167
+highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
+highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
+highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
 
 function! s:GitStatsSummary()
   if exists('*sy#buffer_is_active()') && sy#buffer_is_active() == 0
