@@ -21,7 +21,6 @@ set nrformats-=octal " Do not consider numbers starting with zero to be octal
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set cursorline " Highlight current line
-set list " Show unprintable chars
 set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable chars
 set showbreak=… " Line break character
 set showcmd " Show keystrokes on statusline
