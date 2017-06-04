@@ -26,8 +26,15 @@ set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable c
 set showbreak=… " Line break character
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
-let &t_SI = "\<Esc>[5 q" " Use a blinking upright bar cursor in Insert mode
-let &t_EI = "\<Esc>[1 q" " Use a blinking block in Normal
+
+" Use a blinking upright bar cursor in Insert mode / blinking block in Normal
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 " }}}
 
 " Auto-complete (^N and ^P) {{{
