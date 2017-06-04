@@ -96,6 +96,13 @@ fun! HighlightRemoveAttr(attr) "{{{
 endf
 " }}}
 
+fun! JumpToLastOccurenceInLine() " {{{
+  let l:char = nr2char(getchar())
+  execute 'normal $F'.l:char
+endf
+nnoremap <silent> ff :call JumpToLastOccurenceInLine()<CR>
+"}}}
+
 fun! RestoreRegisterAfterPaste() " {{{
   " From http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
   let @" = s:restore_reg
