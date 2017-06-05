@@ -175,7 +175,7 @@ autocmd BufReadPost *
 
 " Extra config files " {{{
 source $HOME/.vim/functions.vim
-source $HOME/.vim/plugins.vim
+source $HOME/.vim/essential-plugins.vim
 " }}}
 
 " vim: set foldmethod=marker :
