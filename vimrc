@@ -113,6 +113,7 @@ nmap <Leader>P "+P
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>d :bd<CR>
 
 " Change path to current file path
 nnoremap <Leader>cd :lcd %:p:h<CR>
