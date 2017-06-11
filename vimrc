@@ -83,10 +83,7 @@ set formatoptions+=j " Remove comment characters when joining lines
 " }}}
 
 " File explorer "{{{
-let g:netrw_banner=0 " No banner
-let g:netrw_liststyle=3 " Tree style listing
-let g:netrw_preview=1 " Open previews vertically
-let g:netrw_altv=1 " Open files on right
+let g:netrw_bufsettings='noma nomod nu nobl nowrap ro' " Show line numbers
 "}}}
 
 " Key mappings " {{{
