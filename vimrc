@@ -21,7 +21,7 @@ set nojoinspaces " Use one space, not two, after punctuation
 " Appearance " {{{
 set number " Display line numbers
 set laststatus=2 " Enable statusline
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P " Standard statusline
+set statusline=%<\ %t\ %h%m%r%=%-14.(%l,%c%V%)\ %P\  " Standard statusline
 set cursorline " Highlight current line
 set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable chars
 set showbreak=… " Line break character
