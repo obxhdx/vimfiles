@@ -27,6 +27,20 @@ set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable c
 set showbreak=… " Line break character
 set showcmd " Show keystrokes on statusline
 set title " Make xterm inherit the title from Vim
+set t_Co=256 " Make terminal use 256 colors
+syntax enable " Enable syntax highlighting
+
+if &term =~ '256color'
+  " Disable Background Color Erase (BCE) so that color schemes work
+  " properly within 256-color terminals
+  set t_ut=
+endif
+
+if $TERM_BACKGROUND == 'light'
+  set background=light
+else
+  set background=dark
+endif
 
 " Use a blinking upright bar cursor in Insert mode / blinking block in Normal
 if exists('$TMUX')
@@ -153,12 +167,6 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-" }}}
-
-" Syntax highlighting " {{{
-syntax on
-set t_Co=256
-set background=dark
 " }}}
 
 " Autocommands " {{{

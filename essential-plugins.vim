@@ -8,6 +8,7 @@ call plug#begin('~/.vim/bundle')
 " Appearance
 Plug 'blueyed/vim-diminactive'
 Plug 'cocopon/iceberg.vim'
+Plug 'jonathanfilip/vim-lucius'
 Plug 'sheerun/vim-polyglot'
 
 " Misc
@@ -43,15 +44,24 @@ autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
 "}}}
 
 " Colorscheme {{{
-augroup ColorTweaks
-  autocmd ColorScheme *
-        \   hi MatchParen ctermfg=NONE ctermbg=NONE cterm=reverse |
-        \   hi Normal ctermbg=NONE |
-        \   hi LineNr ctermbg=235 |
-        \   hi SignColumn ctermbg=235 |
-        \   hi ColorColumn ctermbg=235 |
-        \   hi Pmenu ctermfg=236 ctermbg=218
+function! DefaultColorTweaks()
+  if $TERM_BACKGROUND == 'light'
+    hi LineNr ctermbg=NONE
+    hi SignColumn ctermbg=NONE
+    hi ColorColumn ctermbg=NONE
+    hi Pmenu ctermfg=232 ctermbg=225
+  else
+    hi LineNr ctermbg=235
+    hi SignColumn ctermbg=235
+    hi ColorColumn ctermbg=235
+    hi Pmenu ctermfg=236 ctermbg=225
+  endif
+  hi Normal ctermbg=NONE
+endfunction
 
+augroup ColorTweaks
+  autocmd!
+  autocmd ColorScheme * call DefaultColorTweaks()
   autocmd ColorScheme iceberg
         \   hi CursorLineNr ctermbg=235 |
         \   hi htmlH2 ctermfg=156 |
@@ -66,17 +76,11 @@ augroup ColorTweaks
 augroup END
 
 try
-  set t_Co=256
-  set background=dark
-  let base16colorspace=256
-
-  if &term =~ '256color'
-    " Disable Background Color Erase (BCE) so that color schemes work
-    " properly within 256-color terminals
-    set t_ut=
+  if $TERM_BACKGROUND == 'light'
+    colorscheme lucius
+  else
+    colorscheme iceberg
   endif
-
-  colorscheme iceberg
 catch | endtry
 " }}}
 
@@ -118,9 +122,15 @@ augroup END
 "}}}
 
 " Signify {{{
-highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=108
-highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=216
-highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=168
+if &background == 'dark'
+  highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=108
+  highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=216
+  highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=168
+else
+  highlight SignifySignAdd    cterm=bold ctermbg=NONE ctermfg=108
+  highlight SignifySignChange cterm=bold ctermbg=NONE ctermfg=216
+  highlight SignifySignDelete cterm=bold ctermbg=NONE ctermfg=168
+endif
 
 let g:signify_sign_add               = '│'
 let g:signify_sign_delete            = '│'
