@@ -134,6 +134,33 @@ fun! s:ExecPreservingCursorPos(command) "{{{
 endf
 " }}}
 
+fun! s:GitAnnotate() "{{{
+  " save cursor position
+  let l:current_line = line('.')
+
+  " create annotate buffer
+  execute 'vnew | 0read !git annotate '.expand('%')." | awk '{print $1,$2,$3}' | sed -E 's/\\( ?//g'"
+  " adjust buffer width to longest line
+  execute 'vertical resize '.max(map(getline(1,'$'), 'len(v:val)'))
+  " delete last line
+  execute 'normal Gddgg'
+
+  " configure annotate buffer
+  setlocal bufhidden=hide buftype=nofile nobuflisted nonumber noswapfile nomodifiable statusline=git-annotate
+  silent! file git-annotate
+
+  " lock cursor and scroll
+  windo setlocal cursorbind scrollbind
+  windo execute 'normal '.l:current_line.'Gzz'
+  wincmd h
+
+  " unlock when annotate buffer closes
+  autocmd BufHidden git-annotate windo set nocursorbind noscrollbind
+endf
+autocmd BufEnter git-annotate DimInactiveOff
+command! GitAnnotate :call s:GitAnnotate()
+"}}}
+
 fun! s:IsWindowAt(dir) "{{{
   let directions = {
         \ 'top': 'k',
