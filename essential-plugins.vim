@@ -65,6 +65,7 @@ augroup ColorTweaks
   autocmd ColorScheme iceberg
         \   hi CursorLineNr ctermbg=235 |
         \   hi htmlH2 ctermfg=156 |
+        \   hi htmlH3 ctermfg=205 |
         \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
         \   hi MatchParen ctermfg=203 ctermbg=234 |
         \   hi netrwMarkFile cterm=underline |
