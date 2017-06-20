@@ -127,7 +127,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>d :bd<CR>
 
 " Change path to current file path
-nnoremap <Leader>cd :lcd %:p:h<CR>
+nnoremap cd :lcd %:p:h<CR>
 
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
