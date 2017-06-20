@@ -169,18 +169,6 @@ nnoremap <silent> p p`]
 
 " }}}
 
-" Autocommands " {{{
-autocmd VimResized * :wincmd = " Resize splits when the window is resized
-
-" Jump to last known cursor position when opening a file.
-" Except for commit messages, when the position is invalid,
-" or when inside an event handler (when dropping a file on gvim).
-autocmd BufReadPost *
-      \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal g`\"" |
-      \ endif
-" }}}
-
 " Extra config files " {{{
 source $HOME/.vim/functions.vim
 source $HOME/.vim/essential-plugins.vim
