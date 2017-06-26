@@ -3,8 +3,8 @@ command! StripTrailingWhitespaces :call <SID>ExecPreservingCursorPos('%s/\s\+$//
 autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> StripTrailingWhitespaces
 " }}}
 
-" Tabify command (format text in columns) {{{
-command! -nargs=1 -range=% Tabify :execute "<line1>,<line2>!sed 's/" . <f-args> . "/@". <f-args> . "/g' | column -s@ -t"
+" Align command (format text in columns) {{{
+command! -nargs=1 -range=% Align :execute "<line1>,<line2>!sed 's/" . <f-args> . "/@". <f-args> . "/g' | column -s@ -t"
 "}}}
 
 fun! CloseHiddenBuffers() "{{{
