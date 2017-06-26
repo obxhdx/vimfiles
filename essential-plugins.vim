@@ -11,6 +11,10 @@ Plug 'cocopon/iceberg.vim'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'sheerun/vim-polyglot'
 
+" Code Completion
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+
 " Misc
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
