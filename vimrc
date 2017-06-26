@@ -68,6 +68,9 @@ set incsearch " Enable incremental search
 set ignorecase " Ignore case sensitivity
 set smartcase " Enable case-smart searching
 set hlsearch " Highlight search matches
+if executable('ag')
+  set grepprg=ag\ --vimgrep\ $* " Grep with the silver searcher
+endif
 " }}}
 
 " Folding " {{{
@@ -170,8 +173,12 @@ nnoremap <silent> p p`]
 " }}}
 
 " Extra config files " {{{
-source $HOME/.vim/functions.vim
-source $HOME/.vim/essential-plugins.vim
+source ~/.vim/functions.vim
+source ~/.vim/essential-plugins.vim
+
+if filereadable(expand('~/.vimrc.local.vim'))
+  source ~/.vimrc.local.vim
+endif
 " }}}
 
 " vim: set foldmethod=marker :
