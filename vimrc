@@ -170,6 +170,9 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" Pase in visual mode doesn't yank
+xnoremap p pgvy
+
 " }}}
 
 " Extra config files " {{{

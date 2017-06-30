@@ -1,13 +1,12 @@
-" StripTrailingWhitespaces command {{{
-command! StripTrailingWhitespaces :call <SID>ExecPreservingCursorPos('%s/\s\+$//e')
-autocmd FileType css,gradle,html,javascript,php,ruby,sql,vim autocmd BufWritePre <buffer> StripTrailingWhitespaces
-" }}}
-
 " Align command (format text in columns) {{{
 command! -nargs=1 -range=% Align :execute "<line1>,<line2>!sed 's/" . <f-args> . "/@". <f-args> . "/g' | column -s@ -t"
 "}}}
 
-fun! CloseHiddenBuffers() "{{{
+" StripTrailingWhitespaces command {{{
+command! StripTrailingWhitespaces :call <SID>ExecPreservingCursorPos('%s/\s\+$//e')
+" }}}
+
+fun! s:CloseHiddenBuffers() "{{{
   let open_buffers = []
 
   for i in range(tabpagenr('$'))
@@ -20,23 +19,8 @@ fun! CloseHiddenBuffers() "{{{
     endif
   endfor
 endf
-command! CloseHiddenBuffers call CloseHiddenBuffers()
+command! CloseHiddenBuffers call s:CloseHiddenBuffers()
 " }}}
-
-" vp doesn't replace paste buffer {{{
-" https://hackerfall.com/story/how-to-boost-your-vim-productivity
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-
-function! s:VisualPaste()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-
-vmap <silent> <expr> p <sid>VisualPaste()
-"}}}
 
 fun! s:ExecPreservingCursorPos(command) "{{{
   " Taken from http://goo.gl/DJ7xA
