@@ -26,7 +26,6 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 
 " Navigation
-Plug 'easymotion/vim-easymotion'
 Plug 'tmhedberg/matchit'
 
 " Tools
@@ -93,12 +92,6 @@ catch | endtry
 map gc <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
 " }}}
-
-" EasyMotion {{{
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-nmap s <Plug>(easymotion-overwin-f2)
-"}}}
 
 " FZF {{{
 let g:fzf_command_prefix = 'Fz'
