@@ -107,7 +107,6 @@ let g:netrw_bufsettings='noma nomod nu nobl nowrap ro' " Show line numbers
 
 " Space as leader
 let mapleader = " "
-let maplocalleader = "\\"
 
 " Yank visual selection to clipboard
 vmap <Leader>y "+y
@@ -130,7 +129,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>d :bd<CR>
 
 " Change path to current file path
-nnoremap cd :lcd %:p:h<CR>
+nnoremap cd :lcd %:p:h<CR>:pwd<CR>
 
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -140,26 +139,12 @@ map <F1> <nop>
 imap <F1> <nop>
 map K <nop>
 
-" Resize split windows
-nnoremap + :exe 'resize ' . (winheight(0) * 3/2)<CR>
-nnoremap - :exe 'resize ' . (winheight(0) * 2/3)<CR>
-nnoremap ) :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
-nnoremap ( :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
-
-" Use 'very magic' regex mode (help \v)
-nnoremap / /\v
-vnoremap / /\v
-
 " Find/replace
 noremap <Leader>r :%s/\C\<<C-r>=expand("<cword>")<CR>\>/<C-r>=expand("<cword>")<CR>/gc<left><left><left>
 noremap <Leader><Leader>r :%s/\C<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>/gc<left><left><left>
 
 " Select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Move faster with C-e/C-y
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
 
 " Navigate buffers more easily
 nnoremap <C-n> :bnext<CR>
