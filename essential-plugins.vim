@@ -7,8 +7,7 @@ call plug#begin('~/.vim/bundle')
 
 " Appearance
 Plug 'blueyed/vim-diminactive'
-Plug 'cocopon/iceberg.vim'
-Plug 'jonathanfilip/vim-lucius'
+Plug 'rakr/vim-one'
 Plug 'sheerun/vim-polyglot'
 
 " Code Completion
@@ -48,6 +47,8 @@ autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
 
 " Colorscheme {{{
 function! DefaultColorTweaks()
+  hi Normal ctermbg=NONE guibg=NONE
+
   if $TERM_BACKGROUND == 'light'
     hi LineNr ctermbg=NONE
     hi SignColumn ctermbg=NONE
@@ -59,32 +60,42 @@ function! DefaultColorTweaks()
     hi ColorColumn ctermbg=235
     hi Pmenu ctermfg=236 ctermbg=225
   endif
-  hi Normal ctermbg=NONE
 endfunction
 
 augroup ColorTweaks
   autocmd!
   autocmd ColorScheme * call DefaultColorTweaks()
-  autocmd ColorScheme iceberg
-        \   hi CursorLineNr ctermbg=235 |
-        \   hi htmlH2 ctermfg=156 |
-        \   hi htmlH3 ctermfg=205 |
-        \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
-        \   hi MatchParen ctermfg=203 ctermbg=234 |
-        \   hi netrwMarkFile cterm=underline |
-        \   hi StatusLineNC ctermfg=241 ctermbg=236 cterm=NONE term=NONE |
-        \   hi StatusLine cterm=NONE ctermfg=white ctermbg=240 |
-        \   hi VertSplit ctermbg=NONE ctermfg=235 term=NONE cterm=NONE |
-        \   hi Visual ctermbg=239 |
-        \   hi! link jpropertiesIdentifier Statement
+  autocmd ColorScheme one
+        \   hi AutoHighlightWord guibg=#3a3a3a |
+        \   hi IncSearch cterm=NONE guifg=#000000 guibg=#ff5f5f |
+        \   hi LineNr guibg=#2c323c |
+        \   hi Pmenu guifg=#303030 guibg=#ffd7ff |
+        \   hi Search guibg=#aeee00 |
+        \   hi StatusLine guifg=white guibg=#4b5263 |
+        \   hi StatusLineNC gui=NONE guibg=#353b45 |
+        \   hi VertSplit guifg=#262626 |
+        \   hi! link SignColumn LineNr |
+        \   hi! link Folded Comment |
+  autocmd FileType markdown
+        \   hi htmlH1 ctermfg=209 guifg=#ff875f |
+        \   hi htmlH2 ctermfg=156 guifg=#afff87 |
+        \   hi htmlH3 ctermfg=205 guifg=#ff5faf |
+        \   hi mkdString ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCode ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCodeStart ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCodeEnd ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdFootnote ctermfg=242 guifg=#6b7089 |
+        \   hi mkdBlockquote ctermfg=242 guifg=#6b7089 |
+        \   hi mkdListItem cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdRule cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdLineBreak ctermbg=236 guibg=#272c42 |
+        \   hi mkdID cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdDelimiter ctermfg=252 guifg=#c6c8d1 |
 augroup END
 
 try
-  if $TERM_BACKGROUND == 'light'
-    colorscheme lucius
-  else
-    colorscheme iceberg
-  endif
+  colorscheme one
+  set termguicolors
 catch | endtry
 " }}}
 
@@ -120,15 +131,9 @@ augroup END
 "}}}
 
 " Signify {{{
-if &background == 'dark'
-  highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=108
-  highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=216
-  highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=168
-else
-  highlight SignifySignAdd    cterm=bold ctermbg=NONE ctermfg=108
-  highlight SignifySignChange cterm=bold ctermbg=NONE ctermfg=216
-  highlight SignifySignDelete cterm=bold ctermbg=NONE ctermfg=168
-endif
+highlight SignifySignAdd guibg=#2c323c
+highlight SignifySignChange guibg=#2c323c
+highlight SignifySignDelete guibg=#2c323c
 
 let g:signify_sign_add               = '│'
 let g:signify_sign_delete            = '│'
