@@ -31,7 +31,6 @@ Plug 'tmhedberg/matchit'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
 Plug 'metakirby5/codi.vim'
 
 call plug#end()
@@ -112,15 +111,6 @@ nnoremap <Leader>b  :FzBuffers<CR>
 nnoremap <Leader>f  :FzFiles<CR>
 nnoremap <Leader>h  :FzHistory<CR>
 " }}}
-
-" JsBeautify "{{{
-augroup JsBeautify
-  autocmd!
-  autocmd FileType javascript noremap <buffer> <Leader>= :call JsBeautify()<CR>
-  autocmd FileType html noremap <buffer> <Leader>= :call HtmlBeautify()<CR>
-  autocmd FileType css noremap <buffer> <Leader>= :call CSSBeautify()<CR>
-augroup END
-"}}}
 
 " rsi {{{
 augroup rsiTweaks
