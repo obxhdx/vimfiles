@@ -29,7 +29,7 @@ Plug 'tmhedberg/matchit'
 
 " Tools
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'metakirby5/codi.vim'
 
