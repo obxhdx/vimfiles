@@ -15,11 +15,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 
 " Misc
+Plug 'junegunn/vim-slash'
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-action-mapper'
 Plug 'obxhdx/vim-auto-highlight'
 Plug 'obxhdx/vim-extract-inline'
-Plug 'pgdouyon/vim-evanesco'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
@@ -130,6 +130,11 @@ let g:signify_sign_delete            = '│'
 let g:signify_sign_delete_first_line = '│'
 let g:signify_sign_change            = '│'
 let g:signify_sign_changedelete      = g:signify_sign_change
+"}}}
+
+" Slash {{{
+noremap <plug>(slash-after) :execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
+autocmd CursorMoved * call clearmatches()
 "}}}
 
 " vim: set foldmethod=marker :
