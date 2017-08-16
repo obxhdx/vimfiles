@@ -18,7 +18,6 @@ Plug 'tpope/vim-endwise'
 Plug 'junegunn/vim-slash'
 Plug 'mhinz/vim-signify'
 Plug 'obxhdx/vim-auto-highlight'
-Plug 'obxhdx/vim-extract-inline'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
