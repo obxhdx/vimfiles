@@ -17,7 +17,6 @@ Plug 'tpope/vim-endwise'
 " Misc
 Plug 'junegunn/vim-slash'
 Plug 'mhinz/vim-signify'
-Plug 'obxhdx/vim-action-mapper'
 Plug 'obxhdx/vim-auto-highlight'
 Plug 'obxhdx/vim-extract-inline'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
@@ -35,14 +34,6 @@ Plug 'metakirby5/codi.vim'
 
 call plug#end()
 " }}}
-
-" ActionMapper {{{
-function! GrepWithFZF(text)
-  execute 'FzAg '.a:text
-endfunction
-autocmd! User MapActions
-autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
-"}}}
 
 " Colorscheme {{{
 function! DefaultColorTweaks()
