@@ -3,161 +3,89 @@ if empty(glob('~/.vim/bundle'))
 endif
 
 " Plugin Declarations {{{
-
 call plug#begin('~/.vim/bundle')
 
-" Appearance {{{
-Plug 'ap/vim-buftabline'
+" Appearance
 Plug 'blueyed/vim-diminactive'
-Plug 'itchyny/lightline.vim'
-Plug 'zhaocai/GoldenView.Vim'
-" }}}
-
-" Code Completion {{{
-Plug 'SirVer/ultisnips', { 'on': [] }
-Plug 'honza/vim-snippets', { 'on': [] }
-Plug 'ternjs/tern_for_vim', { 'on': [], 'do': 'npm install' }
-Plug 'Shougo/neocomplete.vim', { 'on': [] }
-Plug 'jiangmiao/auto-pairs'
-Plug 'obxhdx/vim-extract-inline'
-Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
-Plug 'tpope/vim-surround'
-" }}}
-
-" Code Linters/Formatters {{{
-Plug 'maksimr/vim-jsbeautify', { 'for': [ 'javascript', 'html', 'css' ] }
-Plug 'sareyko/neat.vim', { 'on': 'Neat' }
-Plug 'neomake/neomake'
-" }}}
-
-" Color Schemes {{{
-Plug 'chriskempson/base16-vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'mhartington/oceanic-next'
-Plug 'morhetz/gruvbox'
-Plug 'sjl/badwolf'
-" }}}
-
-" Misc {{{
-Plug 'fcpg/vim-altscreen'
-Plug 'mhinz/vim-signify'
-Plug 'obxhdx/vim-action-mapper'
-Plug 'obxhdx/vim-simple-task-manager'
-Plug 'tpope/vim-rsi'
-" }}}
-
-" Navigation {{{
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/vim-pseudocl' | Plug 'junegunn/vim-oblique'
-Plug 'kopischke/vim-fetch'
-Plug 'obxhdx/vim-auto-highlight'
-Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-unimpaired'
-" }}}
-
-" Syntax Utils {{{
-Plug 'jelera/vim-javascript-syntax'
+Plug 'rakr/vim-one'
 Plug 'sheerun/vim-polyglot'
-" }}}
 
-" Tools {{{
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-key-bindings --no-completion --no-update-rc' }
+" Code Completion
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+
+" Misc
+Plug 'junegunn/vim-slash'
+Plug 'mhinz/vim-signify'
+Plug 'obxhdx/vim-auto-highlight'
+Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-surround'
+
+" Navigation
+Plug 'tmhedberg/matchit'
+
+" Tools
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-completion --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'metakirby5/codi.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-projectionist'
-" }}}
 
 call plug#end()
-
 " }}}
-
-" Plugin Customizations {{{
-
-" On-demand Loading {{{
-augroup LoadCompletionPlugins
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'vim-snippets', 'tern_for_vim', 'neocomplete.vim')
-        \| echo 'Snippets + Completion plugins loaded!'
-        \| autocmd! LoadCompletionPlugins
-augroup END
-" }}}
-
-" ActionMapper {{{
-function! Shorten(text)
-  echon 'Shortening URL... '
-  let old_shellcmdflag = &shellcmdflag
-  set shellcmdflag=-ic
-  execute "'<,'>!shorten --quiet ".shellescape(substitute(a:text, '\n', '', 'g'), 1)
-  set shellcmdflag=old_shellcmdflag
-  echon 'done!'
-endfunction
-
-function! GrepWithFZF(text)
-  execute 'FzAg '.a:text
-endfunction
-
-autocmd! User MapActions
-autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
-autocmd User MapActions call MapAction('Shorten', '<leader>s')
-"}}}
-
-" AutoPairs {{{
-let g:AutoPairsShortcutToggle = ''
-"}}}
-
-" AutoHighlight {{{
-let g:auto_highlight#disabled_filetypes = ['vim-plug', 'todo', 'netrw']
-autocmd FilterWritePre * if &diff
-      \|   setlocal nocursorline | exe 'DisableAutoHighlightWord'
-      \| else
-      \|   setlocal cursorline | exe 'EnableAutoHighlightWord'
-      \| endif
-"}}}
 
 " Colorscheme {{{
-augroup ColorTweaks
-  autocmd ColorScheme *
-        \   hi MatchParen ctermfg=NONE ctermbg=NONE cterm=reverse |
-        \   hi Normal ctermbg=NONE |
-        \   hi Pmenu ctermfg=236 ctermbg=218
+function! DefaultColorTweaks()
+  hi Normal ctermbg=NONE guibg=NONE
 
-  autocmd ColorScheme iceberg
-        \   hi CursorLineNr ctermbg=235 |
-        \   hi htmlH2 ctermfg=156 |
-        \   hi IncSearch ctermbg=203 ctermfg=232 cterm=NONE term=NONE |
-        \   hi MatchParen ctermfg=203 ctermbg=234 |
-        \   hi SignColumn ctermbg=235 |
-        \   hi VertSplit ctermbg=NONE ctermfg=235 term=NONE cterm=NONE |
-        \   hi Visual ctermbg=239 |
+  if $TERM_BACKGROUND == 'light'
+    hi LineNr ctermbg=NONE
+    hi SignColumn ctermbg=NONE
+    hi ColorColumn ctermbg=NONE
+    hi Pmenu ctermfg=232 ctermbg=225
+  else
+    hi LineNr ctermbg=235
+    hi SignColumn ctermbg=235
+    hi ColorColumn ctermbg=235
+    hi Pmenu ctermfg=236 ctermbg=225
+  endif
+endfunction
+
+augroup ColorTweaks
+  autocmd!
+  autocmd ColorScheme * call DefaultColorTweaks()
+  autocmd ColorScheme one
+        \   hi AutoHighlightWord guibg=#3a3a3a |
+        \   hi IncSearch cterm=NONE guifg=#000000 guibg=#ff5f5f |
+        \   hi LineNr guibg=#2c323c |
+        \   hi Pmenu guifg=#303030 guibg=#ffd7ff |
+        \   hi Search guibg=#aeee00 |
+        \   hi StatusLine guifg=white guibg=#4b5263 |
+        \   hi StatusLineNC gui=NONE guibg=#353b45 |
+        \   hi VertSplit guifg=#262626 |
+        \   hi! link SignColumn LineNr |
         \   hi! link Folded Comment |
-        \   hi! link jpropertiesIdentifier Statement
+  autocmd FileType markdown
+        \   hi htmlH1 ctermfg=209 guifg=#ff875f |
+        \   hi htmlH2 ctermfg=156 guifg=#afff87 |
+        \   hi htmlH3 ctermfg=205 guifg=#ff5faf |
+        \   hi mkdString ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCode ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCodeStart ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdCodeEnd ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdFootnote ctermfg=242 guifg=#6b7089 |
+        \   hi mkdBlockquote ctermfg=242 guifg=#6b7089 |
+        \   hi mkdListItem cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdRule cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdLineBreak ctermbg=236 guibg=#272c42 |
+        \   hi mkdID cterm=NONE ctermfg=109 guifg=#89b8c2 |
+        \   hi mkdDelimiter ctermfg=252 guifg=#c6c8d1 |
 augroup END
 
 try
-  set t_Co=256
-  set background=dark
-  let base16colorspace=256
-
-  if &term =~ '256color'
-    " Disable Background Color Erase (BCE) so that color schemes work
-    " properly within 256-color terminals
-    set t_ut=
-  endif
-
-  colorscheme iceberg
+  colorscheme one
+  set termguicolors
 catch | endtry
-" }}}
-
-" BufTabline {{{
-let g:buftabline_show = 1
-let g:buftabline_indicators = 1
-hi BufTabLineCurrent ctermbg=203 ctermfg=232 guibg=#ff5f5f guifg=#080808
-hi BufTabLineActive ctermbg=236 ctermfg=203 guibg=#303030 guifg=#ff5f5f
-hi BufTabLineHidden ctermbg=236 guibg=#303030
-hi BufTabLineFill ctermbg=236 guibg=#303030
 " }}}
 
 " Commentary {{{
@@ -165,273 +93,38 @@ map gc <Plug>Commentary
 nmap gcc <Plug>CommentaryLine
 " }}}
 
-" EasyMotion {{{
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-nmap s <Plug>(easymotion-overwin-f2)
-"}}}
-
 " FZF {{{
 let g:fzf_command_prefix = 'Fz'
-let g:fzf_files_options  = '--tiebreak=end ' " Prioritize matches that are closer to the end of the string
-let g:fzf_files_options .=
-      \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"' " File preview using Highlight
-
-cabbrev ag FzAg
-
+let g:fzf_files_options  = '--tiebreak=end' " Prioritize matches that are closer to the end of the string
 nnoremap <leader>ag :FzAg<CR>
 nnoremap <Leader>b  :FzBuffers<CR>
-nnoremap <Leader>c  :FzCommands<CR>
 nnoremap <Leader>f  :FzFiles<CR>
 nnoremap <Leader>h  :FzHistory<CR>
 " }}}
 
-" GoldenView {{{
-let g:goldenview__enable_default_mapping = 0
-nnoremap <C-W>c :close<CR>:EnableGoldenViewAutoResize<CR>
-"}}}
-
-" JsBeautify "{{{
-augroup JsBeautify
+" rsi {{{
+augroup rsiTweaks
   autocmd!
-  autocmd FileType javascript noremap <buffer> <Leader>= :call JsBeautify()<CR>
-  autocmd FileType html noremap <buffer> <Leader>= :call HtmlBeautify()<CR>
-  autocmd FileType css noremap <buffer> <Leader>= :call CSSBeautify()<CR>
+  autocmd VimEnter * cunmap <C-g>
+  autocmd VimEnter * cunmap <C-t>
 augroup END
-"}}}
-
-" Lightline {{{
-set noshowmode
-
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'modified' ], [ 'git_stats', 'trailing_whitespaces', 'mixed_indentation', 'neomake' ] ]
-      \ },
-      \ 'component_function': {
-      \   'mode': 'LightLineMode',
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'modified': 'LightLineModified',
-      \   'readonly': 'LightLineReadonly',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \ },
-      \ 'component_expand': {
-      \   'trailing_whitespaces': 'LightLineTrailingSpaces',
-      \   'mixed_indentation': 'LightLineMixedIndentation',
-      \   'git_stats': 'LightLineGitStats',
-      \   'neomake': 'LightLineNeoMake',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-augroup ComponentExpand
-  autocmd!
-  autocmd BufReadPost,BufWritePost,InsertLeave * call s:LightLineUpdateComponents()
-  autocmd CursorHold * call s:LightLineUpdateGitStats()
-augroup END
-
-function! s:LightLineUpdateGitStats()
-  if exists('#lightline')
-    call LightLineGitStats()
-    call LightLineNeoMake()
-    call lightline#update()
-  endif
-endfunction
-
-function! s:LightLineUpdateComponents()
-  if exists('#lightline')
-    call LightLineTrailingSpaces()
-    call LightLineMixedIndentation()
-    call LightLineNeoMake()
-    call lightline#update()
-  endif
-endfunction
-
-function! LightLineNeoMake()
-  let result = ''
-  let counts = neomake#statusline#LoclistCounts()
-  for k in keys(counts)
-    let result .= k.':'.counts[k].' '
-  endfor
-  return &ft !~ 'help' && winwidth(0) > 80 ? (empty(result) ? '' : result) : ''
-endfunction
-
-function! LightLineFugitive()
-  if exists("*fugitive#head")
-    let branch = fugitive#head()
-    return &ft !~ 'help' && winwidth(0) > 80 ? (branch !=# '' ? ' '.branch : '') : ''
-  endif
-endfunction
-
-function! LightLineGitStats()
-  return &ft !~ 'help' && winwidth(0) > 80 ? s:GitStatsSummary() : ''
-endfunction
-
-function! LightLineTrailingSpaces()
-  if &ft =~ 'help' || winwidth(0) < 80 | return '' | endif
-  let trailing = search('\s$', 'nw')
-  return trailing > 0 ? '…(' . trailing . ')' : ''
-endfunction
-
-function! LightLineMixedIndentation()
-  if &ft =~ 'help' || winwidth(0) < 80 | return '' | endif
-  let tabs = search('^\t', 'nw')
-  let spaces = search('^ ', 'nw')
-  return (tabs > 0 && spaces > 0) ? '»(' . tabs . ')' : ''
-endfunction
-
-function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? '' : ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]')
-endfunction
-
-function! LightLineFileformat()
-  return &ft =~ 'help' ? '' : winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return &ft =~ 'help' ? '' : winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  if &ft =~ 'help' || winwidth(0) < 40 | return '' | endif
-  return winwidth(0) > 60 ? lightline#mode() : strpart(lightline#mode(), 0, 1)
-endfunction
-
-let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-
-let s:p.inactive.left    = [ ['gray7', 'gray2'], ['gray7', 'gray2'] ]
-let s:p.inactive.middle  = [ ['gray7', 'gray2'] ]
-let s:p.inactive.right   = [ ['gray7', 'gray2'], ['gray7', 'gray2'], ['gray7', 'gray2'] ]
-let s:p.insert.left = [ ['darkestcyan', 'white'], ['white', 'darkblue'] ]
-let s:p.insert.middle = [ [ 'mediumcyan', 'darkestblue' ] ]
-let s:p.insert.right = [ [ 'darkestcyan', 'mediumcyan' ], [ 'mediumcyan', 'darkblue' ], [ 'mediumcyan', 'darkestblue' ] ]
-let s:p.normal.left = [ ['darkestgreen', 'brightgreen'], ['gray10', 'gray4'] ]
-let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
-let s:p.normal.right = [ ['gray5', 'gray10'], ['gray9', 'gray4'], ['gray8', 'gray2'] ]
-let s:p.normal.error     = [ ['brightestred', 'gray2'] ]
-let s:p.normal.warning   = [ ['brightorange', 'gray2'] ]
-let s:p.replace.left = [ ['white', 'brightred'], ['white', 'gray4'] ]
-let s:p.replace.middle = s:p.normal.middle
-let s:p.replace.right = s:p.normal.right
-let s:p.tabline.left = [ [ 'gray9', 'gray4' ] ]
-let s:p.tabline.middle = [ [ 'gray2', 'gray8' ] ]
-let s:p.tabline.right = [ [ 'gray9', 'gray3' ] ]
-let s:p.tabline.tabsel = [ [ 'gray9', 'gray1' ] ]
-let s:p.visual.left = [ ['darkred', 'brightorange'], ['white', 'gray4'] ]
-
-let g:lightline#colorscheme#powerline#palette = lightline#colorscheme#fill(s:p)
-"}}}
-
-" Neat {{{
-let neat#json#commands = [ '%!jq .' ]
-"}}}
-
-" NeoComplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#sources#omni#functions = {}
-let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-let g:neocomplete#sources#omni#input_patterns = {}
-let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-let g:neocomplete#sources#omni#input_patterns.ruby = '\h\w*\|[^. \t]\.\w*'
-if exists(":NeoComplete")
-  call neocomplete#custom#source('tag', 'disabled', 1)
-endif
-" }}}
-
-" NeoMake {{{
-let g:neomake_logfile = '/tmp/neomake.log'
-let g:neomake_open_list = 1
-
-augroup NeoMakeAutocommands
-  au!
-  autocmd BufWritePost *.js Neomake
-  autocmd ColorScheme * highlight NeomakeErrorSign ctermfg=red ctermbg=234
-  autocmd User NeomakeCountsChanged call lightline#update()
-  autocmd User NeomakeFinished if empty(getloclist(0)) | lclose | else | lopen | wincmd p
-augroup END
-"}}}
-
-" Oblique {{{
-let g:oblique#incsearch_highlight_all = 1
-command! FreezeSearchMatches let g:oblique#clear_highlight = 0 | set hlsearch
-command! UnfreezeSearchMatches let g:oblique#clear_highlight = 1 | set nohlsearch
-"}}}
-
-" Polyglot {{{
-let g:jsx_ext_required = 1
-"}}}
-
-" Simple Task Manager {{{
-autocmd ColorScheme * hi todoTitle            cterm=bold ctermfg=231
-autocmd ColorScheme * hi todoHeading          cterm=bold ctermfg=11
-autocmd ColorScheme * hi todoAtxHeading       cterm=none ctermfg=154
-autocmd ColorScheme * hi todoPendingMarker    cterm=bold ctermfg=211 ctermbg=234
-autocmd ColorScheme * hi todoProgressMarker   cterm=bold ctermfg=222
-autocmd ColorScheme * hi todoHoldMarker       cterm=bold ctermfg=12
-autocmd ColorScheme * hi todoDoneMarker       cterm=bold ctermfg=237
-autocmd ColorScheme * hi todoDoneItem         cterm=none ctermfg=243
 "}}}
 
 " Signify {{{
-let g:signify_sign_change = '~'
-highlight SignifySignAdd    cterm=bold ctermbg=235 ctermfg=119
-highlight SignifySignChange cterm=bold ctermbg=235 ctermfg=227
-highlight SignifySignDelete cterm=bold ctermbg=235 ctermfg=167
+highlight SignifySignAdd guibg=#2c323c
+highlight SignifySignChange guibg=#2c323c
+highlight SignifySignDelete guibg=#2c323c
 
-function! s:GitStatsSummary()
-  if exists('*sy#buffer_is_active()') && sy#buffer_is_active() == 0
-    return ''
-  endif
-
-  let symbols = ['+', '-', '~']
-  let [added, modified, removed] = sy#repo#get_stats()
-  let stats = [added, removed, modified]
-  let hunkline = ''
-
-  for i in range(3)
-    if stats[i] >= 0
-      let hunkline .= printf('%s%s ', symbols[i], stats[i])
-    endif
-  endfor
-
-  if !empty(hunkline)
-    let hunkline = printf('%s', hunkline[:-2])
-  endif
-
-  return hunkline
-endfunction
+let g:signify_sign_add               = '│'
+let g:signify_sign_delete            = '│'
+let g:signify_sign_delete_first_line = '│'
+let g:signify_sign_change            = '│'
+let g:signify_sign_changedelete      = g:signify_sign_change
 "}}}
 
-" Tern.js {{{
-let g:tern_map_keys = 0
-let g:tern_show_argument_hints = "on_hold"
-let g:tern_show_signature_in_pum = 1
+" Slash {{{
+noremap <plug>(slash-after) :execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
+autocmd CursorMoved * call clearmatches()
 "}}}
-
-" UltiSnips {{{
-let g:UltiSnipsEditSplit = 'vertical'
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-" }}}
-
-" }}}
 
 " vim: set foldmethod=marker :

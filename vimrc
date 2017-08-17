@@ -162,7 +162,7 @@ xnoremap p pgvy
 
 " Extra config files " {{{
 source ~/.vim/functions.vim
-source ~/.vim/essential-plugins.vim
+source ~/.vim/plugins.vim
 
 if filereadable(expand('~/.vimrc.local.vim'))
   source ~/.vimrc.local.vim
