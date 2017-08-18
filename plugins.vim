@@ -123,7 +123,7 @@ let g:signify_sign_changedelete      = g:signify_sign_change
 "}}}
 
 " Slash {{{
-noremap <plug>(slash-after) :execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
+noremap <silent> <plug>(slash-after) :execute 'match IncSearch /\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
 autocmd CursorMoved * call clearmatches()
 "}}}
 
