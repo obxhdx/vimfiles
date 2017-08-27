@@ -58,6 +58,7 @@ augroup ColorTweaks
         \   hi AutoHighlightWord guibg=#3a3a3a |
         \   hi IncSearch cterm=NONE guifg=#000000 guibg=#ff5f5f |
         \   hi LineNr guibg=#2c323c |
+        \   hi MatchParen cterm=bold guifg=#87ff00 |
         \   hi Pmenu guifg=#303030 guibg=#ffd7ff |
         \   hi Search guibg=#aeee00 |
         \   hi StatusLine guifg=white guibg=#4b5263 |
@@ -66,7 +67,7 @@ augroup ColorTweaks
         \   hi! link SignColumn LineNr |
         \   hi! link Folded Comment |
   autocmd FileType markdown
-        \   hi htmlH1 ctermfg=209 guifg=#ff875f |
+        \   hi htmlH1 ctermfg=209 guifg=#ff8787 |
         \   hi htmlH2 ctermfg=156 guifg=#afff87 |
         \   hi htmlH3 ctermfg=205 guifg=#ff5faf |
         \   hi mkdString ctermfg=109 guifg=#89b8c2 |
