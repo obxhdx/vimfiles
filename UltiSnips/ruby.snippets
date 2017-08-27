@@ -2,12 +2,12 @@ snippet # "#{}"
 #{${1}}${0}
 endsnippet
 
-snippet p'
+snippet p' "puts 'foo'"
 puts '${1:foo}'${0}
 endsnippet
 
 snippet p"
-puts "${1:foo}: #{${1/\w+\s*/$0/g}}
+puts "${1/\w+\s*/$0/g}: #{${1:foo}}${0}
 endsnippet
 
 snippet "([0-9])\.tim" "times { |<i>| <block> }" r

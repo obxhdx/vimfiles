@@ -1,55 +1,55 @@
-snippet wf
+snippet wf "waitsFor()"
 waitsFor(function () {
 	return ${1}
 });${0}
 endsnippet
 
-snippet ru
+snippet ru "runs()"
 runs(function () {
 	${1}
 });${0}
 endsnippet
 
-snippet des
+snippet des "describe()"
 describe('${1:Description}', function () {
 	${0}
 });
 endsnippet
 
-snippet it
+snippet it "it()"
 it('${1:Scenario description}', function (${2}) {
 	${0}
 });
 endsnippet
 
-snippet iit
+snippet iit "iit()"
 iit('${1:Scenario description}', function (${2}) {
 	${0}
 });
 endsnippet
 
-snippet bef
+snippet bef "beforeEach()"
 beforeEach(function () {
 	${0}
 });
 endsnippet
 
-snippet aft
+snippet aft "afterEach()"
 afterEach(function () {
 	${0}
 });
 endsnippet
 
-snippet inj
+snippet inj "inject()"
 inject(function ($injector) {
 	${1} = $injector.get('${1/\w+\s*/\u$0/g}');
 });${0}
 endsnippet
 
-snippet inget
+snippet inget "$injector.get()"
 ${1} = $injector.get('${1/\w+\s*/\u$0/g}');${0}
 endsnippet
 
-snippet spy
+snippet spy "spyOn()"
 spyOn(${1}, '${2}');${0}
 endsnippet
