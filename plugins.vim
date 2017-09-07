@@ -99,6 +99,7 @@ let g:fzf_command_prefix = 'Fz'
 let g:fzf_files_options  = '--tiebreak=end' " Prioritize matches that are closer to the end of the string
 nnoremap <leader>ag :FzAg<CR>
 nnoremap <Leader>b  :FzBuffers<CR>
+nnoremap <Leader>c  :FzCommands<CR>
 nnoremap <Leader>f  :FzFiles<CR>
 nnoremap <Leader>h  :FzHistory<CR>
 " }}}
