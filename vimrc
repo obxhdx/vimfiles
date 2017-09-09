@@ -42,13 +42,15 @@ else
   set background=dark
 endif
 
-" Use a blinking upright bar cursor in Insert mode / blinking block in Normal
+" Cursor shapes
+let vertical_bar='CursorShape=1'
+let underscore='CursorShape=2'
 if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;".vertical_bar."\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;".underscore."\x7\<Esc>\\"
 else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SI = "\<Esc>]50;".vertical_bar."\x7"
+  let &t_EI = "\<Esc>]50;".underscore."\x7"
 endif
 " }}}
 
