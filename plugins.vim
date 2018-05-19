@@ -152,14 +152,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 "}}}
 
-" rsi {{{
-augroup rsiTweaks
-  autocmd!
-  autocmd VimEnter * cunmap <C-g>
-  autocmd VimEnter * cunmap <C-t>
-augroup END
-"}}}
-
 " Signify {{{
 highlight SignifySignAdd guibg=#2c323c
 highlight SignifySignChange guibg=#2c323c
