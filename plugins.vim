@@ -19,7 +19,9 @@ Plug 'sirver/ultisnips', { 'on': [] }
 Plug 'tpope/vim-endwise', { 'on': [] }
 
 " Lint
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'w0rp/ale'
 
 " Misc
