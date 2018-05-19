@@ -19,6 +19,7 @@ set nojoinspaces " Use one space, not two, after punctuation
 " }}}
 
 " Appearance " {{{
+set fillchars+=vert:│ " Custom vert split symbol
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set statusline=%<\ %t\ %h%m%r%=%-14.(%l,%c%V%)\ %P\  " Standard statusline

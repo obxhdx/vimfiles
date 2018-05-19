@@ -123,7 +123,7 @@ augroup ColorTweaks
         \   hi Search guibg=#aeee00 |
         \   hi StatusLine guifg=white guibg=#4b5263 |
         \   hi StatusLineNC gui=NONE guibg=#353b45 |
-        \   hi VertSplit guifg=#262626 |
+        \   hi VertSplit guifg=#555555 |
         \   hi! link SignColumn LineNr |
         \   hi! link Folded Comment |
   autocmd FileType markdown
