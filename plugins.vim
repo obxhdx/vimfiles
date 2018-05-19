@@ -58,12 +58,33 @@ augroup END
 " }}}
 
 " ActionMapper {{{
+function! FindAndReplaceWithWordBoundary(text)
+  let l:use_word_boundary = 1
+  execute s:FindAndReplace(a:text, l:use_word_boundary)
+endfunction
+
+function! FindAndReplaceWithoutWordBoundary(text)
+  let l:use_word_boundary = 0
+  execute s:FindAndReplace(a:text, l:use_word_boundary)
+endfunction
+
+function! s:FindAndReplace(text, use_word_boundary)
+  let l:pattern = a:use_word_boundary ? '<'.a:text.'>' : a:text
+  let l:new_text = input('Replace '.l:pattern.' with: ', a:text)
+
+  if len(l:new_text)
+    execute ',$s/\v'.l:pattern.'/'.l:new_text.'/gc'
+  endif
+endfunction
+
 function! GrepWithFZF(text)
   execute 'FzRg '.a:text
 endfunction
 
 autocmd! User MapActions
 autocmd User MapActions call MapAction('GrepWithFZF', '<leader>g')
+autocmd User MapActions call MapAction('FindAndReplaceWithWordBoundary', '<leader>r')
+autocmd User MapActions call MapAction('FindAndReplaceWithoutWordBoundary', '<leader><leader>r')
 "}}}
 
 " Ale {{{
