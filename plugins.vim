@@ -7,8 +7,7 @@ call plug#begin('~/.vim/bundle')
 
 " Appearance
 Plug 'blueyed/vim-diminactive'
-Plug 'rakr/vim-one'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'noahfrederick/vim-noctu'
 Plug 'sheerun/vim-polyglot'
 
 " Code Completion
@@ -90,62 +89,31 @@ autocmd User MapActions call MapAction('FindAndReplaceWithoutWordBoundary', '<le
 " Ale {{{
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '●'
+au ColorScheme * hi ALEErrorSign ctermfg=red
+au ColorScheme * hi ALEWarningSign ctermfg=yellow
+" }}}
+
+" AutoHighlightWord {{{
+au VimEnter * hi! AutoHighlightWord ctermbg=238
 " }}}
 
 " Colorscheme {{{
-function! DefaultColorTweaks()
-  hi Normal ctermbg=NONE guibg=NONE
-
-  if $TERM_BACKGROUND == 'light'
-    hi LineNr ctermbg=NONE
-    hi SignColumn ctermbg=NONE
-    hi ColorColumn ctermbg=NONE
-    hi Pmenu ctermfg=232 ctermbg=225
-  else
-    hi LineNr ctermbg=235
-    hi SignColumn ctermbg=235
-    hi ColorColumn ctermbg=235
-    hi Pmenu ctermfg=236 ctermbg=225
-  endif
-endfunction
-
 augroup ColorTweaks
   autocmd!
-  autocmd ColorScheme * call DefaultColorTweaks()
-  autocmd ColorScheme one
-        \   hi ALEErrorSign guibg=#2c323c |
-        \   hi ALEWarningSign guibg=#2c323c |
-        \   hi AutoHighlightWord guibg=#3a3a3a |
-        \   hi IncSearch cterm=NONE guifg=#000000 guibg=#ff5f5f |
-        \   hi LineNr guibg=#2c323c |
-        \   hi MatchParen cterm=bold guifg=#87ff00 |
-        \   hi Pmenu guifg=#303030 guibg=#ffd7ff |
-        \   hi Search guibg=#aeee00 |
-        \   hi StatusLine guifg=white guibg=#4b5263 |
-        \   hi StatusLineNC gui=NONE guibg=#353b45 |
-        \   hi VertSplit guifg=#555555 |
-        \   hi! link SignColumn LineNr |
+  autocmd ColorScheme *
+        \   hi ColorColumn ctermbg=237 |
+        \   hi CursorLine ctermbg=237 |
+        \   hi CursorLineNr ctermbg=NONE ctermfg=white |
+        \   hi LineNr ctermbg=NONE |
+        \   hi Pmenu ctermbg=13 ctermfg=black |
+        \   hi StatusLine cterm=reverse |
+        \   hi StatusLineNC cterm=NONE ctermbg=239 ctermfg=white |
+        \   hi VertSplit ctermfg=240 |
         \   hi! link Folded Comment |
-  autocmd FileType markdown
-        \   hi htmlH1 ctermfg=209 guifg=#ff8787 |
-        \   hi htmlH2 ctermfg=156 guifg=#afff87 |
-        \   hi htmlH3 ctermfg=205 guifg=#ff5faf |
-        \   hi mkdString ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdCode ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdCodeStart ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdCodeEnd ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdFootnote ctermfg=242 guifg=#6b7089 |
-        \   hi mkdBlockquote ctermfg=242 guifg=#6b7089 |
-        \   hi mkdListItem cterm=NONE ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdRule cterm=NONE ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdLineBreak ctermbg=236 guibg=#272c42 |
-        \   hi mkdID cterm=NONE ctermfg=109 guifg=#89b8c2 |
-        \   hi mkdDelimiter ctermfg=252 guifg=#c6c8d1 |
 augroup END
 
 try
-  colorscheme one
-  set termguicolors
+  colorscheme noctu
 catch | endtry
 " }}}
 
@@ -176,9 +144,9 @@ let g:neocomplete#enable_smart_case = 1
 "}}}
 
 " Signify {{{
-highlight SignifySignAdd guibg=#2c323c
-highlight SignifySignChange guibg=#2c323c
-highlight SignifySignDelete guibg=#2c323c
+hi SignifySignAdd ctermfg=green
+hi SignifySignChange ctermfg=yellow
+hi SignifySignDelete ctermfg=red
 
 let g:signify_sign_add               = '│'
 let g:signify_sign_delete            = '│'

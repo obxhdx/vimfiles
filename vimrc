@@ -37,12 +37,6 @@ if &term =~ '256color'
   set t_ut=
 endif
 
-if $TERM_BACKGROUND == 'light'
-  set background=light
-else
-  set background=dark
-endif
-
 " Cursor shapes
 let vertical_bar='CursorShape=1'
 let underscore='CursorShape=2'
