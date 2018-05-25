@@ -157,6 +157,14 @@ xnoremap p pgvy
 
 " }}}
 
+" Auto cmds " {{{
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+" }}}
+
 " Extra config files " {{{
 source ~/.vim/functions.vim
 source ~/.vim/plugins.vim
