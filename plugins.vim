@@ -18,10 +18,8 @@ Plug 'sirver/ultisnips', { 'on': [] }
 Plug 'tpope/vim-endwise', { 'on': [] }
 
 " Lint
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-Plug 'w0rp/ale'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'on': [ 'Prettier', 'PrettierAsync' ] }
+Plug 'w0rp/ale', { 'on': [] }
 
 " Misc
 Plug 'junegunn/vim-slash'
@@ -38,9 +36,9 @@ Plug 'tmhedberg/matchit'
 
 " Tools
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-Plug 'junegunn/fzf.vim'
-Plug 'metakirby5/codi.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'on': ['FzBuffers', 'FzCommands', 'FzFiles', 'FzHistory', 'FzRg'] }
+Plug 'junegunn/fzf.vim', { 'on': ['FzBuffers', 'FzCommands', 'FzFiles', 'FzHistory', 'FzRg'] }
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 
 call plug#end()
 " }}}
@@ -48,11 +46,9 @@ call plug#end()
 " On-demand Loading {{{
 augroup LoadCompletionPlugins
   autocmd!
-  if !has('gui_vimr')
-    autocmd InsertEnter * call plug#load('neocomplete.vim', 'ultisnips', 'vim-endwise', 'vim-snippets')
-          \| echo 'Snippets + Completion plugins loaded!'
-          \| autocmd! LoadCompletionPlugins
-  endif
+  autocmd InsertEnter * call plug#load('ale', 'neocomplete.vim', 'ultisnips', 'vim-endwise', 'vim-snippets')
+        \| echo 'Snippets + Completion plugins loaded!'
+        \| autocmd! LoadCompletionPlugins
 augroup END
 " }}}
 
