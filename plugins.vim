@@ -91,6 +91,7 @@ au ColorScheme * hi ALEWarningSign ctermfg=yellow
 
 " AutoHighlightWord {{{
 au VimEnter * hi! AutoHighlightWord ctermbg=238
+set updatetime=500 " Make CursorHold trigger faster
 " }}}
 
 " Colorscheme {{{
@@ -152,7 +153,7 @@ let g:signify_sign_changedelete      = g:signify_sign_change
 "}}}
 
 " Slash {{{
-noremap <silent> <plug>(slash-after) :execute 'match IncSearch /\c\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
+nnoremap <silent> <plug>(slash-after) :execute 'match IncSearch /\c\%'.virtcol('.').'v\%'.line('.').'l'.@/.'/'<CR>
 autocmd CursorMoved * call clearmatches()
 "}}}
 
@@ -162,4 +163,4 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 "}}}
 
-" vim: set foldmethod=marker :
+" vim: set foldmethod=marker foldenable :

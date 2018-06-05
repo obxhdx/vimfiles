@@ -75,4 +75,4 @@ endf
 nmap <leader>sg :call <SID>SyntaxGroupsForWordUnderCursor()<CR>
 " }}}
 
-" vim: set foldmethod=marker :
+" vim: set foldmethod=marker foldenable :

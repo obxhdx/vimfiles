@@ -1,19 +1,12 @@
 " General options " {{{
-set nocompatible " Be iMproved
-set encoding=utf8 " Default encoding
 set history=10000 " Remember more commands and search history
 set wildmenu " Enable command line completion menu
-set wildmode=longest:full,full " Command line completion mode
 set backup " Enable file backup
 set backupdir=~/.vim/tmp/backup// " Backup files dir
 set directory=~/.vim/tmp/swap// " Swap files dir
-set tags+=~/.vim/tags/ruby_gems " Load gem tags when present
 set mouse=a " Enable mouse
-set vb t_vb= " Disable visual bell
-set timeoutlen=1000 " Leader key timeout (ms)
 set ttimeoutlen=10 " Disable Esc delay
 set hidden " Hide buffers instead of closing them
-set updatetime=500
 set nrformats-=octal " Do not consider numbers starting with zero to be octal
 set nojoinspaces " Use one space, not two, after punctuation
 " }}}
@@ -23,19 +16,11 @@ set fillchars+=vert:│ " Custom vert split symbol
 set number " Display line numbers
 set laststatus=2 " Enable statusline
 set statusline=%<\ %t\ %h%m%r%=%-14.(%l,%c%V%)\ %P\  " Standard statusline
-set cursorline " Highlight current line
 set listchars=tab:».,trail:⌴,extends:❯,precedes:❮,nbsp:° " Unprintable chars
-set showbreak=… " Line break character
+set showbreak=˾ " Line break character
+set linebreak " Wrap long lines at a character in 'breakat'
 set showcmd " Show keystrokes on statusline
-set title " Make xterm inherit the title from Vim
-set t_Co=256 " Make terminal use 256 colors
 syntax enable " Enable syntax highlighting
-
-if &term =~ '256color'
-  " Disable Background Color Erase (BCE) so that color schemes work
-  " properly within 256-color terminals
-  set t_ut=
-endif
 
 " Cursor shapes
 let vertical_bar='CursorShape=1'
@@ -49,25 +34,11 @@ else
 endif
 " }}}
 
-" Auto-complete (^N and ^P) {{{
-set complete=   " Clear options
-set complete+=. " Scan the current buffer
-set complete+=w " Scan buffers from other windows
-set complete+=b " Scan other loaded buffers that are in the buffer list
-set complete+=u " Scan unloaded buffers that are in the buffer list
-set complete+=U " Scan buffers that are not in the buffer list
-set complete+=i " Scan current and included files
-set complete+=] " Tag completion
-"}}}
-
 " Searching " {{{
 set incsearch " Enable incremental search
 set ignorecase " Ignore case sensitivity
 set smartcase " Enable case-smart searching
 set hlsearch " Highlight search matches
-if executable('ag')
-  set grepprg=ag\ --vimgrep\ $* " Grep with the silver searcher
-endif
 " }}}
 
 " Folding " {{{
@@ -96,28 +67,24 @@ set formatoptions+=1 " Break before 1-letter words
 set formatoptions+=j " Remove comment characters when joining lines
 " }}}
 
-" File explorer "{{{
-let g:netrw_bufsettings='noma nomod nu nobl nowrap ro' " Show line numbers
-"}}}
-
 " Key mappings " {{{
 
 " Space as leader
 let mapleader = " "
 
 " Yank visual selection to clipboard
-vmap <Leader>y "+y
+vnoremap <Leader>y "+y
 " Yank with motion to clipboard
-nmap <Leader>y "+y
+nnoremap <Leader>y "+y
 " Yank line to clipboard
-nmap <Leader>Y "+Y
+nnoremap <Leader>Y "+Y
 
 " Paste clipboard contents on visual selection
-vmap <Leader>p "+p
+vnoremap <Leader>p "+p
 " Paste clipboard contents after cursor
-nmap <Leader>p "+p
+nnoremap <Leader>p "+p
 " Paste clipboard contents before cursor
-nmap <Leader>P "+P
+nnoremap <Leader>P "+P
 
 " Faster way to save/quit
 nnoremap <Leader>w :w<CR>
@@ -130,11 +97,6 @@ nnoremap cd :lcd %:p:h<CR>:pwd<CR>
 
 " Expand %% to file path
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" Disable annoying keys
-map <F1> <nop>
-imap <F1> <nop>
-map K <nop>
 
 " Find/replace
 noremap <Leader>r :%s/\C\<<C-r>=expand("<cword>")<CR>\>/<C-r>=expand("<cword>")<CR>/gc<left><left><left>
@@ -174,4 +136,4 @@ if filereadable(expand('~/.vimrc.local.vim'))
 endif
 " }}}
 
-" vim: set foldmethod=marker :
+" vim: set foldmethod=marker foldenable :
